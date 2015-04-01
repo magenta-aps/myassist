@@ -1,0 +1,11 @@
+name = MyAssist Questions/Answers
+description = Enables questions/answers functionality
+core = 7.x
+package = MyAssist
+dependencies[] = answers
+dependencies[] = answers_best_answer
+dependencies[] = answers_notifications
+dependencies[] = answers_theme
+dependencies[] = answers_userpoints
+dependencies[] = answers_voting
+features[features_api][] = api:2

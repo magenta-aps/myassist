@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the MyAssist User feature.
+ */
+
+include_once 'myassist_user.features.inc';

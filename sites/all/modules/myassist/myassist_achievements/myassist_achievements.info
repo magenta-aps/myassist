@@ -1,0 +1,4 @@
+name = MyAssist Achievements
+core = 7.x
+package = MyAssist
+dependencies[] = achievements

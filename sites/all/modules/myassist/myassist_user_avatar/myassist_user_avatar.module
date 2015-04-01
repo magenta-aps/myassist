@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the myassist_user_avatar feature.
+ */
+
+include_once 'myassist_user_avatar.features.inc';

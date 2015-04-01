@@ -1,0 +1,14 @@
+name = MyAssist Categories
+core = 7.x
+package = MyAssist
+dependencies[] = features
+dependencies[] = taxonomy
+dependencies[] = views
+features[ctools][] = views:views_default:3.0
+features[features_api][] = api:2
+features[field_base][] = field_category
+features[field_instance][] = node-answers_question-field_category
+features[taxonomy][] = categories
+features[views_view][] = categories
+features_exclude[dependencies][ctools] = ctools
+features_exclude[dependencies][options] = options

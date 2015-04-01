@@ -1,0 +1,94 @@
+<?php
+
+/**
+ * Define an achievement.
+ *
+ * This hook describes your achievements to the base module so that it can
+ * create the pages and caches necessary for site-wide display. The base
+ * module doesn't know how to unlock any of your achievements... instead, you
+ * use Drupal's existing hooks, the achievement storage tables, and a few
+ * helper functions to complete the workflow. See the remaining documentation
+ * in this file for further code samples.
+ *
+ * There are many different kinds of achievements, and it's accurate enough to
+ * say that if you can measure or respond to an action, it can be made into a
+ * matching achievement. Be creative. Look at what others are doing. Have fun.
+ * Your gamification efforts will fail or be un-fun if you don't have a gamer
+ * helping you, if you make everything a mindless grind, or if you simply
+ * copy achievements from another site or install.
+ *
+ * @return
+ *   An array whose keys are internal achievement IDs (32 chars max) and whose
+ *   values identify properties of the achievement. These properties are:
+ *   - title: (required) The title of the achievement.
+ *   - description: (required) A description of the achievement.
+ *   - points: (required) How many points the user will earn when unlocked.
+ *   - images: (optional) An array of (optional) keys 'locked', 'unlocked',
+ *     and 'secret' whose values are image file paths. Achievements exist in
+ *     three separate display states: unlocked (the user has it), locked (the
+ *     user doesn't have it), and secret (the user doesn't have it, and the
+ *     achievement is a secret). Each state can have its own default image
+ *     associated with it (which administrators can configure), or achievements
+ *     can specify their own images for one, some, or all states.
+ *   - storage: (optional) If you store statistics for your achievement, the
+ *     core module assumes you've used the achievement ID for the storage
+ *     location. If you haven't, specify the storage location here. This lets
+ *     the core module know what to delete when an administrator manually
+ *     removes an achievement unlock from a user. If your achievement
+ *     tracks statistics that are NOT set with achievements_storage_get()
+ *     or _set, you don't have to define the 'storage' key.
+ *   - secret: (optional) The achievement displays on a user's Achievements
+ *     tab but does not reveal its title, description, or points until the
+ *     user has unlocked it. Compatible with 'invisible'.
+ *   - invisible: (optional) The achievement does NOT display on a user's
+ *     Achievements tab, but does show up on the leaderboards when necessary.
+ *     Compatible with 'secret' (i.e., if another user has unlocked an
+ *     invisible achievement, a user who has not unlocked it will see the
+ *     placeholder secret text instead of the actual achievement itself).
+ *
+ *   Achievements can also be categorized into groups. Groups are simply
+ *   arrays whose keys are internal group IDs and whose values identify
+ *   the 'title' of the group as well as the array of 'achievements' that
+ *   correspond to that group. If some achievements are within a group and
+ *   some achievements are without a group, the groupless achievements will
+ *   automatically be placed into a "Miscellany" category.
+ */
+function myassist_achievements_achievements_info() {
+  $achievements = array(
+    'question-creation' => array(
+      'title' => t('Question creation'),
+      'achievements' => array(
+        'question-count-1' => array(
+          'title'       => t('Posted a question'),
+          'description' => t("We no longer think you're a spam bot. Maybe."),
+          'storage'     => 'question-count',
+          'points'      => 50,
+        ),
+        'question-count-3' => array(
+          'title'       => t('Posted 3 questions'),
+          'description' => t('But what about the children?!'),
+          'storage'     => 'question-count',
+          'points'      => 100,
+//      'images' => array(
+//        'unlocked'  => 'sites/default/files/example1.png',
+//         'secret' and 'locked' will use the defaults.
+//      ),
+        ),
+      )
+    ),
+  );
+
+  return $achievements;
+}
+
+/**
+ * Implements hook_node_insert().
+ */
+function myassist_achievements_node_insert($node) {
+  $current_count = achievements_storage_get('question-count', $node->uid) + 1;
+  achievements_storage_set('question-count', $current_count, $node->uid);
+
+  if (in_array($current_count, array(1, 3))) {
+    achievements_unlocked('question-count-' . $current_count, $node->uid);
+  }
+}

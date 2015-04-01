@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the MyAssist Categories feature.
+ */
+
+include_once 'myassist_categories.features.inc';
