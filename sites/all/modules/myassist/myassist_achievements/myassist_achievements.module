@@ -85,7 +85,7 @@ function myassist_achievements_achievements_info() {
  * Implements hook_node_insert().
  */
 function myassist_achievements_node_insert($node) {
-  if ($node->type == "answers_question") {
+  if ($node->type === "answers_question") {
     $current_count = achievements_storage_get('question-count', $node->uid) + 1;
     achievements_storage_set('question-count', $current_count, $node->uid);
 
