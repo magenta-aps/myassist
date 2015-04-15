@@ -1,0 +1,14 @@
+name = MyAssist Core
+core = 7.x
+package = MyAssist
+dependencies[] = module_filter
+dependencies[] = myassist_achievements
+dependencies[] = myassist_categories
+dependencies[] = myassist_danish
+dependencies[] = myassist_menus
+dependencies[] = myassist_permissions
+dependencies[] = myassist_questions_answers
+dependencies[] = myassist_user
+dependencies[] = myassist_user_avatar
+dependencies[] = taxonomy_manager
+features[features_api][] = api:2
