@@ -1,0 +1,49 @@
+<?php
+
+
+/**
+ * Implements hook_schema().
+ */
+function myassist_achievements_schema() {
+  $schema['myassist_achievements_levels'] = array(
+    'description' => t('Gamification levels'),
+    'fields' => array(
+      'level' => array(
+        'description' => 'Level number',
+        'type' => 'int',
+        'unsigned' => true,
+        'not null' => true,
+      ),
+      'points' => array(
+        'description' => 'Points required',
+        'type' => 'int',
+        'unsigned' => true,
+        'not null' => true,
+      ),
+      'title' => array(
+        'description' => 'User title at level',
+        'type' => 'varchar',
+        'length' => 30,
+      )
+    ),
+    'primary key' => array('level')
+  );
+  return $schema;
+}
+
+
+
+function myassist_achievements_install() {
+    $k = 10;
+    $factor = 1.2;
+    $q = db_insert('myassist_achievements_levels')->fields(array('level','points','title'));
+    for ($level=0; $level<=100; $level++) {
+        $points = $level > 0 ? ceil( ($k / ($factor - 1)) * (pow($factor, $level) - 1) ) : 0;
+        $q->values(array(
+            $level,
+            $points,
+            "Level " . $level
+        ));
+    }
+    $q->execute();
+}

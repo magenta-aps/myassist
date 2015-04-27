@@ -74,6 +74,31 @@ function myassist_achievements_achievements_info() {
 //         'secret' and 'locked' will use the defaults.
 //      ),
         ),
+
+        'level-10' => array(
+            'title'       => t('Reached level 10'),
+            'description' => t("You're officially no longer a fucking n00b"),
+            'storage'     => 'level',
+            'points'      => 10,
+        ),
+        'level-15' => array(
+            'title'       => t('Reached level 15'),
+            'description' => t("You're getting the hang of this"),
+            'storage'     => 'level',
+            'points'      => 20,
+        ),
+        'level-20' => array(
+            'title'       => t('Reached level 20'),
+            'description' => t("We welcome you into our circle of buddies"),
+            'storage'     => 'level',
+            'points'      => 30,
+        ),
+        'level-80' => array(
+            'title'       => t('Reached level 80'),
+            'description' => t("Bow down to the almighty über-poster"),
+            'storage'     => 'level',
+            'points'      => 1000,
+        ),
       )
     ),
   );
@@ -83,6 +108,7 @@ function myassist_achievements_achievements_info() {
 
 /**
  * Implements hook_node_insert().
+ * Trigger achievements for question posting
  */
 function myassist_achievements_node_insert($node) {
   if ($node->type === "answers_question") {
@@ -93,4 +119,107 @@ function myassist_achievements_node_insert($node) {
       achievements_unlocked('question-count-' . $current_count, $node->uid);
     }
   }
+}
+
+/*
+ * Implements hook_userpoints
+ * Trigger achievements for leveling up
+ * Called when the user's points are altered (by userpoints_invoke_all() in userpoints.module)
+ * */
+function myassist_achievements_userpoints($operation, $parameters) {
+  if ($operation === "points after") {
+    $uid = $parameters["uid"];
+    // Get the number of points before & after the change
+    $pointsAfter = userpoints_get_current_points($uid);
+    $pointsBefore = $pointsAfter - $parameters["points"];
+    if ($pointsBefore < $pointsAfter) {
+      // Get the level before & after the change
+      $levelBefore = myassist_achievements_get_level_by_points($pointsBefore)['level'];
+      $levelAfter = myassist_achievements_get_level_by_points($pointsAfter)['level'];
+      if ($levelBefore < $levelAfter) {
+        // See if we crossed a threshold so we get an achievement. A user can potentially jump several levels in one go, if he gets a lot of points at once
+        foreach (array(10, 15, 20, 80) as $achievementLevel) {
+          if ($levelBefore < $achievementLevel && $levelAfter >= $achievementLevel) {
+            achievements_unlocked('level-' . $achievementLevel, $uid);
+          }
+        }
+      }
+    }
+  }
+}
+
+
+/*
+ * Look up level info by point count
+ * */
+function myassist_achievements_get_level_by_points($points) {
+  $result = db_query("SELECT level,title,points FROM myassist_achievements_levels WHERE points <= :points ORDER BY level DESC LIMIT 1", array(":points" => $points));
+  if ($result) {
+    if ($row = $result->fetchAssoc()) {
+      return $row;
+    }
+  }
+}
+/*
+ * Look up level info by level number
+ * */
+function myassist_achievements_get_level($level) {
+  $result = db_query("SELECT level,title,points FROM myassist_achievements_levels WHERE level = :level LIMIT 1", array(":level" => $level));
+  if ($result) {
+    if ($row = $result->fetchAssoc()) {
+      return $row;
+    }
+  }
+  return 0;
+}
+
+/*
+ * Look up level info by user id
+ * */
+function myassist_achievements_get_user_level($uid) {
+  $points = userpoints_get_current_points($uid);
+  return myassist_achievements_get_level_by_points($points);
+}
+/*
+ * Get the number of points needed to level up
+ * */
+function myassist_achievements_get_user_points_for_next_level($uid) {
+  $currentPoints = userpoints_get_current_points($uid);
+  $currentLevel = myassist_achievements_get_level_by_points($currentPoints);
+  return myassist_achievements_get_level($currentLevel['level'] + 1)['points'] - $currentPoints;
+}
+
+
+/*
+ * Implements hook_userpoints_list_transactions_alter
+ * Adds a table to the user's 'points' screen
+ * */
+function myassist_achievements_userpoints_list_transactions_alter(&$data) {
+  $uid = $data["#account"]->uid;
+  $level = myassist_achievements_get_user_level($uid);
+  $data['list']['level'] = array(
+      '#theme' => 'table',
+      '#header' => array(
+          array(
+            'data' => "Level",
+            'colspan' => 2,
+          ),
+      ),
+      '#rows' => array(
+          array(
+              'data' => array('Current level', $level['level']),
+              'class' => array('userpoints-myuserpoints-total-approved'),
+          ),
+          array(
+              'data' => array('Current title', $level['title']),
+              'class' => array('userpoints-myuserpoints-total-approved'),
+          ),
+          array(
+            'data' => array('Points until level-up', myassist_achievements_get_user_points_for_next_level($uid)),
+            'class' => array('userpoints-myuserpoints-total-approved'),
+          )
+      ),
+      '#weight' => 20,
+      '#attributes' => array('class' => array('userpoints-myuserpoints-total')),
+  );
 }
