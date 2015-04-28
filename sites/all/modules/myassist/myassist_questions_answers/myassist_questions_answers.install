@@ -2,6 +2,7 @@
 
 
 function myassist_questions_answers_install() {
+    print "myassist_questions_answers_install()\n";
     db_update('system')
         ->fields(array('weight' => 1))
         ->condition('type', 'module')

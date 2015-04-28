@@ -9,3 +9,4 @@ dependencies[] = answers_theme
 dependencies[] = answers_userpoints
 dependencies[] = answers_voting
 features[features_api][] = api:2
+stylesheets[all][] = myassist_questions_answers.css
