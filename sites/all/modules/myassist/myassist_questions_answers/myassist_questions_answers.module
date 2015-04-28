@@ -1,7 +1,6 @@
 <?php
 
 function myassist_questions_answers_preprocess_rate_template_number_up_down(&$variables) {
-    print "we get here";
     extract($variables);
     $variables["down_button"] = "";
 }
