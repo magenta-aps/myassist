@@ -1,0 +1,1 @@
+<div class="userpoints"><?php print $points; ?> points</div>

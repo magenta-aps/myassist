@@ -1,0 +1,23 @@
+.entity .content {
+  float: left;
+  margin-left: 20%;
+  width: 80%;
+}
+
+/*
+* Achievement badges
+**/
+
+.achievement-image {
+  display: inline-block;
+  width: 70px;
+  margin: 0.4em;
+}
+
+.achievement-image a {
+  display: block;
+  width: 100%;
+  line-break: auto;
+  font-size: 0.75em;
+  line-height: 1em;
+}

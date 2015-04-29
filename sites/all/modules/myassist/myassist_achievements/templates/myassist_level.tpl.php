@@ -1,0 +1,1 @@
+<div class='userlevel'><?php print $level; ?></div>

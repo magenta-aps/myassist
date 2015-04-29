@@ -106,6 +106,8 @@ function myassist_achievements_achievements_info() {
   return $achievements;
 }
 
+
+
 /**
  * Implements hook_node_insert().
  * Trigger achievements for question posting
@@ -221,5 +223,107 @@ function myassist_achievements_userpoints_list_transactions_alter(&$data) {
       ),
       '#weight' => 20,
       '#attributes' => array('class' => array('userpoints-myuserpoints-total')),
+  );
+}
+
+
+
+
+
+/**
+ * Implements hook_profile2_view().
+ * Displays achievement badges on profile page
+ */
+function myassist_achievements_profile2_view($profile, $view_mode, $langcode) {
+
+  $uid = $profile->uid;
+
+
+  $points = userpoints_get_current_points($uid);
+  $profile->content['points'] = array(
+    '#theme' => "myassist_points", // Point to definition in myassist_achievements_theme
+    '#weight' => 0,
+    '#title' => 'Points',
+    '#points' => $points, // Pass data to template (name must be defined in the definition)
+  );
+
+
+  $level = myassist_achievements_get_user_level($uid);
+  $profile->content['level'] = array(
+    '#theme' => "myassist_level",
+    '#weight' => 0,
+    '#title' => 'Level',
+    '#level' => $level["title"],
+  );
+
+
+  // Get a list of all achievements
+  $achievements_grouped = achievements_load(NULL, TRUE);
+  // Get a definition of which achievements are unlocked by the user
+  $unlocks = achievements_unlocked_already(NULL, $uid);
+
+  // Find all achievement objects that the user has unlocked
+  $unlocked_achievements = array();
+  foreach ($achievements_grouped as $group_id => $group) {
+    foreach ($group['achievements'] as $achievement_id => $achievement) {
+      if (isset($unlocks[$achievement_id])) {
+        $unlocked_achievements[] = array(
+          'achievement' => $achievement,
+          'unlock' => $unlocks[$achievement_id]
+        );
+      }
+    }
+  }
+
+  // Sort the unlocked achievements by timestamp, newest first
+  function cmp_achievements($a, $b) {
+    $ta = $a['unlock']['timestamp'];
+    $tb = $b['unlock']['timestamp'];
+    return $ta === $tb ? 0 : $ta > $tb;
+  }
+  uksort($unlocked_achievements, "cmp_achievements");
+
+  // Cut off all but the latest 10 achievements
+  array_splice($unlocked_achievements, 10);
+
+  // Add the achievements to the rendering array
+  for ($i=0; $i<count($unlocked_achievements); $i++) {
+    $unlock = $unlocked_achievements[$i]['unlock'];
+    $achievement = $unlocked_achievements[$i]['achievement'];
+
+    // Get extra rendering info from the achievements module, such as image and title
+    $extra = array('achievement'=>$achievement, 'unlock'=>$unlock);
+    achievements_template_shared_variables($extra);
+
+    // Stuff an object into our rendering array
+    $profile->content['achievements'][$achievement['id']] = array(
+      '#theme' => 'myassist_achievement',
+      '#weight' => $i,
+      '#title' => 'Achievement',
+      '#achievement' => $achievement,
+      '#image' => $extra['image'],
+      '#achievement_title' => $extra['achievement_title'],
+    );
+  }
+
+}
+
+/**
+ * Implements hook_theme().
+ */
+function myassist_achievements_theme($existing, $type, $theme, $path){
+  return array(
+    'myassist_points' => array(
+      'template' => 'templates/myassist_points', // define myassist_points.tpl.php inside module - point to myassist_achievements/templates/myassist_points.tpl.php
+      'variables' => array('points' => null), //define all variables used in the template file
+    ),
+    'myassist_level' => array(
+      'template' => 'templates/myassist_level',
+      'variables' => array('level' => null),
+    ),
+    'myassist_achievement' => array(
+      'template' => 'templates/myassist_achievement',
+      'variables' => array('achievement' => null, 'image' => NULL, 'achievement_title' => NULL),
+    ),
   );
 }
