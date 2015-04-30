@@ -32,12 +32,7 @@
   margin: 0;
 }
 
-/* line 33, ../sass/profile.scss */
-.entity-profile2 .field .field-label {
-  display: none;
-}
-
-/* line 38, ../sass/profile.scss */
+/* line 35, ../sass/profile.scss */
 .entity-profile2 .field-name-field-gender,
 .entity-profile2 .field-name-field-age {
   display: inline-block;
