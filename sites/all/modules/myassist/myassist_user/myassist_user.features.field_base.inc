@@ -91,7 +91,7 @@ function myassist_user_field_default_field_bases() {
         1 => 'Female',
       ),
       'allowed_values_function' => '',
-      'profile2_private' => FALSE,
+      'profile2_private' => 0,
     ),
     'translatable' => 0,
     'type' => 'list_boolean',
@@ -117,33 +117,6 @@ function myassist_user_field_default_field_bases() {
     ),
     'translatable' => 0,
     'type' => 'image',
-  );
-
-  // Exported field_base: 'field_labels'
-  $field_bases['field_labels'] = array(
-    'active' => 1,
-    'cardinality' => -1,
-    'deleted' => 0,
-    'entity_types' => array(),
-    'field_name' => 'field_labels',
-    'indexes' => array(
-      'tid' => array(
-        0 => 'tid',
-      ),
-    ),
-    'locked' => 0,
-    'module' => 'taxonomy',
-    'settings' => array(
-      'allowed_values' => array(
-        0 => array(
-          'vocabulary' => 'labels',
-          'parent' => 0,
-        ),
-      ),
-      'profile2_private' => 0,
-    ),
-    'translatable' => 0,
-    'type' => 'taxonomy_term_reference',
   );
 
   // Exported field_base: 'field_quote'
