@@ -25,6 +25,10 @@ function myassist_user_profile2_view($profile, $view_mode, $langcode) {
     '#title' => 'Membersince',
     '#created' => date('d.m.Y', $profile->created),
   );
+
+  $profile->content['nodes'] = array(
+    '#markup' => views_embed_view("user_nodes", 'default', $uid),
+  );
 }
 
 /**
