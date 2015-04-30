@@ -8,7 +8,7 @@
 
 
   <?php
-  $left_blocks = array("field_image","points","level","achievements");
+  $left_blocks = array("field_avatar","points","level","achievements");
   $right_blocks = array("username","field_gender","field_age","membersince","field_quote");
   ?>
 
@@ -31,7 +31,7 @@
         print render($content[$blockname]);
       }
     }
-    
+
     foreach ($content as $blockname => $blockvalue) {
       if (!in_array($blockname, $left_blocks) && !in_array($blockname, $right_blocks)) {
         print render($blockvalue);
