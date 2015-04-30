@@ -23,3 +23,23 @@
   font-size: 0.75em;
   line-height: 1em;
 }
+
+/*
+* User info
+*/
+/* line 29, ../sass/profile.scss */
+.entity-profile2 h2.username {
+  margin: 0;
+}
+
+/* line 33, ../sass/profile.scss */
+.entity-profile2 .field .field-label {
+  display: none;
+}
+
+/* line 38, ../sass/profile.scss */
+.entity-profile2 .field-name-field-gender,
+.entity-profile2 .field-name-field-age {
+  display: inline-block;
+  margin-right: 10px;
+}

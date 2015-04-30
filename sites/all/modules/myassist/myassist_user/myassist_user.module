@@ -5,3 +5,40 @@
  */
 
 include_once 'myassist_user.features.inc';
+
+/**
+ * Implements hook_profile2_view().
+ */
+function myassist_user_profile2_view($profile, $view_mode, $langcode) {
+  $uid = $profile->uid;
+  //var_dump($profile);
+  //var_dump($profile->user());
+  $profile->content['username'] = array(
+    '#theme' => "myassist_username", // Point to definition in myassist_achievements_theme
+    '#weight' => 0,
+    '#title' => 'Username',
+    '#name' => $profile->user()->name, // Pass data to template (name must be defined in the definition)
+  );
+  $profile->content['membersince'] = array(
+    '#theme' => "myassist_membersince", // Point to definition in myassist_achievements_theme
+    '#weight' => 0,
+    '#title' => 'Membersince',
+    '#created' => date('d.m.Y', $profile->created),
+  );
+}
+
+/**
+ * Implements hook_theme().
+ */
+function myassist_user_theme($existing, $type, $theme, $path){
+  return array(
+    'myassist_username' => array(
+      'template' => 'templates/myassist_username', // define myassist_points.tpl.php inside module - point to myassist_achievements/templates/myassist_points.tpl.php
+      'variables' => array('name' => NULL), //define all variables used in the template file
+    ),
+    'myassist_membersince' => array(
+      'template' => 'templates/myassist_membersince', // define myassist_points.tpl.php inside module - point to myassist_achievements/templates/myassist_points.tpl.php
+      'variables' => array('created' => NULL), //define all variables used in the template file
+    ),
+  );
+}
