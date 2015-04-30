@@ -8,10 +8,14 @@
 * Achievement badges
 **/
 
+.entity .achievements {
+  width: 164px;
+}
+
 .achievement-image {
   display: inline-block;
   width: 70px;
-  margin: 0.4em;
+  margin: 6px;
 }
 
 .achievement-image a {

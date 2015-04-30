@@ -9,13 +9,18 @@
 * Achievement badges
 **/
 /* line 11, ../sass/profile.scss */
+.entity .achievements {
+  width: 164px;
+}
+
+/* line 15, ../sass/profile.scss */
 .achievement-image {
   display: inline-block;
   width: 70px;
-  margin: 0.4em;
+  margin: 6px;
 }
 
-/* line 17, ../sass/profile.scss */
+/* line 21, ../sass/profile.scss */
 .achievement-image a {
   display: block;
   width: 100%;
@@ -27,12 +32,12 @@
 /*
 * User info
 */
-/* line 29, ../sass/profile.scss */
+/* line 33, ../sass/profile.scss */
 .entity-profile2 h2.username {
   margin: 0;
 }
 
-/* line 35, ../sass/profile.scss */
+/* line 39, ../sass/profile.scss */
 .entity-profile2 .field-name-field-gender,
 .entity-profile2 .field-name-field-age {
   display: inline-block;

@@ -257,6 +257,11 @@ function myassist_achievements_profile2_view($profile, $view_mode, $langcode) {
   );
 
 
+  $profile->content['achievements'] = array(
+    '#type' => 'container',
+    '#attributes' => array('class'=>array('achievements'))
+  );
+
   // Get a list of all achievements
   $achievements_grouped = achievements_load(NULL, TRUE);
   // Get a definition of which achievements are unlocked by the user
