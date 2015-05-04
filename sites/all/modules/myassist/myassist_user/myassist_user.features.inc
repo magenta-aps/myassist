@@ -26,21 +26,21 @@ function myassist_user_views_api($module = NULL, $api = NULL) {
 function myassist_user_default_profile2_type() {
   $items = array();
   $items['ungeprofil'] = entity_import('profile2_type', '{
-    "userCategory" : false,
-    "userView" : false,
+    "userCategory" : true,
+    "userView" : true,
     "type" : "ungeprofil",
     "label" : "Profile",
     "weight" : "0",
-    "data" : { "registration" : 0, "use_page" : 1 },
+    "data" : { "registration" : 0, "use_page" : 0 },
     "rdf_mapping" : []
   }');
   $items['voksenprofil'] = entity_import('profile2_type', '{
-    "userCategory" : false,
-    "userView" : false,
+    "userCategory" : true,
+    "userView" : true,
     "type" : "voksenprofil",
     "label" : "Voksenprofil",
     "weight" : "0",
-    "data" : { "registration" : 0, "use_page" : 1 },
+    "data" : { "registration" : 0, "use_page" : 0 },
     "rdf_mapping" : []
   }');
   return $items;
