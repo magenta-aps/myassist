@@ -21,13 +21,6 @@
   #footer,
   .region-bottom {
     outline: 1px solid #ccc;
-
-    @if $legacy-support-for-ie6 or $legacy-support-for-ie7 {
-      .lt-ie8 & {
-        /* IE6/7 do not support the outline property. */
-        border: 1px solid #ccc;
-      }
-    }
   }
 }
 
@@ -87,6 +80,9 @@
 /* Logo image. */
 .header__logo-image {
   vertical-align: bottom;
+  width: 3em;
+  height: auto;
+  padding-right: 1em;
 }
 
 /* Wrapper for website name and slogan. */
@@ -97,20 +93,18 @@
 /* The name of the website. */
 .header__site-name {
   margin: 0;
-  @include adjust-font-size-to( $h1-font-size );
 }
 
 /* The link around the name of the website. */
 .header__site-link {
   &:link,
   &:visited {
-    color: #000;
-    text-decoration: none;
+    
   }
 
   &:hover,
   &:focus {
-    text-decoration: underline;
+    
   }
 }
 
@@ -136,7 +130,9 @@
 #navigation {
   /* Sometimes you want to prevent overlapping with main div. */
   /* overflow: hidden; */
-
+  
+  padding: $u;
+  
   .block {
     margin-bottom: 0;
   }
@@ -156,9 +152,13 @@
     li {
       /* A simple method to get navigation links to appear in one line. */
       float: left; /* LTR */
-      padding: 0 10px 0 0; /* LTR */
+      padding: 0; /* LTR */
       list-style-type: none;
       list-style-image: none;
+      a {
+        display: block;
+        padding: $u/2;
+      }
     }
   }
 }
@@ -179,28 +179,14 @@
   }
 }
 
-/**
- * Titles.
- */
-.page__title,          /* The title of the page. */
-.node__title,          /* Title of a piece of content when it is given in a list of content. */
-.block__title,         /* Block title. */
-.comments__title,      /* Comment section heading. */
-.comments__form-title, /* Comment form heading. */
-.comment__title {      /* Comment title. */
-  margin: 0;
-}
 
 /**
  * Messages.
  */
 .messages {
-  margin: rhythm(1) 0;
+  margin: $u 0;
   padding: 10px 10px 10px 50px; /* LTR */
   background-image: inline-image("message-24-ok.png");
-  @if $legacy-support-for-ie6 or $legacy-support-for-ie7 {
-    *background-image: image-url("message-24-ok.png");
-  }
   background-position: 8px 8px; /* LTR */
   background-repeat: no-repeat;
   border: 1px solid #be7;
@@ -213,18 +199,12 @@
   @extend .messages;
   @extend %warning;
   background-image: inline-image("message-24-warning.png");
-  @if $legacy-support-for-ie6 or $legacy-support-for-ie7 {
-    *background-image: image-url("message-24-warning.png");
-  }
   border-color: #ed5;
 }
 .messages--error {
   @extend .messages;
   @extend %error;
   background-image: inline-image("message-24-error.png");
-  @if $legacy-support-for-ie6 or $legacy-support-for-ie7 {
-    *background-image: image-url("message-24-error.png");
-  }
   border-color: #ed541d;
 
 }
@@ -268,7 +248,7 @@
   /* IE 9 and earlier don't understand gradients. */
   list-style: none;
   border-bottom: 1px solid $tabs-border \0/ie;
-  margin: rhythm(1) 0;
+  margin: $u 0;
   padding: 0 2px;
   white-space: nowrap;
 }
@@ -281,7 +261,6 @@
   border-right: 0;
   border-bottom: 0;
   display: block;
-  @include adjust-leading-to(1);
   text-decoration: none;
 }
 
@@ -346,12 +325,12 @@ a.tabs-primary__tab-link.is-active {
   @extend %tabs;
   font-size: .9em;
   /* Collapse bottom margin of ul.primary. */
-  margin-top: -(rhythm(1));
+  margin-top: -($u);
 }
 .tabs-secondary__tab,
 .tabs-secondary__tab.is-active {
   @extend %tabs__tab;
-  margin: rhythm(1)/2 3px;
+  margin: $u/2 3px;
 }
 
 // We use 3 placeholder styles to prevent @extend from going selector crazy.
@@ -424,9 +403,6 @@ span.field-label {
 }
 .more-help-link a {
   background-image: inline-image("help.png");
-  @if $legacy-support-for-ie6 or $legacy-support-for-ie7 {
-    *background-image: image-url("help.png");
-  }
   background-position: 0 50%; /* LTR */
   background-repeat: no-repeat;
   padding: 1px 0 1px 20px; /* LTR */
@@ -470,7 +446,7 @@ span.field-label {
 
 /* Block wrapper. */
 .block {
-  margin-bottom: rhythm(1);
+  margin-bottom: $u;
 }
 
 /**
@@ -478,23 +454,14 @@ span.field-label {
  */
 .menu__item.is-leaf {
   list-style-image: inline-image("menu-leaf.png");
-  @if $legacy-support-for-ie6 or $legacy-support-for-ie7 {
-    *list-style-image: image-url("menu-leaf.png");
-  }
   list-style-type: square;
 }
 .menu__item.is-expanded {
   list-style-image: inline-image("menu-expanded.png");
-  @if $legacy-support-for-ie6 or $legacy-support-for-ie7 {
-    *list-style-image: image-url("menu-expanded.png");
-  }
   list-style-type: circle;
 }
 .menu__item.is-collapsed {
   list-style-image: inline-image("menu-collapsed.png"); /* LTR */
-  @if $legacy-support-for-ie6 or $legacy-support-for-ie7 {
-    *list-style-image: image-url("menu-collapsed.png"); /* LTR */
-  }
   list-style-type: disc;
 }
 
@@ -535,13 +502,6 @@ span.field-label {
   /* A very nice CSS3 property. */
   word-wrap: break-word;
 }
-@if $legacy-support-for-ie6 or $legacy-support-for-ie7 {
-  .lt-ie8 .node-unpublished>*,
-  .lt-ie8 .comment-unpublished>* {
-    /* Otherwise these elements will appear below the "Unpublished" text. */
-    position: relative;
-  }
-}
 
 /**
  * Comments.
@@ -549,7 +509,7 @@ span.field-label {
 
 /* Wrapper for the list of comments and its title. */
 .comments {
-  margin: rhythm(1) 0;
+  margin: $u 0;
 }
 
 /* Preview of the comment before submitting new or updated comment. */
@@ -580,7 +540,7 @@ span.field-label {
 
 /* Wrapper for a form element (or group of form elements) and its label. */
 .form-item {
-  margin: rhythm(1) 0;
+  margin: $u 0;
 
   /* Pack groups of checkboxes and radio buttons closer together. */
   .form-checkboxes & ,
@@ -658,7 +618,7 @@ a.button {
 /* The "Log in using OpenID" and "Cancel OpenID login" links. */
 .openid-link,
 .user-link {
-  margin-top: rhythm(1);
+  margin-top: $u;
 }
 html.js #user-login-form li.openid-link,
 #user-login-form li.openid-link {
@@ -666,7 +626,7 @@ html.js #user-login-form li.openid-link,
   margin-left: -20px; /* LTR */
 }
 #user-login ul {
-  margin: rhythm(1) 0;
+  margin: $u 0;
 }
 
 /**
@@ -693,16 +653,6 @@ tr.odd {
 }
 tr.even {
   background-color: #fff;
-}
-@if $legacy-support-for-ie6 or $legacy-support-for-ie7 {
-  .lt-ie8 tr.even,
-  .lt-ie8 tr.odd {
-    th,
-    td {
-      /* IE doesn't display borders on table rows. */
-      border-bottom: 1px solid #ccc;
-    }
-  }
 }
 
 /* Markup generated by theme_tablesort_indicator(). */
@@ -741,18 +691,12 @@ td.menu-disabled {
 .fieldset-legend {
   html.js .collapsible & {
     background-image: inline-image("menu-expanded.png");
-    @if $legacy-support-for-ie6 or $legacy-support-for-ie7 {
-      *background-image: image-url("menu-expanded.png");
-    }
     background-position: 5px 65%; /* LTR */
     background-repeat: no-repeat;
     padding-left: 15px; /* LTR */
   }
   html.js .collapsed & {
     background-image: inline-image("menu-collapsed.png"); /* LTR */
-    @if $legacy-support-for-ie6 or $legacy-support-for-ie7 {
-      *background-image: image-url("menu-collapsed.png"); /* LTR */
-    }
     background-position: 5px 50%; /* LTR */
   }
   .summary {

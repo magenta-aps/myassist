@@ -17,30 +17,6 @@
 // =============================================================================
 
 //
-// Legacy IE support
-//
-// These variables are used by many mixins to add additional CSS to support
-// specific versions of IE or specific vendor prefixes.
-//
-// IE6-7 don't support box-sizing: border-box. We can fix this in 1 of 3 ways:
-// - Drop support for IE 6/7. :-) Set $legacy-support-for-ie6
-//   and $legacy-support-for-ie7 to false.
-// - (Preferred) Install the box-sizing polyfill and set the variable below to
-//   the absolute path URL to the boxsizing.htc file.
-//   @see https://github.com/Schepp/box-sizing-polyfill
-//   $box-sizing-polyfill-path: "/path/to/boxsizing.htc";
-// - Use the same CSS unit for grid and gutter width in resonsive-sidebars.scss
-//   (use px for both or use % for both) and set the box-sizing variable to content-box.
-//
-// Zen does not require special handling for IE8 or later. But Compass uses that
-// variable for a couple edge cases. We include it for completeness sake. See
-// the documentation at http://compass-style.org/reference/compass/support/
-$legacy-support-for-ie6: false;
-$legacy-support-for-ie7: false;
-$legacy-support-for-ie8: true;
-
-
-//
 // Font faces, stacks and sizes.
 //
 
@@ -50,14 +26,14 @@ $legacy-support-for-ie8: true;
 // @see http://compass-style.org/reference/compass/typography/vertical_rhythm/
 
 $base-font-size:   16px; // The font size set on the root html element.
-$base-line-height: 24px; // This line-height determines the basic unit of vertical rhythm.
+$base-line-height: 20px; // This line-height determines the basic unit of vertical rhythm.
 
-$h1-font-size: 2    * $base-font-size;
-$h2-font-size: 1.5  * $base-font-size;
-$h3-font-size: 1.17 * $base-font-size;
+$h1-font-size: 1.5  * $base-font-size;
+$h2-font-size: 1.3  * $base-font-size;
+$h3-font-size: 1.2  * $base-font-size;
 $h4-font-size: 1    * $base-font-size;
-$h5-font-size: 0.83 * $base-font-size;
-$h6-font-size: 0.67 * $base-font-size;
+$h5-font-size: 0.8 * $base-font-size;
+$h6-font-size: 0.6 * $base-font-size;
 
 // The following font family declarations are based on the Microsoft core web
 // fonts which are common fonts available on most computer systems. The DejaVu
@@ -85,8 +61,8 @@ $arial:           Arial, Helvetica, "Nimbus Sans L", sans-serif;
 $courier:         "Courier New", "DejaVu Sans Mono", monospace, sans-serif;
 
 // Now create some variables for the font stacks we want to use on this site.
-$base-font-family: $verdana; // The font family set on the html element.
-$font-body:        $verdana;
+$base-font-family: $helvetica; // The font family set on the html element.
+$font-body:        $helvetica;
 $font-monospace:   $courier;
 
 
@@ -94,15 +70,24 @@ $font-monospace:   $courier;
 // Colors, etc.
 //
 
+$basegrey: #555; // base grey
+$basecolor: #c00; // base color
+$accent: #DEB480; // accent color
+
+
+// Basic unit of measurement
+$u: 1em;
+
 // The amount lists, blockquotes and comments are indented.
-$indent-amount: 30px;
+$indent-amount: $u;
 
 // The height of the navigation container.
-$nav-height: 3em;
+$nav-height: $u*3;
 
 // Tab styling.
 $tabs-container-bg: #fff;
 $tabs-border: #bbb;
+
 
 
 // =============================================================================
@@ -117,8 +102,7 @@ $tabs-border: #bbb;
 @import "compass/utilities/sprites";
 // Use one CSS3 mixin instead of multiple vendor prefixes.
 @import "compass/css3";
-// Helps set up a vertical rhythm.
-@import "compass/typography/vertical_rhythm";
+
 // Add the Zen Grids responsive layout mixins.
 @import "zen";
 

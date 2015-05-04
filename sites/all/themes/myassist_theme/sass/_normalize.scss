@@ -39,10 +39,6 @@ audio,
 canvas,
 video {
   display: inline-block;
-  @if $legacy-support-for-ie6 or $legacy-support-for-ie7 {
-    *display: inline;
-    *zoom: 1;
-  }
 }
 
 /**
@@ -106,26 +102,17 @@ audio:not([controls]) {
 html {
   font-family: $base-font-family; /* 1 */
   font-size: 100% * ($base-font-size / 16px); /* 3 */
+  line-height: 1.333;
   -ms-text-size-adjust: 100%; /* 2 */
   -webkit-text-size-adjust: 100%; /* 2 */
-  // Establish a vertical rhythm unit using $base-line-height.
-  @include adjust-leading-to(1);
-}
-
-@if $legacy-support-for-ie6 or $legacy-support-for-ie7 {
-  /* Address `font-family` inconsistency between `textarea` and other form elements. */
-  button,
-  input,
-  select,
-  textarea {
-    font-family: $base-font-family;
-  }
 }
 
 /* Remove default margin. */
 body {
   margin: 0;
   padding: 0;
+  color: $basegrey;
+  background: #fff;
 }
 
 /**
@@ -135,13 +122,19 @@ body {
  * http://meyerweb.com/eric/thoughts/2007/06/11/who-ordered-the-link-states
  */
 a:link {
+  color: $basecolor;
+  text-decoration: none;
 }
 a:visited {
+  color: desaturate($basecolor, 20%);
+  text-decoration: none;
 }
 a:hover,
 a:focus {
+  color: lighten($basecolor, 10%);
 }
 a:active {
+  color: lighten($basecolor, 20%);
 }
 
 /* Address `outline` inconsistency between Chrome and other browsers. */
@@ -157,60 +150,44 @@ a:hover {
 
 /**
  * Typography
- *
- * To achieve a pleasant vertical rhythm, we use Compass' Vertical Rhythm mixins
- * so that the line height of our base font becomes the basic unit of vertical
- * measurement. We use multiples of that unit to set the top and bottom margins
- * for our block level elements and to set the line heights of any fonts.
- * For more information, see http://24ways.org/2006/compose-to-a-vertical-rhythm
  */
 
-/* Set 1 unit of vertical rhythm on the top and bottom margin. */
 p,
 pre {
-  margin: rhythm(1) 0;
+  margin: 0 0 $u;
 }
 blockquote {
   /* Also indent the quote on both sides. */
-  margin: rhythm(1) $indent-amount;
+  margin: $u $indent-amount;
 }
 
 /**
  * Address variable `h1` font-size and margin within `section` and `article`
  * contexts in Firefox 4+, Safari 5, and Chrome.
  */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: $u;
+  margin: $u*0.75 0 $u*0.25;
+  padding: 0;
+  font-weight: bold;
+}
 h1 {
-  /* Set the font-size and line-height while keeping a proper vertical rhythm. */
-  @include adjust-font-size-to( $h1-font-size );
-
-  /* Set 1 unit of vertical rhythm on the top and bottom margins. */
-  @include leader(1, $h1-font-size);
-  @include trailer(1, $h1-font-size);
+  font-size: $u*1.64;
+  line-height: 1.18;
+  margin: $u 0 $u*0.5;
 }
 h2 {
-  @include adjust-font-size-to( $h2-font-size );
-  @include leader(1, $h2-font-size);
-  @include trailer(1, $h2-font-size);
+  font-size: $u*1.45;
+  line-height: 1.1;
+  margin: $u 0 $u*0.5;
 }
 h3 {
-  @include adjust-font-size-to( $h3-font-size );
-  @include leader(1, $h3-font-size);
-  @include trailer(1, $h3-font-size);
-}
-h4 {
-  @include adjust-font-size-to( $h4-font-size );
-  @include leader(1, $h4-font-size);
-  @include trailer(1, $h4-font-size);
-}
-h5 {
-  @include adjust-font-size-to( $h5-font-size );
-  @include leader(1, $h5-font-size);
-  @include trailer(1, $h5-font-size);
-}
-h6 {
-  @include adjust-font-size-to( $h6-font-size );
-  @include leader(1, $h6-font-size);
-  @include trailer(1, $h6-font-size);
+  font-size: $u*1.18;
 }
 
 /* Address styling not present in IE 8/9, Safari 5, and Chrome. */
@@ -235,7 +212,7 @@ hr {
   height: 0;
   border: 1px solid #666;
   padding-bottom: -1px;
-  margin: rhythm(1) 0;
+  margin: $u 0;
 }
 
 /* Address styling not present in IE 8/9. */
@@ -252,22 +229,11 @@ samp,
 tt,
 var {
   font-family: $font-monospace; // The value of $font-monospace ends with ", serif".
-  @if $legacy-support-for-ie6 {
-    _font-family: 'courier new', monospace;
-  }
-  @include adjust-font-size-to( $base-font-size );
 }
 
 /* Improve readability of pre-formatted text in all browsers. */
 pre {
-  @if $legacy-support-for-ie6 or $legacy-support-for-ie7 {
-    white-space: pre;
-    white-space: pre-wrap;
-    word-wrap: break-word;
-  }
-  @else {
-    white-space: pre-wrap;
-  }
+  white-space: pre-wrap;
 }
 
 /* Set consistent quote types. */
@@ -303,7 +269,7 @@ menu,
 ol,
 ul {
   /* Address margins set differently in IE 6/7. */
-  margin: rhythm(1) 0;
+  margin: 0 0 $u;
 }
 ol,
 ul {
@@ -324,14 +290,6 @@ ul {
   padding: 0 0 0 $indent-amount; /* LTR */
 }
 
-@if $legacy-support-for-ie7 {
-  /* Correct list images handled incorrectly in IE 7. */
-  nav ul,
-  nav ol {
-    list-style: none;
-    list-style-image: none;
-  }
-}
 
 /**
  * Embedded content and figures
@@ -341,10 +299,6 @@ ul {
 img {
   /* Remove border when inside `a` element in IE 8/9. */
   border: 0;
-  @if $legacy-support-for-ie7 {
-    /* Improve image quality when scaled in IE 7. */
-    -ms-interpolation-mode: bicubic;
-  }
 
   /* Suppress the space beneath the baseline */
   /* vertical-align: bottom; */
@@ -352,10 +306,6 @@ img {
   /* Responsive images */
   max-width: 100%;
   height: auto;
-  @if $legacy-support-for-ie8 {
-    /* Correct IE 8 not scaling image height when resized. */
-    width: auto;
-  }
 }
 
 /* Correct overflow displayed oddly in IE 9. */
@@ -372,22 +322,10 @@ figure {
  * Forms
  */
 
-@if $legacy-support-for-ie6 or $legacy-support-for-ie7 {
-  /* Correct margin displayed oddly in IE 6/7. */
-  form {
-    margin: 0;
-  }
-}
 
 /* Define consistent border, margin, and padding. */
 fieldset {
   margin: 0 2px;
-  /* Apply borders and padding that keep the vertical rhythm. */
-  border-color: #c0c0c0;
-  @include apply-side-rhythm-border(top,    $width: 1px, $lines: 0.35);
-  @include apply-side-rhythm-border(bottom, $width: 1px, $lines: 0.65);
-  @include apply-side-rhythm-border(left,   $width: 1px, $lines: 0.65);
-  @include apply-side-rhythm-border(right,  $width: 1px, $lines: 0.65);
 }
 
 /**
@@ -398,9 +336,6 @@ fieldset {
 legend {
   border: 0; /* 1 */
   padding: 0; /* 2 */
-  @if $legacy-support-for-ie6 or $legacy-support-for-ie7 {
-    *margin-left: -7px; /* 3 */ /* LTR */
-  }
 }
 
 /**
@@ -417,10 +352,6 @@ textarea {
   font-family: inherit; /* 1 */
   font-size: 100%; /* 2 */
   margin: 0; /* 3 */
-  @if $legacy-support-for-ie6 or $legacy-support-for-ie7 {
-    vertical-align: baseline; /* 4 */
-    *vertical-align: middle; /* 4 */
-  }
   max-width: 100%; /* 5 */
   @include box-sizing(border-box); /* 5 */
 }
@@ -454,15 +385,17 @@ select {
  * 4. Remove inner spacing in IE 7 without affecting normal text inputs.
  *    Known issue: inner spacing remains in IE 6.
  */
+.btn,
 button,
 html input[type="button"], /* 1 */
 input[type="reset"],
 input[type="submit"] {
   -webkit-appearance: button; /* 2 */
   cursor: pointer; /* 3 */
-  @if $legacy-support-for-ie7 {
-    *overflow: visible; /* 4 */
-  }
+  background: $basecolor;
+  border: none;
+  color: #fff;
+  padding: $u/2 $u;
 }
 
 /**
@@ -483,10 +416,6 @@ input[type="checkbox"],
 input[type="radio"] {
   @include box-sizing(border-box); /* 1 */
   padding: 0; /* 2 */
-  @if $legacy-support-for-ie7 {
-    *height: 13px; /* 3 */
-    *width: 13px; /* 3 */
-  }
 }
 
 /**
@@ -537,9 +466,4 @@ table {
   /* Remove most spacing between table cells. */
   border-collapse: collapse;
   border-spacing: 0;
-  /* Prevent cramped-looking tables */
-  /* width: 100%; */
-  /* Add vertical rhythm margins. */
-  @include leader(1);
-  @include trailer(1);
 }

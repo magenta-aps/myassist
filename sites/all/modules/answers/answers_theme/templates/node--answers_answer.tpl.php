@@ -108,21 +108,7 @@
 
 
 	<div class="answers-widgets-wrapper">
-      <div class="answers-submitted">
-        <?php print $user_picture; ?>
-        <div class="author-name"><?php print $name; ?></div>
-        <?php if (module_exists('answers_userpoints')): ?>
-          <div class="author-details">
-	        <p class="author-points"> <?php print userpoints_get_current_points($node->uid); print ' ' . t('points'); ?> </p>
-<?php
-/*
-         <p class="author-questions"> <?php print t('See') . ' ' .  l(t('my questions'), 'xxx') . ' ' . t('or') . ' ' . l(t('my answers'), 'yyy') ?> </p> 
-
-*/
-?> 
-          </div>
-        <?php endif; ?>
-      </div>
+      
       <div class="answers-widgets">
 	    <div class="mystery-hack"></div>
       <?php
@@ -142,6 +128,23 @@
       <div class="answers-body">
         <div class="content clearfix" <?php print $content_attributes; ?>>
           <?php print render($content); ?>
+          
+          <div class="answers-submitted">
+            <?php print $user_picture; ?>
+            <div class="author-name"><?php print $name; ?></div>
+            <?php if (module_exists('answers_userpoints')): ?>
+              <div class="author-details">
+              <p class="author-points"> <?php print userpoints_get_current_points($node->uid); print ' ' . t('points'); ?> </p>
+              <?php
+              /*
+                       <p class="author-questions"> <?php print t('See') . ' ' .  l(t('my questions'), 'xxx') . ' ' . t('or') . ' ' . l(t('my answers'), 'yyy') ?> </p> 
+              
+              */
+              ?> 
+              </div>
+            <?php endif; ?>
+          </div>
+          
           <span class="submitted-time">
             <?php print ' - ' . format_interval(time() - $node->created, 1) . t(' ago.'); ?>
           </span>
