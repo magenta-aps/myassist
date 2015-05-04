@@ -1,26 +1,24 @@
 /* line 1, ../sass/profile.scss */
-.entity .content {
-  float: left;
+.entity-profile2 > .content {
   margin-left: 20%;
-  width: 80%;
 }
 
 /*
 * Achievement badges
 **/
-/* line 11, ../sass/profile.scss */
+/* line 9, ../sass/profile.scss */
 .entity .achievements {
   width: 164px;
 }
 
-/* line 15, ../sass/profile.scss */
+/* line 13, ../sass/profile.scss */
 .achievement-image {
   display: inline-block;
   width: 70px;
   margin: 6px;
 }
 
-/* line 21, ../sass/profile.scss */
+/* line 19, ../sass/profile.scss */
 .achievement-image a {
   display: block;
   width: 100%;
@@ -32,14 +30,25 @@
 /*
 * User info
 */
-/* line 33, ../sass/profile.scss */
+/* line 31, ../sass/profile.scss */
 .entity-profile2 h2.username {
   margin: 0;
 }
 
-/* line 39, ../sass/profile.scss */
+/* line 37, ../sass/profile.scss */
 .entity-profile2 .field-name-field-gender,
 .entity-profile2 .field-name-field-age {
   display: inline-block;
   margin-right: 10px;
+}
+
+/*
+* User nodes
+**/
+/* line 46, ../sass/profile.scss */
+.entity .view-content .views-row {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin: 2px;
+  padding: 2px;
 }
