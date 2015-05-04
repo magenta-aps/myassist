@@ -10,6 +10,67 @@
 function myassist_user_user_default_permissions() {
   $permissions = array();
 
+  // Exported permission: 'access achievements'.
+  $permissions['access achievements'] = array(
+    'name' => 'access achievements',
+    'roles' => array(
+      'administrator' => 'administrator',
+      'chatrådgiver' => 'chatrådgiver',
+      'debatrådgiver' => 'debatrådgiver',
+      'moderator' => 'moderator',
+      'redaktør' => 'redaktør',
+      'ung bruger' => 'ung bruger',
+    ),
+    'module' => 'achievements',
+  );
+
+  // Exported permission: 'access user profiles'.
+  $permissions['access user profiles'] = array(
+    'name' => 'access user profiles',
+    'roles' => array(
+      'administrator' => 'administrator',
+      'chatrådgiver' => 'chatrådgiver',
+      'debatrådgiver' => 'debatrådgiver',
+      'moderator' => 'moderator',
+      'redaktør' => 'redaktør',
+      'ung bruger' => 'ung bruger',
+    ),
+    'module' => 'user',
+  );
+
+  // Exported permission: 'administer achievements'.
+  $permissions['administer achievements'] = array(
+    'name' => 'administer achievements',
+    'roles' => array(
+      'administrator' => 'administrator',
+      'moderator' => 'moderator',
+    ),
+    'module' => 'achievements',
+  );
+
+  // Exported permission: 'create answers_question content'.
+  $permissions['create answers_question content'] = array(
+    'name' => 'create answers_question content',
+    'roles' => array(
+      'ung bruger' => 'ung bruger',
+    ),
+    'module' => 'node',
+  );
+
+  // Exported permission: 'earn achievements'.
+  $permissions['earn achievements'] = array(
+    'name' => 'earn achievements',
+    'roles' => array(
+      'administrator' => 'administrator',
+      'chatrådgiver' => 'chatrådgiver',
+      'debatrådgiver' => 'debatrådgiver',
+      'moderator' => 'moderator',
+      'redaktør' => 'redaktør',
+      'ung bruger' => 'ung bruger',
+    ),
+    'module' => 'achievements',
+  );
+
   // Exported permission: 'edit any ungeprofil profile'.
   $permissions['edit any ungeprofil profile'] = array(
     'name' => 'edit any ungeprofil profile',
