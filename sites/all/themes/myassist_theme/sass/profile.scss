@@ -1,43 +1,24 @@
-.entity-profile2 > .content {
-  margin-left: 20%;
-}
-
-/*
-* Achievement badges
-**/
-
-
-
-/*
-* User info
-*/
-
-h2.username {
-  margin: 0;
-}
-
 .entity-profile2 {
 
   .section {
     display: block;
     width: 100%;
 
-
     .left,
     .right {
-      display: inline-block;
       vertical-align: top;
     }
 
     .left {
       width: 20%;
     }
-    .right {
-      width: 79%;
+
+    /* User name */
+    h2.username {
+      margin: 0;
     }
 
-
-
+    /* User info */
     .userinfo {
       display: block;
       width: 100%;
@@ -48,6 +29,7 @@ h2.username {
       }
     }
 
+    /* Achievement badges */
     .achievements {
       display: block;
       width: 100%;
@@ -69,15 +51,33 @@ h2.username {
     }
   }
 
+  /* User nodes */
+  .section.nodes .view-content .views-row {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin: 2px;
+    padding: 2px;
+  }
+
 }
 
-/*
-* User nodes
-**/
 
-.entity .view-content .views-row {
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  margin: 2px;
-  padding: 2px;
+.profile2-voksenprofil {
+  .section {
+    .left {
+      float: left;
+    }
+  }
+}
+
+.profile2-ungeprofil {
+  .section {
+    .left,
+    .right {
+      display: inline-block;
+    }
+    .right {
+      width: 79%;
+    }
+  }
 }

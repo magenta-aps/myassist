@@ -255,7 +255,7 @@ function myassist_user_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'hidden',
+        'label' => 'above',
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
@@ -264,7 +264,7 @@ function myassist_user_field_default_field_instances() {
     ),
     'entity_type' => 'profile2',
     'field_name' => 'field_biography',
-    'label' => 'Biography',
+    'label' => 'Om mig',
     'required' => 0,
     'settings' => array(
       'text_processing' => 0,
@@ -349,10 +349,10 @@ function myassist_user_field_default_field_instances() {
   // Translatables
   // Included for use with string extractors like potx.
   t('Age');
-  t('Biography');
   t('Favorite quote');
   t('Gender');
   t('Image');
+  t('Om mig');
 
   return $field_instances;
 }

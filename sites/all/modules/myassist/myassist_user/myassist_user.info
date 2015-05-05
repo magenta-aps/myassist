@@ -1,5 +1,5 @@
 name = MyAssist User
-description = Gender field
+description = Adult profile biography
 core = 7.x
 package = MyAssist
 dependencies[] = achievements

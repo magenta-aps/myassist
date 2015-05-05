@@ -25,7 +25,6 @@ function myassist_user_profile2_view($profile, $view_mode, $langcode) {
     unset($profile->content["field_gender_adult"]);
   }
 
-
   unset($profile->content["field_age"]);
 
 
@@ -54,7 +53,6 @@ function myassist_user_user_view($account, $view_mode, $langcode) {
   unset($account->content['user_picture']); // Sabotage user picture; we'll display it ourselves
   unset($account->content['userpoints']); // Sabotage points display from function userpoints_user_view in the userpoints module
   unset($account->content['summary']); // Sabotage history display; we'll display it ourselves
-
 }
 
 /**
