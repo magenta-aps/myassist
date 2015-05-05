@@ -87,8 +87,8 @@ function myassist_user_field_default_field_bases() {
     'module' => 'list',
     'settings' => array(
       'allowed_values' => array(
-        0 => 'Male',
-        1 => 'Female',
+        0 => 'Dreng',
+        1 => 'Pige',
       ),
       'allowed_values_function' => '',
       'profile2_private' => 0,
