@@ -281,8 +281,8 @@ function myassist_user_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'profile2-voksenprofil-field_gender'
-  $field_instances['profile2-voksenprofil-field_gender'] = array(
+  // Exported field_instance: 'profile2-voksenprofil-field_gender_adult'
+  $field_instances['profile2-voksenprofil-field_gender_adult'] = array(
     'bundle' => 'voksenprofil',
     'default_value' => NULL,
     'deleted' => 0,
@@ -293,11 +293,11 @@ function myassist_user_field_default_field_instances() {
         'module' => 'list',
         'settings' => array(),
         'type' => 'list_default',
-        'weight' => 1,
+        'weight' => 5,
       ),
     ),
     'entity_type' => 'profile2',
-    'field_name' => 'field_gender',
+    'field_name' => 'field_gender_adult',
     'label' => 'Gender',
     'required' => 1,
     'settings' => array(
@@ -308,7 +308,7 @@ function myassist_user_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_buttons',
-      'weight' => 3,
+      'weight' => 10,
     ),
   );
 

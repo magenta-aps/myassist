@@ -14,10 +14,18 @@ function myassist_user_profile2_view($profile, $view_mode, $langcode) {
 
   $profile->content['userinfo'] = array(
     '#theme' => "myassist_userinfo",
-    "#gender" => $profile->content["field_gender"],
     "#age" => $profile->content["field_age"]
   );
-  unset($profile->content["field_gender"]);
+
+  if (array_key_exists("field_gender", $profile->content)) {
+    $profile->content['userinfo']['#gender'] = $profile->content["field_gender"];
+    unset($profile->content["field_gender"]);
+  } else if (array_key_exists("field_gender_adult", $profile->content)) {
+    $profile->content['userinfo']['#gender'] = $profile->content["field_gender_adult"];
+    unset($profile->content["field_gender_adult"]);
+  }
+
+
   unset($profile->content["field_age"]);
 
 
