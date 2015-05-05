@@ -239,6 +239,9 @@ function myassist_achievements_profile2_view($profile, $view_mode, $langcode) {
   $uid = $profile->uid;
 
 
+  unset($profile->content['userpoints']); // Sabotage points display from function userpoints_user_view in the userpoints module
+
+
   $points = userpoints_get_current_points($uid);
   $profile->content['points'] = array(
     '#theme' => "myassist_points", // Point to definition in myassist_achievements_theme

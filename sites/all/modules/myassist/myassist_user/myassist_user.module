@@ -11,8 +11,6 @@ include_once 'myassist_user.features.inc';
  */
 function myassist_user_profile2_view($profile, $view_mode, $langcode) {
   $uid = $profile->uid;
-  //var_dump($profile);
-  //var_dump($profile->user());
   $profile->content['username'] = array(
     '#theme' => "myassist_username", // Point to definition in myassist_achievements_theme
     '#weight' => 0,
@@ -29,6 +27,13 @@ function myassist_user_profile2_view($profile, $view_mode, $langcode) {
   $profile->content['nodes'] = array(
     '#markup' => views_embed_view("user_nodes", 'default', $uid),
   );
+}
+
+/**
+ * Implements hook_user_view().
+ */
+function myassist_user_user_view($account, $view_mode, $langcode) {
+  unset($account->content['user_picture']); // Sabotage user picture; we'll display it ourselves
 }
 
 /**
