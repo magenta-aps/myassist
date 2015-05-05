@@ -8,36 +8,41 @@
 
 
   <?php
-  $left_blocks = array("field_avatar","points","level","achievements");
-  $right_blocks = array("username","field_gender","field_age","membersince","field_quote");
+  $left_blocks = array("field_avatar","username","points","level");
+  $right_blocks = array("achievements","userinfo","membersince","field_quote");
   ?>
 
-  <aside class="left">
-    <section class="region column sidebar region-sidebar-first">
+  <div class="section">
+
+    <div class="left">
+        <?php
+        foreach ($left_blocks as $blockname) {
+          if (array_key_exists($blockname, $content)) {
+            print render($content[$blockname]);
+          }
+        }
+        ?>
+    </div>
+
+    <div class="right"<?php print $content_attributes; ?>>
       <?php
-      foreach ($left_blocks as $blockname) {
+      foreach ($right_blocks as $blockname) {
         if (array_key_exists($blockname, $content)) {
           print render($content[$blockname]);
         }
       }
       ?>
-    </section>
-  </aside>
+    </div>
 
-  <div class="content"<?php print $content_attributes; ?>>
+  </div>
+
+  <div class="section">
     <?php
-    foreach ($right_blocks as $blockname) {
-      if (array_key_exists($blockname, $content)) {
-        print render($content[$blockname]);
+      foreach ($content as $blockname => $blockvalue) {
+        if (!in_array($blockname, $left_blocks) && !in_array($blockname, $right_blocks)) {
+          print render($blockvalue);
+        }
       }
-    }
-
-    foreach ($content as $blockname => $blockvalue) {
-      if (!in_array($blockname, $left_blocks) && !in_array($blockname, $right_blocks)) {
-        print render($blockvalue);
-      }
-    }
-
     ?>
   </div>
 </div>

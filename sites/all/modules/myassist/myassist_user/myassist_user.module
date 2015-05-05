@@ -11,6 +11,16 @@ include_once 'myassist_user.features.inc';
  */
 function myassist_user_profile2_view($profile, $view_mode, $langcode) {
   $uid = $profile->uid;
+
+  $profile->content['userinfo'] = array(
+    '#theme' => "myassist_userinfo",
+    "#gender" => $profile->content["field_gender"],
+    "#age" => $profile->content["field_age"]
+  );
+  unset($profile->content["field_gender"]);
+  unset($profile->content["field_age"]);
+
+
   $profile->content['username'] = array(
     '#theme' => "myassist_username", // Point to definition in myassist_achievements_theme
     '#weight' => 0,
@@ -34,6 +44,9 @@ function myassist_user_profile2_view($profile, $view_mode, $langcode) {
  */
 function myassist_user_user_view($account, $view_mode, $langcode) {
   unset($account->content['user_picture']); // Sabotage user picture; we'll display it ourselves
+  unset($account->content['userpoints']); // Sabotage points display from function userpoints_user_view in the userpoints module
+  unset($account->content['summary']); // Sabotage history display; we'll display it ourselves
+
 }
 
 /**
@@ -48,6 +61,10 @@ function myassist_user_theme($existing, $type, $theme, $path){
     'myassist_membersince' => array(
       'template' => 'templates/myassist_membersince', // define myassist_points.tpl.php inside module - point to myassist_achievements/templates/myassist_points.tpl.php
       'variables' => array('created' => NULL), //define all variables used in the template file
+    ),
+    'myassist_userinfo' => array(
+      'template' => 'templates/myassist_userinfo', // define myassist_points.tpl.php inside module - point to myassist_achievements/templates/myassist_points.tpl.php
+      'variables' => array('gender' => NULL, 'age' => NULL), //define all variables used in the template file
     ),
   );
 }

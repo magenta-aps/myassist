@@ -6,37 +6,70 @@
 * Achievement badges
 **/
 
-.entity .achievements {
-  width: 164px;
-}
 
-.achievement-image {
-  display: inline-block;
-  width: 70px;
-  margin: 6px;
-}
-
-.achievement-image a {
-  display: block;
-  width: 100%;
-  line-break: auto;
-  font-size: 0.75em;
-  line-height: 1em;
-}
 
 /*
 * User info
 */
 
-.entity-profile2 h2.username {
+h2.username {
   margin: 0;
 }
 
-.entity-profile2 .field-name-field-gender,
-.entity-profile2 .field-name-field-age
-{
-  display: inline-block;
-  margin-right: 10px;
+.entity-profile2 {
+
+  .section {
+    display: block;
+    width: 100%;
+
+
+    .left,
+    .right {
+      display: inline-block;
+      vertical-align: top;
+    }
+
+    .left {
+      width: 20%;
+    }
+    .right {
+      width: 79%;
+    }
+
+
+
+    .userinfo {
+      display: block;
+      width: 100%;
+
+      .field-name-field-gender,
+      .field-name-field-age {
+        display: inline-block;
+        margin-right: 10px;
+      }
+    }
+
+    .achievements {
+      display: block;
+      width: 100%;
+
+      .achievement-image {
+        display: inline-block;
+        width: 70px;
+        margin: 6px;
+        float: none;
+      }
+
+      .achievement-image a {
+        display: block;
+        width: 100%;
+        line-break: auto;
+        font-size: 0.75em;
+        line-height: 1em;
+      }
+    }
+  }
+
 }
 
 /*
