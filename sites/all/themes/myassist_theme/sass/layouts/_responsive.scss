@@ -40,7 +40,6 @@ $zen-auto-include-item-base: false;
 /* Apply the shared properties of grid items in a single, efficient ruleset. */
 #header,
 #content,
-#navigation,
 .region-sidebar-first,
 .region-sidebar-second,
 #footer {
@@ -49,7 +48,7 @@ $zen-auto-include-item-base: false;
 }
 
 #header,
-#navigation {
+#mm {
   background: #000;
   color: lighten($basegrey, 60%);
   a:link,
@@ -67,9 +66,6 @@ $zen-auto-include-item-base: false;
 #content {
   background: lighten($basegrey, 60%);
 }
-#footer {
-  
-}
 
 /* Containers for grid items and flow items. */
 #header,
@@ -79,18 +75,64 @@ $zen-auto-include-item-base: false;
 }
 
 /* Navigation bar */
+@media all and (max-width: 480px) {
+  #mm {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 85vw;
+    background: rgba(0,0,0,0.8);
+    z-index: 5;
+    @include translate(-85vw,0);
+    transition: transform 0.5s;
+  }
+  #mm.open {
+    @include translate(0,0);
+    transition: transform 0.5s;
+  }
+  .mm-toggle {
+    background: $basecolor;
+    display: block;
+    padding: $u/4 $u/2 $u/2;
+    width: $u*3;
+    position: absolute;
+    right: -($u*3);
+    top: 0;
+    z-index: 6;
+    .mm-graphic {
+      background: #fff;
+      width: $u*2;
+      height: $u/4;
+      margin: $u/4 0 0;
+      display: block;
+    }
+  }
+  .region-sidebar-first {
+    h2 {
+      display: none;
+    }
+    .menu {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+    }
+    .menu__item {
+      display: block;
+      border-top: dashed 1px $basegrey;
+    }
+    .menu__link {
+      display: block;
+      padding: $u/2;
+    }
+  } 
+}
 @media all and (min-width: 480px) {
   #main {
-    /* Move all the children of #main down to make room. */
-    padding-top: $nav-height;
     position: relative;
   }
-  #navigation {
-    /* Move the navbar up inside #main's padding. */
-    position: absolute;
-    top: 0;
-    height: $nav-height;
-    width: $zen-grid-width;
+  #menu-toggle {
+    display: none;
   }
 }
 

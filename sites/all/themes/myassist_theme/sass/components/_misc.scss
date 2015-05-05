@@ -124,61 +124,6 @@
   clear: both;
 }
 
-/**
- * Navigation bar.
- */
-#navigation {
-  /* Sometimes you want to prevent overlapping with main div. */
-  /* overflow: hidden; */
-  
-  padding: $u;
-  
-  .block {
-    margin-bottom: 0;
-  }
-
-  .block-menu .block__title,
-  .block-menu-block .block__title {
-    @extend %element-invisible;
-  }
-
-  /* Main menu and secondary menu links and menu block links. */
-  .links,
-  .menu {
-    margin: 0;
-    padding: 0;
-    text-align: left; /* LTR */
-
-    li {
-      /* A simple method to get navigation links to appear in one line. */
-      float: left; /* LTR */
-      padding: 0; /* LTR */
-      list-style-type: none;
-      list-style-image: none;
-      a {
-        display: block;
-        padding: $u/2;
-      }
-    }
-  }
-}
-
-/**
- * Breadcrumb navigation.
- */
-.breadcrumb {
-  ol {
-    margin: 0;
-    padding: 0;
-  }
-  li {
-    display: inline;
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-  }
-}
-
 
 /**
  * Messages.

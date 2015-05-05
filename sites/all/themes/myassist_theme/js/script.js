@@ -17,7 +17,10 @@
 Drupal.behaviors.my_custom_behavior = {
   attach: function(context, settings) {
 
-    // Place your code here.
+    // Toggle menu on small screens
+    $('.mm-toggle').click(function() {
+      $('#mm').toggleClass('open');
+    });
 
   }
 };
