@@ -241,19 +241,23 @@ function myassist_achievements_profile2_view($profile, $view_mode, $langcode) {
 
   $points = userpoints_get_current_points($uid);
   $profile->content['points'] = array(
-    '#theme' => "myassist_points", // Point to definition in myassist_achievements_theme
+    '#theme' => "myassist_data", // Point to definition in myassist_achievements_theme
     '#weight' => 0,
     '#title' => 'Points',
-    '#points' => $points, // Pass data to template (name must be defined in the definition)
+    '#class' => 'userpoints',
+    '#text' => "$points points", // Pass data to template (name must be defined in the definition)
+    '#href' => "/user/$uid/points",
   );
 
 
   $level = myassist_achievements_get_user_level($uid);
   $profile->content['level'] = array(
-    '#theme' => "myassist_level",
+    '#theme' => "myassist_data",
     '#weight' => 0,
     '#title' => 'Level',
-    '#level' => $level["title"],
+    '#class' => 'userlevel',
+    '#text' => $level["title"],
+    '#href' => "/user/$uid/achievements",
   );
 
 
@@ -318,17 +322,13 @@ function myassist_achievements_profile2_view($profile, $view_mode, $langcode) {
  */
 function myassist_achievements_theme($existing, $type, $theme, $path){
   return array(
-    'myassist_points' => array(
-      'template' => 'templates/myassist_points', // define myassist_points.tpl.php inside module - point to myassist_achievements/templates/myassist_points.tpl.php
-      'variables' => array('points' => null), //define all variables used in the template file
-    ),
-    'myassist_level' => array(
-      'template' => 'templates/myassist_level',
-      'variables' => array('level' => null),
-    ),
     'myassist_achievement' => array(
       'template' => 'templates/myassist_achievement',
       'variables' => array('achievement' => null, 'image' => NULL, 'achievement_title' => NULL),
+    ),
+    'myassist_data' => array(
+      'template' => 'templates/myassist_data', // define myassist_points.tpl.php inside module - point to myassist_achievements/templates/myassist_points.tpl.php
+      'variables' => array('points' => null, 'href' => NULL, 'text' => NULL, 'class' => NULL), //define all variables used in the template file
     ),
   );
 }
