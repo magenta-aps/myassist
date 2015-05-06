@@ -88,7 +88,7 @@ function myassist_user_menu() {
     'page callback'    => 'myassist_user_edit_my_profile',
     'access arguments' => array('access content'),
     'type'             => MENU_NORMAL_ITEM,
-    'menu_name' => 'user-menu',
+    'menu_name'        => 'user-menu',
   );
   $items['user/achievements'] = array(
     'title'            => 'Achievements',
@@ -96,18 +96,16 @@ function myassist_user_menu() {
     'page callback'    => 'myassist_user_view_my_achievements',
     'access arguments' => array('access content'),
     'type'             => MENU_NORMAL_ITEM,
-    'menu_name' => 'user-menu',
+    'menu_name'        => 'user-menu',
   );
 
   $items['user/points'] = array(
     'title' => 'Points',
-    'title arguments' => userpoints_translation(),
-    'page callback' => 'drupal_get_form',
-    'page arguments' => array('userpoints_list_transactions'),
-    'access callback' => 'userpoints_access_my_points',
-    'file' => 'userpoints.pages.inc',
-    'type' => MENU_NORMAL_ITEM,
-    'menu_name' => 'user-menu',
+    'description'      => 'View my points',
+    'page callback'    => 'myassist_user_view_my_points',
+    'access arguments' => array('access content'),
+    'type'             => MENU_NORMAL_ITEM,
+    'menu_name'        => 'user-menu',
   );
   return $items;
 }
@@ -120,4 +118,8 @@ function myassist_user_edit_my_profile() {
 function myassist_user_view_my_achievements() {
   global $user;
   drupal_goto('user/'.$user->uid.'/achievements');
+}
+function myassist_user_view_my_points() {
+  global $user;
+  drupal_goto('user/'.$user->uid.'/points');
 }
