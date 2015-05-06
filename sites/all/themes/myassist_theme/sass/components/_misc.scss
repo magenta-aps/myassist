@@ -126,6 +126,38 @@
 
 
 /**
+ * Global link icons
+ */
+#global-links {
+  background: lighten($basegrey, 60%);
+  box-shadow: -($u/4) 0 $u $u/4 rgba(0,0,0,0.2);
+  .menu {
+    padding: 0;
+  }
+  .menu__link {
+    display: block;
+    height: $u*3;
+    background: url("../images/icons/question.svg") no-repeat center center transparent;
+    background-size: auto 66.66%;
+    text-indent: -1000em;
+  }
+  .menu__link:hover,
+  .menu__link:active {
+    background-color: lighten($basecolor, 20%); 
+  }
+}
+#global-dilemma .menu__link {
+  background-image: url("../images/icons/question.svg");
+}
+#global-leaderboards .menu__link {
+  background-image: url("../images/icons/users.svg");
+}
+#global-chat .menu__link {
+  background-image: url("../images/icons/bubbles4.svg");
+}
+
+
+/**
  * Messages.
  */
 .messages {

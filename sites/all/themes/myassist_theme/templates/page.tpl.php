@@ -70,13 +70,28 @@
       <?php print render($page['content']); ?>
       <?php print $feed_icons; ?>
     </div>
-
+<!--
     <div id="navigation">
 
       <?php print render($page['navigation']); ?>
 
     </div>
+-->
 
+    <nav id="global-links">
+      <ul class="menu">
+        <li class="menu__item" id="global-dilemma">
+          <a class="menu__link" href="/" title="Dilemmaliste">Dilemma</a>
+        </li>
+        <li class="menu__item" id="global-leaderboards">
+          <a class="menu__link" href="/achievements/leaderboard" title="Leaderboards og brugere">Leaderboards og brugere</a>
+        </li>
+        <li class="menu__item" id="global-chat">
+          <a class="menu__link disabled" href="/chat" title="Chat">Chat</a>
+        </li>
+      </ul>
+    </nav>
+      
     <?php
       // Render the sidebars to see if there's anything in them.
       $sidebar_first  = render($page['sidebar_first']);
