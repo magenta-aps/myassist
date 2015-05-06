@@ -9,11 +9,15 @@
       width: 32px;
       height: 32px;
       background: #c00 url('../images/search.png') no-repeat center;
+      cursor: pointer;
     }
   }
 
+  .menu-minimized {
+    display: none;
+  }
 
-  @media all and (max-width: 480px) {
+    @media all and (max-width: 480px) {
     #block-search-form {
       &:not(.forceShow) {
         .search-full {
@@ -25,5 +29,12 @@
       }
     }
 
+    .menu-minimized {
+      display: block;
+      width: 32px;
+      height: 32px;
+      background: #c00 url('../images/menu.png') no-repeat center;
+      cursor: pointer;
+    }
   }
 }

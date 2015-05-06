@@ -26,7 +26,7 @@ Drupal.behaviors.my_custom_behavior = {
 };
 
 
-  Drupal.behaviors.searchResponsive = {
+  Drupal.behaviors.headerResponsive = {
     attach: function(context, settings) {
 
       $("#block-search-form .search-minimized").click(function(event){
@@ -37,9 +37,22 @@ Drupal.behaviors.my_custom_behavior = {
         if(!$(event.target).closest("#block-search-form").length) {
           $("#block-search-form").removeClass("forceShow");
         }
-      })
+      });
+
+
+      var bodyPadding = null;
+      var relocateButtons = function(){
+        var newBodyPadding = $("body").css("paddingTop");
+        if (newBodyPadding !== bodyPadding) {
+          $(".mm-toggle").css({top:newBodyPadding});
+          bodyPadding = newBodyPadding;
+        }
+      };
+      $(window).resize(relocateButtons);
+      $(relocateButtons);
 
     }
   };
+
 
 })(jQuery, Drupal, this, this.document);
