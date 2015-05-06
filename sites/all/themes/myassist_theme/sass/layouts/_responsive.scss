@@ -75,6 +75,25 @@ $zen-auto-include-item-base: false;
   @include zen-grid-container();
 }
 
+/* Header */
+#header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: $u*3;
+  z-index: 4;
+}
+
+/* Main */
+#main {
+  margin: $u*3 0;
+}
+#content {
+  padding-top: $u*1;
+}
+
+/* Global user links */
 #global-links {
   position: fixed;
   bottom: 0;
@@ -151,9 +170,17 @@ $zen-auto-include-item-base: false;
 @media all and (min-width: 480px) {
   #main {
     position: relative;
+    margin: $u*3 0 0;
   }
   .mm-toggle {
     display: none;
+  }
+  #global-links {
+    top: 0;
+    right: 0;
+    left: auto;
+    bottom: auto;
+    width: $u*10;
   }
 }
 
