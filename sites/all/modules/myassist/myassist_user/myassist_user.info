@@ -1,5 +1,5 @@
 name = MyAssist User
-description = Adult profile biography
+description = Search field
 core = 7.x
 package = MyAssist
 dependencies[] = achievements
@@ -21,6 +21,7 @@ dependencies[] = text
 dependencies[] = user
 dependencies[] = user_picture_field
 dependencies[] = views
+dependencies[] = votingapi
 features[ctools][] = strongarm:strongarm:1
 features[ctools][] = views:views_default:3.0
 features[features_api][] = api:2

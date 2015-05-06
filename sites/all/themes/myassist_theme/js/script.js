@@ -26,4 +26,20 @@ Drupal.behaviors.my_custom_behavior = {
 };
 
 
+  Drupal.behaviors.searchResponsive = {
+    attach: function(context, settings) {
+
+      $("#block-search-form .search-minimized").click(function(event){
+        $("#block-search-form").addClass("forceShow");
+      });
+
+      $(document).click(function(event) {
+        if(!$(event.target).closest("#block-search-form").length) {
+          $("#block-search-form").removeClass("forceShow");
+        }
+      })
+
+    }
+  };
+
 })(jQuery, Drupal, this, this.document);

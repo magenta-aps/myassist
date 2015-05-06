@@ -1,0 +1,29 @@
+#header {
+  #block-search-form {
+    float: right;
+    .search-full {
+      display: block;
+    }
+    .search-minimized {
+      display: none;
+      width: 32px;
+      height: 32px;
+      background: #c00 url('../images/search.png') no-repeat center;
+    }
+  }
+
+
+  @media all and (max-width: 480px) {
+    #block-search-form {
+      &:not(.forceShow) {
+        .search-full {
+          display: none;
+        }
+        .search-minimized {
+          display: block;
+        }
+      }
+    }
+
+  }
+}
