@@ -36,5 +36,5 @@
   <div class="search-full">
   <?php print $search_form; ?>
   </div>
-  <div class="search-minimized"></div>
+  <button class="search-toggle"></button>
 </div>

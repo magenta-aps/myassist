@@ -29,8 +29,10 @@ Drupal.behaviors.my_custom_behavior = {
   Drupal.behaviors.headerResponsive = {
     attach: function(context, settings) {
 
-      $("#block-search-form .search-minimized").click(function(event){
+      $(".search-toggle").click(function(event){
         $("#block-search-form").addClass("forceShow");
+        event.stopPropagation();
+        return false;
       });
 
       $(document).click(function(event) {
@@ -45,6 +47,7 @@ Drupal.behaviors.my_custom_behavior = {
         var newBodyPadding = $("body").css("paddingTop");
         if (newBodyPadding !== bodyPadding) {
           $(".mm-toggle").css({top:newBodyPadding});
+          $(".search-toggle").css({top:newBodyPadding});
           bodyPadding = newBodyPadding;
         }
       };

@@ -1,40 +1,35 @@
 #header {
+
+  .header__region {
+    clear: none;
+  }
+
   #block-search-form {
     float: right;
     .search-full {
       display: block;
     }
-    .search-minimized {
-      display: none;
-      width: 32px;
-      height: 32px;
-      background: #c00 url('../images/search.png') no-repeat center;
-      cursor: pointer;
-    }
   }
 
-  .menu-minimized {
-    display: none;
-  }
-
-    @media all and (max-width: 480px) {
+  @media all and (max-width: 480px) {
     #block-search-form {
       &:not(.forceShow) {
         .search-full {
           display: none;
         }
-        .search-minimized {
+        .search-toggle {
           display: block;
         }
       }
     }
-
-    .menu-minimized {
-      display: block;
-      width: 32px;
-      height: 32px;
-      background: #c00 url('../images/menu.png') no-repeat center;
-      cursor: pointer;
-    }
   }
+}
+
+.search-toggle {
+  padding: 0.25em 0.5em 0.5em;
+  display: none;
+  width: 3em;
+  height: 2.25em;
+  background: #c00 url('../images/search.png') no-repeat center;
+  cursor: pointer;
 }
