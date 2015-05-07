@@ -94,6 +94,36 @@ function myassist_user_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'profile2-ungeprofil-field_expertise'
+  $field_instances['profile2-ungeprofil-field_expertise'] = array(
+    'bundle' => 'ungeprofil',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'taxonomy',
+        'settings' => array(),
+        'type' => 'taxonomy_term_reference_link',
+        'weight' => 4,
+      ),
+    ),
+    'entity_type' => 'profile2',
+    'field_name' => 'field_expertise',
+    'label' => 'Specialer',
+    'required' => FALSE,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_select',
+      'weight' => 7,
+    ),
+  );
+
   // Exported field_instance: 'profile2-ungeprofil-field_gender'
   $field_instances['profile2-ungeprofil-field_gender'] = array(
     'bundle' => 'ungeprofil',
@@ -281,6 +311,37 @@ function myassist_user_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'profile2-voksenprofil-field_expertise'
+  $field_instances['profile2-voksenprofil-field_expertise'] = array(
+    'bundle' => 'voksenprofil',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'taxonomy',
+        'settings' => array(),
+        'type' => 'taxonomy_term_reference_link',
+        'weight' => 6,
+      ),
+    ),
+    'entity_type' => 'profile2',
+    'field_name' => 'field_expertise',
+    'label' => 'Specialer',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_select',
+      'weight' => 11,
+    ),
+  );
+
   // Exported field_instance: 'profile2-voksenprofil-field_gender_adult'
   $field_instances['profile2-voksenprofil-field_gender_adult'] = array(
     'bundle' => 'voksenprofil',
@@ -353,6 +414,7 @@ function myassist_user_field_default_field_instances() {
   t('Gender');
   t('Image');
   t('Om mig');
+  t('Specialer');
 
   return $field_instances;
 }

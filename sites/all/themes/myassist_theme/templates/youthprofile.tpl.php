@@ -1,6 +1,6 @@
 
 <?php
-$left_blocks = array("field_avatar","username","points","level");
+$left_blocks = array("field_avatar","username","points","level","field_expertise");
 $right_blocks = array("achievements","userinfo","membersince","field_quote");
 $rendered_blocks = array();
 ?>

@@ -1,6 +1,6 @@
 
 <?php
-$left_blocks = array("field_avatar");
+$left_blocks = array("field_avatar","field_expertise");
 $right_blocks = array("username","userinfo","field_biography");
 $rendered_blocks = array();
 ?>
