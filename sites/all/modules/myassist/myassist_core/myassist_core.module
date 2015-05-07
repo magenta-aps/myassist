@@ -3,3 +3,11 @@
  * @file
  * Drupal needs this blank file.
  */
+function myassist_core_theme($existing, $type, $theme, $path){
+  return array(
+    'myassist_button' => array(
+      'template' => 'templates/myassist_button', // define myassist_points.tpl.php inside module - point to myassist_achievements/templates/myassist_points.tpl.php
+      'variables' => array('class' => NULL, 'href' => NULL, 'content' => NULL), //define all variables used in the template file
+    )
+  );
+}

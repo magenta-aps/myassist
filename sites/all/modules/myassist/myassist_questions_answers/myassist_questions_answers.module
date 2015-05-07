@@ -1,7 +1,41 @@
 <?php
 
+/**
+ * Implements hook_preprocess_rate_template_number_up_down().
+ * Hide the downvote button
+ */
 function myassist_questions_answers_preprocess_rate_template_number_up_down(&$variables) {
     extract($variables);
     $variables["down_button"] = "";
 }
+
+/**
+ * Implements hook_block_info().
+ */
+function myassist_questions_answers_block_info() {
+  $blocks = array();
+  $blocks['newQuestion'] = array(
+    'info' => t('New question'),
+    'cache' => DRUPAL_CACHE_GLOBAL, // The block is the same for every user on every page where it is visible.
+  );
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function myassist_questions_answers_block_view($delta = '') {
+  $block = array();
+
+  switch ($delta) {
+    case 'newQuestion':
+      $block['content'] = array(
+        '#theme' => 'myassist_button',
+        '#class' => 'add-question',
+        '#href' => '/node/add/answers-question'
+      );
+  }
+  return $block;
+}
+
 

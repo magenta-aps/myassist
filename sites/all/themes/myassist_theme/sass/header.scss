@@ -23,13 +23,27 @@
       }
     }
   }
+
+  #block-myassist-questions-answers-newquestion {
+    float: right;
+  }
+}
+
+.myassist-button {
+  padding: 0.25em 0.5em 0.5em;
+  width: 3em;
+  height: 2.25em;
+  background-color: #c00;
+  cursor: pointer;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .search-toggle {
-  padding: 0.25em 0.5em 0.5em;
   display: none;
-  width: 3em;
-  height: 2.25em;
-  background: #c00 url('../images/search.png') no-repeat center;
-  cursor: pointer;
+  background-image: url('../images/search.png');
+}
+
+.add-question {
+  background-image: url('../images/plus.png');
 }
