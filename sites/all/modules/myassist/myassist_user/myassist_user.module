@@ -55,6 +55,8 @@ function myassist_user_user_view($account, $view_mode, $langcode) {
   unset($account->content['summary']); // Sabotage history display; we'll display it ourselves
 }
 
+
+
 /**
  * Implements hook_theme().
  */
@@ -140,4 +142,34 @@ function myassist_user_view_my_achievements() {
 function myassist_user_view_my_points() {
   global $user;
   drupal_goto('user/'.$user->uid.'/points');
+}
+
+
+/**
+ * Implements hook_preprocess_HOOK().
+ * Pass profile page title to page title
+ */
+function myassist_user_preprocess_page(&$variables) {
+  try {
+    $data = $variables['page']['content']['system_main'];
+    if (array_key_exists("#title", $data)) {
+      $variables['title'] = $data["#title"];
+    }
+
+    foreach ($data as $name => $value) {
+      if (strpos($name, "profile_", 0) === 0 and array_key_exists("#title", $value)) {
+        $variables['title'] = $value["#title"];
+        unset($data[$name]["#title"]);
+      }
+    }
+  } catch (Exception $e) {
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ * Insert 'editing "<username>"' in title
+ */
+function myassist_user_form_user_profile_form_alter(&$form, &$form_state) {
+  $form['#title'] = t('Editing') . '"' . $form["#user"]->name . '"';
 }
