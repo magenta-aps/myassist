@@ -12,10 +12,12 @@
 
   <header class="header" id="header" role="banner">
 
+    <!--
     <?php if ($logo): ?>
       <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home" class="header__logo" id="logo"><img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" class="header__logo-image" /></a>
     <?php endif; ?>
-
+    -->
+    
     <?php if ($site_name || $site_slogan): ?>
       <div class="header__name-and-slogan" id="name-and-slogan">
         <?php if ($site_name): ?>
@@ -46,10 +48,6 @@
       </nav>
     <?php endif; ?>
 
-    <?php if ($title): ?>
-      <h1 class="page__title title" id="page-title"><?php print $title; ?></h1>
-    <?php endif; ?>
-
     <?php print render($page['header']); ?>
 
   </header>
@@ -61,7 +59,9 @@
       <?php print $breadcrumb; ?>
       <a id="main-content"></a>
       <?php print render($title_prefix); ?>
-
+      <?php if ($title): ?>
+        <h1 class="page__title title" id="page-title"><?php print $title; ?></h1>
+      <?php endif; ?>
       <?php print render($title_suffix); ?>
       <?php print $messages; ?>
       <?php print render($tabs); ?>

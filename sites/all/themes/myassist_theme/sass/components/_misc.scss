@@ -66,9 +66,15 @@
   }
 }
 
+
 /**
  * Branding header.
  */
+
+.header {
+  background: lighten($basegrey, 60%);
+  box-shadow: ($u/4) 0 $u $u/4 rgba(0,0,0,0.2);
+}
 
 /* Wrapping link for logo. */
 .header__logo {
@@ -154,6 +160,36 @@
 }
 #global-chat .menu__link {
   background-image: url("../images/icons/bubbles4.svg");
+}
+
+
+/**
+ * Navigation
+ */
+#mm {
+  .region-sidebar-first {
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: $u;
+    h2 {
+      margin: $u/2;
+      font-size: $u;
+      color: lighten($basegrey, 20%);
+    }
+    .menu {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+    }
+    .menu__item {
+      display: block;
+      border-top: dashed 1px lighten($basegrey, 20%);
+    }
+    .menu__link {
+      display: block;
+      padding: $u/2;
+    }
+  }
 }
 
 

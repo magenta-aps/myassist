@@ -85,8 +85,8 @@ $indent-amount: $u;
 $nav-height: $u*3;
 
 // Tab styling.
-$tabs-container-bg: #fff;
-$tabs-border: #bbb;
+$tabs-container-bg: lighten($basegrey, 40%);
+$tabs-border: darken($basegrey, 40%);
 
 
 
