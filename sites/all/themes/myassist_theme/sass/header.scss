@@ -9,10 +9,11 @@
   .header__region {
     clear: none;
     display: inline-block;
+    float: right;
   }
 
   #block-search-form {
-    float: right;
+    display: inline-block;
     .search-full {
       display: block;
     }
@@ -32,7 +33,8 @@
   }
 
   #block-myassist-questions-answers-newquestion {
-    float: right;
+    display: inline-block;
+    vertical-align: top;
   }
 }
 
