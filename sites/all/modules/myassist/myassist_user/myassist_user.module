@@ -112,7 +112,25 @@ function myassist_user_menu() {
 
 function myassist_user_edit_my_profile() {
   global $user;
-  drupal_goto('user/'.$user->uid.'/edit');
+
+  $hasAdult = false;
+  $hasYouth = false;
+  $result = db_query('SELECT {type} FROM {profile} WHERE uid = :uid', array(':uid' => $user->uid));
+  foreach ($result as $record) {
+    if ($record->type === "ungeprofil") {
+      $hasYouth = true;
+    } else if ($record->type === "voksenprofil") {
+      $hasAdult = true;
+    }
+  }
+  $suffix = "";
+  if ($hasAdult) {
+    $suffix = "/voksenprofil";
+  } elseif ($hasYouth) {
+    $suffix = "/ungeprofil";
+  }
+
+  drupal_goto('user/' . $user->uid . '/edit' . $suffix);
 }
 
 function myassist_user_view_my_achievements() {
