@@ -84,6 +84,7 @@ function myassist_user_preprocess_menu_local_tasks(&$vars, $hooks) {
 
 function myassist_user_menu() {
   $items = array();
+
   $items['user/edit'] = array(
     'title'            => 'Edit Profile',
     'description'      => 'Edit own profile',

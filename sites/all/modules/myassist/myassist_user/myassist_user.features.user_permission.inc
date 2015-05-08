@@ -14,12 +14,7 @@ function myassist_user_user_default_permissions() {
   $permissions['access achievements'] = array(
     'name' => 'access achievements',
     'roles' => array(
-      'administrator' => 'administrator',
-      'chatrådgiver' => 'chatrådgiver',
-      'debatrådgiver' => 'debatrådgiver',
-      'moderator' => 'moderator',
-      'redaktør' => 'redaktør',
-      'ung bruger' => 'ung bruger',
+      'authenticated user' => 'authenticated user',
     ),
     'module' => 'achievements',
   );

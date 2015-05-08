@@ -1,5 +1,5 @@
 name = MyAssist User
-description = Theme settings
+description = Menu links
 core = 7.x
 package = MyAssist
 dependencies[] = achievements
@@ -49,6 +49,7 @@ features[field_instance][] = profile2-voksenprofil-field_gender_adult
 features[field_instance][] = profile2-voksenprofil-field_quote
 features[menu_links][] = user-menu_achievements:user/achievements
 features[menu_links][] = user-menu_edit-profile:user/edit
+features[menu_links][] = user-menu_log-in:user/login
 features[menu_links][] = user-menu_log-out:user/logout
 features[menu_links][] = user-menu_my-points:myuserpoints
 features[menu_links][] = user-menu_points:user/points

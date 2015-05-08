@@ -50,6 +50,24 @@ function myassist_user_menu_default_menu_links() {
     'weight' => -49,
     'customized' => 1,
   );
+  // Exported menu link: user-menu_log-in:user/login
+  $menu_links['user-menu_log-in:user/login'] = array(
+    'menu_name' => 'user-menu',
+    'link_path' => 'user/login',
+    'router_path' => 'user/login',
+    'link_title' => 'Log in',
+    'options' => array(
+      'identifier' => 'user-menu_log-in:user/login',
+    ),
+    'module' => 'system',
+    'hidden' => -1,
+    'external' => 0,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => 0,
+    'customized' => 0,
+    'parent_identifier' => 'user-menu_view-profile:user',
+  );
   // Exported menu link: user-menu_log-out:user/logout
   $menu_links['user-menu_log-out:user/logout'] = array(
     'menu_name' => 'user-menu',
@@ -64,7 +82,7 @@ function myassist_user_menu_default_menu_links() {
     'external' => 0,
     'has_children' => 0,
     'expanded' => 0,
-    'weight' => -46,
+    'weight' => -45,
     'customized' => 1,
   );
   // Exported menu link: user-menu_my-points:myuserpoints
@@ -84,7 +102,7 @@ function myassist_user_menu_default_menu_links() {
     'external' => 0,
     'has_children' => 1,
     'expanded' => 0,
-    'weight' => 0,
+    'weight' => -44,
     'customized' => 1,
   );
   // Exported menu link: user-menu_points:user/points
@@ -111,6 +129,7 @@ function myassist_user_menu_default_menu_links() {
   // Included for use with string extractors like potx.
   t('Achievements');
   t('Edit Profile');
+  t('Log in');
   t('Log out');
   t('My !points');
   t('Points');
