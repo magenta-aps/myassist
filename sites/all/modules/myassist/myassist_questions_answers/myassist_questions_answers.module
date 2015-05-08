@@ -27,13 +27,15 @@ function myassist_questions_answers_block_info() {
 function myassist_questions_answers_block_view($delta = '') {
   $block = array();
 
-  switch ($delta) {
-    case 'newQuestion':
-      $block['content'] = array(
-        '#theme' => 'myassist_button',
-        '#class' => 'add-question',
-        '#href' => '/node/add/answers-question'
-      );
+  if (user_access("create answers_question content")) {
+    switch ($delta) {
+      case 'newQuestion':
+        $block['content'] = array(
+          '#theme' => 'myassist_button',
+          '#class' => 'add-question',
+          '#href' => '/node/add/answers-question'
+        );
+    }
   }
   return $block;
 }
