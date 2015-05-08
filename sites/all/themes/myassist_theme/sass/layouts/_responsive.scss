@@ -66,14 +66,14 @@ body {
   top: 0;
   left: 0;
   right: 0;
-  height: $u*3;
+  height: $u*2.5;
   z-index: 4;
   padding: 0;
 }
 
 /* Main */
 #main {
-  margin: $u*3 0;
+  margin: $u*2.5 0;
 }
 #content {
   padding-top: $u*1;
@@ -85,7 +85,7 @@ body {
   bottom: 0;
   left: 0;
   right: 0;
-  height: $u*3;
+  height: $u*2.5;
   padding: 0;
   .menu {
     list-style: none;
@@ -139,12 +139,12 @@ body {
     display: block;
     padding: $u/4 $u/2 $u/2;
     position: absolute;
-    right: -($u*3);
+    right: -($u*2.5);
     top: 0;
     z-index: 6;
     .mm-graphic {
       background: #fff;
-      width: $u*2;
+      width: $u*1.5;
       height: $u/4;
       margin: $u/4 0 0;
       display: block;
@@ -157,7 +157,7 @@ body {
   
   #main {
     position: relative;
-    margin: $u*3 0 0;
+    margin: $u*2.5 0 0;
   }
   .mm-toggle {
     display: none;
@@ -175,7 +175,7 @@ body {
   #global-links {
     top: 0;
     bottom: auto;
-    right: $u*3;
+    right: $u*2.5;
     left: auto;
     position: fixed;
     z-index: 7;
@@ -268,14 +268,13 @@ body {
   /* header */
   #header {
     position: static;
-    height: $u*3;
   }
   
   /* Global links */
   #global-links {
     position: absolute;
-    top: -($u*3);
-    right: $u*3;
+    top: -($u*2.5);
+    right: $u*2.5;
     left: auto;
     bottom: auto;
     width: 20%;
