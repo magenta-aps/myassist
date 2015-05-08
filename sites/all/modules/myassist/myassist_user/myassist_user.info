@@ -53,6 +53,7 @@ features[menu_links][] = user-menu_log-in:user/login
 features[menu_links][] = user-menu_log-out:user/logout
 features[menu_links][] = user-menu_my-points:myuserpoints
 features[menu_links][] = user-menu_points:user/points
+features[menu_links][] = user-menu_view-profile:user
 features[profile2_type][] = ungeprofil
 features[profile2_type][] = voksenprofil
 features[taxonomy][] = labels
