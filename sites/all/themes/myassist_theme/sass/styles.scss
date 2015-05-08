@@ -18,11 +18,10 @@
 /* Component (SMACSS module) rules */
 @import "components/misc";
 // Optionally, add your own components here.
-@import "components/answers-theme.scss";
+@import "components/header";
+@import "components/answers-theme";
 
 @import "print";
-
-@import "header";
 
 @import "profile";
 /* SMACSS theme rules */

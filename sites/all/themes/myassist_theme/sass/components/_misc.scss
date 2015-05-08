@@ -66,9 +66,15 @@
   }
 }
 
+
 /**
  * Branding header.
  */
+
+.header {
+  background: lighten($basegrey, 60%);
+  box-shadow: ($u/4) 0 $u $u/4 rgba(0,0,0,0.2);
+}
 
 /* Wrapping link for logo. */
 .header__logo {
@@ -136,7 +142,7 @@
   }
   .menu__link {
     display: block;
-    height: $u*3;
+    height: $u*2.5;
     background: url("../images/icons/question.svg") no-repeat center center transparent;
     background-size: auto 66.66%;
     text-indent: -1000em;
@@ -144,6 +150,10 @@
   .menu__link:hover,
   .menu__link:active {
     background-color: lighten($basecolor, 20%); 
+  }
+  .menu__link.disabled {
+    filter: opacity(0.33);
+    -webkit-filter: opacity(0.33);
   }
 }
 #global-dilemma .menu__link {
@@ -158,8 +168,49 @@
 
 
 /**
+ * Navigation
+ */
+
+#mm {
+  .region-sidebar-first {
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: $u;
+    h2 {
+      margin: $u/2;
+      font-size: $u;
+      color: lighten($basegrey, 20%);
+    }
+    .menu {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+    }
+    .menu__item {
+      display: block;
+      border-top: dashed 1px lighten($basegrey, 20%);
+    }
+    .menu__link {
+      display: block;
+      padding: $u/2;
+    }
+  }
+}
+
+
+/**
+ * Page title
+ */
+
+.page__title {
+  margin-top: 0;
+}
+
+
+/**
  * Messages.
  */
+
 .messages {
   margin: $u 0;
   padding: 10px 10px 10px 50px; /* LTR */
@@ -213,6 +264,7 @@
   background-color: #fef5f1;
   color: #8c2e0b;
 }
+
 
 /**
  * Tabs.
@@ -369,9 +421,11 @@ span.field-label {
   padding: 0 1em 0 0; /* LTR */
 }
 
+
 /**
  * "More" links.
  */
+
 .more-link {
   text-align: right; /* LTR */
 }

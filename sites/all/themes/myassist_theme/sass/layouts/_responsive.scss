@@ -21,6 +21,10 @@ $zen-gutter-width:  2em;
 $zen-auto-include-item-base: false;
 // $zen-auto-include-flow-item-base: false;
 
+body {
+  background: lighten($basegrey, 60%);
+}
+
 // Suppress this section of CSS for RTL layouts since it contains no LTR-specific styles.
 @if $zen-reverse-all-floats == false {
 
@@ -48,25 +52,6 @@ $zen-auto-include-item-base: false;
   @include zen-grid-item-base();
 }
 
-#header,
-#mm {
-  background: #000;
-  color: lighten($basegrey, 60%);
-  a:link,
-  a:visited {
-    color: #fff;
-  }
-  a:hover,
-  a:focus {
-    color: lighten($basecolor, 40%);
-  }
-  a:active {
-    color: lighten($basecolor, 30%);
-  }
-}
-#content {
-  background: lighten($basegrey, 60%);
-}
 
 /* Containers for grid items and flow items. */
 #header,
@@ -81,13 +66,14 @@ $zen-auto-include-item-base: false;
   top: 0;
   left: 0;
   right: 0;
-  height: $u*3;
+  height: $u*2.5;
   z-index: 4;
+  padding: 0;
 }
 
 /* Main */
 #main {
-  margin: $u*3 0;
+  margin: $u*2.5 0;
 }
 #content {
   padding-top: $u*1;
@@ -99,7 +85,8 @@ $zen-auto-include-item-base: false;
   bottom: 0;
   left: 0;
   right: 0;
-  height: $u*3;
+  height: $u*2.5;
+  padding: 0;
   .menu {
     list-style: none;
   }
@@ -113,18 +100,35 @@ $zen-auto-include-item-base: false;
   }
 }
 
-/* Navigation bar */
+/* Sidebar-first menu */
+#mm {
+  .region-sidebar-first {
+    background: lighten($basegrey, 50%);
+  }
+}
+
+
+} // End of @if $zen-reverse-all-floats == true
+
+
+/**
+ * Use 3 grid columns for smaller screens.
+ */
+
 @media all and (max-width: 480px) {
+
   #mm {
     position: fixed;
     top: 0;
     bottom: 0;
     left: 0;
     width: 85vw;
-    background: rgba(0,0,0,0.8);
     z-index: 5;
     @include translate(-85vw,0);
     transition: transform 0.5s;
+    .region-sidebar-first {
+      height: 100%;
+    }
   }
   #mm.open {
     @include translate(0,0);
@@ -134,57 +138,32 @@ $zen-auto-include-item-base: false;
     background: $basecolor;
     display: block;
     padding: $u/4 $u/2 $u/2;
-    width: $u*3;
     position: absolute;
-    right: -($u*3);
+    right: -($u*2.5);
     top: 0;
     z-index: 6;
     .mm-graphic {
       background: #fff;
-      width: $u*2;
+      width: $u*1.5;
       height: $u/4;
       margin: $u/4 0 0;
       display: block;
     }
   }
-  .region-sidebar-first {
-    h2 {
-      display: none;
-    }
-    .menu {
-      list-style-type: none;
-      padding: 0;
-      margin: 0;
-    }
-    .menu__item {
-      display: block;
-      border-top: dashed 1px $basegrey;
-    }
-    .menu__link {
-      display: block;
-      padding: $u/2;
-    }
-  } 
+
 }
 
 @media all and (min-width: 480px) {
+  
   #main {
     position: relative;
-    margin: $u*3 0 0;
+    margin: $u*2.5 0 0;
   }
   .mm-toggle {
     display: none;
   }
-  #global-links {
-    top: 0;
-    right: 0;
-    left: auto;
-    bottom: auto;
-    width: $u*10;
-  }
+  
 }
-
-} // End of @if $zen-reverse-all-floats == true
 
 /**
  * Use 3 grid columns for smaller screens.
@@ -192,6 +171,16 @@ $zen-auto-include-item-base: false;
 @media all and (min-width: 480px) and (max-width: 959px) {
 
   $zen-column-count: 3 !global;
+  
+  #global-links {
+    top: 0;
+    bottom: auto;
+    right: $u*2.5;
+    left: auto;
+    position: fixed;
+    z-index: 7;
+    width: 33.333%;
+  }
 
   /**
    * The layout when there is only one sidebar, the left one.
@@ -271,6 +260,26 @@ $zen-auto-include-item-base: false;
 
   $zen-column-count: 5 !global;
 
+  /* main */
+  #main {
+    margin-top: 0;
+  }
+  
+  /* header */
+  #header {
+    position: static;
+  }
+  
+  /* Global links */
+  #global-links {
+    position: absolute;
+    top: -($u*2.5);
+    right: $u*2.5;
+    left: auto;
+    bottom: auto;
+    width: 20%;
+  }
+  
   /**
    * The layout when there is only one sidebar, the left one.
    */
