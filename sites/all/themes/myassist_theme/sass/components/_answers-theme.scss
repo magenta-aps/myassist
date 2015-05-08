@@ -8,9 +8,36 @@
 /************************************************************************************************/
 
 .node-answers-question .content {
-  min-height: 1em;
+  min-height: $u;
   background: #fff;
-  padding: 0.5em;
+  padding: $u;
+}
+
+@media all and (max-width: 480px) {
+  
+  .node-answers-question .content {
+    margin-left: -($u);
+    margin-right: -($u);
+  }
+  
+}
+
+.answers-body {
+  @include zen-grid-container;
+  .field-name-field-category,
+  .answers-submitted,
+  .submitted-time {
+    @include zen-grid-item-base();
+  }
+  .field-name-field-category {
+    @include zen-grid-item(2, 1);
+  }
+  .answers-submitted {
+    @include zen-grid-item(2, 3);
+  }
+  .submitted-time {
+    @include zen-grid-item(2, 1);
+  }
 }
 
 

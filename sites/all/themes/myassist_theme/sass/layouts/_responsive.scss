@@ -10,11 +10,8 @@
 
 // We are going to create a fluid grid with 1, 3, or 5 columns and 20px gutters
 // between columns (applied as 10px of left/right padding on each column).
-$zen-column-count:  1; // Add "!global" after your $zen-column-count value if you want to override it in media queries.
-$zen-gutter-width:  2em;
-
-// If you need IE6/7 support for box-sizing: border-box (default), see _init.scss
-//$zen-box-sizing: content-box;
+$zen-column-count:  4; // Add "!global" after your $zen-column-count value if you want to override it in media queries.
+$zen-gutter-width:  $u*2;
 
 // You can generate more efficient CSS if you manually apply the
 // zen-grid-item-base mixin to all grid items from within a single ruleset.
@@ -73,10 +70,7 @@ body {
 
 /* Main */
 #main {
-  margin: $u*2.5 0;
-}
-#content {
-  padding-top: $u*1;
+  margin: $u*3.5 0;
 }
 
 /* Global user links */
