@@ -326,7 +326,9 @@ figure {
 
 /* Define consistent border, margin, and padding. */
 fieldset {
-  margin: 0 2px;
+  margin: 0 0 $u;
+  padding: $u;
+  border: solid 1px lighten($basegrey, 40%);
 }
 
 /**
@@ -396,9 +398,10 @@ input[type="submit"] {
   background: $basecolor;
   border: none;
   color: #fff;
-  padding: $u/2 $u;
+  padding: $u/2 $u/1.5;
   min-height: $u*2.5;
   min-width: $u*2.5;
+  margin: 0 $u/2 $u/2 0;
 }
 
 /**
