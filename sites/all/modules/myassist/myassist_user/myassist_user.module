@@ -88,7 +88,7 @@ function myassist_user_menu() {
     'title'            => 'Edit Profile',
     'description'      => 'Edit own profile',
     'page callback'    => 'myassist_user_edit_my_profile',
-    'access arguments' => array('access content'),
+    'access callback'  => 'myassist_user_can_edit_own_profile',
     'type'             => MENU_NORMAL_ITEM,
     'menu_name'        => 'user-menu',
   );
@@ -96,7 +96,8 @@ function myassist_user_menu() {
     'title'            => 'Achievements',
     'description'      => 'View my achievements',
     'page callback'    => 'myassist_user_view_my_achievements',
-    'access arguments' => array('access content'),
+  //'access callback'  => 'user_access', <- this is the default
+    'access arguments' => array('access achievements'),
     'type'             => MENU_NORMAL_ITEM,
     'menu_name'        => 'user-menu',
   );
@@ -105,12 +106,23 @@ function myassist_user_menu() {
     'title' => 'Points',
     'description'      => 'View my points',
     'page callback'    => 'myassist_user_view_my_points',
-    'access arguments' => array('access content'),
+  //'access callback'  => 'user_access', <- this is the default
+    'access arguments' => array('view own userpoints'),
     'type'             => MENU_NORMAL_ITEM,
     'menu_name'        => 'user-menu',
   );
   return $items;
 }
+
+function myassist_user_can_edit_own_profile() {
+  return user_access("edit own ungeprofil profile") || user_access("edit own voksenprofil profile");
+}
+
+/*function myassist_user_can_view_own_profile() {
+  return user_access("view own ungeprofil profile") || user_access("view own voksenprofil profile");
+}*/
+
+
 
 function myassist_user_edit_my_profile() {
   global $user;
