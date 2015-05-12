@@ -2,6 +2,15 @@
 /* THE BODY WRAPPER                                                                          */
 /************************************************************************************************/
 
+.node-answers-wrapper {
+  background: #fff;
+  margin-bottom: 1px;
+  margin-left: -($u);
+  margin-right: -($u);
+  padding: $u;
+  
+}
+
 
 /************************************************************************************************/
 /* THE QUESTION                                                                                 */
@@ -9,35 +18,14 @@
 
 .node-answers-question .content {
   min-height: $u;
-  background: #fff;
-  padding: $u;
 }
 
 @media all and (max-width: 480px) {
   
   .node-answers-question .content {
-    margin-left: -($u);
-    margin-right: -($u);
+    
   }
   
-}
-
-.answers-body {
-  @include zen-grid-container;
-  .field-name-field-category,
-  .answers-submitted,
-  .submitted-time {
-    @include zen-grid-item-base();
-  }
-  .field-name-field-category {
-    @include zen-grid-item(2, 1);
-  }
-  .answers-submitted {
-    @include zen-grid-item(2, 3);
-  }
-  .submitted-time {
-    @include zen-grid-item(2, 1);
-  }
 }
 
 
@@ -45,21 +33,87 @@
 /* THE WIDGETS WRAPPER                                                                          */
 /************************************************************************************************/
 
+.answers-widgets-wrapper,
+.node-answers-answer .rate-widget-number_up_down,
+.node-answers-question .rate-widget-number_up_down{
+  float: none;
+}
+
 /************************************************************************************************/
 /* THE SUBMITTED BLOCK                                                                          */
 /************************************************************************************************/
+
+.answers-submitted {
+  background: lighten($basegrey, 60%);
+  float: none;
+  width: auto;
+  .user-picture {
+    float: left;
+    width: $u*2.5;
+    margin-right: $u/2;
+    a {
+      display: block;
+    }
+    img {
+      width: 100%;
+      height: auto;
+      background: transparent;
+    }
+  }
+  .author-name {
+    padding: $u/3 0;
+  }
+  .author-points {
+    margin: 0;
+  }
+}
+
+.submitted-time {
+  display: block;
+  padding-bottom: $u/2;
+}
+
 
 /************************************************************************************************/
 /* TOOLBAR                                                                                     */
 /************************************************************************************************/
 
+.answers-body-toolbar ul.links li,
+.answers-body-toolbar ul.links li:hover {
+  color: inherit;
+}
+.answers-body-toolbar ul.links li {
+  cursor: auto;
+  text-align: right;
+}
+
 /************************************************************************************************/
 /* COMMENTS                                                                                     */
 /************************************************************************************************/
 
+.answers-body-wrapper {
+  .comment-wrapper {
+    background: lighten($basegrey, 60%);
+    margin-left: -($u);
+    margin-right: -($u);
+    border: none;
+    padding: 0;
+  }
+  .comment {
+    border-top: solid 1px #fff;
+    padding: $u;
+  }
+}
+
 /************************************************************************************************/
 /* BUTTONS                                                                                      */
 /************************************************************************************************/
+
+.answers-btn-primary,
+.node-answers-wrapper input.form-submit {
+  @extend .btn;
+  float: none;
+}
 
 /************************************************************************************************/
 /* ANSWERS HEADING                                                                              */
@@ -68,6 +122,54 @@
 /************************************************************************************************/
 /* ANSWERS                                                                                      */
 /************************************************************************************************/
+
+.node-answers-wrapper .view-question-answers .view-header {
+  font-size: $u;
+  padding: $u/2 $u;
+  background: transparent;
+  margin: 0;
+  color: #fff;
+  background: $basegrey;
+  margin-right: -($u);
+  margin-left: -($u);
+}
+
+.node-answers-answer .field-name-body .field-items .field-item p {
+  display: block;
+}
+
+.answers-body {
+  .field-name-field-category {
+    float: left;
+    width: 50%;
+    .field-label {
+      @include element-invisible;
+    }
+    .field-item {
+      display: inline-block;
+      a {
+        padding: $u/3 $u/2;
+        font-size: $u/1.5;
+        border-radius: $u/2;
+        background-color: $basegrey;
+        color: #fff;
+      }
+    }
+  }
+  .content .field {
+    padding: 0;
+  }
+}
+
+.answers-body-toolbar {
+  margin: 0;
+  height: auto;
+  .links li {
+    background: lighten($basegrey, 60%);
+    padding: $u/2;
+    display: block;
+  }
+}
 
 /************************************************************************************************/
 /* NEW ANSWERS FORM                                                                             */
