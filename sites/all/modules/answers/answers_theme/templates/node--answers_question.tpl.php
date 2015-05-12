@@ -126,7 +126,9 @@
       <div class="answers-body">
         <div class="content clearfix" <?php print $content_attributes; ?>>
           <?php print render($content); ?>
-          
+          <span class="submitted-time">
+            <?php print t('Posted @time ago.', array("@time" => format_interval(time() - $node->created, 1))); ?>
+          </span>
           <div class="answers-submitted">
             <?php print $user_picture; ?>
             <div class="author-name"><?php print $name; ?></div>
@@ -136,7 +138,6 @@
                 <?php
                 /*
                      <p class="author-questions"> <?php print t('See') . ' ' .  l(t('my questions'), 'xxx') . ' ' . t('or') . ' ' . l(t('my answers'), 'yyy') ?> </p> 
-            
                 */
                 ?> 
               </div>
@@ -144,9 +145,6 @@
             </div>
           </div>
           
-          <span class="submitted-time">
-            <?php print t('Posted @time ago.', array("@time" => format_interval(time() - $node->created, 1))); ?>
-          </span>
           <?php if (module_exists('statistics')) {
             $statistics = statistics_get($node->nid);
 			if ($statistics['totalcount'] > 0) {  
@@ -171,7 +169,7 @@
             print $links;
             if (user_access('post comments')) {
               // Add a "pseudo-link" to open the comment dialog. This is done using jquery.
-              print '<ul class="links inline"><li class="answers-comment-button"><a>' . t("Comment") . '</a></li></ul>';
+              print '<ul class="links"><li class="answers-comment-button"><a>' . t("Comment") . '</a></li></ul>';
             }
           ?>
           </div>
