@@ -145,7 +145,7 @@
           </div>
           
           <span class="submitted-time">
-            <?php print t('Posted ') . format_interval(time() - $node->created, 1) . t(' ago.'); ?>
+            <?php print t('Posted @time ago.', array("@time" => format_interval(time() - $node->created, 1))); ?>
           </span>
           <?php if (module_exists('statistics')) {
             $statistics = statistics_get($node->nid);
@@ -161,7 +161,7 @@
 
       <div class="answers-body-toolbar">
         
-        <a id="answers-btn-answer" class="answers-btn-primary" href="#new-answer-form">Answer</a>
+        <a id="answers-btn-answer" class="answers-btn-primary" href="#new-answer-form"><?php print t("Answer"); ?></a>
        <?php
         $links = render($content['links']);
         if ($links):
@@ -171,7 +171,7 @@
             print $links;
             if (user_access('post comments')) {
               // Add a "pseudo-link" to open the comment dialog. This is done using jquery.
-              print '<ul class="links inline"><li class="answers-comment-button"><a>Comment</a></li></ul>';
+              print '<ul class="links inline"><li class="answers-comment-button"><a>' . t("Comment") . '</a></li></ul>';
             }
           ?>
           </div>

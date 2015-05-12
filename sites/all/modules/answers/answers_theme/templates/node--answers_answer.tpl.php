@@ -161,7 +161,7 @@
             print $links;
             if (user_access('post comments')) {
 			  // Add a "pseudo-link" to open the comment form. This is done using jquery
-              print '<ul class="links inline"><li class="answers-comment-button"><a>Comment</a></li></ul>';
+              print '<ul class="links inline"><li class="answers-comment-button"><a>' . t('Comment') . '</a></li></ul>';
             }
           ?>
         </div>

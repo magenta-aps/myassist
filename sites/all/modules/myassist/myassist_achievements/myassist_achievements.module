@@ -245,7 +245,7 @@ function myassist_achievements_profile2_view($profile, $view_mode, $langcode) {
     '#weight' => 0,
     '#title' => t('Points'),
     '#class' => 'userpoints',
-    '#text' => $points . t("points"), // Pass data to template (name must be defined in the definition)
+    '#text' => t("@points points", array("@points" => $points)), // Pass data to template (name must be defined in the definition)
     '#href' => "/user/$uid/points",
   );
 
