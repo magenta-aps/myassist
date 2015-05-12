@@ -224,6 +224,15 @@ function i18n_field_field_widget_form_alter(&$element, &$form_state, $context) {
   // Translate instance to current page language and set to form_state
   // so it will be used for validation messages later.
   $instance_current = i18n_string_object_translate('field_instance', $instance);
+
+  // Normalize translated instance.
+  foreach ($instance_current['settings'] as $setting => $value) {
+    if (!empty($instance_current[$setting])) {
+      $instance_current['settings'][$setting] = $instance_current[$setting];
+      unset($instance_current[$setting]);
+    }
+  }
+
   if (isset($form_state['field'][$instance['field_name']][$langcode]['instance'])) {
     $form_state['field'][$instance['field_name']][$langcode]['instance'] = $instance_current;
   }
@@ -304,6 +313,32 @@ function i18n_field_field_widget_form_alter(&$element, &$form_state, $context) {
       $alter_element['#default_value'] = $translate($instance, $items[$delta]['value'], $i18n_langcode);
     }
   }
+
+  // List of extra translatable properties in field.
+  // Key is a name of $element's property, value is a name of $instance's property.
+  $translatable_properties = array(
+    'field_prefix' => array('settings', 'prefix'),
+    'field_suffix' => array('settings', 'suffix'),
+  );
+  // Translate field properties if set and it is the default one.
+  foreach ($translatable_properties as $element_property => $instance_property) {
+    // Get translated and non-translated value of property.
+    $property_value = drupal_array_get_nested_value($instance, $instance_property);
+    $translated_property_value = drupal_array_get_nested_value($instance_current, $instance_property);
+
+    // If translated and not translated values are different we should replace current value with translated one.
+    if (!empty($translated_property_value) && $translated_property_value != $property_value) {
+      if (!empty($element['#' . $element_property]) && $element['#' . $element_property] == $property_value) {
+        $alter_element['#' . $element_property] = $translated_property_value;
+      }
+      if (!empty($element['value']['#' . $element_property]) && $element['value']['#' . $element_property] == $property_value) {
+        $alter_element['#' . $element_property] = $translated_property_value;
+      }
+      if (!empty($element[0]['#' . $element_property]) && $element[0]['#' . $element_property] == $property_value) {
+        $alter_element[0]['#' . $element_property] = $translated_property_value;
+      }
+    }
+  }
 }
 
 /**
@@ -323,6 +358,31 @@ function i18n_field_field_attach_view_alter(&$output, $context) {
       // Translate field description if set
       if (!empty($instance['description'])) {
         $element['#description'] = i18n_field_translate_property($instance, 'description');
+      }
+
+      // Translate number fields prefix/suffix if exist.
+      if (in_array($element['#field_type'], array('number_integer', 'number_decimal'))) {
+        // Translate instance to current page language.
+        $instance_current = i18n_string_object_translate('field_instance', $instance);
+        if (!empty($instance_current['prefix']) || !empty($instance_current['suffix'])) {
+          if (is_array($context['display']) && isset($context['display']['settings'])) {
+            $settings = $context['display']['settings'];
+          }
+          elseif (isset($instance['display'][$element['#view_mode']])) {
+            $settings = $instance['display'][$element['#view_mode']]['settings'];
+          }
+          else {
+            $settings = $instance['display']['default']['settings'];
+          }
+          foreach ($element['#items'] as $delta => $item) {
+            $output_value = number_format($item['value'], $settings['scale'], $settings['decimal_separator'], $settings['thousand_separator']);
+            $prefixes = !empty($instance['settings']['prefix']) ? array_map('field_filter_xss', explode('|', $instance_current['prefix'])) : array('');
+            $suffixes = !empty($instance['settings']['suffix']) ? array_map('field_filter_xss', explode('|', $instance_current['suffix'])) : array('');
+            $prefix = (count($prefixes) > 1) ? format_plural($item['value'], $prefixes[0], $prefixes[1]) : $prefixes[0];
+            $suffix = (count($suffixes) > 1) ? format_plural($item['value'], $suffixes[0], $suffixes[1]) : $suffixes[0];
+            $element[$delta] = array('#markup' => $prefix . $output_value . $suffix);
+          }
+        }
       }
     }
   }

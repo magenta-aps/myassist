@@ -56,6 +56,14 @@ function i18n_field_i18n_object_info() {
           'title' => t('Default value'),
           'format' => 'format',
         ),
+        'prefix' => array(
+          'title' => t('Prefix'),
+          'field' => 'settings.prefix',
+        ),
+        'suffix' => array(
+          'title' => t('Suffix'),
+          'field' => 'settings.suffix',
+        ),
       ),
       //'translate path' => 'admin/structure/types/manage/%bundle/fields/%field_ui_menu/translate/%i18n_language',
     )
