@@ -83,13 +83,13 @@
     <nav id="global-links">
       <ul class="menu">
         <li class="menu__item" id="global-dilemma">
-          <a class="menu__link" id="dilemmaButton" href="/" title="Dilemmaliste">Dilemma</a>
+          <a class="menu__link" id="dilemmaButton" href="/" title="Dilemmaliste"><?php print t("Dilemma"); ?></a>
         </li>
         <li class="menu__item" id="global-leaderboards">
-          <a class="menu__link" id="leaderboardButton" href="/achievements/leaderboard" title="Leaderboards og brugere">Leaderboards og brugere</a>
+          <a class="menu__link" id="leaderboardButton" href="/achievements/leaderboard" title="Leaderboards og brugere"><?php print t("Leaderboards and users");?></a>
         </li>
         <li class="menu__item" id="global-chat">
-          <a class="menu__link disabled" id="chatButton" href="/chat" title="Chat">Chat</a>
+          <a class="menu__link disabled" id="chatButton" href="/chat" title="Chat"><?php print t("Chat"); ?></a>
         </li>
       </ul>
     </nav>

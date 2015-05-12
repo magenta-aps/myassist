@@ -92,6 +92,7 @@ function myassist_user_field_default_field_bases() {
           'parent' => 0,
         ),
       ),
+      'options_list_callback' => 'i18n_taxonomy_allowed_values',
       'profile2_private' => 0,
     ),
     'translatable' => 0,
@@ -114,8 +115,8 @@ function myassist_user_field_default_field_bases() {
     'module' => 'list',
     'settings' => array(
       'allowed_values' => array(
-        0 => 'Dreng',
-        1 => 'Pige',
+        0 => 'Boy',
+        1 => 'Girl',
       ),
       'allowed_values_function' => '',
       'profile2_private' => 0,
@@ -140,8 +141,8 @@ function myassist_user_field_default_field_bases() {
     'module' => 'list',
     'settings' => array(
       'allowed_values' => array(
-        0 => 'Mand',
-        1 => 'Kvinde',
+        0 => 'Man',
+        1 => 'Woman',
       ),
       'allowed_values_function' => '',
       'profile2_private' => 0,

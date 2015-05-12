@@ -111,12 +111,13 @@ function myassist_user_field_default_field_instances() {
     ),
     'entity_type' => 'profile2',
     'field_name' => 'field_expertise',
-    'label' => 'Specialer',
-    'required' => FALSE,
+    'label' => 'Specialities',
+    'required' => 0,
     'settings' => array(
       'user_register_form' => FALSE,
     ),
     'widget' => array(
+      'active' => 1,
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_select',
@@ -221,7 +222,7 @@ function myassist_user_field_default_field_instances() {
       'max' => 110,
       'min' => 18,
       'prefix' => '',
-      'suffix' => ' år',
+      'suffix' => ' years',
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -294,7 +295,7 @@ function myassist_user_field_default_field_instances() {
     ),
     'entity_type' => 'profile2',
     'field_name' => 'field_biography',
-    'label' => 'Om mig',
+    'label' => 'About me',
     'required' => 0,
     'settings' => array(
       'text_processing' => 0,
@@ -328,7 +329,7 @@ function myassist_user_field_default_field_instances() {
     ),
     'entity_type' => 'profile2',
     'field_name' => 'field_expertise',
-    'label' => 'Specialer',
+    'label' => 'Specialities',
     'required' => 0,
     'settings' => array(
       'user_register_form' => FALSE,
@@ -345,7 +346,11 @@ function myassist_user_field_default_field_instances() {
   // Exported field_instance: 'profile2-voksenprofil-field_gender_adult'
   $field_instances['profile2-voksenprofil-field_gender_adult'] = array(
     'bundle' => 'voksenprofil',
-    'default_value' => NULL,
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
     'deleted' => 0,
     'description' => '',
     'display' => array(
@@ -409,12 +414,12 @@ function myassist_user_field_default_field_instances() {
 
   // Translatables
   // Included for use with string extractors like potx.
+  t('About me');
   t('Age');
   t('Favorite quote');
   t('Gender');
   t('Image');
-  t('Om mig');
-  t('Specialer');
+  t('Specialities');
 
   return $field_instances;
 }

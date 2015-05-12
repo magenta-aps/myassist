@@ -41,6 +41,7 @@ function myassist_theme_preprocess_html(&$variables, $hook) {
   // The body tag's classes are controlled by the $classes_array variable. To
   // remove a class from $classes_array, use array_diff().
   //$variables['classes_array'] = array_diff($variables['classes_array'], array('class-to-remove'));
+
 }
 // */
 

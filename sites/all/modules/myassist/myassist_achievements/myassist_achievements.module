@@ -209,15 +209,15 @@ function myassist_achievements_userpoints_list_transactions_alter(&$data) {
       ),
       '#rows' => array(
           array(
-              'data' => array('Current level', $level['level']),
+              'data' => array(t('Current level'), $level['level']),
               'class' => array('userpoints-myuserpoints-total-approved'),
           ),
           array(
-              'data' => array('Current title', $level['title']),
+              'data' => array(t('Current title'), $level['title']),
               'class' => array('userpoints-myuserpoints-total-approved'),
           ),
           array(
-            'data' => array('Points until level-up', myassist_achievements_get_user_points_for_next_level($uid)),
+            'data' => array(t('Points until level-up'), myassist_achievements_get_user_points_for_next_level($uid)),
             'class' => array('userpoints-myuserpoints-total-approved'),
           )
       ),
@@ -243,9 +243,9 @@ function myassist_achievements_profile2_view($profile, $view_mode, $langcode) {
   $profile->content['points'] = array(
     '#theme' => "myassist_data", // Point to definition in myassist_achievements_theme
     '#weight' => 0,
-    '#title' => 'Points',
+    '#title' => t('Points'),
     '#class' => 'userpoints',
-    '#text' => "$points points", // Pass data to template (name must be defined in the definition)
+    '#text' => $points . t("points"), // Pass data to template (name must be defined in the definition)
     '#href' => "/user/$uid/points",
   );
 
@@ -254,7 +254,7 @@ function myassist_achievements_profile2_view($profile, $view_mode, $langcode) {
   $profile->content['level'] = array(
     '#theme' => "myassist_data",
     '#weight' => 0,
-    '#title' => 'Level',
+    '#title' => t('Level'),
     '#class' => 'userlevel',
     '#text' => $level["title"],
     '#href' => "/user/$uid/achievements",
@@ -308,7 +308,7 @@ function myassist_achievements_profile2_view($profile, $view_mode, $langcode) {
     $profile->content['achievements'][$achievement['id']] = array(
       '#theme' => 'myassist_achievement',
       '#weight' => $i,
-      '#title' => 'Achievement',
+      '#title' => t('Achievement'),
       '#achievement' => $achievement,
       '#image' => $extra['image'],
       '#achievement_title' => $extra['achievement_title'],

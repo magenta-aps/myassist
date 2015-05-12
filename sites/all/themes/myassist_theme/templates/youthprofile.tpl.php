@@ -35,7 +35,7 @@ $rendered_blocks = array();
 if (array_key_exists("nodes", $content) && !in_array("nodes", $rendered_blocks)) {
   ?>
   <div class="section nodes">
-    <h3>Aktiviteter</h3>
+    <h3><?php print t("Activities"); ?></h3>
     <?php
     print render($content["nodes"]);
     ?>

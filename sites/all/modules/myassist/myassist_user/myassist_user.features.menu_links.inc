@@ -27,8 +27,10 @@ function myassist_user_menu_default_menu_links() {
     'external' => 0,
     'has_children' => 0,
     'expanded' => 0,
-    'weight' => -48,
+    'weight' => -43,
     'customized' => 1,
+    'language' => 'und',
+    'menu_links_customized' => 1,
   );
   // Exported menu link: user-menu_edit-profile:user/edit
   $menu_links['user-menu_edit-profile:user/edit'] = array(
@@ -41,32 +43,17 @@ function myassist_user_menu_default_menu_links() {
         'title' => 'Edit own profile',
       ),
       'identifier' => 'user-menu_edit-profile:user/edit',
+      'alter' => TRUE,
     ),
     'module' => 'system',
     'hidden' => 0,
     'external' => 0,
     'has_children' => 0,
     'expanded' => 0,
-    'weight' => -49,
+    'weight' => -44,
     'customized' => 1,
-  );
-  // Exported menu link: user-menu_log-in:user/login
-  $menu_links['user-menu_log-in:user/login'] = array(
-    'menu_name' => 'user-menu',
-    'link_path' => 'user/login',
-    'router_path' => 'user/login',
-    'link_title' => 'Log in',
-    'options' => array(
-      'identifier' => 'user-menu_log-in:user/login',
-    ),
-    'module' => 'system',
-    'hidden' => -1,
-    'external' => 0,
-    'has_children' => 0,
-    'expanded' => 0,
-    'weight' => 0,
-    'customized' => 0,
-    'parent_identifier' => 'user-menu_view-profile:user',
+    'language' => 'en',
+    'menu_links_customized' => 1,
   );
   // Exported menu link: user-menu_log-out:user/logout
   $menu_links['user-menu_log-out:user/logout'] = array(
@@ -82,8 +69,10 @@ function myassist_user_menu_default_menu_links() {
     'external' => 0,
     'has_children' => 0,
     'expanded' => 0,
-    'weight' => -45,
+    'weight' => -40,
     'customized' => 1,
+    'language' => 'und',
+    'menu_links_customized' => 1,
   );
   // Exported menu link: user-menu_my-points:myuserpoints
   $menu_links['user-menu_my-points:myuserpoints'] = array(
@@ -102,8 +91,10 @@ function myassist_user_menu_default_menu_links() {
     'external' => 0,
     'has_children' => 1,
     'expanded' => 0,
-    'weight' => -44,
+    'weight' => -41,
     'customized' => 1,
+    'language' => 'und',
+    'menu_links_customized' => 1,
   );
   // Exported menu link: user-menu_points:user/points
   $menu_links['user-menu_points:user/points'] = array(
@@ -122,8 +113,33 @@ function myassist_user_menu_default_menu_links() {
     'external' => 0,
     'has_children' => 0,
     'expanded' => 0,
-    'weight' => -47,
+    'weight' => -42,
     'customized' => 1,
+    'language' => 'und',
+    'menu_links_customized' => 1,
+  );
+  // Exported menu link: user-menu_user-account:user
+  $menu_links['user-menu_user-account:user'] = array(
+    'menu_name' => 'user-menu',
+    'link_path' => 'user',
+    'router_path' => 'user',
+    'link_title' => 'User account',
+    'options' => array(
+      'alter' => TRUE,
+      'identifier' => 'user-menu_user-account:user',
+      'attributes' => array(
+        'title' => '',
+      ),
+    ),
+    'module' => 'system',
+    'hidden' => 0,
+    'external' => 0,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -48,
+    'customized' => 1,
+    'language' => 'en',
+    'menu_links_customized' => 1,
   );
   // Exported menu link: user-menu_view-profile:user
   $menu_links['user-menu_view-profile:user'] = array(
@@ -143,17 +159,19 @@ function myassist_user_menu_default_menu_links() {
     'external' => 0,
     'has_children' => 0,
     'expanded' => 0,
-    'weight' => -50,
+    'weight' => -46,
     'customized' => 1,
+    'language' => 'en',
+    'menu_links_customized' => 1,
   );
   // Translatables
   // Included for use with string extractors like potx.
   t('Achievements');
   t('Edit Profile');
-  t('Log in');
   t('Log out');
   t('My !points');
   t('Points');
+  t('User account');
   t('View profile');
 
 

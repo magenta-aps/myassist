@@ -86,16 +86,16 @@ function myassist_user_menu() {
   $items = array();
 
   $items['user/edit'] = array(
-    'title'            => 'Edit Profile',
-    'description'      => 'Edit own profile',
+    'title'            => t('Edit Profile'),
+    'description'      => t('Edit own profile'),
     'page callback'    => 'myassist_user_edit_my_profile',
     'access callback'  => 'myassist_user_can_edit_own_profile',
     'type'             => MENU_NORMAL_ITEM,
     'menu_name'        => 'user-menu',
   );
   $items['user/achievements'] = array(
-    'title'            => 'Achievements',
-    'description'      => 'View my achievements',
+    'title'            => t('Achievements'),
+    'description'      => t('View my achievements'),
     'page callback'    => 'myassist_user_view_my_achievements',
   //'access callback'  => 'user_access', <- this is the default
     'access arguments' => array('access achievements'),
@@ -105,7 +105,7 @@ function myassist_user_menu() {
 
   $items['user/points'] = array(
     'title' => 'Points',
-    'description'      => 'View my points',
+    'description'      => t('View my points'),
     'page callback'    => 'myassist_user_view_my_points',
   //'access callback'  => 'user_access', <- this is the default
     'access arguments' => array('view own userpoints'),
@@ -184,5 +184,5 @@ function myassist_user_preprocess_page(&$variables) {
  * Insert 'editing "<username>"' in title
  */
 function myassist_user_form_user_profile_form_alter(&$form, &$form_state) {
-  $form['#title'] = t('Editing') . '"' . $form["#user"]->name . '"';
+  $form['#title'] = t('Editing "@username"', array('@username' => $form["#user"]->name));
 }
