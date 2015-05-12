@@ -73,6 +73,9 @@ function myassist_user_strongarm() {
       'teaser' => array(
         'custom_settings' => FALSE,
       ),
+      'diff_standard' => array(
+        'custom_settings' => FALSE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(),
@@ -94,6 +97,9 @@ function myassist_user_strongarm() {
         'custom_settings' => FALSE,
       ),
       'teaser' => array(
+        'custom_settings' => FALSE,
+      ),
+      'diff_standard' => array(
         'custom_settings' => FALSE,
       ),
     ),

@@ -666,7 +666,7 @@ function myassist_user_field_default_field_instances() {
         'module' => 'number',
         'settings' => array(
           'decimal_separator' => '.',
-          'prefix_suffix' => TRUE,
+          'prefix_suffix' => 1,
           'scale' => 0,
           'thousand_separator' => ' ',
         ),
@@ -682,7 +682,7 @@ function myassist_user_field_default_field_instances() {
       'max' => 25,
       'min' => 7,
       'prefix' => '',
-      'suffix' => ' år',
+      'suffix' => 'year|years',
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -782,9 +782,9 @@ function myassist_user_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'hidden',
-        'module' => 'list',
+        'module' => 'i18n_field',
         'settings' => array(),
-        'type' => 'list_default',
+        'type' => 'i18n_list_default',
         'weight' => 0,
       ),
     ),
@@ -866,7 +866,7 @@ function myassist_user_field_default_field_instances() {
       'max' => 110,
       'min' => 18,
       'prefix' => '',
-      'suffix' => ' years',
+      'suffix' => 'year|years',
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -1000,9 +1000,9 @@ function myassist_user_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'hidden',
-        'module' => 'list',
+        'module' => 'i18n_field',
         'settings' => array(),
-        'type' => 'list_default',
+        'type' => 'i18n_list_default',
         'weight' => 5,
       ),
     ),
