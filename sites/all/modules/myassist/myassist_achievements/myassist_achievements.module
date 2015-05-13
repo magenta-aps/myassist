@@ -388,7 +388,8 @@ function myassist_achievements_block_view($delta = '') {
           '#weight' => 0,
           '#title' => t('Points'),
           '#class' => 'userpoints',
-          '#text' => t("@points points", array("@points" => userpoints_get_current_points($uid))),
+          '#text' => userpoints_get_current_points($uid),
+          //'#text' => t("@points points", array("@points" => userpoints_get_current_points($uid))),
           // Pass data to template (name must be defined in the definition)
           '#href' => "/user/$uid/points",
         );
