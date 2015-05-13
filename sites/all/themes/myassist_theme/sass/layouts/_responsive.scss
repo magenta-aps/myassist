@@ -170,8 +170,8 @@ body {
   #global-links {
     top: 0;
     bottom: auto;
-    right: $u*2.5;
-    left: auto;
+    left: 0;
+    right: auto;
     position: fixed;
     z-index: 7;
     width: 33.333%;
@@ -269,8 +269,8 @@ body {
   #global-links {
     position: absolute;
     top: -($u*2.5);
-    right: $u*2.5;
-    left: auto;
+    right: auto;
+    left: 0;
     bottom: auto;
     width: 20%;
   }

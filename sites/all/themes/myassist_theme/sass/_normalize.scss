@@ -196,23 +196,24 @@ h4,
 h5,
 h6 {
   font-size: $u;
-  margin: $u*0.75 0 $u*0.25;
-  padding: 0;
+  padding: $u*0.75 0 $u*0.25;
+  margin: 0;
   font-weight: bold;
 }
 h1 {
   font-size: $u*1.45;
   line-height: 1.18;
-  margin: $u 0 $u*0.5;
+  padding: $u 0 $u*0.5;
 }
 h2 {
   font-size: $u*1.18;
   line-height: 1.1;
-  margin: $u 0 $u*0.5;
+  padding: $u 0 $u*0.5;
 }
 h3 {
   font-size: $u*0.8;
   text-transform: uppercase;
+  font-weight: normal;
 }
 
 /* Address styling not present in IE 8/9, Safari 5, and Chrome. */
