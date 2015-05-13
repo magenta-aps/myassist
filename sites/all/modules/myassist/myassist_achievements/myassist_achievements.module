@@ -338,6 +338,10 @@ function myassist_achievements_theme($existing, $type, $theme, $path){
 }
 
 
+/**
+ * Implements hook_preprocess_HOOK().
+ * Make sure to translate achievement titles and descriptions for the UI
+ */
 function myassist_achievements_preprocess_achievement(&$variables) {
 
   if (isset($variables['achievement'])) {
