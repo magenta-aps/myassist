@@ -186,3 +186,35 @@ function myassist_user_preprocess_page(&$variables) {
 function myassist_user_form_user_profile_form_alter(&$form, &$form_state) {
   $form['#title'] = t('Editing "@username"', array('@username' => $form["#user"]->name));
 }
+
+/**
+ * Implements hook_block_info().
+ */
+function myassist_user_block_info() {
+  $blocks = array();
+  $blocks['username'] = array(
+    'info' => t('Username'),
+  );
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function myassist_user_block_view($delta = '') {
+  global $user;
+  $block = array();
+
+  switch ($delta) {
+    case 'username':
+      $block['content'] = array(
+        '#theme' => "myassist_data",
+        '#weight' => 0,
+        '#title' => t('Username'),
+        '#class' => 'username',
+        '#text' => $user->name,
+      );
+  }
+
+  return $block;
+}

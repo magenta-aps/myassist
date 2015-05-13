@@ -235,9 +235,7 @@ function myassist_achievements_userpoints_list_transactions_alter(&$data) {
  * Displays achievement badges on profile page
  */
 function myassist_achievements_profile2_view($profile, $view_mode, $langcode) {
-print "we get here";
   $uid = $profile->uid;
-
 
   $points = userpoints_get_current_points($uid);
   $profile->content['points'] = array(
@@ -329,10 +327,6 @@ function myassist_achievements_theme($existing, $type, $theme, $path){
     'myassist_achievement' => array(
       'template' => 'templates/myassist_achievement',
       'variables' => array('achievement' => null, 'image' => NULL, 'achievement_title' => NULL),
-    ),
-    'myassist_data' => array(
-      'template' => 'templates/myassist_data', // define myassist_points.tpl.php inside module - point to myassist_achievements/templates/myassist_points.tpl.php
-      'variables' => array('points' => null, 'href' => NULL, 'text' => NULL, 'class' => NULL), //define all variables used in the template file
     ),
   );
 }
