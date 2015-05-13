@@ -365,3 +365,41 @@ function myassist_achievements_preprocess_achievement(&$variables) {
     }
   }
 }
+
+/**
+ * Implements hook_block_info().
+ */
+function myassist_achievements_block_info() {
+  $blocks = array();
+  $blocks['userpoints'] = array(
+    'info' => t('Current user points'),
+  );
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function myassist_achievements_block_view($delta = '') {
+  global $user;
+  $block = array();
+  $uid = $user->uid;
+
+  switch ($delta) {
+    case 'userpoints':
+      if (user_access('view own userpoints')) {
+        $block['content'] = array(
+          '#theme' => "myassist_data",
+          // Point to definition in myassist_achievements_theme
+          '#weight' => 0,
+          '#title' => t('Points'),
+          '#class' => 'userpoints',
+          '#text' => t("@points points", array("@points" => userpoints_get_current_points($uid))),
+          // Pass data to template (name must be defined in the definition)
+          '#href' => "/user/$uid/points",
+        );
+      }
+  }
+
+  return $block;
+}
