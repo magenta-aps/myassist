@@ -213,7 +213,7 @@ function myassist_achievements_userpoints_list_transactions_alter(&$data) {
               'class' => array('userpoints-myuserpoints-total-approved'),
           ),
           array(
-              'data' => array(t('Current title'), $level['title']),
+              'data' => array(t('Current title'), t($level['title'])),
               'class' => array('userpoints-myuserpoints-total-approved'),
           ),
           array(
@@ -235,7 +235,7 @@ function myassist_achievements_userpoints_list_transactions_alter(&$data) {
  * Displays achievement badges on profile page
  */
 function myassist_achievements_profile2_view($profile, $view_mode, $langcode) {
-
+print "we get here";
   $uid = $profile->uid;
 
 
@@ -256,7 +256,7 @@ function myassist_achievements_profile2_view($profile, $view_mode, $langcode) {
     '#weight' => 0,
     '#title' => t('Level'),
     '#class' => 'userlevel',
-    '#text' => $level["title"],
+    '#text' => t("Level @level", array("@level" => $level["level"])),
     '#href' => "/user/$uid/achievements",
   );
 
@@ -299,10 +299,14 @@ function myassist_achievements_profile2_view($profile, $view_mode, $langcode) {
   for ($i=0; $i<count($unlocked_achievements); $i++) {
     $unlock = $unlocked_achievements[$i]['unlock'];
     $achievement = $unlocked_achievements[$i]['achievement'];
+    $achievement['title'] = t($achievement['title']);
 
     // Get extra rendering info from the achievements module, such as image and title
     $extra = array('achievement'=>$achievement, 'unlock'=>$unlock);
     achievements_template_shared_variables($extra);
+
+
+
 
     // Stuff an object into our rendering array
     $profile->content['achievements'][$achievement['id']] = array(
@@ -331,4 +335,29 @@ function myassist_achievements_theme($existing, $type, $theme, $path){
       'variables' => array('points' => null, 'href' => NULL, 'text' => NULL, 'class' => NULL), //define all variables used in the template file
     ),
   );
+}
+
+
+function myassist_achievements_preprocess_achievement(&$variables) {
+
+  if (isset($variables['achievement'])) {
+    if (isset($variables['achievement']['title'])) {
+      $original = $variables['achievement']['title'];
+      $translated = t($original);
+      if (isset($translated) && $translated !== $original) {
+        $variables['image']['#item']['title'] =
+        $variables['image']['#item']['alt'] =
+        $variables['achievement']['title'] =
+        $variables['achievement_title']['#title'] =
+          t($variables['achievement']['title']);
+      }
+    }
+    if (isset($variables['achievement']['description'])) {
+      $original = $variables['achievement']['description'];
+      $translated = t($original);
+      if (isset($translated) && $translated !== $original) {
+        $variables['achievement']['description'] = $translated;
+      }
+    }
+  }
 }

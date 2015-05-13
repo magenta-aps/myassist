@@ -21,10 +21,10 @@ function myassist_achievements_schema() {
         'not null' => true,
       ),
       'title' => array(
-        'description' => 'User title at level',
+        'description' => 'User title key at level',
         'type' => 'varchar',
-        'length' => 30,
-      )
+        'length' => 25,
+      ),
     ),
     'primary key' => array('level')
   );
@@ -35,15 +35,17 @@ function myassist_achievements_schema() {
 
 function myassist_achievements_install() {
     $k = 10;
-    $factor = 1.2;
+    $factor = 1.1;
     $q = db_insert('myassist_achievements_levels')->fields(array('level','points','title'));
     for ($level=0; $level<=100; $level++) {
         $points = $level > 0 ? ceil( ($k / ($factor - 1)) * (pow($factor, $level) - 1) ) : 0;
+        $key = "Level " . $level;
         $q->values(array(
-            $level,
-            $points,
-            "Level " . $level
+          (int) $level,
+          (int) $points,
+          $key
         ));
+        t($key);
     }
     $q->execute();
 }
