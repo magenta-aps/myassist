@@ -239,6 +239,12 @@
   display: block;
   height: auto;
 }
+.node-readmore a,
+.comment-comments a,
+.comment-new-comments a {
+  display: block;
+  padding: $u/2;
+}
 
 /************************************************************************************************/
 /* ANSWERS HEADING                                                                              */
