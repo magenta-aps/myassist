@@ -70,6 +70,21 @@
 /**
  * Global link icons
  */
+.icon {
+  display: block;
+  width: $u*2.5;
+  height: $u*2.5;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: auto 66.66%;
+  text-indent: -1000em;
+}
+
+
+/**
+ * Global link icons
+ */
 
 #global-links {
   background: lighten($basegrey, 60%);
@@ -408,6 +423,7 @@ span.field-label {
   @extend %pager__item;
   font-weight: bold;
 }
+
 
 /**
  * Blocks.
