@@ -207,13 +207,15 @@ function myassist_user_block_view($delta = '') {
 
   switch ($delta) {
     case 'username':
-      $block['content'] = array(
-        '#theme' => "myassist_data",
-        '#weight' => 0,
-        '#title' => t('Username'),
-        '#class' => 'username',
-        '#text' => $user->name,
-      );
+      if (isset($user->name)) {
+        $block['content'] = array(
+          '#theme' => "myassist_data",
+          '#weight' => 0,
+          '#title' => t('Username'),
+          '#class' => 'username',
+          '#text' => $user->name,
+        );
+      }
   }
 
   return $block;
