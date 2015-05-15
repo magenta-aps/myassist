@@ -195,6 +195,9 @@ function myassist_user_block_info() {
   $blocks['username'] = array(
     'info' => t('Username'),
   );
+  $blocks['avatar'] = array(
+    'info' => t('Avatar'),
+  );
   return $blocks;
 }
 
@@ -216,6 +219,15 @@ function myassist_user_block_view($delta = '') {
           '#text' => $user->name,
         );
       }
+      break;
+    case 'avatar':
+      if ($user->uid > 0) {
+        $block['content'] = array(
+            '#markup' => theme('user_picture', array('account' => $user)),
+            '#weight' => -10,
+        );
+      }
+      break;
   }
 
   return $block;
