@@ -85,6 +85,14 @@ function myassist_user_preprocess_menu_local_tasks(&$vars, $hooks) {
 function myassist_user_menu() {
   $items = array();
 
+  $items['user/view'] = array(
+    'title'            => t('View profile'),
+    'description'      => t('View own profile'),
+    'page callback'    => 'myassist_user_view_my_profile',
+    'access callback'  => 'myassist_user_can_view_own_profile',
+    'type'             => MENU_NORMAL_ITEM,
+    'menu_name'        => 'user-menu',
+  );
   $items['user/edit'] = array(
     'title'            => t('Edit Profile'),
     'description'      => t('Edit own profile'),
@@ -119,9 +127,9 @@ function myassist_user_can_edit_own_profile() {
   return user_access("edit own ungeprofil profile") || user_access("edit own voksenprofil profile");
 }
 
-/*function myassist_user_can_view_own_profile() {
+function myassist_user_can_view_own_profile() {
   return user_access("view own ungeprofil profile") || user_access("view own voksenprofil profile");
-}*/
+}
 
 
 
@@ -155,6 +163,9 @@ function myassist_user_view_my_achievements() {
 function myassist_user_view_my_points() {
   global $user;
   drupal_goto('user/'.$user->uid.'/points');
+}
+function myassist_user_view_my_profile() {
+  drupal_goto('user/');
 }
 
 
