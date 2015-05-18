@@ -120,6 +120,21 @@
 .block-myassist-user {
   display: inline-block;
   padding: $u/2;
+  vertical-align: top;
+}
+#block-myassist-user-avatar {
+  padding: 0;
+  width: $u*2.5;
+  height: $u*2.5;
+  .user-picture,
+  .user-picture a {
+    display: block;
+    line-height: 0;
+    img {
+      height: auto;
+      width: 100%;
+    }
+  }
 }
 
 .block-myassist-achievements {
