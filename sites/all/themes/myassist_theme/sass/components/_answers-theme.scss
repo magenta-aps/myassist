@@ -43,19 +43,21 @@
     display: block;
     float: right;
     width: $u*2.5;
-    .flag {
-      @extend .icon;
-      background-image: url('../images/icons/checkmark2.svg');
-    }
-    .flag:hover,
-    .flag:active {
-      background-image: url('../images/icons/checkmark.svg');
-    }
   }
-  .flag-best-answer,
-  .marked-best-answer {
+  .marked-best-answer,
+  .flag {
     @extend .icon;
+    background-image: url('../images/icons/checkmark2.svg');
+  }
+  .flag:hover,
+  .flag:active,
+  .marked-best-answer,
+  .unflag-action {
     background-image: url('../images/icons/checkmark.svg');
+  }
+  .unflag-action:hover,
+  .unflag-action:active {
+    background-image: url('../images/icons/checkmark2.svg');
   }
 }
 

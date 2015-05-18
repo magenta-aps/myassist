@@ -1,95 +1,35 @@
-.entity-profile2 {
-
-  .section {
-    display: block;
-    width: 100%;
-
-    .left,
-    .right {
-      vertical-align: top;
+.profile {
+  .field-name-field-expertise,
+  .achievements,
+  .userinfo {
+    padding: $u/2 0;
+  }
+  .field-name-field-avatar {
+    float: left;
+    width: 33.33%;
+    .field-items {
+      padding: $u/2 $u/2 $u/2 0;
     }
-
-    .left {
-      width: 20%;
-    }
-
-    /* User name */
-    h2.username {
-      margin: 0;
-    }
-
-    /* User info */
-    .userinfo {
+  }
+  .field-name-field-expertise {
+    clear: both;
+  }
+  .achievements {
+    margin-left: -($u/2);
+    margin-right: -($u/2);
+    @include clearfix;
+  }
+  .achievement-image {
+    width: 33.33%;
+    margin: 0;
+    float: left;
+    a {
       display: block;
-      width: 100%;
-
-      .field {
-        display: inline-block;
-        margin-right: 10px;
-      }
-    }
-
-    /* Achievement badges */
-    .achievements {
-      display: block;
-      width: 100%;
-
-      .achievement-image {
-        display: inline-block;
-        width: 70px;
-        margin: 6px;
-        float: none;
-      }
-
-      .achievement-image a {
-        display: block;
+      margin: 0 $u/2;
+      img {
         width: 100%;
-        line-break: auto;
-        font-size: 0.75em;
-        line-height: 1em;
+        height: auto;
       }
-    }
-
-    .field-name-field-expertise {
-      .field-item {
-        a {
-          width: 90%;
-          display: inline-block;
-          padding: 3px;
-          margin: 1px;
-          border: 1px solid #c0c0c0;
-          border-radius: 3px;
-        }
-      }
-    }
-  }
-
-  /* User nodes */
-  .section.nodes .view-content .views-row {
-    border-radius: 5px;
-    margin: 2px;
-    padding: 2px;
-  }
-
-}
-
-
-.profile2-voksenprofil {
-  .section {
-    .left {
-      float: left;
-    }
-  }
-}
-
-.profile2-ungeprofil {
-  .section {
-    .left,
-    .right {
-      display: inline-block;
-    }
-    .right {
-      width: 79%;
     }
   }
 }
