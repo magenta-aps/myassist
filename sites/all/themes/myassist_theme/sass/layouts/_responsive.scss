@@ -390,7 +390,7 @@ body {
   }
   
   .entity-profile2 .section {
-    @include clearfix;
+    clear: both;
   }
   
 }
