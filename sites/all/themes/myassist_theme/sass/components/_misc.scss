@@ -68,7 +68,8 @@
 
 
 /**
- * Global link icons
+ * Icon styles
+ * Use @extend .icon to use where ever
  */
 .icon {
   display: block;
@@ -83,7 +84,7 @@
 
 
 /**
- * Global link icons
+ * Global links
  */
 
 #global-links {
@@ -716,6 +717,7 @@ tr.selected td {
   background: #ffc;
 }
 
+
 /**
  * Progress bar.
  *
@@ -734,4 +736,15 @@ tr.selected td {
     background-color: #0072b9;
     background-image: image-url("progress.gif");
   }
+}
+
+
+/**
+ * Avatar
+ */
+
+.field-name-field-avatar {
+  background-color: #fff;
+  text-align: center;
+  margin-right: $u;
 }

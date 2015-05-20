@@ -1,7 +1,8 @@
 .profile {
   .field-name-field-expertise,
   .achievements,
-  .userinfo {
+  .userinfo,
+  .field-name-field-biography {
     padding: $u/2 0;
   }
   .field-name-field-avatar {
@@ -32,4 +33,8 @@
       }
     }
   }
+}
+
+#profile-ungeprofil + h3 {
+  display: none;
 }

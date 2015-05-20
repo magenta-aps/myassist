@@ -175,6 +175,7 @@ body {
     position: fixed;
     z-index: 7;
     width: 33.333%;
+    box-shadow: none !important;
   }
 
   /**
@@ -246,6 +247,29 @@ body {
       }
     }
   }
+  
+  #content {
+    margin-top: $u;
+  }
+  
+  .achievement-image {
+    width: 25% !important;
+  }
+  
+  .answers-submitted,
+  .submitted-time,
+  .field-name-field-avatar {
+    width: 50% !important;
+  }
+  
+  .answers-submitted {
+    float: right !important;
+  }
+  
+  .submitted-time {
+    float: left;
+  }
+  
 }
 
 /**
@@ -273,6 +297,7 @@ body {
     left: 0;
     bottom: auto;
     width: 20%;
+    box-shadow: none !important;
   }
   
   /**
@@ -324,4 +349,48 @@ body {
       @include zen-grid-item(1, 5);
     }
   }
+  
+  #content {
+    margin-top: $u;
+  }
+  
+  .answers-submitted,
+  .submitted-time,
+  .answers-body .field-name-field-category,
+  .field-name-field-avatar,
+  .achievement-image {
+    width: 25% !important;
+  }
+  
+  .answers-body .field-name-body,
+  .link-wrapper,
+  .node-answers_answer-form .field-name-body {
+    width: 75% !important;
+  }
+  
+  .profile2-ungeprofil .achievements,
+  .profile2-ungeprofil .field-name-field-expertise {
+    width: 50%;
+  }
+  
+  .submitted-time,
+  .answers-submitted,
+  .link-wrapper,
+  .answers-body .field-name-field-category,
+  .profile2-ungeprofil .achievements {
+    float: right !important;
+    clear: right;
+  }
+  
+  .answers-body .field-name-body,
+  .answers-btn-primary,
+  .profile2-ungeprofil .field-name-field-expertise,
+  .profile2-ungeprofil .field-name-field-avatar {
+    float: left;
+  }
+  
+  .entity-profile2 .section {
+    @include clearfix;
+  }
+  
 }
