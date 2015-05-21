@@ -30,7 +30,7 @@ function myassist_user_menu_default_menu_links() {
     'expanded' => 0,
     'weight' => 0,
     'customized' => 1,
-    'language' => 'da',
+    'language' => 'und',
     'menu_links_customized' => 1,
   );
   // Exported menu link: main-menu_home:<front>
@@ -53,7 +53,7 @@ function myassist_user_menu_default_menu_links() {
     'expanded' => 0,
     'weight' => 0,
     'customized' => 1,
-    'language' => 'en',
+    'language' => 'und',
     'menu_links_customized' => 1,
   );
   // Exported menu link: main-menu_stil-et-sprgsml:node/add/answers-question
@@ -76,7 +76,7 @@ function myassist_user_menu_default_menu_links() {
     'expanded' => 0,
     'weight' => -47,
     'customized' => 1,
-    'language' => 'da',
+    'language' => 'und',
     'menu_links_customized' => 1,
   );
   // Exported menu link: user-menu_achievements:user/achievements
@@ -161,7 +161,7 @@ function myassist_user_menu_default_menu_links() {
     'external' => 0,
     'has_children' => 1,
     'expanded' => 0,
-    'weight' => -41,
+    'weight' => -40,
     'customized' => 1,
     'language' => 'und',
     'menu_links_customized' => 1,
@@ -221,9 +221,6 @@ function myassist_user_menu_default_menu_links() {
     'options' => array(
       'alter' => TRUE,
       'identifier' => 'user-menu_user-account:user',
-      'attributes' => array(
-        'title' => '',
-      ),
     ),
     'module' => 'system',
     'hidden' => 1,
@@ -232,7 +229,7 @@ function myassist_user_menu_default_menu_links() {
     'expanded' => 0,
     'weight' => -42,
     'customized' => 1,
-    'language' => 'en',
+    'language' => 'und',
     'menu_links_customized' => 1,
   );
   // Exported menu link: user-menu_view-profile:user
@@ -253,9 +250,9 @@ function myassist_user_menu_default_menu_links() {
     'external' => 0,
     'has_children' => 0,
     'expanded' => 0,
-    'weight' => -43,
+    'weight' => -41,
     'customized' => 1,
-    'language' => 'en',
+    'language' => 'und',
     'menu_links_customized' => 1,
   );
   // Exported menu link: user-menu_vis-profil:user/view

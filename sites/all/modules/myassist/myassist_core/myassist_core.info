@@ -1,6 +1,7 @@
 name = MyAssist Core
 core = 7.x
 package = MyAssist
+dependencies[] = ctools
 dependencies[] = module_filter
 dependencies[] = myassist_achievements
 dependencies[] = myassist_categories
@@ -10,5 +11,9 @@ dependencies[] = myassist_permissions
 dependencies[] = myassist_questions_answers
 dependencies[] = myassist_user
 dependencies[] = myassist_user_avatar
+dependencies[] = strongarm
 dependencies[] = taxonomy_manager
+features[ctools][] = strongarm:strongarm:1
 features[features_api][] = api:2
+features[variable][] = admin_theme
+features[variable][] = node_admin_theme
