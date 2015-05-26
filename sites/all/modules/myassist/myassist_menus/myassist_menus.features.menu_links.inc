@@ -28,9 +28,120 @@ function myassist_menus_menu_default_menu_links() {
     'external' => 0,
     'has_children' => 0,
     'expanded' => 0,
-    'weight' => -47,
+    'weight' => -50,
     'customized' => 1,
     'language' => 'en',
+    'menu_links_customized' => 1,
+  );
+  // Exported menu link: main-menu_categories:categories
+  $menu_links['main-menu_categories:categories'] = array(
+    'menu_name' => 'main-menu',
+    'link_path' => 'categories',
+    'router_path' => 'categories',
+    'link_title' => 'Categories',
+    'options' => array(
+      'attributes' => array(
+        'title' => '',
+      ),
+      'alter' => TRUE,
+      'identifier' => 'main-menu_categories:categories',
+    ),
+    'module' => 'system',
+    'hidden' => 0,
+    'external' => 0,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -46,
+    'customized' => 1,
+    'language' => 'en',
+    'menu_links_customized' => 1,
+  );
+  // Exported menu link: main-menu_hjem:<front>
+  $menu_links['main-menu_hjem:<front>'] = array(
+    'menu_name' => 'main-menu',
+    'link_path' => '<front>',
+    'router_path' => '',
+    'link_title' => 'Hjem',
+    'options' => array(
+      'attributes' => array(
+        'title' => '',
+      ),
+      'alter' => TRUE,
+      'identifier' => 'main-menu_hjem:<front>',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 1,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -47,
+    'customized' => 1,
+    'language' => 'da',
+    'menu_links_customized' => 1,
+  );
+  // Exported menu link: main-menu_home:<front>
+  $menu_links['main-menu_home:<front>'] = array(
+    'menu_name' => 'main-menu',
+    'link_path' => '<front>',
+    'router_path' => '',
+    'link_title' => 'Home',
+    'options' => array(
+      'attributes' => array(
+        'title' => '',
+      ),
+      'alter' => TRUE,
+      'identifier' => 'main-menu_home:<front>',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 1,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -48,
+    'customized' => 1,
+    'language' => 'en',
+    'menu_links_customized' => 1,
+  );
+  // Exported menu link: main-menu_questions:questions
+  $menu_links['main-menu_questions:questions'] = array(
+    'menu_name' => 'main-menu',
+    'link_path' => 'questions',
+    'router_path' => 'questions',
+    'link_title' => 'Questions',
+    'options' => array(
+      'identifier' => 'main-menu_questions:questions',
+    ),
+    'module' => 'system',
+    'hidden' => 0,
+    'external' => 0,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -45,
+    'customized' => 1,
+    'language' => 'und',
+    'menu_links_customized' => 1,
+  );
+  // Exported menu link: main-menu_stil-et-sprgsml:node/add/answers-question
+  $menu_links['main-menu_stil-et-sprgsml:node/add/answers-question'] = array(
+    'menu_name' => 'main-menu',
+    'link_path' => 'node/add/answers-question',
+    'router_path' => 'node/add/answers-question',
+    'link_title' => 'Stil et spørgsmål',
+    'options' => array(
+      'attributes' => array(
+        'title' => '',
+      ),
+      'alter' => TRUE,
+      'identifier' => 'main-menu_stil-et-sprgsml:node/add/answers-question',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 0,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -49,
+    'customized' => 1,
+    'language' => 'da',
     'menu_links_customized' => 1,
   );
   // Exported menu link: user-menu_achievements:user/achievements
@@ -115,7 +226,7 @@ function myassist_menus_menu_default_menu_links() {
     'external' => 0,
     'has_children' => 1,
     'expanded' => 0,
-    'weight' => -41,
+    'weight' => -40,
     'customized' => 1,
     'language' => 'und',
     'menu_links_customized' => 1,
@@ -175,9 +286,6 @@ function myassist_menus_menu_default_menu_links() {
     'options' => array(
       'alter' => TRUE,
       'identifier' => 'user-menu_user-account:user',
-      'attributes' => array(
-        'title' => '',
-      ),
     ),
     'module' => 'system',
     'hidden' => 1,
@@ -186,7 +294,7 @@ function myassist_menus_menu_default_menu_links() {
     'expanded' => 0,
     'weight' => -42,
     'customized' => 1,
-    'language' => 'en',
+    'language' => 'und',
     'menu_links_customized' => 1,
   );
   // Exported menu link: user-menu_view-profile:user
@@ -207,9 +315,9 @@ function myassist_menus_menu_default_menu_links() {
     'external' => 0,
     'has_children' => 0,
     'expanded' => 0,
-    'weight' => -43,
+    'weight' => -41,
     'customized' => 1,
-    'language' => 'en',
+    'language' => 'und',
     'menu_links_customized' => 1,
   );
   // Exported menu link: user-menu_vis-profil:user/view
@@ -238,11 +346,16 @@ function myassist_menus_menu_default_menu_links() {
   // Included for use with string extractors like potx.
   t('Achievements');
   t('Ask a Question');
+  t('Categories');
   t('Edit Profile');
+  t('Hjem');
+  t('Home');
   t('Log out');
   t('My !points');
   t('Points');
+  t('Questions');
   t('Redigér profil');
+  t('Stil et spørgsmål');
   t('User account');
   t('View profile');
   t('Vis profil');
