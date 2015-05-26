@@ -28,6 +28,23 @@ function myassist_achievements_schema() {
     ),
     'primary key' => array('level')
   );
+  $schema['myassist_pending_point_display'] = array(
+    'description' => t('Gained point transactions yet to be displayed'),
+    'fields' => array(
+      'uid' => array(
+        'description' => 'User id',
+        'type' => 'int',
+        'unsigned' => true,
+        'not null' => true,
+      ),
+      'txid' => array(
+        'description' => 'Transaction id',
+        'type' => 'int',
+        'unsigned' => true,
+        'not null' => true,
+      ),
+    )
+    );
   return $schema;
 }
 

@@ -151,6 +151,7 @@ function myassist_achievements_userpoints($operation, $parameters) {
         }
       }
     }
+    myassist_achievements_register_points($uid, $parameters['txn_id']);
   }
 }
 
@@ -327,8 +328,14 @@ function myassist_achievements_theme($existing, $type, $theme, $path){
   return array(
     'myassist_achievement' => array(
       'template' => 'templates/myassist_achievement',
-      'variables' => array('achievement' => null, 'image' => NULL, 'achievement_title' => NULL),
+      'variables' => array('achievement' => NULL, 'image' => NULL, 'achievement_title' => NULL),
     ),
+
+    'myassist_points_notification' => array(
+      'template'        => 'templates/myassist_achievements-notification',
+      'variables'       => array('points' => NULL, 'image' => NULL, 'classes' => 'hey'),
+    ),
+
   );
 }
 
@@ -399,6 +406,50 @@ function myassist_achievements_block_view($delta = '') {
   return $block;
 }
 
+//------------------------------------------------------------------------------
+// Show a notification each time we gain points
+
+function myassist_achievements_register_points($uid, $txid) {
+  db_insert('myassist_pending_point_display')->fields(array('uid'=>$uid, 'txid'=>$txid))->execute();
+}
+
+function myassist_achievements_page_alter(&$page) {
+  global $user;
+  $uid = $user->uid;
+
+  if ($_SERVER['REQUEST_METHOD'] === "GET") {
+    $notifications = db_query('SELECT n.uid, n.txid FROM {myassist_pending_point_display} n WHERE n.uid = :uid', array(':uid' => $uid));
+    if ($notifications->rowCount() > 0) {
+      drupal_add_library('system', 'ui.dialog');
+      drupal_add_library('system', 'effects.fade');
+      drupal_add_js(drupal_get_path('module', 'achievements') . '/achievements.js');
+      drupal_add_css(drupal_get_path('module', 'achievements') . '/achievements.css');
+
+      foreach ($notifications as $notification) {
+        $txid = $notification->txid;
+        //$transaction = userpoints_transaction_load($txid);
+        $transaction = db_query('SELECT * from {userpoints_txn} WHERE txn_id = :txn', array(':txn' => $txid))->fetchObject();
+        if ($transaction) {
+          $page['content']['points'][$txid] = array(
+            '#theme' => 'myassist_points_notification',
+            '#points' => $transaction->points,
+          );
+        }
+      }
+      db_delete('myassist_pending_point_display')
+        ->condition('uid', $uid)
+        ->execute();
+    }
+  }
+}
+
+/**
+ * Implements hook_user_delete().
+ */
+function myassist_achievements_user_delete($account) {
+  // The user is being deleted, delete all traces in our tables.
+  db_delete('myassist_pending_point_display')->condition('uid', $account->uid)->execute();
+}
 
 //------------------------------------------------------------------------------
 // Unify points system
