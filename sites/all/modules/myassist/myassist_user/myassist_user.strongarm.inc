@@ -129,6 +129,7 @@ function myassist_user_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+
   $strongarm->name = 'i18n_hide_translation_links';
   $strongarm->value = 0;
   $export['i18n_hide_translation_links'] = $strongarm;
@@ -1508,6 +1509,7 @@ function myassist_user_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+
   $strongarm->name = 'user_picture_field_source_bundle';
   $strongarm->value = 'ungeprofil,voksenprofil';
   $export['user_picture_field_source_bundle'] = $strongarm;
@@ -1532,16 +1534,6 @@ function myassist_user_strongarm() {
   $strongarm->name = 'user_register';
   $strongarm->value = '1';
   $export['user_register'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'variable_realm_list_language';
-  $strongarm->value = array(
-    0 => 'site_name',
-    1 => 'site_slogan',
-  );
-  $export['variable_realm_list_language'] = $strongarm;
 
   return $export;
 }
