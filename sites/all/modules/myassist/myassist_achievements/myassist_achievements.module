@@ -134,14 +134,18 @@ function myassist_achievements_userpoints($operation, $parameters) {
     // Get the number of points before & after the change
     $pointsAfter = userpoints_get_current_points($uid);
     $pointsBefore = $pointsAfter - $parameters["points"];
+
+    myassist_achievements_copy_to_achievement_table($uid, $pointsAfter);
+
+    // Get the number of points before & after the change
     if ($pointsBefore < $pointsAfter) {
       // Get the level before & after the change
-      $levelBefore = myassist_achievements_get_level_by_points($pointsBefore)['level'];
+      $levelBefore = myassist_achievements_get_user_level($uid)['level'];
       $levelAfter = myassist_achievements_get_level_by_points($pointsAfter)['level'];
-      if ($levelBefore < $levelAfter) {
+      if ($levelBefore <= $levelAfter) {
         // See if we crossed a threshold so we get an achievement. A user can potentially jump several levels in one go, if he gets a lot of points at once
         foreach (array(10, 15, 20, 80) as $achievementLevel) {
-          if ($levelBefore < $achievementLevel && $levelAfter >= $achievementLevel) {
+          if (/*$levelBefore < $achievementLevel &&*/ $levelAfter >= $achievementLevel) {
             achievements_unlocked('level-' . $achievementLevel, $uid);
           }
         }
@@ -303,9 +307,6 @@ function myassist_achievements_profile2_view($profile, $view_mode, $langcode) {
     $extra = array('achievement'=>$achievement, 'unlock'=>$unlock);
     achievements_template_shared_variables($extra);
 
-
-
-
     // Stuff an object into our rendering array
     $profile->content['achievements'][$achievement['id']] = array(
       '#theme' => 'myassist_achievement',
@@ -337,7 +338,6 @@ function myassist_achievements_theme($existing, $type, $theme, $path){
  * Make sure to translate achievement titles and descriptions for the UI
  */
 function myassist_achievements_preprocess_achievement(&$variables) {
-
   if (isset($variables['achievement'])) {
     if (isset($variables['achievement']['title'])) {
       $original = $variables['achievement']['title'];
@@ -397,4 +397,32 @@ function myassist_achievements_block_view($delta = '') {
   }
 
   return $block;
+}
+
+
+//------------------------------------------------------------------------------
+// Unify points system
+
+function myassist_achievements_achievements_unlocked($achievement, $uid) {
+  myassist_achievements_copy_to_userpoints_table($uid, $achievement['points'], 'achievement '.$achievement['id']);
+}
+function myassist_achievements_achievements_locked($achievement, $uid) {
+  myassist_achievements_copy_to_userpoints_table($uid, -$achievement['points'], 'achievement '.$achievement['id']);
+}
+
+
+function myassist_achievements_copy_to_achievement_table($uid, $points) {
+  db_merge('achievement_totals')
+    ->key(array('uid' => $uid))
+    ->fields(array('points' => $points))
+    ->execute();
+}
+function myassist_achievements_copy_to_userpoints_table($uid, $addpoints, $reason=null) {
+  $params = array(
+    'uid' => $uid,
+    'points' => $addpoints,
+    'status' => USERPOINTS_TXN_STATUS_APPROVED,
+    'operation' => $reason
+  );
+  _userpoints_transaction($params);
 }
