@@ -461,7 +461,7 @@ function myassist_achievements_page_alter(&$page) {
       }
     }
 
-    /*if ($debugMode && !$hasNotification) {
+    if ($debugMode && !$hasNotification) {
       drupal_add_library('system', 'ui.dialog');
       drupal_add_library('system', 'effects.fade');
       drupal_add_js(drupal_get_path('module', 'achievements') . '/achievements.js');
@@ -470,8 +470,8 @@ function myassist_achievements_page_alter(&$page) {
         '#theme' => 'myassist_points_notification',
         '#points' => 0,
       );
-      $hasNotification = true;
-    }*/
+      //$hasNotification = true;
+    }
 
     if ($hasNotification) {
       $page['content']['points']['common'] = array(
