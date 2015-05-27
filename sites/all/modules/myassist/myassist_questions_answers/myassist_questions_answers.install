@@ -2,9 +2,32 @@
 
 
 function myassist_questions_answers_install() {
+
     db_update('system')
         ->fields(array('weight' => 1))
         ->condition('type', 'module')
         ->condition('name', 'myassist_questions_answers')
         ->execute();
+
+
+    // Remove ability to upvote questions; remove 'answers_question' from $widgets[N]->node_types
+    $widgets = variable_get('rate_widgets', array());
+    $changed = false;
+    foreach ($widgets as $widget) {
+        if (isset($widget->node_types)) {
+            $newArray = array();
+            for ($i=0; $i<count($widget->node_types); $i++) {
+                if ($widget->node_types[$i] === 'answers_question') {
+                    $changed = true;
+                } else {
+                    $newArray[] = $widget->node_types[$i];
+                }
+            }
+            $widget->node_types = $newArray;
+        }
+    }
+    if ($changed) {
+        variable_set('rate_widgets', $widgets);
+    }
+
 }
