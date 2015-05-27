@@ -129,7 +129,6 @@ function myassist_user_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-
   $strongarm->name = 'i18n_hide_translation_links';
   $strongarm->value = 0;
   $export['i18n_hide_translation_links'] = $strongarm;
@@ -1509,7 +1508,6 @@ function myassist_user_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-
   $strongarm->name = 'user_picture_field_source_bundle';
   $strongarm->value = 'ungeprofil,voksenprofil';
   $export['user_picture_field_source_bundle'] = $strongarm;

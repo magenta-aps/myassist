@@ -15,6 +15,7 @@ function myassist_user_user_default_permissions() {
     'name' => 'access user profiles',
     'roles' => array(
       'administrator' => 'administrator',
+      'anonymous user' => 'anonymous user',
       'authenticated user' => 'authenticated user',
       'chatrådgiver' => 'chatrådgiver',
       'debatrådgiver' => 'debatrådgiver',
@@ -129,6 +130,8 @@ function myassist_user_user_default_permissions() {
     'name' => 'view any ungeprofil profile',
     'roles' => array(
       'administrator' => 'administrator',
+      'anonymous user' => 'anonymous user',
+      'authenticated user' => 'authenticated user',
       'chatrådgiver' => 'chatrådgiver',
       'debatrådgiver' => 'debatrådgiver',
       'moderator' => 'moderator',
@@ -143,6 +146,8 @@ function myassist_user_user_default_permissions() {
     'name' => 'view any voksenprofil profile',
     'roles' => array(
       'administrator' => 'administrator',
+      'anonymous user' => 'anonymous user',
+      'authenticated user' => 'authenticated user',
       'chatrådgiver' => 'chatrådgiver',
       'debatrådgiver' => 'debatrådgiver',
       'moderator' => 'moderator',
