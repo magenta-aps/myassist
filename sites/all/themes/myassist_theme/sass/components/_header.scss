@@ -130,6 +130,8 @@
   .user-picture a {
     display: block;
     line-height: 0;
+    height: $u*2.5;
+    overflow: hidden;
     img {
       height: auto;
       width: 100%;
@@ -139,6 +141,11 @@
 
 .block-myassist-achievements {
   display: inline-block;
-  padding: $u/2;
+  height: $u*2.5;
+  overflow: hidden;
   background-color: lighten($accent, 10%);
+  margin: 0;
+  .userpoints {
+    padding: $u/2;
+  }
 }
