@@ -111,13 +111,6 @@ function myassist_questions_answers_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'comment_page';
-  $strongarm->value = 0;
-  $export['comment_page'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
   $strongarm->name = 'comment_preview_answers_answer';
   $strongarm->value = '0';
   $export['comment_preview_answers_answer'] = $strongarm;
@@ -191,48 +184,6 @@ function myassist_questions_answers_strongarm() {
   $strongarm->name = 'flag_subscribe_answers_notifications_default_answers_question';
   $strongarm->value = 0;
   $export['flag_subscribe_answers_notifications_default_answers_question'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'i18n_node_extended_answers_answer';
-  $strongarm->value = 1;
-  $export['i18n_node_extended_answers_answer'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'i18n_node_extended_answers_question';
-  $strongarm->value = 1;
-  $export['i18n_node_extended_answers_question'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'i18n_node_options_answers_answer';
-  $strongarm->value = array();
-  $export['i18n_node_options_answers_answer'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'i18n_node_options_answers_question';
-  $strongarm->value = array();
-  $export['i18n_node_options_answers_question'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'language_content_type_answers_answer';
-  $strongarm->value = '0';
-  $export['language_content_type_answers_answer'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'language_content_type_answers_question';
-  $strongarm->value = '0';
-  $export['language_content_type_answers_question'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
