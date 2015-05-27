@@ -332,8 +332,12 @@ function myassist_achievements_theme($existing, $type, $theme, $path){
     ),
 
     'myassist_points_notification' => array(
-      'template'        => 'templates/myassist_achievements-notification',
+      'template'        => 'myassist_points_notification',
       'variables'       => array('points' => NULL, 'image' => NULL, 'classes' => 'hey'),
+    ),
+    'myassist_points_notification_once' => array(
+      'template'        => 'myassist_points_notification_once',
+      'variables'       => array(),
     ),
 
   );
@@ -436,6 +440,9 @@ function myassist_achievements_page_alter(&$page) {
           );
         }
       }
+      $page['content']['points']['common'] = array(
+        '#theme' => 'myassist_points_notification_once'
+      );
       db_delete('myassist_pending_point_display')
         ->condition('uid', $uid)
         ->execute();
