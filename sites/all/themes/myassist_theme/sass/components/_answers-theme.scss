@@ -324,3 +324,45 @@
 .text-format-wrapper {
   margin-bottom: $u/2;
 }
+
+
+/************************************************************************************************/
+/* NOTIFICATIONS                                                                                */
+/************************************************************************************************/
+
+.achievement-notification-dialog {
+  max-width: 100%;
+}
+.achievement-notification .achievement-points-box,
+.achievement-notification,
+.achievement-notification-dialog {
+  border: none;
+  margin: 0;
+  text-align: center;
+  height: auto;
+  width: auto;
+  border-radius: 0;
+}
+.achievement-notification-dialog .achievement-notification {
+  background: $accent;
+  color: #fff;
+  max-width: 100%;
+  height: auto !important;
+  padding: 0;
+  .achievement-image {
+    @extend .icon;
+    background-image: url('../images/icons/trophy.svg');
+    background-color: #fff;
+    width: $u*3;
+    height: $u*3;
+    margin: $u;
+    float: left;
+  }
+  .achievement-points-box {
+    display: none;
+  }
+  .achievement-body {
+    margin: 0;
+    padding: $u;
+  }
+}
