@@ -23,7 +23,9 @@ function myassist_questions_answers_install() {
                     $newArray[] = $widget->node_types[$i];
                 }
             }
-            $widget->node_types = $newArray;
+            if ($changed) {
+                $widget->node_types = $newArray;
+            }
         }
     }
     if ($changed) {
