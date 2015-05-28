@@ -195,6 +195,7 @@ function myassist_user_preprocess_page(&$variables) {
  * Put author roles in class array
  */
 function myassist_questions_answers_preprocess_node(&$vars) {
+  global $user;
   if (array_key_exists('node', $vars)) {
     $author = user_load($vars['node']->uid);
     if ($author) {
@@ -206,7 +207,11 @@ function myassist_questions_answers_preprocess_node(&$vars) {
         $role = str_replace('Æ', 'Ae', $role);
         $role = str_replace('Ø', 'Oe', $role);
         $role = str_replace('Å', 'Aa', $role);
+        $role = preg_replace('/[^\d\w_-]/', '', $role);
         $vars['classes_array'][] = "author-role_$role";
+      }
+      if ($author->uid === $user->uid) {
+        $vars['classes_array'][] = "author-is-current";
       }
     }
   }
