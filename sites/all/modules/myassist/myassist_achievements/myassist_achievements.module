@@ -518,3 +518,14 @@ function myassist_achievements_copy_to_userpoints_table($uid, $addpoints, $reaso
   );
   _userpoints_transaction($params);
 }
+
+//------------------------------------------------------------------------------
+
+/**
+ * Implements hook_menu_alter().
+ */
+function myassist_achievements_menu_alter(&$items) {
+  // Always show leaderboard
+  $items['achievements/leaderboard']['access callback'] = 1;
+  $items['achievements/leaderboard/%achievements']['access callback'] = 1;
+}
