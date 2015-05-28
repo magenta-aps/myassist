@@ -177,6 +177,12 @@
     
   }
 }
+.author-role_debatraadgiver .answers-submitted {
+  background-color: lighten($accent, 20%);
+}
+.author-is-current .answers-submitted {
+  background-color: lighten($basecolor, 50%);
+}
 
 /************************************************************************************************/
 /* BUTTONS                                                                                      */
