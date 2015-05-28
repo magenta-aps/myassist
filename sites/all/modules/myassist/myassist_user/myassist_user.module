@@ -199,7 +199,14 @@ function myassist_questions_answers_preprocess_node(&$vars) {
     $author = user_load($vars['node']->uid);
     if ($author) {
       foreach ($author->roles as $role) {
-        $vars['classes_array'][] = 'author-role_' . str_replace(' ', '-', $role);
+        $role = str_replace(' ', '-', $role);
+        $role = str_replace('æ', 'ae', $role);
+        $role = str_replace('ø', 'oe', $role);
+        $role = str_replace('å', 'aa', $role);
+        $role = str_replace('Æ', 'Ae', $role);
+        $role = str_replace('Ø', 'Oe', $role);
+        $role = str_replace('Å', 'Aa', $role);
+        $vars['classes_array'][] = "author-role_$role";
       }
     }
   }
