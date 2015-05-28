@@ -64,41 +64,56 @@ function myassist_achievements_achievements_info() {
           'description' => t("We no longer think you're a spam bot. Maybe."),
           'storage'     => 'question-count',
           'points'      => 50,
+          'images' => array(
+            'unlocked'  => 'sites/all/themes/myassist_theme/images/achievements/achievement1.svg'
+        //  'secret' and 'locked' will use the defaults.
+          )
         ),
         'question-count-3' => array(
           'title'       => t('Posted 3 questions'),
           'description' => t('But what about the children?!'),
           'storage'     => 'question-count',
           'points'      => 100,
-//      'images' => array(
-//        'unlocked'  => 'sites/default/files/example1.png',
-//         'secret' and 'locked' will use the defaults.
-//      ),
+          'images' => array(
+            'unlocked'  => 'sites/all/themes/myassist_theme/images/achievements/achievement2.svg'
+          )
         ),
 
         'level-10' => array(
-            'title'       => t('Reached level 10'),
-            'description' => t("You're officially no longer a fucking n00b"),
-            'storage'     => 'level',
-            'points'      => 10,
+          'title'       => t('Reached level 10'),
+          'description' => t("You're officially no longer a fucking n00b"),
+          'storage'     => 'level',
+          'points'      => 10,
+          'images' => array(
+            'unlocked'  => 'sites/all/themes/myassist_theme/images/achievements/achievement3.svg'
+          )
         ),
         'level-15' => array(
-            'title'       => t('Reached level 15'),
-            'description' => t("You're getting the hang of this"),
-            'storage'     => 'level',
-            'points'      => 20,
+          'title'       => t('Reached level 15'),
+          'description' => t("You're getting the hang of this"),
+          'storage'     => 'level',
+          'points'      => 20,
+          'images' => array(
+            'unlocked'  => 'sites/all/themes/myassist_theme/images/achievements/achievement4.svg'
+          )
         ),
         'level-20' => array(
-            'title'       => t('Reached level 20'),
-            'description' => t("We welcome you into our circle of buddies"),
-            'storage'     => 'level',
-            'points'      => 30,
+          'title'       => t('Reached level 20'),
+          'description' => t("We welcome you into our circle of buddies"),
+          'storage'     => 'level',
+          'points'      => 30,
+          'images' => array(
+            'unlocked'  => 'sites/all/themes/myassist_theme/images/achievements/achievement5.svg'
+          )  
         ),
         'level-80' => array(
-            'title'       => t('Reached level 80'),
-            'description' => t("Bow down to the almighty über-poster"),
-            'storage'     => 'level',
-            'points'      => 1000,
+          'title'       => t('Reached level 80'),
+          'description' => t("Bow down to the almighty über-poster"),
+          'storage'     => 'level',
+          'points'      => 1000,
+          'images' => array(
+            'unlocked'  => 'sites/all/themes/myassist_theme/images/achievements/achievement6.svg'
+          )
         ),
       )
     ),
