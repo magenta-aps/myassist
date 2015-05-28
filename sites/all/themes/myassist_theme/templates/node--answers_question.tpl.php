@@ -159,7 +159,7 @@
 
       <div class="answers-body-toolbar">
         
-        <a id="answers-btn-answer" class="answers-btn-primary" href="#new-answer-form"><?php print t("Answer"); ?></a>
+        <a id="answers-btn-answer" class="answers-btn-primary" href="<?php print $node_url; ?>#new-answer-form"><?php print t("Answer"); ?></a>
        <?php
         $links = render($content['links']);
         if ($links):
@@ -185,9 +185,16 @@
     </div>
   <?php endif;?>
   
-  <?php if(isset($content['new_answer_form'])): ?>
-    <div id="new-answer-form">
+  <?php if(isset($content['new_answer_form'])) { ?>
+    <div id="new-answer-form"><a name="new-answer-form"></a>
       <?php print render($content['new_answer_form']); ?>
+      <script>
+        jQuery(function(){
+          if (document.location.hash === "#new-answer-form") {
+            jQuery("#edit-body textarea").focus();
+          }
+        });
+      </script>
     </div>
-  <?php endif;?>
+  <?php } ?>
 </div>
