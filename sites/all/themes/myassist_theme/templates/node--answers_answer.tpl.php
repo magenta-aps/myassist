@@ -159,7 +159,7 @@
         <div class="link-wrapper">
           <?php 
             print $links;
-            if (user_access('post comments') && $view_mode === 'full') {
+            if (user_access('post comments') && $view_mode === 'answers_full_node') {
 			  // Add a "pseudo-link" to open the comment form. This is done using jquery
               print '<ul class="links"><li class="answers-comment-button"><a>' . t('Comment') . '</a></li></ul>';
             }
