@@ -100,25 +100,25 @@
 <div class="node-answers-wrapper">
   <div id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix" <?php print $attributes; ?>>
     <?php print render($title_prefix); ?>
-    <?php if (!$page): ?>
+    <?php if (!$page){ ?>
       <h2<?php print $title_attributes; ?>>
         <a href="<?php print $node_url; ?>"><?php print $title; ?></a>
       </h2>
-    <?php endif; ?>
+    <?php } ?>
     <?php print render($title_suffix); ?>
 	<div class="answers-widgets-wrapper">
       
       <div class="answers-widgets">
 	    <div class="mystery-hack"></div>
         <?php
-          if(isset($content['best_answer'])):
+          if(isset($content['best_answer'])) {
             print render($content['best_answer']);
-          endif;
+          }
           ?>
           <?php
-          if(isset($content['answersRateWidget'])):
+          if(isset($content['answersRateWidget'])) {
             print render($content['answersRateWidget']);
-          endif;
+          }
         ?>
       </div>
     </div>
@@ -132,7 +132,7 @@
           <div class="answers-submitted">
             <?php print $user_picture; ?>
             <div class="author-name"><?php print $name; ?></div>
-            <?php if (module_exists('answers_userpoints')): ?>
+            <?php if (module_exists('answers_userpoints')){ ?>
               <div class="author-details">
                 <p class="author-points"> <?php print userpoints_get_current_points($node->uid); print ' ' . t('points'); ?> </p>
                 <?php
@@ -141,7 +141,7 @@
                 */
                 ?> 
               </div>
-            <?php endif; ?>
+            <?php } ?>
             </div>
           </div>
           
@@ -160,30 +160,24 @@
       <div class="answers-body-toolbar">
         
         <a id="answers-btn-answer" class="answers-btn-primary" href="<?php print $node_url; ?>#new-answer-form"><?php print t("Answer"); ?></a>
-       <?php
-        $links = render($content['links']);
-        if ($links):
-        ?>
           <div class="link-wrapper">
-          <?php 
-            print $links;
+          <?php
             if (user_access('post comments') && $view_mode === 'full') {
               // Add a "pseudo-link" to open the comment dialog. This is done using jquery.
               print '<ul class="links"><li class="answers-comment-button"><a>' . t("Comment") . '</a></li></ul>';
             }
           ?>
           </div>
-        <?php endif; ?>
       </div>
       <?php print render($content['comments']); ?>
     </div>  
   </div>
 
-  <?php if(isset($content['answers_list'])): ?>
+  <?php if(isset($content['answers_list'])){ ?>
     <div class="answers-list">
       <?php print render($content['answers_list']); ?>
     </div>
-  <?php endif;?>
+  <?php } ?>
   
   <?php if(isset($content['new_answer_form'])) { ?>
     <div id="new-answer-form"><a name="new-answer-form"></a>
