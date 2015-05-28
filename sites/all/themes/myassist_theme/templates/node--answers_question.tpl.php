@@ -191,7 +191,9 @@
       <script>
         jQuery(function(){
           if (document.location.hash === "#new-answer-form") {
-            jQuery("#edit-body textarea").focus();
+            setTimeout(function(){
+              jQuery("#edit-body textarea").focus();
+            },0);
           }
         });
       </script>
