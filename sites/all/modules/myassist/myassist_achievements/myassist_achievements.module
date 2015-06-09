@@ -442,22 +442,25 @@ function myassist_achievements_page_alter(&$page) {
   if ($_SERVER['REQUEST_METHOD'] === "GET") {
     $notifications = db_query('SELECT n.uid, n.txid FROM {myassist_pending_point_display} n WHERE n.uid = :uid', array(':uid' => $uid));
     if ($notifications->rowCount() > 0) {
-      drupal_add_library('system', 'ui.dialog');
-      drupal_add_library('system', 'effects.fade');
-      drupal_add_js(drupal_get_path('module', 'achievements') . '/achievements.js');
-      drupal_add_css(drupal_get_path('module', 'achievements') . '/achievements.css');
-
+      $points = 0;
       foreach ($notifications as $notification) {
         $txid = $notification->txid;
         //$transaction = userpoints_transaction_load($txid);
         $transaction = db_query('SELECT * from {userpoints_txn} WHERE txn_id = :txn', array(':txn' => $txid))->fetchObject();
         if ($transaction) {
-          $page['content']['points'][$txid] = array(
-            '#theme' => 'myassist_points_notification',
-            '#points' => $transaction->points,
-          );
-          $hasNotification = true;
+          $points += $transaction->points;
         }
+      }
+      if ($points !== 0) {
+        drupal_add_library('system', 'ui.dialog');
+        drupal_add_library('system', 'effects.fade');
+        drupal_add_js(drupal_get_path('module', 'achievements') . '/achievements.js');
+        drupal_add_css(drupal_get_path('module', 'achievements') . '/achievements.css');
+        $page['content']['points'][$txid] = array(
+          '#theme' => 'myassist_points_notification',
+          '#points' => $points,
+        );
+        $hasNotification = true;
       }
       db_delete('myassist_pending_point_display')
         ->condition('uid', $uid)
@@ -493,9 +496,6 @@ function myassist_achievements_page_alter(&$page) {
         '#theme' => 'myassist_points_notification_once'
       );
     }
-
-
-
   }
 }
 
