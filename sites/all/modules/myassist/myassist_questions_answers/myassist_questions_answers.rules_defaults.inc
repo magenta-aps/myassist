@@ -24,7 +24,7 @@ function myassist_questions_answers_default_rules_configuration() {
             "entity" : [ "node" ],
             "description" : "Posted answer",
             "operation" : "Insert",
-            "display" : "1",
+            "display" : "0",
             "moderate" : "default"
           }
         }
@@ -46,7 +46,7 @@ function myassist_questions_answers_default_rules_configuration() {
             "entity" : [ "node" ],
             "description" : "Asked a question",
             "operation" : "Insert",
-            "display" : "1",
+            "display" : "0",
             "moderate" : "default"
           }
         }
@@ -68,7 +68,7 @@ function myassist_questions_answers_default_rules_configuration() {
             "entity" : [ "node" ],
             "description" : "Removed answer",
             "operation" : "Remove",
-            "display" : "1",
+            "display" : "0",
             "moderate" : "default"
           }
         }
@@ -90,7 +90,7 @@ function myassist_questions_answers_default_rules_configuration() {
             "entity" : [ "node" ],
             "operation" : "Remove",
             "reference" : "Question removed",
-            "display" : "1",
+            "display" : "0",
             "moderate" : "default"
           }
         }

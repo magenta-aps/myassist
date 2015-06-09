@@ -30,7 +30,7 @@ function answers_userpoints_default_rules_configuration() {
           "tid" : "0",
           "entity" : [ "" ],
           "operation" : "addPoints",
-          "display" : 1,
+          "display" : 0,
           "moderate" : "default"
         }
       }
@@ -58,7 +58,7 @@ function answers_userpoints_default_rules_configuration() {
            "tid" : "0",
            "entity" : [ "" ],
            "operation" : "addPoints",
-           "display" : 1,
+           "display" : 0,
            "moderate" : "default"
         }
       }
@@ -87,7 +87,7 @@ function answers_userpoints_default_rules_configuration() {
           "tid" : "0",
           "entity" : [ "" ],
           "operation" : "removePoints",
-          "display" : 1,
+          "display" : 0,
           "moderate" : "default"
         }
       },
@@ -97,7 +97,7 @@ function answers_userpoints_default_rules_configuration() {
           "tid" : "0",
           "entity" : [ "" ],
           "operation" : "removePoints",
-          "display" : 1,
+          "display" : 0,
           "moderate" : "default"
       }}
     ]
@@ -124,7 +124,7 @@ function answers_userpoints_default_rules_configuration() {
           "tid" : "0",
           "entity" : [ "" ],
           "operation" : "deletePoints",
-          "display" : 1,
+          "display" : 0,
           "moderate" : "default"
         }
       },
@@ -134,7 +134,7 @@ function answers_userpoints_default_rules_configuration() {
           "tid" : "0",
           "entity" : [ "" ],
           "operation" : "deletePoints",
-          "display" : 1,
+          "display" : 0,
           "moderate" : "default"
         }
       }
@@ -161,7 +161,7 @@ function answers_userpoints_default_rules_configuration() {
           "tid" : "0",
           "entity" : [ "" ],
           "operation" : "addPoints",
-          "display" : 1,
+          "display" : 0,
           "moderate" : "default"
         }
      }
@@ -188,7 +188,7 @@ function answers_userpoints_default_rules_configuration() {
           "tid" : "0",
           "entity" : [ "" ],
           "operation" : "addPoints",
-          "display" : 1,
+          "display" : 0,
           "moderate" : "default"
         }
       }
@@ -216,7 +216,7 @@ function answers_userpoints_default_rules_configuration() {
           "tid" : "0",
           "entity" : [ "" ],
           "operation" : "deletePoints",
-          "display" : 1,
+          "display" : 0,
           "moderate" : "default"
         }
       },
@@ -226,7 +226,7 @@ function answers_userpoints_default_rules_configuration() {
           "tid" : "0",
           "entity" : [ "" ],
           "operation" : "deletePoints",
-          "display" : 1,
+          "display" : 0,
           "moderate" : "default"
         }
       }
@@ -254,7 +254,7 @@ function answers_userpoints_default_rules_configuration() {
           "tid" : "0",
           "entity" : [ "" ],
           "operation" : "addPoints",
-          "display" : 1,
+          "display" : 0,
           "moderate" : "default"
         }
       },
@@ -264,7 +264,7 @@ function answers_userpoints_default_rules_configuration() {
           "tid" : "0",
           "entity" : [ "" ],
           "operation" : "addPoints",
-          "display" : 1,
+          "display" : 0,
           "moderate" : "default"
         }
       }
@@ -289,7 +289,7 @@ function answers_userpoints_default_rules_configuration() {
           "tid" : "0",
           "entity" : [ "" ],
           "operation" : "addPoints",
-          "display" : 1,
+          "display" : 0,
           "moderate" : "default"
         }
       },
@@ -299,7 +299,7 @@ function answers_userpoints_default_rules_configuration() {
           "tid" : "0",
           "entity" : [ "" ],
           "operation" : "addPoints",
-          "display" : 1,
+          "display" : 0,
           "moderate" : "default"
         }
       }
@@ -326,7 +326,7 @@ function answers_userpoints_default_rules_configuration() {
           "tid" : "0",
           "entity" : [ "" ],
           "operation" : "addPoints",
-          "display" : 1,
+          "display" : 0,
           "moderate" : "default"
         }
       },
@@ -336,7 +336,7 @@ function answers_userpoints_default_rules_configuration() {
           "tid" : "0",
           "entity" : [ "" ],
           "operation" : "removePoints",
-          "display" : 1,
+          "display" : 0,
           "moderate" : "default"
         }
       }
@@ -363,7 +363,7 @@ function answers_userpoints_default_rules_configuration() {
           "tid" : "0",
           "entity" : [ "" ],
           "operation" : "addPoints",
-          "display" : 1,
+          "display" : 0,
           "moderate" : "default"
         }
       }
@@ -391,7 +391,7 @@ function answers_userpoints_default_rules_configuration() {
           "tid" : "0",
           "entity" : [ "" ],
           "operation" : "removePoints",
-          "display" : 1,
+          "display" : 0,
           "moderate" : "default"
         }
       }
