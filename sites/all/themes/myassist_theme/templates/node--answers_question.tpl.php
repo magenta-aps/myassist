@@ -95,8 +95,6 @@
   hide($content['new_answer_form']);
 ?>
 
-
-
 <div class="node-answers-wrapper">
   <div id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix" <?php print $attributes; ?>>
     <?php print render($title_prefix); ?>
@@ -158,7 +156,11 @@
       </div>
 
       <div class="answers-body-toolbar">
-        
+        <?php
+          if ($view_mode !== 'full') {
+            print '<a id="answers-btn-answer" class="answers-btn-primary" href="' . $node_url . '">' . t("Go to question") . '</a>';
+          }
+        ?>
         <a id="answers-btn-answer" class="answers-btn-primary" href="<?php print $node_url; ?>#new-answer-form"><?php print t("Answer"); ?></a>
           <div class="link-wrapper">
           <?php
