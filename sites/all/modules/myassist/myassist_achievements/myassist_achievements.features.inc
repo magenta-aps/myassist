@@ -1,4 +1,14 @@
 <?php
+/**
+ * @file
+ * myassist_achievements.features.inc
+ */
 
-// This file is deprecated and can be removed.
-// Please remove include_once('myassist_achievements.features.inc') in myassist_achievements.module as well.
+/**
+ * Implements hook_ctools_plugin_api().
+ */
+function myassist_achievements_ctools_plugin_api($module = NULL, $api = NULL) {
+  if ($module == "strongarm" && $api == "strongarm") {
+    return array("version" => "1");
+  }
+}
