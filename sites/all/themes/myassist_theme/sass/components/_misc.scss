@@ -88,8 +88,6 @@
  */
 
 #global-links {
-  background: lighten($basegrey, 60%);
-  box-shadow: -($u/4) 0 $u $u/4 rgba(0,0,0,0.2);
   .menu {
     padding: 0;
   }
@@ -128,7 +126,6 @@
   .region-sidebar-first {
     overflow-x: hidden;
     overflow-y: auto;
-    padding: $u;
     h2 {
       margin: $u/2;
       font-size: $u;
@@ -436,12 +433,12 @@ span.field-label {
   margin-bottom: $u;
 }
 
+
 /**
  * Menus.
  */
 .menu__item.is-leaf {
-  list-style-image: inline-image("menu-leaf.png");
-  list-style-type: square;
+  
 }
 .menu__item.is-expanded {
   list-style-image: inline-image("menu-expanded.png");

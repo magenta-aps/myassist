@@ -66,6 +66,17 @@ body {
   height: $u*2.5;
   z-index: 4;
   padding: 0;
+  .header__region {
+    float: right;
+  }
+}
+.header__logo {
+  margin: 0 0 0 $u*3;
+  width: $u*2.5;
+  height: $u*2.5;
+}
+.header__name-and-slogan {
+  display: none;
 }
 
 /* Main */
@@ -75,19 +86,17 @@ body {
 
 /* Global user links */
 #global-links {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
   height: $u*2.5;
   padding: 0;
+  float: right;
   .menu {
     list-style: none;
+    margin: 0;
   }
   .menu__item {
     display: block;
-    float: left;
-    width: 33.33%; 
+    float: right;
+    width: $u*2.5;
   }
   .menu__link {
     display: block;
@@ -96,37 +105,18 @@ body {
 
 /* Sidebar-first menu */
 #mm {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 85vw;
+  z-index: 5;
+  @include translate(-85vw,0);
+  transition: transform 0.5s;
   .region-sidebar-first {
+    height: 100%;
     background: lighten($basegrey, 50%);
-  }
-}
-
-
-} // End of @if $zen-reverse-all-floats == true
-
-
-/**
- * Use 3 grid columns for smaller screens.
- */
-
-@media all and (max-width: 480px) {
-
-  #mm {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    width: 85vw;
-    z-index: 5;
-    @include translate(-85vw,0);
-    transition: transform 0.5s;
-    .region-sidebar-first {
-      height: 100%;
-    }
-  }
-  #mm.open {
-    @include translate(0,0);
-    transition: transform 0.5s;
+    padding: $u;
   }
   .mm-toggle {
     background: $basecolor;
@@ -145,17 +135,110 @@ body {
       display: block;
     }
   }
+}
+#mm.open {
+  @include translate(0,0);
+  transition: transform 0.5s;
+}
+
+/* User actions */
+#mm2 {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: $u*2.5;
+  background: lighten($basegrey, 50%);
+  box-shadow: 0 0 $u/2 $u/4 rgba(0,0,0,0.25);
+  z-index: 5;
+  .mm-toggle {
+    background: transparent;
+    display: block;
+    padding: $u/4 $u/2 $u/2;
+    margin: 0;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: 6;
+    .mm-graphic {
+      background: $basegrey;
+      width: $u/2;
+      height: $u/4;
+      margin: $u/4 0 0;
+      display: block;
+    }
+  }
+}
+#block-system-user-menu {
+  position: fixed;
+  bottom: $u*2.5;
+  left: 0;
+  right: 0;
+  height: auto;
+  background: lighten($basegrey, 50%);
+  display: none;
+  margin: 0;
+  .block-title {
+    display: none;
+  }
+  .menu {
+    list-style: none;
+    margin: 0;
+    padding: $u;
+  }
+}
+#block-system-user-menu.open {
+  display: block;
+}
+
+
+} // End of @if $zen-reverse-all-floats == true
+
+
+/**
+ * Use 3 grid columns for smaller screens.
+ */
+
+@media all and (max-width: 480px) {
 
 }
 
 @media all and (min-width: 480px) {
   
+  /* Header */
+  .header__logo {
+    margin: 0 0 0 $u/2;
+  }
+  .header__name-and-slogan {
+    display: block;
+  }
+  .header__site-name {
+    font-size: 1.2em;
+    margin: 0;
+    padding: $u/2 $u $u/2 $u/4;
+  }
+  #mm {
+    margin-top: $u*2.5;
+    width: 33.33%;
+    transform: translate(0, 0);
+    .mm-toggle {
+      display: none;
+    }
+    .region-sidebar-first {
+      width: 100%;
+      padding: 0;
+    }
+  }
+  
   #main {
     position: relative;
     margin: $u*2.5 0 0;
   }
-  .mm-toggle {
-    display: none;
+  
+  /* User actions */
+  #block-system-user-menu {
+    left: auto;
+    width: 33.33%;
   }
   
 }
@@ -166,90 +249,19 @@ body {
 @media all and (min-width: 480px) and (max-width: 959px) {
 
   $zen-column-count: 3 !global;
-  
-  #global-links {
-    top: 0;
-    bottom: auto;
-    left: 0;
-    right: auto;
-    position: fixed;
-    z-index: 7;
-    width: 33.333%;
-    box-shadow: none !important;
-  }
 
   /**
    * The layout when there is only one sidebar, the left one.
    */
-  .sidebar-first {
-    /* Span 2 columns, starting in 2nd column from left. */
-    #content {
-      @include zen-grid-item(2, 2);
-    }
-
-    /* Span 1 column, starting in 1st column from left. */
-    .region-sidebar-first {
-      @include zen-grid-item(1, 1);
-    }
-  }
-
-  /**
-   * The layout when there is only one sidebar, the right one.
-   */
-  .sidebar-second {
-    /* Span 2 columns, starting in 1st column from left. */
-    #content {
-      @include zen-grid-item(2, 1);
-    }
-
-    /* Span 1 column, starting in 3rd column from left. */
-    .region-sidebar-second {
-      @include zen-grid-item(1, 3);
-    }
-  }
-
-  /**
-   * The layout when there are two sidebars.
-   */
-  .two-sidebars {
-    /* Span 2 columns, starting in 2nd column from left. */
-    #content {
-      @include zen-grid-item(2, 2);
-    }
-
-    /* Span 1 column, starting in 1st column from left. */
-    .region-sidebar-first {
-      @include zen-grid-item(1, 1);
-    }
-
-    /* Start a new row and span all 3 columns. */
-    .region-sidebar-second {
-      @include zen-grid-item(3, 1);
-      @include zen-nested-container(); // Since we're making every block in this region be a grid item.
-      @include zen-clear();
-
-      /* Apply the shared properties of grid items in a single, efficient ruleset. */
-      .block {
-        @include zen-grid-item-base();
-      }
-      /* Span 1 column, starting in the 1st column from left. */
-      .block:nth-child(3n+1) {
-        @include zen-grid-item(1, 1);
-        @include zen-clear();
-      }
-      /* Span 1 column, starting in the 2nd column from left. */
-      .block:nth-child(3n+2) {
-        @include zen-grid-item(1, 2);
-      }
-      /* Span 1 column, starting in the 3rd column from left. */
-      .block:nth-child(3n) {
-        @include zen-grid-item(1, 3);
-      }
-    }
-  }
   
+  /* Span 2 columns, starting in 2nd column from left. */
   #content {
-    margin-top: $u;
+    @include zen-grid-item(2, 2);
+  }
+
+  /* Span 1 column, starting in 1st column from left. */
+  .region-sidebar-first {
+    @include zen-grid-item(1, 1);
   }
   
   .achievement-image {
@@ -279,79 +291,58 @@ body {
 
   $zen-column-count: 5 !global;
 
+  /* Header */
+  #header {
+    position: static;
+    padding: $u 0;
+    height: $u*4.5;
+    @include zen-grid-container; 
+  }
+  .header__logo {
+    
+  }
+  .header__name-and-slogan {
+    display: block;
+  }
+  #header .header__region,
+  #global-links {
+    float: left;
+    .menu__item {
+      float: left;
+    }
+  }
+  #mm {
+    position: static;
+    margin: 0;
+    @include zen-grid-item(1, 1);
+    .region-sidebar-first {
+      
+    }
+  }
+  #mm2 {
+    position: absolute;
+    top: -($u*2.5);
+    box-shadow: none;
+    bottom: auto;
+    right: 0;
+    left: auto;
+    width: 20%;
+    #block-system-user-menu {
+      width: 100%;
+      position: absolute;
+      bottom: auto;
+      top: $u*2.5;
+      right: 0;
+      left: auto;
+    }
+  }
+  
   /* main */
   #main {
     margin-top: 0;
   }
-  
-  /* header */
-  #header {
-    position: static;
-  }
-  
-  /* Global links */
-  #global-links {
-    position: absolute;
-    top: -($u*2.5);
-    right: auto;
-    left: 0;
-    bottom: auto;
-    width: 20%;
-    box-shadow: none !important;
-  }
-  
-  /**
-   * The layout when there is only one sidebar, the left one.
-   */
-  .sidebar-first {
-    /* Span 4 columns, starting in 2nd column from left. */
-    #content {
-      @include zen-grid-item(4, 2);
-    }
-
-    /* Span 1 column, starting in 1st column from left. */
-    .region-sidebar-first {
-      @include zen-grid-item(1, 1);
-    }
-  }
-
-  /**
-   * The layout when there is only one sidebar, the right one.
-   */
-  .sidebar-second {
-    /* Span 4 columns, starting in 1st column from left. */
-    #content {
-      @include zen-grid-item(4, 1);
-    }
-
-    /* Span 1 column, starting in 5th column from left. */
-    .region-sidebar-second {
-      @include zen-grid-item(1, 5);
-    }
-  }
-
-  /**
-   * The layout when there are two sidebars.
-   */
-  .two-sidebars {
-    /* Span 3 columns, starting in 2nd column from left. */
-    #content {
-      @include zen-grid-item(3, 2);
-    }
-
-    /* Span 1 column, starting in 1st column from left. */
-    .region-sidebar-first {
-      @include zen-grid-item(1, 1);
-    }
-
-    /* Span 1 column, starting in 5th column from left. */
-    .region-sidebar-second {
-      @include zen-grid-item(1, 5);
-    }
-  }
-  
   #content {
-    margin-top: $u;
+    @include zen-grid-item(4, 2);
   }
   
   .answers-submitted,

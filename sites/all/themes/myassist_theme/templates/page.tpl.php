@@ -12,11 +12,9 @@
 
   <header class="header" id="header" role="banner">
 
-    <!--
     <?php if ($logo): ?>
       <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home" class="header__logo" id="logo"><img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" class="header__logo-image" /></a>
     <?php endif; ?>
-    -->
     
     <?php if ($site_name || $site_slogan): ?>
       <div class="header__name-and-slogan" id="name-and-slogan">
@@ -31,7 +29,23 @@
         <?php endif; ?>
       </div>
     <?php endif; ?>
-
+    
+    <?php print render($page['header']); ?>
+    
+    <nav id="global-links">
+      <ul class="menu">
+        <li class="menu__item" id="global-chat">
+          <a class="menu__link disabled" id="chatButton" href="/chat" title="Chat"><?php print t("Chat"); ?></a>
+        </li>
+        <li class="menu__item" id="global-leaderboards">
+          <a class="menu__link" id="leaderboardButton" href="/achievements/leaderboard" title="Leaderboards og brugere"><?php print t("Leaderboards and users");?></a>
+        </li>
+        <li class="menu__item" id="global-dilemma">
+          <a class="menu__link" id="dilemmaButton" href="/" title="Dilemmaliste"><?php print t("Dilemma"); ?></a>
+        </li>
+      </ul>
+    </nav>
+    
     <?php if ($secondary_menu): ?>
       <nav class="header__secondary-menu" id="secondary-menu" role="navigation">
         <?php print theme('links__system_secondary_menu', array(
@@ -47,8 +61,6 @@
         )); ?>
       </nav>
     <?php endif; ?>
-
-    <?php print render($page['header']); ?>
 
   </header>
 
@@ -72,20 +84,6 @@
       <?php print render($page['content']); ?>
       <?php print $feed_icons; ?>
     </div>
-
-    <nav id="global-links">
-      <ul class="menu">
-        <li class="menu__item" id="global-dilemma">
-          <a class="menu__link" id="dilemmaButton" href="/" title="Dilemmaliste"><?php print t("Dilemma"); ?></a>
-        </li>
-        <li class="menu__item" id="global-leaderboards">
-          <a class="menu__link" id="leaderboardButton" href="/achievements/leaderboard" title="Leaderboards og brugere"><?php print t("Leaderboards and users");?></a>
-        </li>
-        <li class="menu__item" id="global-chat">
-          <a class="menu__link disabled" id="chatButton" href="/chat" title="Chat"><?php print t("Chat"); ?></a>
-        </li>
-      </ul>
-    </nav>
       
     <?php
       // Render the sidebars to see if there's anything in them.
@@ -95,6 +93,7 @@
 
     <?php if ($sidebar_first || $sidebar_second): ?>
       <aside class="sidebars">
+        
         <div id="mm" class="clearfix">
           <button class="mm-toggle">
             <span class="mm-graphic"></span>
@@ -103,7 +102,16 @@
           </button>
           <?php print $sidebar_first; ?>
         </div>
-        <?php print $sidebar_second; ?>
+        
+        <div id="mm2" class="clearfix">
+          <button class="mm-toggle">
+            <span class="mm-graphic"></span>
+            <span class="mm-graphic"></span>
+            <span class="mm-graphic"></span>
+          </button>
+          <?php print $sidebar_second; ?>
+        </div>
+
       </aside>
     <?php endif; ?>
 
@@ -112,5 +120,20 @@
   <?php print render($page['footer']); ?>
 
 </div>
+
+
+<!-- Adding resources for Feedbackr.js - REMOVE FOR PRODUCTION -->
+<?php drupal_add_js('http:\/\/redmine.magenta-aps.dk\/feedbackr\/feedbackr-embed.js', 'external'); ?>
+<script>
+  var feedbconf = {
+    'apikey': '5aaaaeb2b800610f4fa2fab79b8fe8c8738161b8',
+    'projid': 299,
+    'contactname': 'Frank',
+    'contactphone': '50601267',
+    'cssoffset': '5em'
+  };
+</script>
+<!-- End Feedbackr.js resources -->
+
 
 <?php print render($page['bottom']); ?>

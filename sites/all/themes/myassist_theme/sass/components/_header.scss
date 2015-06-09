@@ -11,16 +11,14 @@
 /* Wrapping link for logo. */
 .header__logo {
   float: left; /* LTR */
-  margin: 0;
   padding: 0;
 }
 
 /* Logo image. */
 .header__logo-image {
   vertical-align: bottom;
-  width: 3em;
-  height: auto;
-  padding-right: 1em;
+  height: 100%;
+  width: auto;
 }
 
 /* Wrapper for website name and slogan. */
@@ -72,8 +70,7 @@
 
   .header__region {
     clear: none;
-    padding-left: $u*2.5;
-    text-align: right;
+    width: $u*2.5;
   }
 
   #block-search-form {
