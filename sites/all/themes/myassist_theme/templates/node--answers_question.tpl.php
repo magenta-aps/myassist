@@ -152,7 +152,14 @@
 			}
 		  }
           ?>
-      
+
+        <span class="answer_count">
+          <?php
+          $answers = answers_question_answers($node);
+          print format_plural(count($answers), '1 answer.', '@count answers.');
+          ?>
+        </span>
+
       </div>
 
       <div class="answers-body-toolbar">
