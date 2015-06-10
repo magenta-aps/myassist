@@ -8,12 +8,9 @@ include_once 'myassist_user_avatar.features.inc';
 
 
 function myassist_user_avatar_field_widget_form_alter(&$element, &$form_state, $context) {
-  if (isset($element[0]) && array_key_exists('#field_name', $element[0]) && $element[0]['#field_name'] == 'field_avatar' && isset($element[0]['#upload_validators'])) {
-    $validators = $element[0]['#upload_validators'];
-    if (isset($validators['file_validate_image_resolution'])) {
-      $validators['myassist_user_avatar_file_validate'] = $validators['file_validate_image_resolution']; // Copy validation arguments to our own method pointer
-      unset($validators['file_validate_image_resolution']); // Disable normal resolution check & fix
-    }
+  if (isset($element[0]) && array_key_exists('#field_name', $element[0]) && $element[0]['#field_name'] == 'field_avatar' && isset($element[0]['#upload_validators']['file_validate_image_resolution'])) {
+    $element[0]['#upload_validators']['myassist_user_avatar_file_validate'] = $element[0]['#upload_validators']['file_validate_image_resolution'];
+    unset($element[0]['#upload_validators']['file_validate_image_resolution']); // Disable normal resolution check & fix
   }
 }
 
