@@ -46,7 +46,7 @@
   }
   .marked-best-answer,
   .flag {
-    @extend .icon;
+    @extend .icons;
     background-image: url('../images/icons/checkmark2.svg');
   }
   .flag:hover,
@@ -67,7 +67,7 @@
   width: auto;
   margin: 0;
   .rate-button {
-    @extend .icon;
+    @extend .icons;
     background-image: url('../images/icons/circle-up.svg');
     background-size: auto 50%;
     float: left;
@@ -177,6 +177,9 @@
     
   }
 }
+.answers-comment-widgets-wrapper {
+  display: none;
+}
 .author-role_debatraadgiver .answers-submitted {
   background-color: lighten($accent, 20%);
 }
@@ -213,7 +216,7 @@
 .answers-answer-delete a,
 .answers-comment-button a,
 .answers-form-filter-help a {
-  @extend .icon;
+  @extend .icons;
   background-position: $u center;
   padding: $u/2 $u $u/2 $u*2.5;
   text-indent: 0;
@@ -356,7 +359,7 @@
   height: auto !important;
   padding: 0;
   .achievement-image {
-    @extend .icon;
+    @extend .icons;
     background-image: url('../images/icons/trophy.svg');
     background-color: #fff;
     width: $u*3;
