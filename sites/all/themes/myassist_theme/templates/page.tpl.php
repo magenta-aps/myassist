@@ -94,14 +94,7 @@
     <?php if ($sidebar_first || $sidebar_second): ?>
       <aside class="sidebars">
         
-        <div id="mm" class="clearfix">
-          <button class="mm-toggle">
-            <span class="mm-graphic"></span>
-            <span class="mm-graphic"></span>
-            <span class="mm-graphic"></span>
-          </button>
-          <?php print $sidebar_first; ?>
-        </div>
+        <?php print $sidebar_first; ?>
         
         <div id="mm2" class="clearfix">
           <button class="mm-toggle">
