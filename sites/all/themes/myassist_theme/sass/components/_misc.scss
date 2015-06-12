@@ -71,7 +71,7 @@
  * Icon styles
  * Use @extend .icon to use where ever
  */
-.icon {
+.icons {
   display: block;
   width: $u*2.5;
   height: $u*2.5;
@@ -202,17 +202,17 @@
 /* System status report. */
 .ok,
 %ok {
-  background-color: #f8fff0;
+  background-color: #f8fff0 !important;
   color: #234600;
 }
 .warning,
 %warning {
-  background-color: #fffce5;
+  background-color: #fffce5 !important;
   color: #840;
 }
 .error,
 %error {
-  background-color: #fef5f1;
+  background-color: #fef5f1 !important;
   color: #8c2e0b;
 }
 
@@ -585,6 +585,17 @@ a.button {
 #user-login-form {
   text-align: left; /* LTR */
 }
+
+/* Form error message */
+#edit-name-check, 
+#edit-mail-check {
+  height: auto;
+  margin-bottom: $u/2;
+  background: transparent;
+  padding: $u/2;
+}
+
+
 
 /**
  * OpenID
