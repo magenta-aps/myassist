@@ -41,7 +41,6 @@ body {
 /* Apply the shared properties of grid items in a single, efficient ruleset. */
 #header,
 #content,
-#global-links,
 .region-sidebar-first,
 .region-sidebar-second,
 #footer {
@@ -57,6 +56,11 @@ body {
   @include zen-grid-container();
 }
 
+/* Page */
+#page {
+  padding: $u*3 0;
+}
+
 /* Header */
 #header {
   position: fixed;
@@ -66,91 +70,36 @@ body {
   height: $u*2.5;
   z-index: 4;
   padding: 0;
-  .header__region {
-    float: right;
-  }
+}
+.header__site-name {
+  margin: 0;
+  padding: $u/2 $u/2 $u/2 0;
+  font-size: $u*1.2;
 }
 .header__logo {
-  margin: 0 0 0 $u/2;
-  width: $u*2.5;
-  height: $u*2.5;
+  margin: $u/2;
+  width: $u*2;
+  height: $u*2;
 }
-.header__name-and-slogan {
-  display: none;
+#block-myassist-user-username {
+  @include element-invisible;
 }
 
 /* Main */
 #main {
-  margin: $u*3.5 0;
+  padding: $u 0;
 }
 
-/* Global user links */
-#global-links {
-  height: $u*2.5;
-  padding: 0;
-  float: right;
-  .menu {
-    list-style: none;
-    margin: 0;
-  }
-  .menu__item {
-    display: block;
-    float: right;
-    width: $u*2.5;
-  }
-  .menu__link {
-    display: block;
-  }
-}
 
-/* User actions */
-#mm2 {
+/* Main menu */
+.region-navigation {
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
   height: $u*2.5;
-  background: lighten($basegrey, 50%);
-  box-shadow: 0 0 $u/2 $u/4 rgba(0,0,0,0.25);
-  z-index: 5;
-  .mm-toggle {
-    background: transparent;
-    display: block;
-    padding: $u/4 $u/2 $u/2;
-    margin: 0;
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    z-index: 6;
-    .mm-graphic {
-      background: $basegrey;
-      width: $u/2;
-      height: $u/4;
-      margin: $u/4 0 0;
-      display: block;
-    }
-  }
-}
-#block-system-user-menu {
-  position: fixed;
-  bottom: $u*2.5;
-  left: 0;
-  right: 0;
-  height: auto;
-  background: lighten($basegrey, 50%);
-  display: none;
-  margin: 0;
-  .block-title {
-    display: none;
-  }
-  .menu {
-    list-style: none;
-    margin: 0;
-    padding: $u;
-  }
-}
-#block-system-user-menu.open {
-  display: block;
+  background: lighten($basegrey, 60%);
+  box-shadow: $u/4 0 $u $u/4 rgba(0, 0, 0, 0.2);
 }
 
 
@@ -168,23 +117,14 @@ body {
 @media all and (min-width: 480px) {
   
   /* Header */
-  .header__name-and-slogan {
-    display: block;
-  }
-  .header__site-name {
-    font-size: 1.2em;
-    margin: 0;
-    padding: $u/2 $u $u/2 $u/4;
+  #block-myassist-user-username {
+    @include element-invisible-off;
+    padding: $u/2 $u $u/2 0;
   }
   
+  /* Main */
   #main {
     position: relative;
-  }
-  
-  /* User actions */
-  #block-system-user-menu {
-    left: auto;
-    width: 33.33%;
   }
   
 }
@@ -237,39 +177,19 @@ body {
 
   $zen-column-count: 5 !global;
 
-  /* Header */
-  #header {
-    position: static;
-    padding: $u 0;
-    height: $u*4.5;
-    @include zen-grid-container; 
-  }
-  .header__name-and-slogan {
-    display: block;
-  }
-  #header .header__region,
-  #global-links {
-    float: left;
-    .menu__item {
-      float: left;
-    }
-  }
-  #mm2 {
-    position: absolute;
-    top: -($u*2.5);
-    box-shadow: none;
+  /* Main menu */
+  .region-navigation {
+    position: fixed;
     bottom: auto;
-    right: 0;
-    left: auto;
+    top: 0;
+    left: 50%;
+    right: auto;
+    margin-left: -10%;
+    height: $u*2.5;
+    background: lighten($basegrey, 60%);
+    box-shadow: none;
     width: 20%;
-    #block-system-user-menu {
-      width: 100%;
-      position: absolute;
-      bottom: auto;
-      top: $u*2.5;
-      right: 0;
-      left: auto;
-    }
+    z-index: 4;
   }
   
   /* main */
@@ -277,7 +197,6 @@ body {
     margin-top: 0;
   }
   #content {
-    @include zen-grid-item(4, 2);
     padding-top: $u;
   }
   

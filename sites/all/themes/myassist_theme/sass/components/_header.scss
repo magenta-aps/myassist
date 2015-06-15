@@ -55,33 +55,19 @@
 }
 
 /* Wrapper for any blocks placed in the header region. */
-.header__region {
-  /* Clear the logo. */
-  clear: both;
-}
-
 #header {
-
   h1.title {
     display: inline-block;
     margin: 0;
     vertical-align: top;
   }
-
-  .header__region {
-    clear: none;
-    width: $u*2.5;
-  }
-
   #block-search-form {
     display: inline-block;
     .search-full {
       display: block;
     }
   }
-
   @media all and (max-width: 480px) {
-    
     #block-search-form {
       &:not(.forceShow) {
         .search-full {
@@ -92,33 +78,68 @@
         }
       }
     }
-    
   }
-
   #block-myassist-questions-answers-newquestion {
     display: inline-block;
     vertical-align: top;
   }
 }
-
-.myassist-button {
-  @extend .icons;
-  margin: 0;
+.header__region {
+  position: absolute;
+  right: 0;
+  top: 0;
+  .block {
+    float: right;
+  }
 }
+
+/* User menu */
+#block-system-user-menu {
+  margin: 0;
+  width: $u*2.5;
+  .block-title {
+    @extend .icons;
+    background-image: url(../images/icons/circle-down.svg);
+    padding: 0;
+    margin: 0;
+    background-size: $u auto;
+  }
+  .menu {
+    display: none;
+    position: absolute;
+    top: $u*2.5;
+    right: 0;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    background: lighten($basegrey, 50%);
+    width: $u*10;
+  }
+  .menu__item {
+    border-top: dashed 1px $basegrey;
+  }
+  .menu__item:first-child {
+    border: none;
+  }
+  .menu__link {
+    display: block;
+    padding: $u/2 $u;
+  }
+}
+#block-system-user-menu.open {
+  .block-title {
+    background-image: url(../images/icons/circle-up.svg);
+  }
+  .menu {
+    display: block;
+  }
+}
+
 
 .search-toggle {
   background-image: url('../images/search.png');
 }
 
-.add-question {
-  background-image: url(../images/icons/plus.svg);
-}
-
-.block-myassist-user {
-  display: inline-block;
-  padding: $u/2;
-  vertical-align: top;
-}
 #block-myassist-user-avatar {
   padding: 0;
   width: $u*2.5;
@@ -137,13 +158,17 @@
   }
 }
 
-.block-myassist-achievements {
-  display: inline-block;
-  height: $u*2.5;
+#block-myassist-achievements-userpoints {
+  position: absolute;
+  top: $u*2.5;
+  right: 0;
+  width: $u*2.5;
   overflow: hidden;
   background-color: lighten($accent, 10%);
   margin: 0;
+  text-align: center;
   .userpoints {
-    padding: $u/2;
+    font-size: $u*0.8;
+    padding: $u/4 0;
   }
 }

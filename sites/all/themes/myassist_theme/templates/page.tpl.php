@@ -32,20 +32,6 @@
     
     <?php print render($page['header']); ?>
     
-    <nav id="global-links">
-      <ul class="menu">
-        <li class="menu__item" id="global-chat">
-          <a class="menu__link disabled" id="chatButton" href="/chat" title="Chat"><?php print t("Chat"); ?></a>
-        </li>
-        <li class="menu__item" id="global-leaderboards">
-          <a class="menu__link" id="leaderboardButton" href="/achievements/leaderboard" title="Leaderboards og brugere"><?php print t("Leaderboards and users");?></a>
-        </li>
-        <li class="menu__item" id="global-dilemma">
-          <a class="menu__link" id="dilemmaButton" href="/" title="Dilemmaliste"><?php print t("Dilemma"); ?></a>
-        </li>
-      </ul>
-    </nav>
-    
     <?php if ($secondary_menu): ?>
       <nav class="header__secondary-menu" id="secondary-menu" role="navigation">
         <?php print theme('links__system_secondary_menu', array(
@@ -109,6 +95,8 @@
     <?php endif; ?>
 
   </div>
+  
+  <?php print render($page['navigation']); ?>
 
   <?php print render($page['footer']); ?>
 
