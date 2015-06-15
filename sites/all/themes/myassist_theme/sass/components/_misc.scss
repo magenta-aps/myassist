@@ -387,12 +387,14 @@ span.field-label {
   clear: both;
   padding: 0;
   text-align: center;
+  list-style: none;
 }
 %pager__item {
-  display: inline;
-  padding: 0 0.5em;
-  list-style-type: none;
-  background-image: none;
+  display: inline-block;
+  a {
+    display: block;
+    padding: $u/2;
+  }
 }
 
 .pager-item,      /* A list item containing a page number in the list of pages. */
