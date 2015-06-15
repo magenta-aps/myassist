@@ -103,11 +103,14 @@
     display: block;
     float: left;
     width: 25%;
+    
   }
   .menu__link {
     @extend .icons;
     width: auto;
     background-size: $u*1.5 auto;
+    border-right: 1px solid lighten($basegrey, 45%);
+    border-left: 1px solid lighten($basegrey, 75%);
   }
   .menu__link[href="/categories"] {
     background-image: url(../images/icons/question.svg);
@@ -125,11 +128,10 @@
 
 
 /**
- * Footer
+ * Footer/bottom
  */
-
-#footer {
-  background: lighten($basegrey, 50%);
+.bottom__container {
+  background: lighten($basegrey, 40%);
 }
 
 

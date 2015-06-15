@@ -5,60 +5,10 @@
  * Define CSS classes to create a fluid grid layout with optional sidebars
  * depending on whether blocks are placed in the left or right sidebars.
  *
- * This layout uses the Zen Grids plugin for Compass: http://zengrids.com
  */
-
-// We are going to create a fluid grid with 1, 3, or 5 columns and 20px gutters
-// between columns (applied as 10px of left/right padding on each column).
-$zen-column-count:  1; // Add "!global" after your $zen-column-count value if you want to override it in media queries.
-$zen-gutter-width:  $u*2;
-
-// You can generate more efficient CSS if you manually apply the
-// zen-grid-item-base mixin to all grid items from within a single ruleset.
-$zen-auto-include-item-base: false;
-// $zen-auto-include-flow-item-base: false;
 
 body {
   background: lighten($basegrey, 60%);
-}
-
-// Suppress this section of CSS for RTL layouts since it contains no LTR-specific styles.
-@if $zen-reverse-all-floats == false {
-
-/**
- * Center the page.
- *
- * For screen sizes larger than 1200px, prevent excessively long lines of text
- * by setting a max-width.
- */
-#page,
-.region-bottom {
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 1200px;
-}
-
-/* Apply the shared properties of grid items in a single, efficient ruleset. */
-#header,
-#content,
-.region-sidebar-first,
-.region-sidebar-second,
-#footer {
-  // See the note about $zen-auto-include-item-base above.
-  @include zen-grid-item-base();
-}
-
-
-/* Containers for grid items and flow items. */
-#header,
-#main,
-#footer {
-  @include zen-grid-container();
-}
-
-/* Page */
-#page {
-  padding: $u*3 0;
 }
 
 /* Header */
@@ -78,8 +28,16 @@ body {
 }
 .header__logo {
   margin: $u/2;
-  width: $u*2;
-  height: $u*2;
+  width: $u*1.5;
+  height: $u*1.5;
+}
+.header__region {
+  position: absolute;
+  right: 0;
+  top: 0;
+  .block {
+    float: right;
+  }
 }
 #block-myassist-user-username {
   @include element-invisible;
@@ -87,9 +45,8 @@ body {
 
 /* Main */
 #main {
-  padding: $u 0;
+  padding: $u*2.5 $u $u;
 }
-
 
 /* Main menu */
 .region-navigation {
@@ -102,12 +59,17 @@ body {
   box-shadow: $u/4 0 $u $u/4 rgba(0, 0, 0, 0.2);
 }
 
-
-} // End of @if $zen-reverse-all-floats == true
+/* Footer/bottom */
+.region-bottom {
+  margin-bottom: $u*2.5;
+  .block {
+    padding: 0 $u;
+  }
+}
 
 
 /**
- * Use 3 grid columns for smaller screens.
+ * Layout for smaller screens.
  */
 
 @media all and (max-width: 480px) {
@@ -130,26 +92,10 @@ body {
 }
 
 /**
- * Use 3 grid columns for smaller screens.
+ * Layout for smaller screens.
  */
 @media all and (min-width: 480px) and (max-width: 959px) {
 
-  $zen-column-count: 3 !global;
-
-  /**
-   * The layout when there is only one sidebar, the left one.
-   */
-  
-  /* Span 2 columns, starting in 2nd column from left. */
-  #content {
-    @include zen-grid-item(2, 2);
-  }
-
-  /* Span 1 column, starting in 1st column from left. */
-  .region-sidebar-first {
-    @include zen-grid-item(1, 1);
-  }
-  
   .achievement-image {
     width: 25% !important;
   }
@@ -170,13 +116,35 @@ body {
   
 }
 
+
 /**
- * Use 5 grid columns for larger screens.
+ * Layout for larger screens
  */
 @media all and (min-width: 960px) {
-
-  $zen-column-count: 5 !global;
-
+  
+  /* General layout */
+  #page,
+  .header__container,
+  .region-bottom {
+    width: 960px;
+    margin: 0 auto;
+  }
+  
+  /* Page */
+  #page {
+    padding: $u*2.5 0 0;
+  }
+  
+  /* Header */
+  .header__container {
+    @include clearfix;
+  }
+  .header__region {
+    position: absolute;
+    right: 50%;
+    margin-right: -480px;
+  }
+  
   /* Main menu */
   .region-navigation {
     position: fixed;
@@ -184,8 +152,8 @@ body {
     top: 0;
     left: 50%;
     right: auto;
-    margin-left: -10%;
     height: $u*2.5;
+    margin-left: -16.5%;
     background: lighten($basegrey, 60%);
     box-shadow: none;
     width: 20%;
@@ -194,10 +162,17 @@ body {
   
   /* main */
   #main {
-    margin-top: 0;
+    padding: 0 $u;
   }
-  #content {
-    padding-top: $u;
+  
+  /* Footer/bottom */
+  .region-bottom {
+    padding-bottom: 0;
+    .block {
+      background: lighten($basegrey, 45%);
+      padding-bottom: $u;
+      margin-bottom: 0;
+    }
   }
   
   .answers-submitted,
