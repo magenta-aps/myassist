@@ -54,6 +54,7 @@ function myassist_notification_rules_process($recipient, $messageType, $node) {
 function myassist_notification_mail($key, &$message, $params) {
     switch($key) {
         case 'myassist_notification':
+            $message['headers']['Content-Type'] = 'text/html; charset=UTF-8; format=flowed';
             $message['subject'] = $params['subject'];
             $message['body'][] = $params['body'];
             break;
