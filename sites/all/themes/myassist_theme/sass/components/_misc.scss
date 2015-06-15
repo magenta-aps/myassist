@@ -85,6 +85,13 @@
   line-height: 1;
 }
 
+/**
+ * Content
+ */
+#content {
+  padding-top: $u;
+}
+
 
 /**
  * Navigation
@@ -410,6 +417,7 @@ span.field-label {
 .pager-current {
   @extend %pager__item;
   font-weight: bold;
+  padding: $u/2;
 }
 
 

@@ -117,7 +117,7 @@
     'projid': 299,
     'contactname': 'Frank',
     'contactphone': '50601267',
-    'cssoffset': '5em'
+    'cssoffset': '7em'
   };
 </script>
 <!-- End Feedbackr.js resources -->
