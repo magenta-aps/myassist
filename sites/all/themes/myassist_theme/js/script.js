@@ -15,21 +15,15 @@
 // To understand behaviors, see https://drupal.org/node/756722#behaviors
 
 
-  Drupal.behaviors.my_custom_behavior = {
+  Drupal.behaviors.headerResponsive = {
     attach: function(context, settings) {
       
       // Toggle user action menu
-      $('#mm2 .mm-toggle').click(function() {
+      $('#block-system-user-menu .block-title').click(function() {
         $('#block-system-user-menu').toggleClass('open');
       });
-  
-    }
-  };
 
-
-  Drupal.behaviors.headerResponsive = {
-    attach: function(context, settings) {
-
+      
       $(".search-toggle").click(function(event){
         $("#block-search-form").addClass("forceShow");
         event.stopPropagation();

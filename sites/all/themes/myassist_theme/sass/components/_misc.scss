@@ -80,41 +80,9 @@
   background-position: center center;
   background-size: auto 66.66%;
   text-indent: -1000em;
-}
-
-
-/**
- * Global links
- */
-
-#global-links {
-  .menu {
-    padding: 0;
-  }
-  .menu__link {
-    display: block;
-    height: $u*2.5;
-    background: url("../images/icons/question.svg") no-repeat center center transparent;
-    background-size: auto 66.66%;
-    text-indent: -1000em;
-  }
-  .menu__link:hover,
-  .menu__link:active {
-    background-color: lighten($basecolor, 20%); 
-  }
-  .menu__link.disabled {
-    filter: opacity(0.33);
-    -webkit-filter: opacity(0.33);
-  }
-}
-#global-dilemma .menu__link {
-  background-image: url("../images/icons/question.svg");
-}
-#global-leaderboards .menu__link {
-  background-image: url("../images/icons/users.svg");
-}
-#global-chat .menu__link {
-  background-image: url("../images/icons/bubbles4.svg");
+  text-align: center;
+  font-size: $u;
+  line-height: 1;
 }
 
 
@@ -122,29 +90,46 @@
  * Navigation
  */
 
-#mm {
-  .region-sidebar-first {
-    overflow-x: hidden;
-    overflow-y: auto;
-    h2 {
-      margin: $u/2;
-      font-size: $u;
-      color: lighten($basegrey, 20%);
-    }
-    .menu {
-      list-style-type: none;
-      padding: 0;
-      margin: 0;
-    }
-    .menu__item {
-      display: block;
-      border-top: dashed 1px lighten($basegrey, 20%);
-    }
-    .menu__link {
-      display: block;
-      padding: $u/2;
-    }
+#block-system-main-menu {
+  h2 {
+    @include element-invisible;
   }
+  .menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .menu__item {
+    display: block;
+    float: left;
+    width: 25%;
+  }
+  .menu__link {
+    @extend .icons;
+    width: auto;
+    background-size: $u*1.5 auto;
+  }
+  .menu__link[href="/categories"] {
+    background-image: url(../images/icons/question.svg);
+  }
+  .menu__link[href="/achievements/leaderboard"] {
+    background-image: url(../images/icons/users.svg);
+  }
+  .menu__link[href="/chat"] {
+    background-image: url(../images/icons/bubbles4.svg);
+  }
+  .menu__link[href="/node/add/answers-question"] {
+    background-image: url(../images/icons/plus.svg);
+  }
+}
+
+
+/**
+ * Footer
+ */
+
+#footer {
+  background: lighten($basegrey, 50%);
 }
 
 
