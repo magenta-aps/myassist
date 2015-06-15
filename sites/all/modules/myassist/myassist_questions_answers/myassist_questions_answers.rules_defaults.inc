@@ -29,7 +29,7 @@ function myassist_questions_answers_default_rules_configuration() {
           }
         },
         { "myassist_notification_rules_process" : {
-            "recipient" : [ "node:author" ],
+            "recipient" : [ "node:answers-related-question:author" ],
             "messageType" : "question_answered",
             "node" : [ "node" ]
           }
