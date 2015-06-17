@@ -110,7 +110,7 @@
 
 
 <!-- Adding resources for Feedbackr.js - REMOVE FOR PRODUCTION -->
-<?php drupal_add_js('http:\/\/redmine.magenta-aps.dk\/feedbackr\/feedbackr-embed.js', 'external'); ?>
+<?php drupal_add_js('http://redmine.magenta-aps.dk/feedbackr/feedbackr-embed.js', 'external'); ?>
 <script>
   var feedbconf = {
     'apikey': '5aaaaeb2b800610f4fa2fab79b8fe8c8738161b8',
