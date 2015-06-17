@@ -36,7 +36,7 @@ function myassist_notification_field_default_field_bases() {
           'type' => 'none',
         ),
         'target_bundles' => array(
-          'answers_question' => 'answers_question',
+          'answers_answer' => 'answers_answer',
         ),
       ),
       'profile2_private' => FALSE,

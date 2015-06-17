@@ -25,9 +25,33 @@ function myassist_questions_answers_views_api($module = NULL, $api = NULL) {
  */
 function myassist_questions_answers_default_message_type() {
   $items = array();
+  
   $items['best_answer'] = entity_import('message_type', '{
-    "name" : "best_answer",
-    "description" : "Best answer",
+  "name" : "best_answer",
+  "description" : "Best answer",
+  "argument_keys" : [],
+  "argument" : [],
+  "category" : "message_type",
+  "data" : {
+    "token options" : { "clear" : 0 },
+    "purge" : { "override" : 0, "enabled" : 0, "quota" : "", "days" : "" }
+  },
+  "language" : "da",
+  "arguments" : false,
+  "message_text" : { "da" : [
+      {
+        "value" : "\u003Ca href=\u0022[site:url]node\/[message:field-node:nid]\u0022\u003EDit svar\u003C\/a\u003Ep\u00e5 sp\u00f8rgsm\u00e5let \u003Ca href=\u0022[site:url]node\/[message:field-node:answers-related-question:nid]\u0022\u003E[message:field-node:answers-related-question:title]\u003C\/a\u003E er blevet udvalgt som sp\u00f8rgsm\u00e5lets bedste svar.",
+        "format" : "filtered_html",
+        "safe_value" : "\u003Cp\u003E\u003Ca href=\u0022url]node\/[message:field-node:nid]\u0022\u003EDit svar\u003C\/a\u003Ep\u00e5 sp\u00f8rgsm\u00e5let \u003Ca href=\u0022url]node\/[message:field-node:answers-related-question:nid]\u0022\u003E[message:field-node:answers-related-question:title]\u003C\/a\u003E er blevet udvalgt som sp\u00f8rgsm\u00e5lets bedste svar.\u003C\/p\u003E\n"
+      }
+    ]
+  },
+  "rdf_mapping" : []
+}');
+  
+  $items['question_answered'] = entity_import('message_type', '{
+    "name" : "question_answered",
+    "description" : "Answer created",
     "argument_keys" : [],
     "argument" : [],
     "category" : "message_type",
@@ -37,18 +61,11 @@ function myassist_questions_answers_default_message_type() {
     },
     "language" : "da",
     "arguments" : null,
-    "message_text" : {
-      "da" : [
+    "message_text" : { "da" : [
         {
-          "value" : "\u003Ca href=\u0022[site:url]node\/[message:field-node:nid]\u0022\u003EDit svar\u003C\/a\u003E p\u00e5 sp\u00f8rgsm\u00e5let \u003Ca href=\u0022[site:url]node\/[message:field-node:answers-related-question:nid]\u0022\u003E[message:field-node:answers-related-question:title]\u003C\/a\u003E er blevet udvalgt som sp\u00f8rgsm\u00e5lets bedste svar.",
-          "format" : "full_html",
-          "safe_value" : "\u003Cp\u003E\u003Ca href=\u0022[site:url]node\/[message:field-node:nid]\u0022\u003EDit svar\u003C\/a\u003E p\u00e5 sp\u00f8rgsm\u00e5let \u003Ca href=\u0022[site:url]node\/[message:field-node:answers-related-question:nid]\u0022\u003E[message:field-node:answers-related-question:title]\u003C\/a\u003E er blevet udvalgt som sp\u00f8rgsm\u00e5lets bedste svar.\u003C\/p\u003E\n"
-        }
-      ],
-      "en" : [
-        {
-          "value" : "There is a new reply to the question: \u003Ca href=\u0022\/node\/[message:field-message-node-reference:nid]\u0022\u003E[message:field-message-node-reference:field_description]\u003C\/a\u003E",
-          "format" : "html"
+          "value" : "Der er kommet et nyt svar til sp\u00f8rgsm\u00e5let: \u003Ca href=\u0022[site:url]node\/[message:field-node:nid]\u0022\u003E[message:field-node:title]\u003C\/a\u003E",
+          "format" : "filtered_html",
+          "safe_value" : "\u003Cp\u003EDer er kommet et nyt svar til sp\u00f8rgsm\u00e5let: \u003Ca href=\u0022url]node\/[message:field-node:nid]\u0022\u003E[message:field-node:title]\u003C\/a\u003E\u003C\/p\u003E\n"
         }
       ]
     },
