@@ -36,8 +36,16 @@ function myassist_notification_rules_process($recipient, $messageType, $node) {
     if ($recipient != null && $node != null) {
         $message = message_create($messageType, array('uid' => $recipient->uid));
         $wrapper = entity_metadata_wrapper('message', $message);
-        $wrapper->field_node->set($node);
-        $wrapper->field_sender->set($user);
+        try {
+            $wrapper->field_node->set($node);
+        } catch (Exception $e) {
+            throw new Exception("Failed setting field_node on message; message pointer may be incorrect");
+        }
+        try {
+            $wrapper->field_sender->set($user);
+        } catch (Exception $e) {
+            throw new Exception("Failed setting field_sender on message; message pointer may be incorrect");
+        }
         $wrapper->save();
 
         if ($recipient->mail) {
