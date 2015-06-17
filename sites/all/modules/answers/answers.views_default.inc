@@ -244,7 +244,7 @@ function _answers_set_questions_view(&$view) {
  * Return the structure of the question_answers view.
  */
 function _answers_set_question_answers_view(&$view) {
-
+  $view = new view();
   $view->name = 'question_answers';
   $view->description = 'Provide a list of answers to a question';
   $view->tag = 'answers, answers_best_answer, answers_voting';
@@ -270,6 +270,7 @@ function _answers_set_question_answers_view(&$view) {
   $handler->display->display_options['exposed_form']['options']['expose_sort_order'] = FALSE;
   $handler->display->display_options['exposed_form']['options']['sort_asc_label'] = 'Stigende';
   $handler->display->display_options['exposed_form']['options']['sort_desc_label'] = 'Faldende';
+  $handler->display->display_options['exposed_form']['options']['autosubmit'] = TRUE;
   $handler->display->display_options['pager']['type'] = 'full';
   $handler->display->display_options['pager']['options']['items_per_page'] = '10';
   $handler->display->display_options['pager']['options']['offset'] = '0';
@@ -284,7 +285,8 @@ function _answers_set_question_answers_view(&$view) {
   $handler->display->display_options['pager']['options']['tags']['last'] = 'sidste »';
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['row_plugin'] = 'node';
-  $handler->display->display_options['row_options']['view_mode'] = 'full';
+  $handler->display->display_options['row_options']['view_mode'] = 'answers_full_node';
+  $handler->display->display_options['row_options']['comments'] = TRUE;
   /* Overskrift: Global: Antal svar */
   $handler->display->display_options['header']['answers_count']['id'] = 'answers_count';
   $handler->display->display_options['header']['answers_count']['table'] = 'views';
@@ -313,7 +315,6 @@ function _answers_set_question_answers_view(&$view) {
   $handler->display->display_options['sorts']['timestamp']['field'] = 'timestamp';
   $handler->display->display_options['sorts']['timestamp']['relationship'] = 'flag_content_rel';
   $handler->display->display_options['sorts']['timestamp']['order'] = 'DESC';
-  $handler->display->display_options['sorts']['timestamp']['expose']['label'] = 'Flagtidspunkt';
   /* Sort criterion: Afstemningsresultater: Værdi */
   $handler->display->display_options['sorts']['value']['id'] = 'value';
   $handler->display->display_options['sorts']['value']['table'] = 'votingapi_cache';
@@ -321,7 +322,7 @@ function _answers_set_question_answers_view(&$view) {
   $handler->display->display_options['sorts']['value']['relationship'] = 'votingapi_cache';
   $handler->display->display_options['sorts']['value']['order'] = 'DESC';
   $handler->display->display_options['sorts']['value']['exposed'] = TRUE;
-  $handler->display->display_options['sorts']['value']['expose']['label'] = 'Bedste svar først';
+  $handler->display->display_options['sorts']['value']['expose']['label'] = 'Stemmer';
   $handler->display->display_options['sorts']['value']['coalesce'] = 1;
   /* Sort criterion: Indhold: Oprettelsesdato */
   $handler->display->display_options['sorts']['created']['id'] = 'created';
@@ -329,7 +330,7 @@ function _answers_set_question_answers_view(&$view) {
   $handler->display->display_options['sorts']['created']['field'] = 'created';
   $handler->display->display_options['sorts']['created']['order'] = 'DESC';
   $handler->display->display_options['sorts']['created']['exposed'] = TRUE;
-  $handler->display->display_options['sorts']['created']['expose']['label'] = 'Nyeste svar først';
+  $handler->display->display_options['sorts']['created']['expose']['label'] = 'Oprettelsesdato';
   /* Contextual filter: Indhold: Related Question (answers_related_question) */
   $handler->display->display_options['arguments']['answers_related_question_target_id']['id'] = 'answers_related_question_target_id';
   $handler->display->display_options['arguments']['answers_related_question_target_id']['table'] = 'field_data_answers_related_question';
@@ -371,9 +372,8 @@ function _answers_set_question_answers_view(&$view) {
     t('sidste »'),
     t('flag_best_answer'),
     t('Afstemningsresultater'),
-    t('Flagtidspunkt'),
-    t('Bedste svar først'),
-    t('Nyeste svar først'),
+    t('Stemmer'),
+    t('Oprettelsesdato'),
     t('Alle'),
   );
 }

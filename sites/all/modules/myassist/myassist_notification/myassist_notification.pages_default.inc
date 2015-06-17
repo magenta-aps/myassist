@@ -143,8 +143,6 @@ function myassist_notification_default_page_manager_pages() {
   $display->uuid = '4331819e-b207-46ff-b169-b5fc9fe50b88';
   $display->content = array();
   $display->panels = array();
-
-
     $pane = new stdClass();
     $pane->pid = 'new-2c921fba-066a-4b6a-8633-f6e4afe105e0';
     $pane->panel = 'middle';
@@ -169,37 +167,30 @@ function myassist_notification_default_page_manager_pages() {
     $pane->uuid = '2c921fba-066a-4b6a-8633-f6e4afe105e0';
     $display->content['new-2c921fba-066a-4b6a-8633-f6e4afe105e0'] = $pane;
     $display->panels['middle'][0] = 'new-2c921fba-066a-4b6a-8633-f6e4afe105e0';
-
-
-
-  $pane = new stdClass();
-  $pane->pid = 'new-2c921fba-066a-4b6a-8633-f6e4afe105e1';
-  $pane->panel = 'middle';
-  $pane->type = 'views_panes';
-  $pane->subtype = 'user_messages-panel_pane_2';
-  $pane->shown = TRUE;
-  $pane->access = array();
-  $pane->configuration = array(
-    'more_link' => 1,
-    'use_pager' => 0,
-    'pager_id' => '0',
-    'items_per_page' => '3',
-  );
-  $pane->cache = array();
-  $pane->style = array(
-    'settings' => NULL,
-  );
-  $pane->css = array();
-  $pane->extras = array();
-  $pane->position = 1;
-  $pane->locks = array();
-  $pane->uuid = '2c921fba-066a-4b6a-8633-f6e4afe105e1';
-  $display->content['new-2c921fba-066a-4b6a-8633-f6e4afe105e1'] = $pane;
-  $display->panels['middle'][1] = 'new-2c921fba-066a-4b6a-8633-f6e4afe105e1';
-
-
-
-
+    $pane = new stdClass();
+    $pane->pid = 'new-2c921fba-066a-4b6a-8633-f6e4afe105e1';
+    $pane->panel = 'middle';
+    $pane->type = 'views_panes';
+    $pane->subtype = 'user_messages-panel_pane_2';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'more_link' => 1,
+      'use_pager' => 0,
+      'pager_id' => '0',
+      'items_per_page' => '3',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = '2c921fba-066a-4b6a-8633-f6e4afe105e1';
+    $display->content['new-2c921fba-066a-4b6a-8633-f6e4afe105e1'] = $pane;
+    $display->panels['middle'][1] = 'new-2c921fba-066a-4b6a-8633-f6e4afe105e1';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = 'new-2c921fba-066a-4b6a-8633-f6e4afe105e0';
   $handler->conf['display'] = $display;

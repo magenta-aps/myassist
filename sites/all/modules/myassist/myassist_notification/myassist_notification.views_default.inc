@@ -326,7 +326,6 @@ function myassist_notification_views_default_views() {
     t('mere'),
     t('View panes'),
     t('Read messages'),
-    t('Messages archive'),
     t('View all read notifications'),
     t('Unread messages - full'),
     t('Antal elementer'),
