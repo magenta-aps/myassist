@@ -45,6 +45,10 @@ function myassist_notification_views_default_views() {
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['row_plugin'] = 'fields';
+  $handler->display->display_options['row_options']['inline'] = array(
+    'ops' => 'ops',
+    'message_render' => 'message_render',
+  );
   $handler->display->display_options['row_options']['default_field_elements'] = FALSE;
   /* No results behavior: Global: Text area */
   $handler->display->display_options['empty']['area']['id'] = 'area';
@@ -78,7 +82,7 @@ function myassist_notification_views_default_views() {
   $handler->display->display_options['fields']['message_render']['element_default_classes'] = FALSE;
   $handler->display->display_options['fields']['message_render']['hide_alter_empty'] = FALSE;
   $handler->display->display_options['fields']['message_render']['partials'] = 1;
-  $handler->display->display_options['fields']['message_render']['partials_delta'] = '0';
+  $handler->display->display_options['fields']['message_render']['partials_delta'] = '1';
   /* Sort criterion: Meddelelse: Timestamp */
   $handler->display->display_options['sorts']['timestamp']['id'] = 'timestamp';
   $handler->display->display_options['sorts']['timestamp']['table'] = 'message';
