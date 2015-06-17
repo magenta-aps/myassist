@@ -48,15 +48,18 @@ function myassist_notification_rules_process($recipient, $messageType, $node) {
         }
         $wrapper->save();
 
-        if ($recipient->mail) {
+        message_notify_send_message($message);
+        /*if ($recipient->mail) {
             $language = user_preferred_language($user);
             $subject = t("Myassist notification");
             $body = message_property_get_text($message, array('language' => $language));
+            var_dump($message);
+            var_dump($body);
             drupal_mail("myassist_notification", 'myassist_notification', $recipient->mail, $language, array(
               'subject' => $subject,
               'body' => $body
             ));
-        }
+        }*/
     }
 }
 
