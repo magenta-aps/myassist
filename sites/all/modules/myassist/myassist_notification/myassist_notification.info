@@ -23,7 +23,6 @@ features[field_base][] = message_text
 features[field_instance][] = message-question_answered-field_node
 features[field_instance][] = message-question_answered-field_sender
 features[flag][] = message_read
-features[message_type][] = question_answered
 features[page_manager_pages][] = messages
 features[page_manager_pages][] = user_messages
 features[page_manager_pages][] = user_notifications
