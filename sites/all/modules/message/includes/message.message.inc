@@ -236,6 +236,7 @@ class Message extends Entity {
     // Iterate over the text fields.
     $tokens = array();
     foreach (field_info_instances('message_type', $message_type->category) as $instance) {
+      var_dump($instance);
       $field_name = $instance['field_name'];
       $field = field_info_field($field_name);
       if (!in_array($field['type'], array('text', 'text_long'))) {

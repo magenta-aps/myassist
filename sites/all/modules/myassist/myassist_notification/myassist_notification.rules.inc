@@ -32,6 +32,7 @@ function myassist_notification_rules_action_info() {
 
 function myassist_notification_rules_process($recipient, $messageType, $node) {
     global $user;
+
     if ($recipient != null && $node != null) {
         $message = message_create($messageType, array('uid' => $recipient->uid));
         $wrapper = entity_metadata_wrapper('message', $message);
