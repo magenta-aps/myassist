@@ -167,6 +167,29 @@ function myassist_menus_menu_default_menu_links() {
     'language' => 'und',
     'menu_links_customized' => 1,
   );
+  // Exported menu link: user-menu_beskeder:user/messages
+  $menu_links['user-menu_beskeder:user/messages'] = array(
+    'menu_name' => 'user-menu',
+    'link_path' => 'user/messages',
+    'router_path' => 'user/messages',
+    'link_title' => 'Beskeder',
+    'options' => array(
+      'attributes' => array(
+        'title' => '',
+      ),
+      'alter' => TRUE,
+      'identifier' => 'user-menu_beskeder:user/messages',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 0,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => 0,
+    'customized' => 1,
+    'language' => 'da',
+    'menu_links_customized' => 1,
+  );
   // Exported menu link: user-menu_edit-profile:user/edit
   $menu_links['user-menu_edit-profile:user/edit'] = array(
     'menu_name' => 'user-menu',
@@ -208,6 +231,25 @@ function myassist_menus_menu_default_menu_links() {
     'customized' => 1,
     'language' => 'und',
     'menu_links_customized' => 1,
+  );
+  // Exported menu link: user-menu_messages:user/messages
+  $menu_links['user-menu_messages:user/messages'] = array(
+    'menu_name' => 'user-menu',
+    'link_path' => 'user/messages',
+    'router_path' => 'user/messages',
+    'link_title' => 'messages',
+    'options' => array(
+      'identifier' => 'user-menu_messages:user/messages',
+    ),
+    'module' => 'system',
+    'hidden' => -1,
+    'external' => 0,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => 0,
+    'customized' => 0,
+    'language' => 'und',
+    'menu_links_customized' => 0,
   );
   // Exported menu link: user-menu_my-points:myuserpoints
   $menu_links['user-menu_my-points:myuserpoints'] = array(
@@ -346,6 +388,7 @@ function myassist_menus_menu_default_menu_links() {
   // Included for use with string extractors like potx.
   t('Achievements');
   t('Ask a Question');
+  t('Beskeder');
   t('Categories');
   t('Edit Profile');
   t('Hjem');
@@ -359,6 +402,7 @@ function myassist_menus_menu_default_menu_links() {
   t('User account');
   t('View profile');
   t('Vis profil');
+  t('messages');
 
 
   return $menu_links;
