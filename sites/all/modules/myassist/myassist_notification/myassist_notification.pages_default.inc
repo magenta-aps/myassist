@@ -69,7 +69,7 @@ function myassist_notification_default_page_manager_pages() {
   $page->task = 'page';
   $page->admin_title = 'User messages';
   $page->admin_description = '';
-  $page->path = 'user/%uid/messages';
+  $page->path = 'user/messages';
   $page->access = array(
     'type' => 'none',
     'settings' => NULL,
@@ -99,14 +99,7 @@ function myassist_notification_default_page_manager_pages() {
       'weight' => '0',
     ),
   );
-  $page->arguments = array(
-    'uid' => array(
-      'id' => 1,
-      'identifier' => 'User: ID',
-      'name' => 'entity_id:user',
-      'settings' => array(),
-    ),
-  );
+  $page->arguments = array();
   $page->conf = array(
     'admin_paths' => FALSE,
   );
@@ -162,7 +155,7 @@ function myassist_notification_default_page_manager_pages() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 1;
+    $pane->position = 0;
     $pane->locks = array();
     $pane->uuid = '2c921fba-066a-4b6a-8633-f6e4afe105e0';
     $display->content['new-2c921fba-066a-4b6a-8633-f6e4afe105e0'] = $pane;
