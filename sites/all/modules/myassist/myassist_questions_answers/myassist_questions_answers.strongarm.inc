@@ -21,7 +21,7 @@ function myassist_questions_answers_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'additional_settings__active_tab_answers_question';
-  $strongarm->value = 'edit-submission';
+  $strongarm->value = 'edit-workflow';
   $export['additional_settings__active_tab_answers_question'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -77,7 +77,7 @@ function myassist_questions_answers_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'comment_answers_answer';
-  $strongarm->value = '2';
+  $strongarm->value = 2;
   $export['comment_answers_answer'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -133,7 +133,7 @@ function myassist_questions_answers_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'comment_preview_answers_answer';
-  $strongarm->value = '0';
+  $strongarm->value = 0;
   $export['comment_preview_answers_answer'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -330,6 +330,7 @@ function myassist_questions_answers_strongarm() {
   $strongarm->name = 'node_options_answers_question';
   $strongarm->value = array(
     0 => 'status',
+    1 => 'promote',
   );
   $export['node_options_answers_question'] = $strongarm;
 
@@ -337,7 +338,7 @@ function myassist_questions_answers_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'node_preview_answers_answer';
-  $strongarm->value = '0';
+  $strongarm->value = 0;
   $export['node_preview_answers_answer'] = $strongarm;
 
   $strongarm = new stdClass();
