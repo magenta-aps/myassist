@@ -13,9 +13,44 @@ function myassist_user_profile2_view($profile, $view_mode, $langcode) {
   $uid = $profile->uid;
 
   $profile->content['userinfo'] = array(
-    '#theme' => "myassist_userinfo",
-    "#age" => $profile->content["field_age"]
+    '#theme' => "myassist_userinfo"
   );
+
+  $birthdate = field_get_items("profile2", $profile, "field_birthday");
+  if ($birthdate) {
+    if (is_array($birthdate)) {
+      $birthdate = count($birthdate) ? $birthdate[0] : NULL;
+    }
+    if (is_array($birthdate) && array_key_exists("value", $birthdate)) {
+      $diff = date_diff(DateTime::createFromFormat('U', $birthdate['value']), new DateTime());
+      $age = $diff->y;
+
+      $profile->content['userinfo']['#age'] = array(
+        '#theme' => 'field',
+        '#weight' => '1',
+        '#title' => 'Age',
+        '#access' => TRUE,
+        '#label_display' => 'hidden',
+        '#view_mode' => 'account',
+        '#language' => $langcode,
+        '#field_name' => 'field_age',
+        '#field_type' => 'number_integer',
+        '#field_translatable' => '0',
+        '#entity_type' => 'profile2',
+        '#bundle' => 'ungeprofil',
+        '#items' => array(
+          array(
+            'value' => t('%age years', array("%age" => $age))
+          )
+        ),
+        0 => array(
+          '#markup' => t('%age years', array("%age" => $age))
+        )
+      );
+    }
+  }
+
+
 
   if (array_key_exists("field_gender", $profile->content)) {
     $profile->content['userinfo']['#gender'] = $profile->content["field_gender"];
