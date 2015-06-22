@@ -10,46 +10,6 @@
 function myassist_user_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'profile2-ungeprofil-field_age'
-  $field_instances['profile2-ungeprofil-field_age'] = array(
-    'bundle' => 'ungeprofil',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'hidden',
-        'module' => 'number',
-        'settings' => array(
-          'decimal_separator' => '.',
-          'prefix_suffix' => 1,
-          'scale' => 0,
-          'thousand_separator' => ' ',
-        ),
-        'type' => 'number_integer',
-        'weight' => 1,
-      ),
-    ),
-    'entity_type' => 'profile2',
-    'field_name' => 'field_age',
-    'label' => 'Age',
-    'required' => 1,
-    'settings' => array(
-      'max' => 25,
-      'min' => 7,
-      'prefix' => '',
-      'suffix' => 'year|years',
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 0,
-      'module' => 'number',
-      'settings' => array(),
-      'type' => 'number',
-      'weight' => 1,
-    ),
-  );
-
   // Exported field_instance: 'profile2-ungeprofil-field_avatar'
   $field_instances['profile2-ungeprofil-field_avatar'] = array(
     'bundle' => 'ungeprofil',
@@ -91,6 +51,46 @@ function myassist_user_field_default_field_instances() {
       ),
       'type' => 'image_image',
       'weight' => 5,
+    ),
+  );
+
+  // Exported field_instance: 'profile2-ungeprofil-field_birthday'
+  $field_instances['profile2-ungeprofil-field_birthday'] = array(
+    'bundle' => 'ungeprofil',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 5,
+      ),
+    ),
+    'entity_type' => 'profile2',
+    'field_name' => 'field_birthday',
+    'label' => 'Birthday',
+    'required' => 1,
+    'settings' => array(
+      'default_value' => 'now',
+      'default_value2' => 'same',
+      'default_value_code' => '',
+      'default_value_code2' => '',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'date',
+      'settings' => array(
+        'increment' => 30,
+        'input_format' => 'm/d/Y - H:i:s',
+        'input_format_custom' => '',
+        'label_position' => 'above',
+        'text_parts' => array(),
+        'year_range' => '1990:+0',
+      ),
+      'type' => 'date_select',
+      'weight' => 8,
     ),
   );
 
@@ -194,46 +194,6 @@ function myassist_user_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'profile2-voksenprofil-field_age'
-  $field_instances['profile2-voksenprofil-field_age'] = array(
-    'bundle' => 'voksenprofil',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'hidden',
-        'module' => 'number',
-        'settings' => array(
-          'decimal_separator' => '.',
-          'prefix_suffix' => TRUE,
-          'scale' => 0,
-          'thousand_separator' => ' ',
-        ),
-        'type' => 'number_integer',
-        'weight' => 2,
-      ),
-    ),
-    'entity_type' => 'profile2',
-    'field_name' => 'field_age',
-    'label' => 'Age',
-    'required' => 1,
-    'settings' => array(
-      'max' => 110,
-      'min' => 18,
-      'prefix' => '',
-      'suffix' => 'year|years',
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 0,
-      'module' => 'number',
-      'settings' => array(),
-      'type' => 'number',
-      'weight' => 5,
-    ),
-  );
-
   // Exported field_instance: 'profile2-voksenprofil-field_avatar'
   $field_instances['profile2-voksenprofil-field_avatar'] = array(
     'bundle' => 'voksenprofil',
@@ -309,6 +269,53 @@ function myassist_user_field_default_field_instances() {
       ),
       'type' => 'text_textarea',
       'weight' => 1,
+    ),
+  );
+
+  // Exported field_instance: 'profile2-voksenprofil-field_birthday'
+  $field_instances['profile2-voksenprofil-field_birthday'] = array(
+    'bundle' => 'voksenprofil',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'date',
+        'settings' => array(
+          'format_type' => 'long',
+          'fromto' => 'both',
+          'multiple_from' => '',
+          'multiple_number' => '',
+          'multiple_to' => '',
+        ),
+        'type' => 'date_default',
+        'weight' => 7,
+      ),
+    ),
+    'entity_type' => 'profile2',
+    'field_name' => 'field_birthday',
+    'label' => 'Birthday',
+    'required' => 0,
+    'settings' => array(
+      'default_value' => 'now',
+      'default_value2' => 'same',
+      'default_value_code' => '',
+      'default_value_code2' => '',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'date',
+      'settings' => array(
+        'increment' => 30,
+        'input_format' => 'm/d/Y - H:i:s',
+        'input_format_custom' => '',
+        'label_position' => 'above',
+        'text_parts' => array(),
+        'year_range' => '1950:+0',
+      ),
+      'type' => 'date_select',
+      'weight' => 13,
     ),
   );
 
@@ -415,7 +422,7 @@ function myassist_user_field_default_field_instances() {
   // Translatables
   // Included for use with string extractors like potx.
   t('About me');
-  t('Age');
+  t('Birthday');
   t('Favorite quote');
   t('Gender');
   t('Image');

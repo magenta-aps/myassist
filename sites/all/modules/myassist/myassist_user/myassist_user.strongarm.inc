@@ -69,6 +69,9 @@ function myassist_user_strongarm() {
       'diff_standard' => array(
         'custom_settings' => FALSE,
       ),
+      'token' => array(
+        'custom_settings' => FALSE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(),
@@ -204,7 +207,7 @@ function myassist_user_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'l10n_update_last_check';
-  $strongarm->value = 1434634744;
+  $strongarm->value = 1434963722;
   $export['l10n_update_last_check'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -451,6 +454,45 @@ function myassist_user_strongarm() {
         'filename' => '',
         'fileurl' => '',
         'uri' => '',
+      ),
+    ),
+    'date' => array(
+      'da' => (object) array(
+        'name' => 'date',
+        'project_type' => 'module',
+        'core' => '7.x',
+        'version' => '7.x-2.8',
+        'server_pattern' => 'http://ftp.drupal.org/files/translations/%core/%project/%project-%release.%language.po',
+        'status' => '1',
+        'project' => 'date',
+        'langcode' => 'da',
+        'type' => 'current',
+        'timestamp' => 1434963719,
+        'last_checked' => 1434963720,
+        'files' => array(
+          'remote' => (object) array(
+            'project' => 'date',
+            'langcode' => 'da',
+            'version' => '7.x-2.8',
+            'type' => 'remote',
+            'filename' => 'date-7.x-2.8.da.po',
+            'uri' => 'http://ftp.drupal.org/files/translations/7.x/date/date-7.x-2.8.da.po',
+            'timestamp' => 1412687466,
+          ),
+          'local' => (object) array(
+            'project' => 'date',
+            'langcode' => 'da',
+            'version' => '7.x-2.8',
+            'type' => 'local',
+            'filename' => 'date-7.x-2.8.da.po',
+            'uri' => 'translations://date-7.x-2.8.da.po',
+            'timestamp' => 1434963719,
+            'directory' => 'translations://',
+            'last_checked' => 1434963720,
+            'language' => 'da',
+          ),
+        ),
+        'language' => 'da',
       ),
     ),
     'devel' => array(
