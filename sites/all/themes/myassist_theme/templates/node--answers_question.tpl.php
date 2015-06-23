@@ -93,6 +93,8 @@
   hide($content['best_answer']);
   hide($content['answers_list']);
   hide($content['new_answer_form']);
+
+  $locked = array_key_exists('lock_message', $content);
 ?>
 
 <div class="node-answers-wrapper">
@@ -167,8 +169,11 @@
           if ($view_mode !== 'full') {
             print '<a id="answers-btn-answer" class="answers-btn-primary" href="' . $node_url . '">' . t("Go to question") . '</a>';
           }
+
+          if (!$locked) {
+            print '<a id="answers-btn-answer" class="answers-btn-primary" href="' . $node_url . '#new-answer-form">' . t("Answer"). '</a>';
+          }
         ?>
-        <a id="answers-btn-answer" class="answers-btn-primary" href="<?php print $node_url; ?>#new-answer-form"><?php print t("Answer"); ?></a>
           <div class="link-wrapper">
           <?php
             if (user_access('post comments') && $view_mode === 'full') {
@@ -185,7 +190,7 @@
 
 
         if ($view_mode === 'full') {
-          if ($user->uid === $node->uid && count($content['body']['#object']->question_locks) == 0) {
+          if ($user->uid === $node->uid && !$locked) {
             print '<a id="answers-btn-answer" class="answers-btn-primary" href="' . $node_url . '/lock">' . t("Lock question") . '</a>';
           }
         }
