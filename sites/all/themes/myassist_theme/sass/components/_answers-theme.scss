@@ -378,7 +378,7 @@
 
 
 /************************************************************************************************/
-/* ACHIEVEMENT                                                                                  */
+/* ACHIEVEMENTS                                                                                 */
 /************************************************************************************************/
 
 .achievement-image {
@@ -391,4 +391,40 @@
     width: auto;
     height: 100%;
   }
+}
+
+.achievement {
+  height: auto;
+  @include clearfix;
+}
+
+.achievement-leaderboard-first,
+.achievement-leaderboard-recent {
+  float: none;
+  width: auto;
+  margin-bottom: $u;
+}
+
+
+/************************************************************************************************/
+/* MEDIA QUERIES                                                                                */
+/************************************************************************************************/
+
+/* Layout for larger screens */
+@media all and (min-width: 960px) {
+
+  #content {
+    @include clearfix;
+  }
+  
+  /* Achievements */
+  .achievement-leaderboard-first,
+  .achievement-leaderboard-recent {
+    float: left;
+    width: 48%;
+  }
+  .achievement-leaderboard-recent {
+    float: right;
+  }
+  
 }

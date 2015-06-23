@@ -136,7 +136,7 @@ function template_preprocess_achievement_latest_unlock(&$variables) {
 function achievements_template_shared_variables(&$variables) {
   $variables['state'] = isset($variables['unlock']) ? 'unlocked' : 'locked';
   $variables['classes_array'][] = 'achievement-' . $variables['state'];
-  $variables['classes_array'][] = 'ui-corner-all'; // add rounded rects for tabs.
+  $variables['classes_array'][] = 'ui-corner-all'; // add rounded rects for tabs
   $variables['achievement_url'] = url('achievements/leaderboard/' . $variables['achievement']['id']);
 
   if (isset($variables['achievement']['secret']) && !achievements_unlocked_already($variables['achievement']['id'])) {
