@@ -177,6 +177,19 @@
             }
           ?>
           </div>
+
+        <?php
+
+
+
+
+
+        if ($view_mode === 'full') {
+          if ($user->uid === $node->uid && count($content['body']['#object']->question_locks) == 0) {
+            print '<a id="answers-btn-answer" class="answers-btn-primary" href="' . $node_url . '/lock">' . t("Lock question") . '</a>';
+          }
+        }
+        ?>
       </div>
       <?php print render($content['comments']); ?>
     </div>  
