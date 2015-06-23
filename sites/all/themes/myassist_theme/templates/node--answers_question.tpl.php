@@ -94,7 +94,7 @@
   hide($content['answers_list']);
   hide($content['new_answer_form']);
 
-  $locked = array_key_exists('lock_message', $content);
+  $locked = array_key_exists('lock_message', $content) || array_key_exists('question_locks', $content);
 ?>
 
 <div class="node-answers-wrapper">
