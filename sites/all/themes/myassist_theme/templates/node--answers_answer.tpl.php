@@ -86,7 +86,33 @@
 
 
 
-<?php  
+<?php
+
+  $question = NULL;
+    foreach ($node->answers_related_question as $key => $value) {
+      try {
+        $question_node_id = $value[0]['target_id'];
+        if ($question_node_id) {
+          $question = node_load($question_node_id);
+          break;
+        }
+      } catch (Exception $e) {
+      }
+    }
+
+  $question_locked = false;
+  if ($question) {
+    foreach ($question->question_locks as $key => $value) {
+      foreach ($value as $v) {
+        if (count($v) > 0){
+          $question_locked = true;
+          break;
+        }
+      }
+      if ($question_locked) {break;}
+    }
+  }
+
   // Hide these items to render when we choose.
   hide($content['links']['statistics']);
   hide($content['comments']);
@@ -159,7 +185,7 @@
         <div class="link-wrapper">
           <?php 
             print $links;
-            if (user_access('post comments') && $view_mode === 'answers_full_node') {
+            if (user_access('post comments') && $view_mode === 'answers_full_node' && !$question_locked) {
 			  // Add a "pseudo-link" to open the comment form. This is done using jquery
               print '<ul class="links"><li class="answers-comment-button"><a>' . t('Comment') . '</a></li></ul>';
             }

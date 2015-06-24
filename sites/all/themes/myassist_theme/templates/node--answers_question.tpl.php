@@ -189,7 +189,7 @@
         ?>
           <div class="link-wrapper">
           <?php
-            if (user_access('post comments') && $view_mode === 'full') {
+            if (user_access('post comments') && $view_mode === 'full' && !$locked) {
               // Add a "pseudo-link" to open the comment dialog. This is done using jquery.
               print '<ul class="links"><li class="answers-comment-button"><a>' . t("Comment") . '</a></li></ul>';
             }
