@@ -5,7 +5,7 @@
             form.find("input[type=submit]").hide();
             setTimeout(function () { // Execute after other scripts, or the view won't be found
                 var dropdown = form.find(".views-widget-sort-by select").get(0);
-                if (!dropdown.exposedFormAjax) {
+                if (dropdown && !dropdown.exposedFormAjax) {
                     var container = form.parents(".view-id-question_answers");
                     var classNames = container.attr("className").split(" ");
                     var domId;
