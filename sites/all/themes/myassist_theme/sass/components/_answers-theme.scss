@@ -332,6 +332,10 @@
 
 .text-format-wrapper {
   margin-bottom: $u/2;
+
+  .filter-wrapper {
+    display: none;
+  }
 }
 
 
