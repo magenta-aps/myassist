@@ -96,6 +96,7 @@
   hide($content['answers_list']);
   hide($content['new_answer_form']);
   hide($content['lock_message']);
+  hide($content['question_locks']);
 
 ?>
 
