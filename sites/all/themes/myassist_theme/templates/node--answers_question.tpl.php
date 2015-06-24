@@ -100,7 +100,7 @@
 ?>
 
 
-<?php if ($locked) {
+<?php if ($page && $locked) {
   print '<em class="question_locked">' . t("[Solved]") . '</em>';
 } ?>
 
@@ -110,6 +110,11 @@
     <?php if (!$page){ ?>
       <h2<?php print $title_attributes; ?>>
         <a href="<?php print $node_url; ?>"><?php print $title; ?></a>
+        <?php
+        if ($locked) {
+        print '<em class="question_locked">' . t("[Solved]") . '</em>';
+        }
+        ?>
       </h2>
     <?php } ?>
     <?php print render($title_suffix); ?>
