@@ -84,8 +84,10 @@
   unset($content['links']['comment']['#links']['comment-add']);
 ?>
 
-<?php 
- 
+<?php
+
+  $locked = array_key_exists('lock_message', $content) || array_key_exists('question_locks', $content);
+
   // Hide these items to render when we choose.
   hide($content['links']['statistics']);
   hide($content['comments']);
@@ -93,9 +95,14 @@
   hide($content['best_answer']);
   hide($content['answers_list']);
   hide($content['new_answer_form']);
+  hide($content['lock_message']);
 
-  $locked = array_key_exists('lock_message', $content) || array_key_exists('question_locks', $content);
 ?>
+
+
+<?php if ($locked) {
+  print '<em class="question_locked">' . t("[Solved]") . '</em>';
+} ?>
 
 <div class="node-answers-wrapper">
   <div id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix" <?php print $attributes; ?>>
