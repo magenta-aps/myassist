@@ -52,5 +52,20 @@
     }
   };
 
+  var updateOffset = function() {
+    var offset = $("#toolbar").height();
+    if (offset && !isNaN(offset)) {
+      $("#header").offset({top:offset});
+    }
+  };
+
+  Drupal.behaviors.toolbarOffset = {
+    attach: function(context, settings) {
+      $('#toolbar a.toggle', context).click(updateOffset);
+    }
+  };
+
+  $(updateOffset);
+  $(window).resize(updateOffset);
   
 })(jQuery, Drupal, this, this.document);
