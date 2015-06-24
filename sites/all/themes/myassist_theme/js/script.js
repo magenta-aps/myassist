@@ -55,7 +55,13 @@
   var updateOffset = function() {
     var offset = $("#toolbar").height();
     if (offset && !isNaN(offset)) {
-      $("#header").offset({top:offset});
+      $("#page > *").each(function(){
+        var el = $(this);
+        if (el.css("position") === "fixed") {
+          el.offset({top:offset});
+        }
+      });
+
     }
   };
 
