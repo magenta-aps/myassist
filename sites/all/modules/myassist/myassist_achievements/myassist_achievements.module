@@ -267,8 +267,32 @@ function myassist_achievements_userpoints_list_transactions_alter(&$data) {
   );
 }
 
-
-
+/**
+ * Implements hook_TYPE_alter().
+ * Displays achievement badges on profile page
+ */
+function myassist_achievements_achievements_leaderboard_alter(&$data) {
+  if (array_key_exists('achievers', $data)) {
+    foreach ($data['achievers'] as $list_type => &$list) {
+      foreach ($list as $uid => $account) {
+        if (!myassist_achievements_user_can_earn_points($uid)) {
+          unset($list[$uid]);
+        }
+      }
+    }
+  }
+  if (array_key_exists('render', $data) && array_key_exists('#rows', $data['render'])) {
+    $pos = 1;
+    foreach ($data['render']['#rows'] as $uid => &$row) {
+      if (!myassist_achievements_user_can_earn_points($uid)) {
+        unset($data['render']['#rows'][$uid]);
+      } else {
+        $row['data'][0]['data'] = $pos;
+        $pos++;
+      }
+    }
+  }
+}
 
 
 /**
