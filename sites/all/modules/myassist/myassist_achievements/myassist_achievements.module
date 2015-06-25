@@ -118,6 +118,15 @@ function myassist_achievements_achievements_info() {
 }
 
 
+function myassist_achievements_permission() {
+  return array(
+    'earn points' => array(
+      'title' => t('Earn points'),
+    ),
+  );
+}
+
+
 
 /**
  * Implements hook_node_insert().
@@ -134,12 +143,28 @@ function myassist_achievements_node_insert($node) {
   }
 }
 
+function myassist_achievements_user_can_earn_points($uid) {
+  if ($uid == 1) {
+    return false;
+  }
+  return (user_access('earn points', user_load($uid)));
+}
+
 /*
  * Implements hook_userpoints
  * Trigger achievements for leveling up
  * Called when the user's points are altered (by userpoints_invoke_all() in userpoints.module)
  * */
 function myassist_achievements_userpoints($operation, $parameters) {
+
+
+  // Deny points to admin (see https://redmine.magenta-aps.dk/issues/13245) and users without the needed permissions
+  if ($operation === "points before") {
+    if (!myassist_achievements_user_can_earn_points($parameters['uid'])) {
+      return false;
+    }
+  }
+
   if ($operation === "points after") {
     $uid = $parameters["uid"];
     // Get the number of points before & after the change
@@ -251,83 +276,90 @@ function myassist_achievements_userpoints_list_transactions_alter(&$data) {
  * Displays achievement badges on profile page
  */
 function myassist_achievements_profile2_view($profile, $view_mode, $langcode) {
+
   $uid = $profile->uid;
 
-  $points = userpoints_get_current_points($uid);
-  $profile->content['points'] = array(
-    '#theme' => "myassist_data", // Point to definition in myassist_achievements_theme
-    '#weight' => 0,
-    '#title' => t('Points'),
-    '#class' => 'userpoints',
-    '#text' => t("@points points", array("@points" => $points)), // Pass data to template (name must be defined in the definition)
-    '#href' => "/user/$uid/points",
-  );
+  if (myassist_achievements_user_can_earn_points($uid)) {
+
+    $points = userpoints_get_current_points($uid);
+    $profile->content['points'] = array(
+      '#theme' => "myassist_data",
+      // Point to definition in myassist_achievements_theme
+      '#weight' => 0,
+      '#title' => t('Points'),
+      '#class' => 'userpoints',
+      '#text' => t("@points points", array("@points" => $points)),
+      // Pass data to template (name must be defined in the definition)
+      '#href' => "/user/$uid/points",
+    );
 
 
-  $level = myassist_achievements_get_user_level($uid);
-  $profile->content['level'] = array(
-    '#theme' => "myassist_data",
-    '#weight' => 0,
-    '#title' => t('Level'),
-    '#class' => 'userlevel',
-    '#text' => t("Level @level", array("@level" => $level["level"])),
-    '#href' => "/user/$uid/achievements",
-  );
+    $level = myassist_achievements_get_user_level($uid);
+    $profile->content['level'] = array(
+      '#theme' => "myassist_data",
+      '#weight' => 0,
+      '#title' => t('Level'),
+      '#class' => 'userlevel',
+      '#text' => t("Level @level", array("@level" => $level["level"])),
+      '#href' => "/user/$uid/achievements",
+    );
 
 
-  $profile->content['achievements'] = array(
-    '#type' => 'container',
-    '#attributes' => array('class'=>array('achievements'))
-  );
+    $profile->content['achievements'] = array(
+      '#type' => 'container',
+      '#attributes' => array('class' => array('achievements'))
+    );
 
-  // Get a list of all achievements
-  $achievements_grouped = achievements_load(NULL, TRUE);
-  // Get a definition of which achievements are unlocked by the user
-  $unlocks = achievements_unlocked_already(NULL, $uid);
+    // Get a list of all achievements
+    $achievements_grouped = achievements_load(NULL, TRUE);
+    // Get a definition of which achievements are unlocked by the user
+    $unlocks = achievements_unlocked_already(NULL, $uid);
 
-  // Find all achievement objects that the user has unlocked
-  $unlocked_achievements = array();
-  foreach ($achievements_grouped as $group_id => $group) {
-    foreach ($group['achievements'] as $achievement_id => $achievement) {
-      if (isset($unlocks[$achievement_id])) {
-        $unlocked_achievements[] = array(
-          'achievement' => $achievement,
-          'unlock' => $unlocks[$achievement_id]
-        );
+    // Find all achievement objects that the user has unlocked
+    $unlocked_achievements = array();
+    foreach ($achievements_grouped as $group_id => $group) {
+      foreach ($group['achievements'] as $achievement_id => $achievement) {
+        if (isset($unlocks[$achievement_id])) {
+          $unlocked_achievements[] = array(
+            'achievement' => $achievement,
+            'unlock' => $unlocks[$achievement_id]
+          );
+        }
       }
     }
-  }
 
-  // Sort the unlocked achievements by timestamp, newest first
-  function cmp_achievements($a, $b) {
-    $ta = $a['unlock']['timestamp'];
-    $tb = $b['unlock']['timestamp'];
-    return $ta === $tb ? 0 : $ta > $tb;
-  }
-  uksort($unlocked_achievements, "cmp_achievements");
+    // Sort the unlocked achievements by timestamp, newest first
+    function cmp_achievements($a, $b) {
+      $ta = $a['unlock']['timestamp'];
+      $tb = $b['unlock']['timestamp'];
+      return $ta === $tb ? 0 : $ta > $tb;
+    }
 
-  // Cut off all but the latest 10 achievements
-  array_splice($unlocked_achievements, 10);
+    uksort($unlocked_achievements, "cmp_achievements");
 
-  // Add the achievements to the rendering array
-  for ($i=0; $i<count($unlocked_achievements); $i++) {
-    $unlock = $unlocked_achievements[$i]['unlock'];
-    $achievement = $unlocked_achievements[$i]['achievement'];
-    $achievement['title'] = t($achievement['title']);
+    // Cut off all but the latest 10 achievements
+    array_splice($unlocked_achievements, 10);
 
-    // Get extra rendering info from the achievements module, such as image and title
-    $extra = array('achievement'=>$achievement, 'unlock'=>$unlock);
-    achievements_template_shared_variables($extra);
+    // Add the achievements to the rendering array
+    for ($i = 0; $i < count($unlocked_achievements); $i++) {
+      $unlock = $unlocked_achievements[$i]['unlock'];
+      $achievement = $unlocked_achievements[$i]['achievement'];
+      $achievement['title'] = t($achievement['title']);
 
-    // Stuff an object into our rendering array
-    $profile->content['achievements'][$achievement['id']] = array(
-      '#theme' => 'myassist_achievement',
-      '#weight' => $i,
-      '#title' => t('Achievement'),
-      '#achievement' => $achievement,
-      '#image' => $extra['image'],
-      '#achievement_title' => $extra['achievement_title'],
-    );
+      // Get extra rendering info from the achievements module, such as image and title
+      $extra = array('achievement' => $achievement, 'unlock' => $unlock);
+      achievements_template_shared_variables($extra);
+
+      // Stuff an object into our rendering array
+      $profile->content['achievements'][$achievement['id']] = array(
+        '#theme' => 'myassist_achievement',
+        '#weight' => $i,
+        '#title' => t('Achievement'),
+        '#achievement' => $achievement,
+        '#image' => $extra['image'],
+        '#achievement_title' => $extra['achievement_title'],
+      );
+    }
   }
 
 }
