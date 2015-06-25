@@ -51,29 +51,30 @@ function myassist_opeka_page_build(&$page)
                 $user_profile = profile2_load_by_user($user, 'ungeprofil');
             }
 
-            $birthday = field_get_items("profile2", $user_profile, "field_birthday");
-            if(is_array($birthday) && count($birthday) && array_key_exists('value', $birthday[0])) {
-                $diff = date_diff(DateTime::createFromFormat('U', $birthday[0]['value']), new DateTime());
-                $settings['drupal_user_age'] = $diff->y;
-            }
-            $gender_field = field_get_items("profile2", $user_profile, $gender_fieldname);
-
-            // TODO: probably some way to get this from metadata?
-            $gender_map = array(
-                "0" => "m",
-                "1" => "f"
-            );
-
-            if(is_array($gender_field) && count($gender_field) && array_key_exists('value', $gender_field[0])) {
-                $gender_value = $gender_field[0]['value'];
-                if(array_key_exists($gender_value, $gender_map)) {
-                    $gender_value = $gender_map[$gender_value];
-                } else {
-                    $gender_value = '';
+            if($user_profile) {
+                $birthday = field_get_items("profile2", $user_profile, "field_birthday");
+                if(is_array($birthday) && count($birthday) && array_key_exists('value', $birthday[0])) {
+                    $diff = date_diff(DateTime::createFromFormat('U', $birthday[0]['value']), new DateTime());
+                    $settings['drupal_user_age'] = $diff->y;
                 }
-                $settings['drupal_user_gender'] = $gender_value;
+                $gender_field = field_get_items("profile2", $user_profile, $gender_fieldname);
+
+                // TODO: probably some way to get this from metadata?
+                $gender_map = array(
+                    "0" => "m",
+                    "1" => "f"
+                );
+
+                if(is_array($gender_field) && count($gender_field) && array_key_exists('value', $gender_field[0])) {
+                    $gender_value = $gender_field[0]['value'];
+                    if(array_key_exists($gender_value, $gender_map)) {
+                        $gender_value = $gender_map[$gender_value];
+                    } else {
+                        $gender_value = '';
+                    }
+                    $settings['drupal_user_gender'] = $gender_value;
+                }
             }
-            
         }
 
         drupal_add_js(array('opeka' => $settings), 'setting');
