@@ -44,19 +44,19 @@ function myassist_opeka_page_build(&$page)
             $settings['drupal_user_uid'] = $user->uid;
             $settings['drupal_user_name'] = $user->name;
 
-            $user_profile = profile2_load_by_user($user, 'main');
-            $settings['drupal_user_profile'] = $user_profile;
-
-            $age_field = field_get_items("profile2", $user_profile, "field_age");
-            if(is_array($age_field) && count($age_field) && array_key_exists('value', $age_field[0])) {
-                $settings['drupal_user_age'] = $age_field[0]['value'];
+            $gender_fieldname = "field_gender_adult";
+            $user_profile = profile2_load_by_user($user, 'voksenprofil');
+            if(!$user_profile) {
+                $gender_fieldname = "field_gender";
+                $user_profile = profile2_load_by_user($user, 'ungeprofil');
             }
+
             $birthday = field_get_items("profile2", $user_profile, "field_birthday");
             if(is_array($birthday) && count($birthday) && array_key_exists('value', $birthday[0])) {
                 $diff = date_diff(DateTime::createFromFormat('U', $birthday[0]['value']), new DateTime());
                 $settings['drupal_user_age'] = $diff->y;
             }
-            $gender_field = field_get_items("profile2", $user_profile, "field_gender");
+            $gender_field = field_get_items("profile2", $user_profile, $gender_fieldname);
 
             // TODO: probably some way to get this from metadata?
             $gender_map = array(
@@ -73,6 +73,7 @@ function myassist_opeka_page_build(&$page)
                 }
                 $settings['drupal_user_gender'] = $gender_value;
             }
+            
         }
 
         drupal_add_js(array('opeka' => $settings), 'setting');
