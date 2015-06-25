@@ -277,11 +277,18 @@ function myassist_achievements_init() {
  * Displays achievement badges on profile page
  */
 function myassist_achievements_achievements_leaderboard_alter(&$data) {
+  $limit = 10;
+  $pos = 1;
   if (array_key_exists('achievers', $data)) {
     foreach ($data['achievers'] as $list_type => &$list) {
       foreach ($list as $uid => $account) {
+        if ($pos > $limit) {
+          unset($list[$uid]);
+        }
         if (!myassist_achievements_user_can_earn_points($uid)) {
           unset($list[$uid]);
+        } else {
+          $pos++;
         }
       }
     }
@@ -289,6 +296,9 @@ function myassist_achievements_achievements_leaderboard_alter(&$data) {
   if (array_key_exists('render', $data) && array_key_exists('#rows', $data['render'])) {
     $pos = 1;
     foreach ($data['render']['#rows'] as $uid => &$row) {
+      if ($pos > $limit) {
+        unset($data['render']['#rows'][$uid]);
+      }
       if (!myassist_achievements_user_can_earn_points($uid)) {
         unset($data['render']['#rows'][$uid]);
       } else {
