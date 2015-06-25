@@ -267,6 +267,11 @@ function myassist_achievements_userpoints_list_transactions_alter(&$data) {
   );
 }
 
+
+function myassist_achievements_init() {
+  variable_set('achievements_leaderboard_count_per_page', 10000);
+}
+
 /**
  * Implements hook_TYPE_alter().
  * Displays achievement badges on profile page
