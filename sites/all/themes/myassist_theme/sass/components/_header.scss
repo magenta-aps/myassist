@@ -3,11 +3,6 @@
  * Branding header.
  */
 
-.header {
-  background: lighten($basegrey, 60%);
-  box-shadow: ($u/4) 0 $u $u/4 rgba(0,0,0,0.2);
-}
-
 /* Wrapping link for logo. */
 .header__logo {
   float: left; /* LTR */
@@ -91,7 +86,7 @@
   width: $u*2.5;
   .block-title {
     @extend .icons;
-    background-image: url(../images/icons/circle-down.svg);
+    background-image: url(../images/icons/arrow-down.png);
     padding: 0;
     margin: 0;
     background-size: $u auto;
@@ -104,11 +99,11 @@
     list-style: none;
     margin: 0;
     padding: 0;
-    background: lighten($basegrey, 50%);
+    background: $blue;
     width: $u*10;
   }
   .menu__item {
-    border-top: dashed 1px $basegrey;
+    border-top: dashed 1px $smoke;
   }
   .menu__item:first-child {
     border: none;
@@ -120,7 +115,7 @@
 }
 #block-system-user-menu.open {
   .block-title {
-    background-image: url(../images/icons/circle-up.svg);
+    background-image: url(../images/icons/arrow-up.png);
   }
   .menu {
     display: block;

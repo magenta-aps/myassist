@@ -7,8 +7,10 @@
  *
  */
 
+
+/* Container */
 body {
-  background: lighten($basegrey, 60%);
+  background: $white;
 }
 
 /* Header */
@@ -28,7 +30,7 @@ body {
 }
 .header__logo {
   margin: $u/2;
-  width: $u*1.5;
+  width: auto;
   height: $u*1.5;
 }
 .header__region {
@@ -55,8 +57,6 @@ body {
   left: 0;
   right: 0;
   height: $u*2.5;
-  background: lighten($basegrey, 60%);
-  box-shadow: $u/4 0 $u $u/4 rgba(0, 0, 0, 0.2);
 }
 
 /* Footer/bottom */
@@ -154,9 +154,7 @@ body {
     right: auto;
     height: $u*2.5;
     margin-left: -16.5%;
-    background: lighten($basegrey, 60%);
-    box-shadow: none;
-    width: 20%;
+    width: 33.33%;
     z-index: 4;
   }
   
@@ -169,7 +167,6 @@ body {
   .region-bottom {
     padding-bottom: 0;
     .block {
-      background: lighten($basegrey, 45%);
       padding-bottom: $u;
       margin-bottom: 0;
     }
