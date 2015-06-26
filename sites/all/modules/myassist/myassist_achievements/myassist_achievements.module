@@ -239,17 +239,38 @@ function myassist_achievements_get_user_points_for_next_level($uid) {
  * */
 function myassist_achievements_userpoints_list_transactions_alter(&$data) {
   $uid = $data["#account"]->uid;
-  $level = myassist_achievements_get_user_level($uid);
+
+  // Kill "status" and "actions" column
+  $list = &$data['list']['table'];
+  $colsToDelete = array();
+  foreach ($list['#header'] as $index => $field) {
+    if (($field['data'] === t('Actions') || in_array('userpoints-transactions-header-actions', $field['class'])) ||
+      ($field['data'] === t('Status') || (isset($field['field']) && $field['field'] === 'status') || in_array('userpoints-transactions-header-status', $field['class']))) {
+      $colsToDelete[] = $index;
+      unset($list['#header'][$index]);
+    }
+  }
+  $list['#header'] = array_values($list['#header']);
+  foreach ($list['#rows'] as $index => &$row) {
+    foreach ($colsToDelete as $colToDelete) {
+      unset($list['#rows'][$index]['data'][$colToDelete]);
+    }
+    $list['#rows'][$index]['data'] = array_values($list['#rows'][$index]['data']);
+  }
+  unset($row);
 
   // Kill "pending points" row
-  if (isset($data['list']['summary_table']['#rows'])) {
-    foreach ($data['list']['summary_table']['#rows'] as $index => $row) {
+  $rows = &$data['list']['summary_table']['#rows'];
+  if (isset($rows)) {
+    foreach ($rows as $index => $row) {
       if (in_array('userpoints-myuserpoints-total-pending', $row['class']) || in_array(t('Pending points'), $row['data'])) {
-        unset($data['list']['summary_table']['#rows'][$index]);
+        unset($rows[$index]);
       }
     }
   }
 
+  // Add "Level" table
+  $level = myassist_achievements_get_user_level($uid);
   $data['list']['level'] = array(
       '#theme' => 'table',
       '#header' => array(
