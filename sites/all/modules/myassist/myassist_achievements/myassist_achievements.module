@@ -240,6 +240,16 @@ function myassist_achievements_get_user_points_for_next_level($uid) {
 function myassist_achievements_userpoints_list_transactions_alter(&$data) {
   $uid = $data["#account"]->uid;
   $level = myassist_achievements_get_user_level($uid);
+
+  // Kill "pending points" row
+  if (isset($data['list']['summary_table']['#rows'])) {
+    foreach ($data['list']['summary_table']['#rows'] as $index => $row) {
+      if (in_array('userpoints-myuserpoints-total-pending', $row['class']) || in_array(t('Pending points'), $row['data'])) {
+        unset($data['list']['summary_table']['#rows'][$index]);
+      }
+    }
+  }
+
   $data['list']['level'] = array(
       '#theme' => 'table',
       '#header' => array(
