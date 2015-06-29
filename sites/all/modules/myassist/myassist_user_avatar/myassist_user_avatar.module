@@ -18,9 +18,8 @@ function myassist_user_avatar_field_widget_form_alter(&$element, &$form_state, $
  * Implements hook_file_validate().
  * Reimplement image resizing to crop the image
  */
-function myassist_user_avatar_file_validate($file, $maximum_dimensions=0, $minimum_dimensions=0) {
+function myassist_user_avatar_file_validate($file, $maximum_dimensions="200x200", $minimum_dimensions=0) {
   $errors = array();
-
   // Check first that the file is an image.
   if ($info = image_get_info($file->uri)) {
     if ($maximum_dimensions) {
