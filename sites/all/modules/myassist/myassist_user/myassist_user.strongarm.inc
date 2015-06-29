@@ -207,7 +207,7 @@ function myassist_user_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'l10n_update_last_check';
-  $strongarm->value = 1434963722;
+  $strongarm->value = 1435331354;
   $export['l10n_update_last_check'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -699,6 +699,41 @@ function myassist_user_strongarm() {
         'uri' => '',
       ),
     ),
+    'exif_orientation' => array(
+      'da' => (object) array(
+        'name' => 'exif_orientation',
+        'project_type' => 'module',
+        'core' => '7.x',
+        'version' => '7.x-1.0',
+        'server_pattern' => 'http://ftp.drupal.org/files/translations/%core/%project/%project-%release.%language.po',
+        'status' => '1',
+        'project' => 'exif_orientation',
+        'langcode' => 'da',
+        'type' => '',
+        'timestamp' => 0,
+        'last_checked' => 0,
+        'files' => array(
+          'remote' => (object) array(
+            'project' => 'exif_orientation',
+            'langcode' => 'da',
+            'version' => '7.x-1.0',
+            'type' => 'remote',
+            'filename' => 'exif_orientation-7.x-1.0.da.po',
+            'uri' => 'http://ftp.drupal.org/files/translations/7.x/exif_orientation/exif_orientation-7.x-1.0.da.po',
+          ),
+          'local' => (object) array(
+            'project' => 'exif_orientation',
+            'langcode' => 'da',
+            'version' => '7.x-1.0',
+            'type' => 'local',
+            'filename' => 'exif_orientation-7.x-1.0.da.po',
+            'directory' => 'translations://',
+            'uri' => 'translations://exif_orientation-7.x-1.0.da.po',
+          ),
+        ),
+        'language' => 'da',
+      ),
+    ),
     'features' => array(
       'da' => (object) array(
         'name' => 'features',
@@ -858,6 +893,83 @@ function myassist_user_strongarm() {
           ),
         ),
         'language' => 'da',
+      ),
+    ),
+    'imagecache_actions' => array(
+      'da' => (object) array(
+        'name' => 'imagecache_actions',
+        'project_type' => 'module',
+        'core' => '7.x',
+        'version' => '7.x-1.5',
+        'server_pattern' => 'http://ftp.drupal.org/files/translations/%core/%project/%project-%release.%language.po',
+        'status' => '1',
+        'project' => 'imagecache_actions',
+        'langcode' => 'da',
+        'type' => 'current',
+        'timestamp' => 1435330369,
+        'last_checked' => 1435330368,
+        'files' => array(
+          'remote' => (object) array(
+            'project' => 'imagecache_actions',
+            'langcode' => 'da',
+            'version' => '7.x-1.5',
+            'type' => 'remote',
+            'filename' => 'imagecache_actions-7.x-1.5.da.po',
+            'uri' => 'http://ftp.drupal.org/files/translations/7.x/imagecache_actions/imagecache_actions-7.x-1.5.da.po',
+            'timestamp' => 1417436447,
+          ),
+          'local' => (object) array(
+            'project' => 'imagecache_actions',
+            'langcode' => 'da',
+            'version' => '7.x-1.5',
+            'type' => 'local',
+            'filename' => 'imagecache_actions-7.x-1.5.da.po',
+            'uri' => 'translations://imagecache_actions-7.x-1.5.da.po',
+            'timestamp' => 1435330369,
+            'directory' => 'translations://',
+            'last_checked' => 1435330368,
+            'language' => 'da',
+          ),
+        ),
+        'language' => 'da',
+      ),
+    ),
+    'imagemagick' => array(
+      'da' => (object) array(
+        'name' => 'imagemagick',
+        'project_type' => 'module',
+        'core' => '7.x',
+        'version' => '7.x-1.0',
+        'server_pattern' => 'http://ftp.drupal.org/files/translations/%core/%project/%project-%release.%language.po',
+        'status' => '1',
+        'project' => 'imagemagick',
+        'langcode' => 'da',
+        'type' => '',
+        'timestamp' => 0,
+        'last_checked' => 0,
+        'files' => array(
+          'remote' => (object) array(
+            'project' => 'imagemagick',
+            'langcode' => 'da',
+            'version' => '7.x-1.0',
+            'type' => 'remote',
+            'filename' => 'imagemagick-7.x-1.0.da.po',
+            'uri' => 'http://ftp.drupal.org/files/translations/7.x/imagemagick/imagemagick-7.x-1.0.da.po',
+          ),
+          'local' => (object) array(
+            'project' => 'imagemagick',
+            'langcode' => 'da',
+            'version' => '7.x-1.0',
+            'type' => 'local',
+            'filename' => 'imagemagick-7.x-1.0.da.po',
+            'directory' => 'translations://',
+            'uri' => 'translations://imagemagick-7.x-1.0.da.po',
+          ),
+        ),
+        'language' => 'da',
+        'filename' => '',
+        'fileurl' => '',
+        'uri' => '',
       ),
     ),
     'l10n_update' => array(
