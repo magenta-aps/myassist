@@ -88,6 +88,10 @@
 /**
  * Content
  */
+#page {
+  background: $white;
+  color: $darkblue;
+}
 #content {
   padding-top: $u;
 }
@@ -96,6 +100,26 @@
 /**
  * Navigation
  */
+
+.header,
+.region-navigation,
+.bottom__container {
+  background: $blue;
+  color: lighten($smoke, 20%);
+  a:link {
+    color: $white;
+  }
+  a:visited {
+    color: $white;
+  }
+  a:hover,
+  a:focus {
+    color: darken($white, 20%);
+  }
+  a:active {
+    color: darken($white, 30%);
+  }
+}
 
 #block-system-main-menu {
   h2 {
@@ -109,36 +133,33 @@
   .menu__item {
     display: block;
     float: left;
-    width: 25%;
-    
+    width: 33.33%;
+    text-align: center;
   }
   .menu__link {
     @extend .icons;
+    text-indent: 0;
+    text-align: center;
     width: auto;
-    background-size: $u*1.5 auto;
-    border-right: 1px solid lighten($basegrey, 45%);
-    border-left: 1px solid lighten($basegrey, 75%);
+    background-position: center $u/2;
+    background-size: $u auto;
+    padding: $u*1.5 $u/2 $u/2;
+    overflow: hidden;
+    font-size: $u*0.8;
   }
-  .menu__link[href="/categories"] {
-    background-image: url(../images/icons/question.svg);
+  .menu__link[href="/questions"] {
+    background-image: url(../images/icons/question.png);
   }
-  .menu__link[href="/achievements/leaderboard"] {
-    background-image: url(../images/icons/users.svg);
+  .menu__link[href="/user"] {
+    background-image: url(../images/icons/dashboard.png);
   }
-  .menu__link[href="/chat"] {
-    background-image: url(../images/icons/bubbles4.svg);
+  .menu__link[href="/opeka"] {
+    background-image: url(../images/icons/bubbles.png);
   }
-  .menu__link[href="/node/add/answers-question"] {
-    background-image: url(../images/icons/plus.svg);
+  .active {
+    background-color: lighten($blue, 20%);
+    color: $white;
   }
-}
-
-
-/**
- * Footer/bottom
- */
-.bottom__container {
-  background: lighten($basegrey, 40%);
 }
 
 

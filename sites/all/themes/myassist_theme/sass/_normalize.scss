@@ -107,12 +107,12 @@ html {
   -webkit-text-size-adjust: 100%; /* 2 */
 }
 
-/* Remove default margin. */
+
 body {
-  margin: 0;
-  padding: 0;
-  color: $basegrey;
-  background: #fff;
+  margin: 0; /* Remove default margin */
+  padding: 0; /* Remove default padding */
+  color: $white;
+  background: $blue;
 }
 
 /**
@@ -122,23 +122,23 @@ body {
  * http://meyerweb.com/eric/thoughts/2007/06/11/who-ordered-the-link-states
  */
 a:link {
-  color: $basecolor;
+  color: $blue;
   text-decoration: none;
 }
 a:visited {
-  color: desaturate($basecolor, 20%);
+  color: desaturate($blue, 20%);
   text-decoration: none;
 }
 a:hover,
 a:focus {
-  color: lighten($basecolor, 10%);
+  color: lighten($blue, 10%);
 }
 a:active {
-  color: lighten($basecolor, 20%);
+  color: lighten($blue, 20%);
 }
 .btn,
 .btn:link {
-  background-color: $basecolor;
+  background-color: $blue;
   color: #fff;
   padding: $u/2 $u;
   cursor: pointer;
@@ -148,16 +148,16 @@ a:active {
   display: inline-block;
 }
 .btn:visited {
-  background-color: desaturate($basecolor, 20%);
+  background-color: desaturate($blue, 20%);
   color: #fff;
 }
 .btn:hover,
 .btn:focus {
-  background-color: lighten($basecolor, 10%);
+  background-color: lighten($blue, 10%);
   color: #fff;
 }
 .btn:active {
-  background-color: lighten($basecolor, 20%);
+  background-color: lighten($blue, 20%);
   color: #fff;
 }
 

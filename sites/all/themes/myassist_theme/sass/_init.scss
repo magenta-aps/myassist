@@ -47,22 +47,15 @@ $h6-font-size: 0.6 * $base-font-size;
 // find any of the fonts in the list.
 
 // First, let's create some font stacks.
-$times-new-roman: "Times New Roman", Times, Georgia, "DejaVu Serif", serif;
-$times:           Times, "Times New Roman", Georgia, "DejaVu Serif", serif;
-$georgia:         Georgia, "Times New Roman", "DejaVu Serif", serif;
-
-$verdana:         Verdana, Tahoma, "DejaVu Sans", sans-serif;
-$tahoma:          Tahoma, Verdana, "DejaVu Sans", sans-serif;
-$helvetica:       Helvetica, Arial, "Nimbus Sans L", sans-serif;
-$arial:           Arial, Helvetica, "Nimbus Sans L", sans-serif;
+$font:       "Trebuchet MS", sans-serif;
 
 // For an explanation of why "sans-serif" is at the end of this list, see
 // http://meyerweb.com/eric/thoughts/2010/02/12/fixed-monospace-sizing/
 $courier:         "Courier New", "DejaVu Sans Mono", monospace, sans-serif;
 
 // Now create some variables for the font stacks we want to use on this site.
-$base-font-family: $helvetica; // The font family set on the html element.
-$font-body:        $helvetica;
+$base-font-family: $font; // The font family set on the html element.
+$font-body:        $font;
 $font-monospace:   $courier;
 
 
@@ -73,6 +66,15 @@ $font-monospace:   $courier;
 $basegrey: #555; // base grey
 $basecolor: #c00; // base color
 $accent: #DEB480; // accent color
+
+$blue: #3b535f;
+$darkblue: #38535e;
+$smoke: #72858c;
+$grey: #e5e5e5;
+$green: #88cb62;
+$orange: #ff5d37;
+$white: #fff;
+
 
 
 // Basic unit of measurement
