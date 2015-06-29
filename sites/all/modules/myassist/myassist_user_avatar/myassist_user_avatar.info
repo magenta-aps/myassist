@@ -4,7 +4,6 @@ core = 7.x
 package = MyAssist
 dependencies[] = avatar_selection
 dependencies[] = ctools
-dependencies[] = exif_orientation
 dependencies[] = features
 dependencies[] = imagemagick
 dependencies[] = strongarm
