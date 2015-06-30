@@ -60,6 +60,9 @@ var JST = JST || {},
             var $checkbox = this.$el.find("input.myassistconnect").first(),
                 $elems = this.$el.find("input.nickname, input.age, select.gender");
             if($checkbox.is(":checked")) {
+                // Tell the chat server that we want to be anonymous
+                Drupal.settings.opeka.user.want_to_be_anonymous = true;
+
                 // Remove uid and sid from data sent to the chat server
                 $checkbox.attr("data-uid", Drupal.settings.opeka.user.uid)
                 delete Drupal.settings.opeka.user.uid;
@@ -77,9 +80,8 @@ var JST = JST || {},
                 $('.myassist-message-loggedin').hide();
                 $('.myassist-message-anonymous').show();
             } else {
-                // Restore uid and sid to data sent to the chat server
-                Drupal.settings.opeka.user.uid = $checkbox.attr("data-uid");
-                Drupal.settings.opeka.user.sid = $checkbox.attr("data-sid");
+                // Tell the chat server that we don't have to be anonymous
+                Drupal.settings.opeka.user.want_to_be_anonymous = false;
 
                 $.each($elems, function() {
                     var $this = $(this);
