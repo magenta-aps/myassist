@@ -39,12 +39,12 @@ function myassist_notification_rules_process($recipient, $messageType, $node) {
         try {
             $wrapper->field_node->set($node);
         } catch (Exception $e) {
-            throw new Exception("Failed setting field_node on message; message pointer may be incorrect");
+            //throw new Exception("Failed setting field_node on message; message pointer may be incorrect");
         }
         try {
             $wrapper->field_sender->set($user);
         } catch (Exception $e) {
-            throw new Exception("Failed setting field_sender on message; message pointer may be incorrect");
+            //throw new Exception("Failed setting field_sender on message; message pointer may be incorrect");
         }
         $wrapper->save();
 
