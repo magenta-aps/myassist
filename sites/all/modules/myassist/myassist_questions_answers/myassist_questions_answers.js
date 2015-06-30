@@ -7,7 +7,8 @@
                 var dropdown = form.find(".views-widget-sort-by select").get(0);
                 if (dropdown && !dropdown.exposedFormAjax) {
                     var container = form.parents(".view-id-question_answers");
-                    var classNames = container.attr("className").split(" ");
+                    var className = container.attr("className") || "";
+                    var classNames = className.split(" ");
                     var domId;
                     for (var i = 0; i < classNames.length; i++) {
                         var m = /^view-dom-id-([0-9a-f]+)$/.exec(classNames[i]);
@@ -25,7 +26,7 @@
                         }
                     }
                 }
-            }, 0);
+            }, 10);
         }
     };
 }(jQuery));
