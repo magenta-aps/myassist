@@ -146,6 +146,7 @@ a:active {
   font-weight: bold;
   text-align: center;
   display: inline-block;
+  border-radius: $u/4;
 }
 .btn:visited {
   background-color: desaturate($blue, 20%);

@@ -22,32 +22,11 @@
       $('#block-system-user-menu .block-title').click(function() {
         $('#block-system-user-menu').toggleClass('open');
       });
-
       
-      $(".search-toggle").click(function(event){
-        $("#block-search-form").addClass("forceShow");
-        event.stopPropagation();
-        return false;
+      // Toggle search
+      $('#block-search-form .block-title').click(function() {
+        $('#block-search-form').toggleClass('open');
       });
-
-      $(document).click(function(event) {
-        if(!$(event.target).closest("#block-search-form").length) {
-          $("#block-search-form").removeClass("forceShow");
-        }
-      });
-
-
-      var bodyPadding = null;
-      var relocateButtons = function(){
-        var newBodyPadding = $("body").css("paddingTop");
-        if (newBodyPadding !== bodyPadding) {
-          $(".mm-toggle").css({top:newBodyPadding});
-          $(".search-toggle").css({top:newBodyPadding});
-          bodyPadding = newBodyPadding;
-        }
-      };
-      $(window).resize(relocateButtons);
-      $(relocateButtons);
 
     }
   };

@@ -8,9 +8,12 @@
  * https://drupal.org/node/1707736
  */
 
+
+
 /**
  * Wireframes.
  */
+
 .with-wireframes {
   #header,
   #main,
@@ -23,6 +26,8 @@
     outline: 1px solid #ccc;
   }
 }
+
+
 
 /**
  * Accessibility features.
@@ -49,9 +54,12 @@
   }
 }
 
+
+
 /*
  * The skip-link link will be completely hidden until a user tabs to the link.
  */
+
 #skip-link {
   margin: 0;
 
@@ -442,6 +450,7 @@ span.field-label {
 }
 
 
+
 /**
  * Blocks.
  */
@@ -452,9 +461,11 @@ span.field-label {
 }
 
 
+
 /**
  * Menus.
  */
+
 .menu__item.is-leaf {
   
 }
@@ -472,6 +483,8 @@ span.field-label {
   color: #000;
 }
 
+
+
 /**
  * Marker.
  */
@@ -483,6 +496,8 @@ span.field-label {
   /* Remove background highlighting from <mark> in normalize. */
   background-color: transparent;
 }
+
+
 
 /**
  * Unpublished note.
@@ -535,6 +550,8 @@ span.field-label {
   /* Drupal core uses a 25px left margin. */
   margin-left: $indent-amount; /* LTR */
 }
+
+
 
 /**
  * Forms.
@@ -642,6 +659,8 @@ html.js #user-login-form li.openid-link,
   margin: $u 0;
 }
 
+
+
 /**
  * Drupal admin tables.
  */
@@ -684,6 +703,8 @@ td.menu-disabled {
   background: #ccc;
 }
 
+
+
 /**
  * Autocomplete.
  *
@@ -695,6 +716,8 @@ td.menu-disabled {
   background: #0072b9;
   color: #fff;
 }
+
+
 
 /**
  * Collapsible fieldsets.
@@ -773,4 +796,27 @@ tr.selected td {
   background-color: #fff;
   text-align: center;
   margin-right: $u;
+}
+
+
+
+/**
+ * "Ask a question" button
+ */
+
+.btn.add-question-block,
+.btn.add-question-block:link {
+  background-color: $green;
+  border-bottom: solid $u/4 darken($green, 20%);
+  border-radius: $u/4;
+}
+.btn.add-question-block:visited {
+  
+}
+.btn.add-question-block:hover,
+.btn.add-question-block:focus {
+  background-color: lighten($green, 10%);
+}
+.btn.add-question-block:active {
+  background-color: darken($green, 20%);
 }

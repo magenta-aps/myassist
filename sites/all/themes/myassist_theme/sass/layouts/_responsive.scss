@@ -21,7 +21,7 @@ body {
   right: 0;
   height: $u*2.5;
   z-index: 4;
-  padding: 0;
+  padding: $u/2;
 }
 .header__site-name {
   margin: 0;
@@ -34,9 +34,6 @@ body {
   height: $u*1.5;
 }
 .header__region {
-  position: absolute;
-  right: 0;
-  top: 0;
   .block {
     float: right;
   }
@@ -47,7 +44,7 @@ body {
 
 /* Main */
 #main {
-  padding: $u*2.5 $u $u;
+  padding: $u*3.5 $u $u;
 }
 
 /* Main menu */
@@ -66,6 +63,12 @@ body {
     padding: 0 $u $u;
   }
 }
+
+/* "Ask a question" button */
+.btn.add-question-block {
+  display: block;
+}
+
 
 
 /**
@@ -170,6 +173,11 @@ body {
       padding-bottom: $u;
       margin-bottom: 0;
     }
+  }
+  
+  /* "Ask a question" button */
+  .btn.add-question-block {
+    display: inline-block;
   }
   
   .answers-submitted,

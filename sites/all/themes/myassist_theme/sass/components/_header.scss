@@ -56,31 +56,14 @@
     margin: 0;
     vertical-align: top;
   }
-  #block-search-form {
-    display: inline-block;
-    .search-full {
-      display: block;
-    }
-  }
-  @media all and (max-width: 480px) {
-    #block-search-form {
-      &:not(.forceShow) {
-        .search-full {
-          display: none;
-        }
-        .search-toggle {
-          display: block;
-        }
-      }
-    }
-  }
   #block-myassist-questions-answers-newquestion {
     display: inline-block;
     vertical-align: top;
   }
 }
 
-/* User menu */
+/* User menu and search */
+#block-search-form,
 #block-system-user-menu {
   margin: 0;
   width: $u*2.5;
@@ -91,6 +74,8 @@
     margin: 0;
     background-size: $u auto;
   }
+}
+#block-system-user-menu {
   .menu {
     display: none;
     position: absolute;
@@ -121,17 +106,55 @@
     display: block;
   }
 }
-
-
-.search-toggle {
-  background-image: url('../images/search.png');
+#block-search-form {
+  position: relative;
+  overflow: visible;
+  .block-title {
+    background-image: url(../images/icons/search.png);
+  }
+  #search-block-form {
+    display: none;
+  }
+}
+#block-search-form.open {
+  #search-block-form {
+    display: block;
+    position: fixed;
+    text-align: center;
+    right: 0;
+    left: 0;
+    top: $u*3;
+    z-index: 10;
+    background: $grey;
+    padding: $u/2;
+    .form-item,
+    .form-actions {
+      display: inline-block;
+      text-align: left;
+    }
+    .form-item {
+      width: $u*12.5;
+      margin: $u/2 0;
+      input {
+        width: $u*12.5;
+        padding: $u/2;
+      }
+    }
+    .form-actions {
+      input {
+        height: $u*2.5;
+        margin: 0;
+      }
+      
+    }
+  }
 }
 
 #block-myassist-user-avatar {
   padding: 0;
   width: $u*2.5;
   height: $u*2.5;
-  background: #fff;
+  margin: 0;
   .user-picture,
   .user-picture a {
     display: block;
@@ -141,21 +164,21 @@
     img {
       height: auto;
       width: 100%;
+      border-radius: $u*2;
+      background: #fff;
     }
   }
 }
 
 #block-myassist-achievements-userpoints {
-  position: absolute;
-  top: $u*2.5;
-  right: 0;
   width: $u*2.5;
   overflow: hidden;
-  background-color: lighten($accent, 10%);
-  margin: 0;
+  background-color: darken($blue, 10%);
+  margin: $u/2;
   text-align: center;
-  .userpoints {
+  .userpoints a {
     font-size: $u*0.8;
     padding: $u/4 0;
+    display: block;
   }
 }

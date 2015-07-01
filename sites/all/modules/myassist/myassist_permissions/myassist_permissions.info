@@ -29,6 +29,5 @@ features[user_permission][] = view userpoints
 features[user_role][] = administrator
 features[user_role][] = chatrådgiver
 features[user_role][] = debatrådgiver
-features[user_role][] = moderator
 features[user_role][] = redaktør
 features[user_role][] = ung bruger

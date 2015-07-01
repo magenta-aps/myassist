@@ -25,7 +25,7 @@ function myassist_user_field_default_field_bases() {
     'locked' => 0,
     'module' => 'image',
     'settings' => array(
-      'default_image' => 5,
+      'default_image' => 0,
       'profile2_private' => 0,
       'uri_scheme' => 'public',
     ),
