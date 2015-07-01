@@ -4,13 +4,13 @@
  * Code for the MyAssist Opeka chat integration.
  */
 
-/**
- * Implements hook_help().
-function myassist_opeka_help($path, $arg)
-{
-    return '<p>' . t('Integration with Opeka chat module') . '</p>';
+function is_opeka_chat_page() {
+    return array_key_exists(current_path(), array(
+        'opeka' => TRUE,
+        'admin/opeka' => TRUE
+    ));
 }
- */
+
 
 /**
  * Implements hook_page_build().
@@ -20,10 +20,9 @@ function myassist_opeka_page_build(&$page)
     global $user;
     $module_path = drupal_get_path('module', 'myassist_opeka');
 
-
     $template_path = dirname(__FILE__) . '/templates/';
 
-    $is_chat_page = strpos(current_path(), "opeka") !== false;
+    $is_chat_page = is_opeka_chat_page();
     if($is_chat_page) {
         drupal_add_js($module_path . '/js/chat-page-integration.js', array('weight' => 10));
         drupal_add_css($module_path . '/css/myassist_opeka.css');
@@ -94,5 +93,55 @@ function myassist_opeka_page_build(&$page)
         );
         */
     }
+
+    return $page;
 }
 
+/**
+ * Implements hook_theme_registry_alter().
+ */
+function myassist_opeka_theme_registry_alter(&$theme_registry)
+{
+    // Defined path to the current module.
+    $module_path = drupal_get_path('module', 'myassist_opeka');
+
+    // Find all .tpl.php files in this module's folder recursively.
+    $template_file_objects = drupal_find_theme_templates($theme_registry, '.tpl.php', $module_path);
+
+    // Iterate through all found template file objects.
+    foreach ($template_file_objects as $key => $template_file_object) {
+        // If the template has not already been overridden by a theme.
+        if (!isset($theme_registry[$key]['theme path']) || !preg_match('#/themes/#', $theme_registry[$key]['theme path'])) {
+            // Alter the theme path and template elements.
+            $theme_registry[$key]['theme path'] = $module_path;
+            $theme_registry[$key] = array_merge($theme_registry[$key], $template_file_object);
+            $theme_registry[$key]['type'] = 'module';
+        }
+    }
+}
+
+/**
+ * Implements hook_page_alter().
+ */
+function myassist_opeka_page_alter(&$page)
+{
+    if(is_opeka_chat_page()) {
+        // Override the page template
+        $page['#theme'] = 'page__myassist_opeka';
+
+        // Remove unwanted items
+        $remove_items = array(
+            'header',
+            'page_top',
+            'sidebar_first',
+            'footer'
+        );
+
+        foreach($remove_items as $key) {
+            if(array_key_exists($key, $page)) {
+                unset($page[$key]);
+            }
+        }
+    }
+    return $page;
+}
