@@ -10,29 +10,6 @@
 function myassist_menus_menu_default_menu_links() {
   $menu_links = array();
 
-  // Exported menu link: main-menu_ask-a-question:node/add/answers-question
-  $menu_links['main-menu_ask-a-question:node/add/answers-question'] = array(
-    'menu_name' => 'main-menu',
-    'link_path' => 'node/add/answers-question',
-    'router_path' => 'node/add/answers-question',
-    'link_title' => 'Ask a Question',
-    'options' => array(
-      'attributes' => array(
-        'title' => 'Ask a question',
-      ),
-      'identifier' => 'main-menu_ask-a-question:node/add/answers-question',
-      'alter' => TRUE,
-    ),
-    'module' => 'menu',
-    'hidden' => 0,
-    'external' => 0,
-    'has_children' => 0,
-    'expanded' => 0,
-    'weight' => -50,
-    'customized' => 1,
-    'language' => 'en',
-    'menu_links_customized' => 1,
-  );
   // Exported menu link: main-menu_categories:categories
   $menu_links['main-menu_categories:categories'] = array(
     'menu_name' => 'main-menu',
@@ -47,57 +24,11 @@ function myassist_menus_menu_default_menu_links() {
       'identifier' => 'main-menu_categories:categories',
     ),
     'module' => 'system',
-    'hidden' => 0,
+    'hidden' => 1,
     'external' => 0,
     'has_children' => 0,
     'expanded' => 0,
-    'weight' => -46,
-    'customized' => 1,
-    'language' => 'en',
-    'menu_links_customized' => 1,
-  );
-  // Exported menu link: main-menu_hjem:<front>
-  $menu_links['main-menu_hjem:<front>'] = array(
-    'menu_name' => 'main-menu',
-    'link_path' => '<front>',
-    'router_path' => '',
-    'link_title' => 'Hjem',
-    'options' => array(
-      'attributes' => array(
-        'title' => '',
-      ),
-      'alter' => TRUE,
-      'identifier' => 'main-menu_hjem:<front>',
-    ),
-    'module' => 'menu',
-    'hidden' => 0,
-    'external' => 1,
-    'has_children' => 0,
-    'expanded' => 0,
     'weight' => -47,
-    'customized' => 1,
-    'language' => 'da',
-    'menu_links_customized' => 1,
-  );
-  // Exported menu link: main-menu_home:<front>
-  $menu_links['main-menu_home:<front>'] = array(
-    'menu_name' => 'main-menu',
-    'link_path' => '<front>',
-    'router_path' => '',
-    'link_title' => 'Home',
-    'options' => array(
-      'attributes' => array(
-        'title' => '',
-      ),
-      'alter' => TRUE,
-      'identifier' => 'main-menu_home:<front>',
-    ),
-    'module' => 'menu',
-    'hidden' => 0,
-    'external' => 1,
-    'has_children' => 0,
-    'expanded' => 0,
-    'weight' => -48,
     'customized' => 1,
     'language' => 'en',
     'menu_links_customized' => 1,
@@ -116,32 +47,9 @@ function myassist_menus_menu_default_menu_links() {
     'external' => 0,
     'has_children' => 0,
     'expanded' => 0,
-    'weight' => -45,
+    'weight' => -50,
     'customized' => 1,
     'language' => 'und',
-    'menu_links_customized' => 1,
-  );
-  // Exported menu link: main-menu_stil-et-sprgsml:node/add/answers-question
-  $menu_links['main-menu_stil-et-sprgsml:node/add/answers-question'] = array(
-    'menu_name' => 'main-menu',
-    'link_path' => 'node/add/answers-question',
-    'router_path' => 'node/add/answers-question',
-    'link_title' => 'Stil et spørgsmål',
-    'options' => array(
-      'attributes' => array(
-        'title' => '',
-      ),
-      'alter' => TRUE,
-      'identifier' => 'main-menu_stil-et-sprgsml:node/add/answers-question',
-    ),
-    'module' => 'menu',
-    'hidden' => 0,
-    'external' => 0,
-    'has_children' => 0,
-    'expanded' => 0,
-    'weight' => -49,
-    'customized' => 1,
-    'language' => 'da',
     'menu_links_customized' => 1,
   );
   // Exported menu link: user-menu_achievements:user/achievements
@@ -231,25 +139,6 @@ function myassist_menus_menu_default_menu_links() {
     'customized' => 1,
     'language' => 'und',
     'menu_links_customized' => 1,
-  );
-  // Exported menu link: user-menu_messages:user/messages
-  $menu_links['user-menu_messages:user/messages'] = array(
-    'menu_name' => 'user-menu',
-    'link_path' => 'user/messages',
-    'router_path' => 'user/messages',
-    'link_title' => 'messages',
-    'options' => array(
-      'identifier' => 'user-menu_messages:user/messages',
-    ),
-    'module' => 'system',
-    'hidden' => -1,
-    'external' => 0,
-    'has_children' => 0,
-    'expanded' => 0,
-    'weight' => 0,
-    'customized' => 0,
-    'language' => 'und',
-    'menu_links_customized' => 0,
   );
   // Exported menu link: user-menu_my-points:myuserpoints
   $menu_links['user-menu_my-points:myuserpoints'] = array(
@@ -387,22 +276,17 @@ function myassist_menus_menu_default_menu_links() {
   // Translatables
   // Included for use with string extractors like potx.
   t('Achievements');
-  t('Ask a Question');
   t('Beskeder');
   t('Categories');
   t('Edit Profile');
-  t('Hjem');
-  t('Home');
   t('Log out');
   t('My !points');
   t('Points');
   t('Questions');
   t('Redigér profil');
-  t('Stil et spørgsmål');
   t('User account');
   t('View profile');
   t('Vis profil');
-  t('messages');
 
 
   return $menu_links;
