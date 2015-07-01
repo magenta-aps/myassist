@@ -13,36 +13,54 @@ function myassist_notification_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'field_bundle_settings_message__question_answered';
+  $strongarm->name = 'htmlmail_debug';
+  $strongarm->value = 0;
+  $export['htmlmail_debug'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'htmlmail_postfilter';
+  $strongarm->value = '0';
+  $export['htmlmail_postfilter'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'htmlmail_test';
   $strongarm->value = array(
-    'view_modes' => array(),
-    'extra_fields' => array(
-      'form' => array(),
-      'display' => array(
-        'message__message_text__0' => array(
-          'message_notify_email_subject' => array(
-            'visible' => TRUE,
-            'weight' => 0,
-          ),
-          'message_notify_email_body' => array(
-            'visible' => FALSE,
-            'weight' => 0,
-          ),
-        ),
-        'message__message_text__1' => array(
-          'message_notify_email_subject' => array(
-            'visible' => FALSE,
-            'weight' => 0,
-          ),
-          'message_notify_email_body' => array(
-            'visible' => TRUE,
-            'weight' => 0,
-          ),
-        ),
-      ),
+    'to' => 'larsp@magenta.dk',
+    'subject' => 'test',
+    'body' => array(
+      'value' => '<a href="localhost">test</a>',
+      'format' => 'filtered_html',
     ),
   );
-  $export['field_bundle_settings_message__question_answered'] = $strongarm;
+  $export['htmlmail_test'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'htmlmail_theme';
+  $strongarm->value = '';
+  $export['htmlmail_theme'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'mail_system';
+  $strongarm->value = array(
+    'default-system' => 'HTMLMailSystem',
+    'htmlmail' => 'HTMLMailSystem',
+  );
+  $export['mail_system'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'mailsystem_theme';
+  $strongarm->value = 'current';
+  $export['mailsystem_theme'] = $strongarm;
 
   return $export;
 }
