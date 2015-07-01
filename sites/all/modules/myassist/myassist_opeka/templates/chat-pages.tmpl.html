@@ -100,7 +100,14 @@
                         <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
                             <% } %>
 
+                            <% if(user.drupal_uid)  { %>
+                            <i class="icon-user"></i><span class="name"><a
+                                href="/user/<%= user.drupal_uid %>"
+                                onclick="this.target='_blank'"
+                                ><%- user.name %></a></span>
+                            <% } else { %>
                             <i class="icon-user"></i><span class="name"><%- user.name %></span>
+                            <% } %>
                             <% if (user.age || user.gender) { %>
                   <span class="meta">
                     (
