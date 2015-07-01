@@ -133,25 +133,21 @@
   h2 {
     @include element-invisible;
   }
-  .menu {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
   .menu__item {
     display: block;
     float: left;
-    width: 33.33%;
     text-align: center;
   }
   .menu__link {
+    border: none !important;
     @extend .icons;
     text-indent: 0;
     text-align: center;
     width: auto;
-    background-position: center $u/2;
-    background-size: $u auto;
-    padding: $u*1.5 $u/2 $u/2;
+    height: auto;
+    background-position: center $u/1.5;
+    background-size: $u*1.25 auto;
+    padding: $u*2 $u/2 $u/2;
     overflow: hidden;
     font-size: $u*0.8;
   }
@@ -465,7 +461,19 @@ span.field-label {
 /**
  * Menus.
  */
-
+.menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.menu__link {
+  display: block;
+  padding: $u/2 $u;
+  border-top: solid 1px lighten($blue, 10%);
+}
+.menu__item:first-child .menu__link {
+  border-top: none;
+}
 .menu__item.is-leaf {
   
 }
@@ -480,7 +488,7 @@ span.field-label {
 
 /* The active item in a Drupal menu. */
 .menu a.active {
-  color: #000;
+  background-color: lighten($blue, 10%);
 }
 
 

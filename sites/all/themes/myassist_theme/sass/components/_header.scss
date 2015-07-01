@@ -65,7 +65,8 @@
 /* User menu and search */
 #block-search-form,
 #block-system-user-menu {
-  margin: 0;
+  margin: $u/2 0;
+  height: $u*2;
   width: $u*2.5;
   .block-title {
     @extend .icons;
@@ -73,29 +74,21 @@
     padding: 0;
     margin: 0;
     background-size: $u auto;
+    height: $u*2;
   }
 }
 #block-system-user-menu {
+  .block-title {
+    background-size: $u*0.75 auto;
+  }
   .menu {
     display: none;
     position: absolute;
     top: $u*2.5;
     right: 0;
-    list-style: none;
-    margin: 0;
-    padding: 0;
     background: $blue;
     width: $u*10;
-  }
-  .menu__item {
-    border-top: dashed 1px $smoke;
-  }
-  .menu__item:first-child {
-    border: none;
-  }
-  .menu__link {
-    display: block;
-    padding: $u/2 $u;
+    z-index: 6;
   }
 }
 #block-system-user-menu.open {
@@ -109,6 +102,7 @@
 #block-search-form {
   position: relative;
   overflow: visible;
+  border-left: solid 1px $white;
   .block-title {
     background-image: url(../images/icons/search.png);
   }
@@ -124,7 +118,7 @@
     right: 0;
     left: 0;
     top: $u*3;
-    z-index: 10;
+    z-index: 5;
     background: $grey;
     padding: $u/2;
     .form-item,
@@ -152,14 +146,14 @@
 
 #block-myassist-user-avatar {
   padding: 0;
-  width: $u*2.5;
-  height: $u*2.5;
-  margin: 0;
+  width: $u*2;
+  height: $u*2;
+  margin: $u/2 0;
   .user-picture,
   .user-picture a {
     display: block;
     line-height: 0;
-    height: $u*2.5;
+    height: $u*2;
     overflow: hidden;
     img {
       height: auto;
@@ -171,14 +165,16 @@
 }
 
 #block-myassist-achievements-userpoints {
-  width: $u*2.5;
+  width: $u*2;
   overflow: hidden;
   background-color: darken($blue, 10%);
-  margin: $u/2;
   text-align: center;
+  position: absolute;
+  top: $u*2.5;
+  right: $u*5;
   .userpoints a {
-    font-size: $u*0.8;
-    padding: $u/4 0;
+    font-size: $u*0.6;
+    padding: $u/4;
     display: block;
   }
 }
