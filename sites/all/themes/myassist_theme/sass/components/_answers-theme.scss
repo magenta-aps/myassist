@@ -3,13 +3,9 @@
 /************************************************************************************************/
 
 .node-answers-wrapper {
-  background: #fff;
-  margin-bottom: 1px;
-  margin-left: -($u);
-  margin-right: -($u);
-  padding: 0 $u;
-  border-top: solid 1px $grey;
-  
+  padding: 0 0 $u;
+  border-bottom: solid 1px $grey;
+  @include clearfix;
 }
 
 .answers-body-wrapper {
@@ -99,34 +95,49 @@
 /************************************************************************************************/
 
 .answers-submitted {
-  background: lighten($basegrey, 60%);
-  float: none;
-  width: auto;
-  margin-bottom: $u/2;
+  float: left;
+  width: 62%;
+  padding: $u*0.5 0;
   .user-picture {
     float: left;
     width: $u*2.5;
-    margin-right: $u/2;
     a {
       display: block;
     }
     img {
       width: 100%;
       height: auto;
-      background: transparent;
+      border-radius: $u*2.5;
     }
   }
-  .author-name {
-    padding: $u/3 0;
+  .author-name,
+  .author-points {
+    padding: 0 0 0 $u*3;
+    display: block;
   }
   .author-points {
-    margin: 0;
+    color: $smoke;
   }
 }
 
+.submitted-time,
+.answer_count,
+.question_locked {
+  color: $smoke;
+  font-size: $u*0.8;
+  display: inline-block;
+  padding-right: $u*0.25;
+}
+
 .submitted-time {
-  display: block;
-  padding-bottom: $u/2;
+  border-right: solid 1px $smoke;
+}
+
+.question_locked {
+  color: $white;
+  background: $green;
+  padding: $u*0.25;
+  line-height: 1;
 }
 
 
@@ -287,21 +298,36 @@
 }
 
 .answers-body {
+  p {
+    margin: 0;
+    padding: 0;
+  }
   .field-name-field-category {
-    float: left;
-    width: 50%;
-    .field-label {
+    margin-top: $u*2;
+    float: right;
+    width: 32%;
+   .field-label {
       @include element-invisible;
     }
     .field-item {
-      display: inline-block;
-      a {
-        padding: $u/3 $u/2;
-        font-size: $u/1.5;
-        border-radius: $u/2;
-        background-color: $basegrey;
+      display: block;
+      a,
+      a:link,
+      a:visited {
+        display: block;
+        padding: $u*0.25 $u*0.5;
+        font-size: $u*0.8;
+        text-align: center;
+        background-color: $orange;
         color: #fff;
       }
+      a:hover,
+      a:focus {
+        background-color: lighten($orange, 20%);      
+      }
+      a:active {
+        background-color: darken($orange, 10%);
+      }      
     }
   }
   .content .field {
