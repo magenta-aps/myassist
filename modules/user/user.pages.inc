@@ -325,8 +325,21 @@ function user_profile_form_submit($form, &$form_state) {
   $form_state['values']['uid'] = $account->uid;
 
   if ($category == 'account' && !empty($edit['pass'])) {
-    // Remove the password reset tag since a new password was saved.
-    unset($_SESSION['pass_reset_'. $account->uid]);
+    if (array_key_exists('pass_reset_'. $account->uid, $_SESSION)) {
+
+      // Remove the password reset tag since a new password was saved.
+      unset($_SESSION['pass_reset_' . $account->uid]);
+
+      $profiles = profile2_load_by_user($account->uid);
+      if (count($profiles)) {
+        foreach (array('ungeprofil', 'voksenprofil') as $profile) {
+          if (array_key_exists($profile, $profiles)) {
+            $form_state['redirect'] = array("user/" . $form['#user']->uid . "/edit/" . $profile);
+            break;
+          }
+        }
+      }
+    }
   }
   // Clear the page cache because pages can contain usernames and/or profile information:
   cache_clear_all();
