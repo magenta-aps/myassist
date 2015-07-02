@@ -14,7 +14,6 @@ function myassist_user_user_default_permissions() {
   $permissions['access user profiles'] = array(
     'name' => 'access user profiles',
     'roles' => array(
-      'Admin' => 'Admin',
       'administrator' => 'administrator',
       'anonymous user' => 'anonymous user',
       'authenticated user' => 'authenticated user',
@@ -107,7 +106,6 @@ function myassist_user_user_default_permissions() {
   $permissions['edit own voksenprofil profile'] = array(
     'name' => 'edit own voksenprofil profile',
     'roles' => array(
-      'Admin' => 'Admin',
       'administrator' => 'administrator',
       'chatrådgiver' => 'chatrådgiver',
       'debatrådgiver' => 'debatrådgiver',
@@ -129,7 +127,6 @@ function myassist_user_user_default_permissions() {
   $permissions['view any ungeprofil profile'] = array(
     'name' => 'view any ungeprofil profile',
     'roles' => array(
-      'Admin' => 'Admin',
       'administrator' => 'administrator',
       'anonymous user' => 'anonymous user',
       'authenticated user' => 'authenticated user',
@@ -145,7 +142,6 @@ function myassist_user_user_default_permissions() {
   $permissions['view any voksenprofil profile'] = array(
     'name' => 'view any voksenprofil profile',
     'roles' => array(
-      'Admin' => 'Admin',
       'administrator' => 'administrator',
       'anonymous user' => 'anonymous user',
       'authenticated user' => 'authenticated user',
@@ -170,7 +166,6 @@ function myassist_user_user_default_permissions() {
   $permissions['view own voksenprofil profile'] = array(
     'name' => 'view own voksenprofil profile',
     'roles' => array(
-      'Admin' => 'Admin',
       'administrator' => 'administrator',
       'chatrådgiver' => 'chatrådgiver',
       'debatrådgiver' => 'debatrådgiver',
