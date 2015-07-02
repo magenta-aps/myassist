@@ -245,7 +245,7 @@ function achievements_leaderboard_for($achievement) {
       'type'      => $type,
       'render'    => array(
         '#attributes' => array('class' => array('achievement-leaderboard-' . $type)),
-        '#caption'    => t('@type achievement unlocks', array('@type' => drupal_ucfirst($type))),
+        '#caption'    => t('@type achievement unlocks', array('@type' => drupal_ucfirst(t($type)))),
         '#header'     => array(t('#'), t('Who'), t('Points'), t('When')),
         '#empty'      => t('No one has unlocked this yet. Keep trying!'),
         '#rows'       => $rows,
