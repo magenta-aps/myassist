@@ -417,15 +417,29 @@ span.field-label {
 /* A list of page numbers when more than 1 page of content is available. */
 .pager {
   clear: both;
-  padding: 0;
+  padding: $u 0 0;
   text-align: center;
   list-style: none;
 }
 %pager__item {
   display: inline-block;
-  a {
+  width: 38%;
+  a,
+  a:link,
+  a:visited {
     display: block;
-    padding: $u/2;
+    padding: $u*0.5 $u;
+    background-color: $green;
+    color: $white;
+    border-radius: $u*0.25;
+    border-bottom: solid $u*0.25 darken($green, 20%);
+  }
+  a:hover,
+  a:focus {
+    background-color: lighten($green, 10%);
+  }
+  a:active {
+    background-color: darken($green, 10%);
   }
 }
 
@@ -436,6 +450,14 @@ span.field-label {
 .pager-last,      /* The last page's list item. */
 .pager-ellipsis { /* A concatenation of several list items using an ellipsis. */
   @extend %pager__item;
+}
+
+.pager-item,
+.pager-first,
+.pager-last,
+.pager-ellipsis,
+.pager-current {
+  @include element-invisible;
 }
 
 /* The current page's list item. */

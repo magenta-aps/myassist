@@ -111,18 +111,12 @@
     <?php if (!$page){ ?>
       <h2<?php print $title_attributes; ?>>
         <a href="<?php print $node_url; ?>"><?php print $title; ?></a>
-        <?php
-        if ($locked) {
-        print '<em class="question_locked">' . t("[Solved]") . '</em>';
-        }
-        ?>
       </h2>
     <?php } ?>
     <?php print render($title_suffix); ?>
 	<div class="answers-widgets-wrapper">
       
       <div class="answers-widgets">
-	    <div class="mystery-hack"></div>
         <?php
           if(isset($content['best_answer'])) {
             print render($content['best_answer']);
@@ -142,6 +136,17 @@
           <span class="submitted-time">
             <?php print t('Posted @time ago.', array("@time" => format_interval(time() - $node->created, 1))); ?>
           </span>
+          <span class="answer_count">
+            <?php
+            $answers = answers_question_answers($node);
+            print format_plural(count($answers), '1 answer', '@count answers.');
+            ?>
+          </span>
+          <?php
+            if ($locked) {
+              print '<em class="question_locked" tite="' . t("[Solved]") . '">&#10004;</em>';
+            }
+          ?>
           <div class="answers-submitted">
             <?php print $user_picture; ?>
             <div class="author-name"><?php print $name; ?></div>
@@ -167,13 +172,6 @@
 			}
 		  }
           ?>
-
-        <span class="answer_count">
-          <?php
-          $answers = answers_question_answers($node);
-          print format_plural(count($answers), '1 answer.', '@count answers.');
-          ?>
-        </span>
 
       </div>
 
