@@ -55,7 +55,7 @@ function myassist_user_default_profile2_type() {
     "userCategory" : true,
     "userView" : true,
     "type" : "ungeprofil",
-    "label" : "Youth profile",
+    "label" : t("Youth profile"),
     "weight" : "0",
     "data" : { "registration" : 1, "use_page" : 0 },
     "rdf_mapping" : []
@@ -64,7 +64,7 @@ function myassist_user_default_profile2_type() {
     "userCategory" : true,
     "userView" : true,
     "type" : "voksenprofil",
-    "label" : "Adult profile",
+    "label" : t("Adult profile"),
     "weight" : "0",
     "data" : { "registration" : 0, "use_page" : 0 },
     "rdf_mapping" : []
