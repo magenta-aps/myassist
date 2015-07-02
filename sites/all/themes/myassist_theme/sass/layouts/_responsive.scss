@@ -182,6 +182,18 @@ body {
     display: inline-block;
   }
   
+  /* Questions and Answers */
+  .answers-submitted .user-picture {
+    float: none;
+    display: block;
+  }
+  .answers-submitted .author-name, 
+  .answers-submitted .author-points {
+    padding: 0;
+  }
+  .answers-body .field-name-field-category {
+    margin: 0;
+  }
   
   /* More columns, please! */
   
@@ -190,19 +202,19 @@ body {
     @include clearfix;
   }
   
-  .region-bottom .block,
   .answers-submitted,
-  .submitted-time,
+  .answers-body .field-name-field-category,
+  .region-bottom .block,
   .answers-body .field-name-field-category,
   .field-name-field-avatar,
   .achievement-image {
-    width: 25% !important;
+    width: 25%;
   }
   
   .answers-body .field-name-body,
   .link-wrapper,
   .node-answers_answer-form .field-name-body {
-    width: 75% !important;
+    width: 75%;
   }
   
   .profile2-ungeprofil .achievements,
@@ -210,13 +222,12 @@ body {
     width: 50%;
   }
   
-  .submitted-time,
+  .answers-body .field-name-field-category,
   .answers-submitted,
   .link-wrapper,
   .answers-body .field-name-field-category,
   .profile2-ungeprofil .achievements {
-    float: right !important;
-    clear: right;
+    float: right;
   }
   
   .region-bottom .block,
