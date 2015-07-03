@@ -1,6 +1,6 @@
 
 <?php
-$blocks = array("field_avatar","username","points","level","field_expertise","achievements","userinfo","membersince","field_quote");
+$blocks = array("field_avatar","achievements","username","points","level","field_expertise","userinfo","membersince","field_quote");
 $rendered_blocks = array();
 ?>
 
