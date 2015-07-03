@@ -210,7 +210,11 @@ function myassist_user_view_my_profile() {
  */
 function myassist_user_preprocess_page(&$variables) {
   try {
-    $data = $variables['page']['content']['system_main'];
+    $data = (
+      $variables['page'] &&
+      $variables['page']['content'] &&
+      $variables['page']['content']['system_main']
+    ) ? $variables['page']['content']['system_main'] : array();
     if (array_key_exists("#title", $data)) {
       $variables['title'] = $data["#title"];
     }
