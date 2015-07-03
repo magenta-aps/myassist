@@ -13,7 +13,10 @@ var Opeka = Opeka || {};
 
         'initialize': function() {
             var self = this;
-            self.io_socket = io('http://myassist.jubk2.magenta-aps.dk:3000/', {'reconnection': false});
+                io_url = Drupal.settings.opeka.socket_io_url || 'http://localhost:3000/opeka';
+
+            self.io_socket = io(io_url, {'reconnection': false});
+
             self.io_socket.on("chat_status", function(newStatus) {
                 self.extendStatus(newStatus);
                 self.update(newStatus);

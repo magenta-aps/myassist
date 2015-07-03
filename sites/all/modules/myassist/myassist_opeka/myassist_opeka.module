@@ -85,6 +85,11 @@ function myassist_opeka_page_build(&$page)
         drupal_add_js(array('opeka' => $settings), 'setting');
     } elseif(drupal_get_path_alias(current_path()) === 'chat') {
         $opeka_path = drupal_get_path('module', 'opeka');
+        $opeka_js_url = variable_get('opeka_nowjs_url', 'https://localhost:3000/connect.js');
+        drupal_add_js(array('opeka' => array(
+            'socket_io_url' => preg_replace('/\/connect[.]js$/', '/', $opeka_js_url)
+        )), 'setting');
+
 
         // general libraries
         drupal_add_js($opeka_path . '/js/underscore.js');
