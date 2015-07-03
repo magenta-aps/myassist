@@ -1,0 +1,23 @@
+<script id="chat_status_box_tmpl" type="application/template" class="chat-status-template">
+    <div class="iconarea">
+        <span class="chat-initializing"><%= Drupal.t("Opdaterer...") %></span>
+        <span class="chat-open"><%= Drupal.t("Åben") %></span>
+        <span class="chat-closed"><%= Drupal.t("Lukket") %></span>
+        <span class="chat-busy"><%= Drupal.t("Optaget") %></span>
+    </div>
+
+    <div class="description">
+        <h1 class="header"><%= header || Drupal.t("Chat Status") %></h1>
+
+        <div class="description-container"><%= description  %></div>
+
+        <span class="message startbutton"><%= startbuttontext || Drupal.t("Start chat") %></span>
+    </div>
+
+    <div class="hours">
+        <h1 class="header"><%= hours_header || "Åbningstider" %></h1>
+        <%= hours %>
+    </div>
+</script>
+
+

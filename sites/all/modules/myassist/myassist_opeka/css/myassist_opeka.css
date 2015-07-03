@@ -6,3 +6,81 @@ p.signin-form-tooltip {
     margin-top: 1em;
     margin-bottom: 0;
 }
+
+div.chat-status-box {
+    border: 1px solid black;
+    position: relative;
+    background-color: lightgrey;
+    max-width: 45em;
+}
+
+div.chat-status-box.placeholder {
+    min-height: 8em;
+}
+
+div.chat-status-box.placeholder .data {
+    display: none;
+}
+
+div.chat-status-box.chat-closed {
+    background-color: lightgrey;
+}
+div.chat-status-box.chat-open {
+    background-color: lightgreen;
+}
+div.chat-status-box.chat-busy {
+    background-color: lightyellow;
+}
+
+div.chat-status-box .chat-open,
+div.chat-status-box .chat-closed,
+div.chat-status-box .chat-busy
+{
+    display: none;
+}
+
+div.chat-status-box div.iconarea {
+    position: absolute;
+    width: 7.5em;
+    float: left;
+    padding: 1em;
+}
+
+div.chat-status-box div.description {
+    margin-left: 10em;
+    border-left: 1px solid black;
+    margin-right: 12em;
+    border-right: 1px solid black;
+    min-height: 8em;
+    padding: 1em;
+}
+
+div.chat-status-box div.hours {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 9.5em;
+    padding: 1em;
+}
+
+div.chat-status-box span.startbutton {
+    border: 1px solid black;
+    padding: 0.25em 0.5em;
+    display: inline-block;
+    background-color: darkgray;
+    color: gray;
+    cursor: not-allowed;
+}
+
+div.chat-status-box.chat-open span.startbutton {
+    cursor: pointer;
+    background-color: #3b535f;
+    color: white;
+}
+
+div.chat-status-box h1 {
+    background-color: inherit;
+    color: black;
+    margin-top: 0;
+    padding-top: 0;
+}
