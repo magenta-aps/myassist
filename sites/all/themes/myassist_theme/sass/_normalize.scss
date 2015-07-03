@@ -465,6 +465,18 @@ input::-moz-focus-inner {
   padding: 0;
 }
 
+label {
+  text-transform: uppercase;
+}
+
+textarea,
+input[type="text"],
+input[type="password"] {
+  border: solid $u*0.25 $grey;
+  padding: $u*0.5;
+  background-color: $white;
+}
+
 /**
  * 1. Remove default vertical scrollbar in IE 8/9.
  * 2. Improve readability and alignment in all browsers.
@@ -472,6 +484,11 @@ input::-moz-focus-inner {
 textarea {
   overflow: auto; /* 1 */
   vertical-align: top; /* 2 */
+  height: $u*4;
+}
+
+select {
+  padding: $u*0.5;
 }
 
 /* Drupal-style form labels. */

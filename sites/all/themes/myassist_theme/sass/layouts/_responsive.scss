@@ -183,9 +183,61 @@ body {
   }
   
   /* Questions and Answers */
-  .answers-submitted .user-picture {
-    float: none;
-    display: block;
+  .node-answers-wrapper {    
+    position: relative;
+    min-height: $u*10;
+    .node-title {
+      width: 50%;
+    }
+    .answers-body {
+      margin-bottom: $u*2;
+    }
+    .submitted-time,
+    .answer_count,
+    .question_locked {
+      float: left;
+      display: block;
+      margin-right: $u*0.5;
+    }
+    .submitted-time {
+      padding-right: $u*0.5;
+    }
+    .field-name-body {
+      width: 50%;
+    }
+    .answers-submitted {
+      position: absolute;
+      right: 0;
+      top: -($u*2);
+      width: 25%;
+      padding: 0 0 $u;
+      .user-picture {
+        width: 33.33%;
+        height: 33.33%;        
+        float: none;
+        display: block;
+        img {
+          border-radius: 50%;        
+        }
+      }
+      .username {
+        font-weight: bold;
+      }
+    }
+    .field-name-field-category {
+      position: absolute;
+      top: -($u*2);
+      right: 25%;
+      width: 25%;
+      .field-items {
+        padding: 0 $u*2;
+      }
+    }
+    .answers-body-toolbar {
+      position: absolute;
+      bottom: $u*0.5;
+      left: 0;
+    }
   }
   .answers-submitted .author-name, 
   .answers-submitted .author-points {
@@ -202,8 +254,6 @@ body {
     @include clearfix;
   }
   
-  .answers-submitted,
-  .answers-body .field-name-field-category,
   .region-bottom .block,
   .answers-body .field-name-field-category,
   .field-name-field-avatar,
@@ -211,9 +261,7 @@ body {
     width: 25%;
   }
   
-  .answers-body .field-name-body,
-  .link-wrapper,
-  .node-answers_answer-form .field-name-body {
+  .link-wrapper {
     width: 75%;
   }
   
@@ -222,16 +270,12 @@ body {
     width: 50%;
   }
   
-  .answers-body .field-name-field-category,
-  .answers-submitted,
   .link-wrapper,
-  .answers-body .field-name-field-category,
   .profile2-ungeprofil .achievements {
     float: right;
   }
   
   .region-bottom .block,
-  .answers-body .field-name-body,
   .answers-btn-primary,
   .profile2-ungeprofil .field-name-field-expertise,
   .profile2-ungeprofil .field-name-field-avatar {
