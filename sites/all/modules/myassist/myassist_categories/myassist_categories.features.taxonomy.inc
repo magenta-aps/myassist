@@ -15,7 +15,7 @@ function myassist_categories_taxonomy_default_vocabularies() {
       'description' => 'Question categories',
       'hierarchy' => 0,
       'module' => 'taxonomy',
-      'weight' => 0,
+      'weight' => -10,
       'language' => 'und',
       'i18n_mode' => 0,
       'rdf_mapping' => array(

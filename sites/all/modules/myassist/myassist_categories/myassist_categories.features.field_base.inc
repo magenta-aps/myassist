@@ -32,6 +32,7 @@ function myassist_categories_field_default_field_bases() {
         ),
       ),
       'options_list_callback' => 'i18n_taxonomy_allowed_values',
+      'profile2_private' => FALSE,
     ),
     'translatable' => 0,
     'type' => 'taxonomy_term_reference',

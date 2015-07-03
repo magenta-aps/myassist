@@ -21,7 +21,7 @@ function myassist_danish_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'date_default_timezone';
-  $strongarm->value = 'Europe/Copenhagen';
+  $strongarm->value = 'Europe/Berlin';
   $export['date_default_timezone'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -39,7 +39,7 @@ function myassist_danish_strongarm() {
     'domain' => '',
     'prefix' => 'da',
     'weight' => '0',
-    'javascript' => 'TAKT6W5cLv6yxxV7t51g55f3fdtTV6pdOcX9Shvtn1M',
+    'javascript' => 'IiuIW48sdKKQ2FXZd1tUVSHrXtcxDYFdBaLjPL_4jB8',
   );
   $export['language_default'] = $strongarm;
 
@@ -47,20 +47,7 @@ function myassist_danish_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'language_negotiation_language';
-  $strongarm->value = array(
-    'locale-browser' => array(
-      'callbacks' => array(
-        'language' => 'locale_language_from_browser',
-      ),
-      'file' => 'includes/locale.inc',
-      'cache' => 0,
-    ),
-    'language-default' => array(
-      'callbacks' => array(
-        'language' => 'language_from_default',
-      ),
-    ),
-  );
+  $strongarm->value = array();
   $export['language_negotiation_language'] = $strongarm;
 
   $strongarm = new stdClass();

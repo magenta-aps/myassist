@@ -21,7 +21,7 @@ function myassist_notification_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'htmlmail_postfilter';
-  $strongarm->value = '0';
+  $strongarm->value = 'full_html';
   $export['htmlmail_postfilter'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -32,7 +32,8 @@ function myassist_notification_strongarm() {
     'to' => 'larsp@magenta.dk',
     'subject' => 'test',
     'body' => array(
-      'value' => '<a href="localhost">test</a>',
+      'value' => '<p><a href="localhost">test</a></p>
+',
       'format' => 'filtered_html',
     ),
   );

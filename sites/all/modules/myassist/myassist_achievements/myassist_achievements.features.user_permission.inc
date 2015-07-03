@@ -25,7 +25,6 @@ function myassist_achievements_user_default_permissions() {
     'name' => 'administer achievements',
     'roles' => array(
       'administrator' => 'administrator',
-      'moderator' => 'moderator',
     ),
     'module' => 'achievements',
   );
@@ -35,10 +34,6 @@ function myassist_achievements_user_default_permissions() {
     'name' => 'earn achievements',
     'roles' => array(
       'administrator' => 'administrator',
-      'chatrådgiver' => 'chatrådgiver',
-      'debatrådgiver' => 'debatrådgiver',
-      'moderator' => 'moderator',
-      'redaktør' => 'redaktør',
       'ung bruger' => 'ung bruger',
     ),
     'module' => 'achievements',

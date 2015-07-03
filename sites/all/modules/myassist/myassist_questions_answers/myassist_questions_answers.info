@@ -89,6 +89,7 @@ features[variable][] = diff_view_mode_preview_node_answers_answer
 features[variable][] = diff_view_mode_preview_node_answers_question
 features[variable][] = field_bundle_settings_message__best_answer
 features[variable][] = field_bundle_settings_message__comment_added_to_post
+features[variable][] = field_bundle_settings_message__question_answered
 features[variable][] = field_bundle_settings_node__answers_question
 features[variable][] = flag_subscribe_answers_notifications_default_answers_question
 features[variable][] = menu_options_answers_answer

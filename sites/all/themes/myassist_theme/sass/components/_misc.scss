@@ -423,6 +423,7 @@ span.field-label {
 }
 %pager__item {
   display: inline-block;
+  padding-bottom: $u*0.25;
   a,
   a:link,
   a:visited {
@@ -469,11 +470,43 @@ span.field-label {
   margin-bottom: $u;
 }
 
+/* Navigation (sub) */
+#block-system-navigation {
+  .block-title {
+    @include element-invisible;  
+  }
+  .menu {
+    padding: $u*0.5 0;
+  }
+  .menu__link {
+    padding: $u*0.5 0;
+    text-transform: uppercase;
+  }
+  .active {
+    padding: $u*0.5 $u;
+  }
+}
+
+/* Hero block */
+.hero {
+  background-color: $blue;
+  color: $white;
+  margin: 0 -($u);
+  padding: $u;
+}
+
+/* Login/Create new user link */
+.create-new-or-log-in {
+  padding: $u;
+  font-size: $u*0.8;
+}
+
 
 
 /**
  * Menus.
  */
+
 .menu {
   list-style: none;
   margin: 0;
@@ -825,19 +858,8 @@ tr.selected td {
  * "Ask a question" button
  */
 
-.btn.add-question-block,
-.btn.add-question-block:link {
-  background-color: $green;
-  border-bottom: solid $u/4 darken($green, 20%);
-  border-radius: $u/4;
-}
-.btn.add-question-block:visited {
-  
-}
-.btn.add-question-block:hover,
-.btn.add-question-block:focus {
-  background-color: lighten($green, 10%);
-}
-.btn.add-question-block:active {
-  background-color: darken($green, 20%);
+.add-question-block {
+  .btn {
+    display: block;
+  }
 }

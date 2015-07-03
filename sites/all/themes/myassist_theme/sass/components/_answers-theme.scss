@@ -145,6 +145,9 @@
 /* TOOLBAR                                                                                     */
 /************************************************************************************************/
 
+.answers-body-toolbar {
+  @extend .greybtn;
+}
 .answers-body-toolbar ul.links li,
 .answers-body-toolbar ul.links li:hover {
   color: inherit;
