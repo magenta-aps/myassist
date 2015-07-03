@@ -329,7 +329,7 @@ function profile2_user_view($account, $view_mode, $langcode) {
       if (profile2_access('view', $profile)) {
         $account->content['profile_' . $type] = array(
           '#type' => 'user_profile_category',
-          '#title' => $profile->label,
+          '#title' => t($profile->label),
           '#prefix' => '<a id="profile-' . $profile->type . '"></a>',
         );
         $account->content['profile_' . $type]['view'] = $profile->view('account');
