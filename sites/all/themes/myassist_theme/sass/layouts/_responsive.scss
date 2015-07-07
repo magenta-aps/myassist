@@ -100,24 +100,6 @@ body {
  * Layout for smaller screens.
  */
 @media all and (min-width: 480px) and (max-width: 959px) {
-
-  .achievement-image {
-    width: 25% !important;
-  }
-  
-  .answers-submitted,
-  .submitted-time,
-  .field-name-field-avatar {
-    width: 50% !important;
-  }
-  
-  .answers-submitted {
-    float: right !important;
-  }
-  
-  .submitted-time {
-    float: left;
-  }
   
 }
 
@@ -158,14 +140,17 @@ body {
     margin-left: -16.5%;
     width: 33.33%;
     z-index: 4;
+    text-align: center;
   }
   #block-system-main-menu .menu__item {
     width: $u*5;
+    float: none;
+    display: inline-block;
   }
   
   /* main */
   #main {
-    padding: 0 $u;
+    padding: 0 $u $u;
   }
   
   /* Footer/bottom */
@@ -183,7 +168,7 @@ body {
   }
   
   /* Questions and Answers */
-  .node-answers-wrapper {    
+  .node-answers-question {    
     position: relative;
     min-height: $u*10;
     .node-title {
@@ -235,7 +220,7 @@ body {
     }
     .answers-body-toolbar {
       position: absolute;
-      bottom: $u*0.5;
+      bottom: 0;
       left: 0;
     }
   }

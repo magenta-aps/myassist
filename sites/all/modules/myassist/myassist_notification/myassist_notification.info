@@ -12,6 +12,7 @@ dependencies[] = mailsystem
 dependencies[] = message
 dependencies[] = page_manager
 dependencies[] = panels
+dependencies[] = pathologic
 dependencies[] = rules
 dependencies[] = strongarm
 dependencies[] = text

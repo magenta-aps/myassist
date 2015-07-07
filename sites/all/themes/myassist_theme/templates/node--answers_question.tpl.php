@@ -178,11 +178,11 @@
       <div class="answers-body-toolbar">
         <?php
           if ($view_mode !== 'full') {
-            print '<a id="answers-btn-answer" class="answers-btn-primary" href="' . $node_url . '">' . t("Go to question") . '</a>';
+            print '<a id="answers-btn-answer" class="answers-btn-primary btn" href="' . $node_url . '">' . t("Go to question") . '</a>';
           }
 
           if (!$locked) {
-            print '<a id="answers-btn-answer" class="answers-btn-primary" href="' . $node_url . '#new-answer-form">' . t("Answer"). '</a>';
+            print '<a id="answers-btn-answer" class="answers-btn-primary btn" href="' . $node_url . '#new-answer-form">' . t("Answer"). '</a>';
           }
         ?>
           <div class="link-wrapper">
@@ -202,7 +202,7 @@
 
         if ($view_mode === 'full') {
           if ($user->uid === $node->uid && !$locked) {
-            print '<a id="answers-btn-answer" class="answers-btn-primary" href="' . $node_url . '/lock">' . t("Lock question") . '</a>';
+            print '<a id="answers-btn-answer" class="answers-btn-primary btn" href="' . $node_url . '/lock">' . t("Lock question") . '</a>';
           }
         }
         ?>

@@ -13,11 +13,7 @@ function myassist_categories_field_default_field_instances() {
   // Exported field_instance: 'node-answers_question-field_category'
   $field_instances['node-answers_question-field_category'] = array(
     'bundle' => 'answers_question',
-    'default_value' => array(
-      0 => array(
-        'tid' => 23,
-      ),
-    ),
+    'default_value' => NULL,
     'deleted' => 0,
     'description' => '',
     'display' => array(

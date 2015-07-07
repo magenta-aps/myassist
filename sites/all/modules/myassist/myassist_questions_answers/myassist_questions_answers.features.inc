@@ -25,30 +25,6 @@ function myassist_questions_answers_views_api($module = NULL, $api = NULL) {
  */
 function myassist_questions_answers_default_message_type() {
   $items = array();
-  
-  $items['best_answer'] = entity_import('message_type', '{
-  "name" : "best_answer",
-  "description" : "Best answer",
-  "argument_keys" : [],
-  "argument" : [],
-  "category" : "message_type",
-  "data" : {
-    "token options" : { "clear" : 0 },
-    "purge" : { "override" : 0, "enabled" : 0, "quota" : "", "days" : "" }
-  },
-  "language" : "da",
-  "arguments" : false,
-  "message_text" : { "da" : [
-      {
-        "value" : "\u003Ca href=\u0022[site:url]node\/[message:field-node:nid]\u0022\u003EDit svar\u003C\/a\u003Ep\u00e5 sp\u00f8rgsm\u00e5let \u003Ca href=\u0022[site:url]node\/[message:field-node:answers-related-question:nid]\u0022\u003E[message:field-node:answers-related-question:title]\u003C\/a\u003E er blevet udvalgt som sp\u00f8rgsm\u00e5lets bedste svar.",
-        "format" : "filtered_html",
-        "safe_value" : "\u003Cp\u003E\u003Ca href=\u0022url]node\/[message:field-node:nid]\u0022\u003EDit svar\u003C\/a\u003Ep\u00e5 sp\u00f8rgsm\u00e5let \u003Ca href=\u0022url]node\/[message:field-node:answers-related-question:nid]\u0022\u003E[message:field-node:answers-related-question:title]\u003C\/a\u003E er blevet udvalgt som sp\u00f8rgsm\u00e5lets bedste svar.\u003C\/p\u003E\n"
-      }
-    ]
-  },
-  "rdf_mapping" : []
-}');
-  
   $items['question_answered'] = entity_import('message_type', '{
     "name" : "question_answered",
     "description" : "Answer created",
@@ -63,9 +39,14 @@ function myassist_questions_answers_default_message_type() {
     "arguments" : null,
     "message_text" : { "da" : [
         {
-          "value" : "Der er kommet et nyt svar til sp\u00f8rgsm\u00e5let: \u003Ca href=\u0022[site:url]node\/[message:field-node:nid]\u0022\u003E[message:field-node:title]\u003C\/a\u003E",
+          "value" : "\\u003Cp\\u003EDu har f\\u00e5et et assist! - MitAssist.dk\\u003C\\/p\\u003E\\r\\n",
           "format" : "filtered_html",
-          "safe_value" : "\u003Cp\u003EDer er kommet et nyt svar til sp\u00f8rgsm\u00e5let: \u003Ca href=\u0022url]node\/[message:field-node:nid]\u0022\u003E[message:field-node:title]\u003C\/a\u003E\u003C\/p\u003E\n"
+          "safe_value" : "\\u003Cp\\u003EDu har f\\u00e5et et assist! - MitAssist.dk\\u003C\\/p\\u003E\\n"
+        },
+        {
+          "value" : "\\u003Cp\\u003EHej, Du har f\\u00e5et et nyt assist p\\u00e5 dit sp\\u00f8rgsm\\u00e5l: \\u003Ca href=\\u0022[message:field-node:url]\\u0022\\u003E[message:field-node:title]\\u003C\\/a\\u003E\\u003C\\/p\\u003E\\r\\n",
+          "format" : "full_html",
+          "safe_value" : "\\u003Cp\\u003EHej, Du har f\\u00e5et et nyt assist p\\u00e5 dit sp\\u00f8rgsm\\u00e5l: \\u003Ca href=\\u0022[message:field-node:url]\\u0022\\u003E[message:field-node:title]\\u003C\\/a\\u003E\\u003C\\/p\\u003E\\n"
         }
       ]
     },

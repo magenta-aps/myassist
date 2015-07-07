@@ -158,9 +158,59 @@ a:active {
   color: #fff;
 }
 .btn:active {
-  background-color: lighten($blue, 20%);
+  background-color: darken($blue, 20%);
   color: #fff;
 }
+.greenbtn {
+  .btn,
+  .btn:link,
+  .btn:visited {
+    background-color: $green;
+  }
+  .btn:hover,
+  .btn:focus {
+    background-color: lighten($green, 10%);
+  }
+  .btn:active {
+    background-color: darken($green, 20%);
+  }
+}
+.orangebtn {
+  .btn,
+  .btn:link,
+  .btn:visited {
+    background-color: $orange;
+  }
+  .btn:hover,
+  .btn:focus {
+    background-color: lighten($orange, 10%);
+  }
+  .btn:active {
+    background-color: darken($orange, 20%);
+  }
+}
+.greybtn {
+  .btn,
+  .btn:link,
+  .btn:visited {
+    background-color: $grey;
+    color: $darkblue;
+  }
+  .btn:hover,
+  .btn:focus {
+    background-color: darken($grey, 10%);
+  }
+  .btn:active {
+    background-color: darken($grey, 20%);
+  }
+}
+.bigass-greenbtn {
+  @extend .greenbtn;
+  .btn {
+    border-bottom: solid $u*0.25 darken($green, 20%);
+  }
+}
+
 
 /* Address `outline` inconsistency between Chrome and other browsers. */
 a:focus {

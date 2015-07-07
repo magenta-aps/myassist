@@ -19,7 +19,7 @@ function myassist_questions_answers_default_rules_configuration() {
       "DO" : [
         { "userpoints_action_grant_points" : {
             "user" : [ "node:author" ],
-            "points" : "2",
+            "points" : "10",
             "tid" : "0",
             "entity" : [ "node" ],
             "description" : "Posted answer",

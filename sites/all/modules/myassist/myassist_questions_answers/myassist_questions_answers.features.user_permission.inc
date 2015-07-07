@@ -36,7 +36,6 @@ function myassist_questions_answers_user_default_permissions() {
     'roles' => array(
       'administrator' => 'administrator',
       'authenticated user' => 'authenticated user',
-      'moderator' => 'moderator',
       'redaktør' => 'redaktør',
       'ung bruger' => 'ung bruger',
     ),
