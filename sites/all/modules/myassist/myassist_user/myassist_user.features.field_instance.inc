@@ -216,6 +216,80 @@ function myassist_user_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'profile2-ungeprofil-field_no_group_notifications'
+  $field_instances['profile2-ungeprofil-field_no_group_notifications'] = array(
+    'bundle' => 'ungeprofil',
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 7,
+      ),
+    ),
+    'entity_type' => 'profile2',
+    'field_name' => 'field_no_group_notifications',
+    'label' => 'Disable group chat notifications',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 0,
+      ),
+      'type' => 'options_onoff',
+      'weight' => 10,
+    ),
+  );
+
+  // Exported field_instance: 'profile2-ungeprofil-field_no_pair_notifications'
+  $field_instances['profile2-ungeprofil-field_no_pair_notifications'] = array(
+    'bundle' => 'ungeprofil',
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 6,
+      ),
+    ),
+    'entity_type' => 'profile2',
+    'field_name' => 'field_no_pair_notifications',
+    'label' => 'Disable pair chat notifications',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 1,
+      ),
+      'type' => 'options_onoff',
+      'weight' => 9,
+    ),
+  );
+
   // Exported field_instance: 'profile2-ungeprofil-field_quote'
   $field_instances['profile2-ungeprofil-field_quote'] = array(
     'bundle' => 'ungeprofil',
@@ -441,6 +515,80 @@ function myassist_user_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'profile2-voksenprofil-field_no_group_notifications'
+  $field_instances['profile2-voksenprofil-field_no_group_notifications'] = array(
+    'bundle' => 'voksenprofil',
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 9,
+      ),
+    ),
+    'entity_type' => 'profile2',
+    'field_name' => 'field_no_group_notifications',
+    'label' => 'Disable group chat notifications',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 1,
+      ),
+      'type' => 'options_onoff',
+      'weight' => 17,
+    ),
+  );
+
+  // Exported field_instance: 'profile2-voksenprofil-field_no_pair_notifications'
+  $field_instances['profile2-voksenprofil-field_no_pair_notifications'] = array(
+    'bundle' => 'voksenprofil',
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 8,
+      ),
+    ),
+    'entity_type' => 'profile2',
+    'field_name' => 'field_no_pair_notifications',
+    'label' => 'Disable pair chat notifications',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 1,
+      ),
+      'type' => 'options_onoff',
+      'weight' => 15,
+    ),
+  );
+
   // Exported field_instance: 'profile2-voksenprofil-field_quote'
   $field_instances['profile2-voksenprofil-field_quote'] = array(
     'bundle' => 'voksenprofil',
@@ -480,6 +628,8 @@ function myassist_user_field_default_field_instances() {
   t('About me');
   t('Billede');
   t('Birthday');
+  t('Disable group chat notifications');
+  t('Disable pair chat notifications');
   t('Favorite quote');
   t('Gender');
   t('Image');
