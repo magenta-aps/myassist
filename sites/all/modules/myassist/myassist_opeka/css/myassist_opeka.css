@@ -84,3 +84,78 @@ div.chat-status-box h1 {
     margin-top: 0;
     padding-top: 0;
 }
+
+/*****************************************************************************\
+* Styles for chat notification ribbons                                        *
+\*****************************************************************************/
+
+#chatribbons audio {
+    display: none;
+}
+
+#chatribbons div.ribbon {
+    position: relative;
+    padding: 0.5em;
+    margin-bottom: 0.125em;
+    color: #000000;
+}
+
+#chatribbons div.ribbon {
+    display: none;
+}
+
+#chatribbons div.ribbon.open {
+    background-color: lightgreen;
+}
+
+#chatribbons div.ribbon.busy {
+    background-color: lightyellow;
+}
+
+/* Hide elements so they can be controlled from javascript instead */
+#chatribbons div.ribbon .chat-open,
+#chatribbons div.ribbon .chat-busy {
+    display: none;
+}
+
+#chatribbons div.ribbon .information {
+    margin-right: 4em;
+}
+
+#chatribbons div.ribbon .ribbon-header {
+    font-weight: bold;
+}
+
+#chatribbons div.ribbon div.chatstatus-message {
+    display: inline-block;
+}
+
+#chatribbons div.ribbon div.startbutton {
+    display: inline-block;
+    border: 1px solid black;
+    padding: 0 0.25em;
+    float: right;
+    cursor: pointer;
+}
+
+#chatribbons div.ribbon.busy div.startbutton {
+    cursor: default;
+    color: #cccccc;
+    border-color: #cccccc;
+}
+
+#chatribbons div.ribbon div.controls {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding-right: 0.5em;
+}
+
+#chatribbons .click-control {
+    cursor: pointer;
+}
+
+#chatribbons .click-control:hover,
+#chatribbons .click-control:focus {
+    color: #cccccc;
+}

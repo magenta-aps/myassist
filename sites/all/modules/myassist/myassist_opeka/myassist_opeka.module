@@ -4,6 +4,10 @@
  * Code for the MyAssist Opeka chat integration.
  */
 
+/**
+ * Checkes whether the current page is rendered using the Opeka chat system.
+ * @return boolean - TRUE if current page is an Opeka page and FALSE otherwise.
+ */
 function is_opeka_chat_page() {
     $path = current_path();
     $prefixes = array(
@@ -16,6 +20,30 @@ function is_opeka_chat_page() {
         }
     }
     return FALSE;
+}
+
+/**
+ * Adds resources needed to receive chat status updates from Opeka.
+ */
+function add_chat_updates_ressources() {
+    $opeka_module_path = drupal_get_path('module', 'opeka');
+    $module_path = drupal_get_path('module', 'myassist_opeka');
+
+    $opeka_js_url = variable_get('opeka_nowjs_url', 'https://localhost:3000/connect.js');
+
+    drupal_add_js(array('opeka' => array(
+        'socket_io_url' => preg_replace('/\/connect[.]js$/', '/', $opeka_js_url)
+    )), 'setting');
+
+
+    // general libraries
+    drupal_add_js($opeka_module_path . '/js/underscore.js');
+    drupal_add_js('https://cdn.socket.io/socket.io-1.3.5.js');
+
+    // Listen for updates to chat status using socket.io
+    drupal_add_js($module_path . '/js/chat-updates.js', array('weight' => 10));
+
+    drupal_add_css($module_path . '/css/myassist_opeka.css');
 }
 
 /**
@@ -64,7 +92,6 @@ function myassist_opeka_page_build(&$page)
                 }
                 $gender_field = field_get_items("profile2", $user_profile, $gender_fieldname);
 
-                // TODO: probably some way to get this from metadata?
                 $gender_map = array(
                     "0" => "m",
                     "1" => "f"
@@ -84,40 +111,12 @@ function myassist_opeka_page_build(&$page)
 
         drupal_add_js(array('opeka' => $settings), 'setting');
     } elseif(drupal_get_path_alias(current_path()) === 'chat') {
-        $opeka_path = drupal_get_path('module', 'opeka');
-        $opeka_js_url = variable_get('opeka_nowjs_url', 'https://localhost:3000/connect.js');
-        drupal_add_js(array('opeka' => array(
-            'socket_io_url' => preg_replace('/\/connect[.]js$/', '/', $opeka_js_url)
-        )), 'setting');
-
-
-        // general libraries
-        drupal_add_js($opeka_path . '/js/underscore.js');
-        drupal_add_js('https://cdn.socket.io/socket.io-1.3.5.js');
-
-        // Listen for updates to chat status using socket.io
-        drupal_add_js($module_path . '/js/chat-updates.js', array('weight' => 10));
+        add_chat_updates_ressources();
         drupal_add_js($module_path . '/js/chat-status-page.js', array('weight' => 20));
-        drupal_add_css($module_path . '/css/myassist_opeka.css');
 
         $page['content']['myassist-opeka-templates'] = array(
             '#markup' => file_get_contents($template_path . 'chat-status.tmpl.html')
         );
-    } else {
-        // Skip admin pages
-        if(strpos(current_path(), "admin/") === 0) {
-            return;
-        }
-        /* TODO: socket.io client updates from the chat
-
-        drupal_add_js('https://cdn.socket.io/socket.io-1.3.5.js');
-        drupal_add_js($module_path . '/js/other-pages-integration.js', array('weight' => 10));
-
-        # Add page content
-        $page['content']['myassist-opeka-templates'] = array(
-            '#markup' => file_get_contents($template_path . 'other-pages.tmpl.html')
-        );
-        */
     }
 
     return $page;
@@ -137,7 +136,8 @@ function myassist_opeka_theme_registry_alter(&$theme_registry)
     // Iterate through all found template file objects.
     foreach ($template_file_objects as $key => $template_file_object) {
         // If the template has not already been overridden by a theme.
-        if (!isset($theme_registry[$key]['theme path']) || !preg_match('#/themes/#', $theme_registry[$key]['theme path'])) {
+        if (!isset($theme_registry[$key]['theme path']) ||
+            !preg_match('#/themes/#', $theme_registry[$key]['theme path'])) {
             // Alter the theme path and template elements.
             $theme_registry[$key]['theme path'] = $module_path;
             $theme_registry[$key] = array_merge($theme_registry[$key], $template_file_object);
@@ -148,6 +148,7 @@ function myassist_opeka_theme_registry_alter(&$theme_registry)
 
 /**
  * Implements hook_page_alter().
+ * Displays the chat without the surrounding portal by using a custom template.
  */
 function myassist_opeka_page_alter(&$page)
 {
@@ -174,4 +175,123 @@ function myassist_opeka_page_alter(&$page)
         }
     }
     return $page;
+}
+
+
+
+/**
+ * Implements hook_block_info().
+ * Adds chatribbons block.
+ */
+function myassist_opeka_block_info()
+{
+    $blocks = array();
+    $blocks['chatribbons'] = array(
+        'info' => t("Chat notification ribbons")
+    );
+    return $blocks;
+}
+
+/**
+ * Implements hook_theme().
+ * Adds a custom template for use in the chatribbons block.
+ */
+function myassist_opeka_theme($existing, $type, $theme, $path)
+{
+    $templates = array();
+    $templates['chatribbons'] = array(
+        'template' => 'chatribbons',
+        'variables' => array('notification_sound' => ''),
+        'path' => $path . "/templates",
+        'type' => 'theme'
+    );
+    return $templates;
+}
+
+/**
+ * Implements hook_block_view().
+ * Adds logic for rendering the chatribbons block.
+ */
+function myassist_opeka_block_view($delta = '')
+{
+    $block = array();
+
+    switch($delta) {
+        case 'chatribbons':
+            $block['content'] = chat_ribbons_view();
+            break;
+    }
+
+    return $block;
+}
+
+/**
+ * Method for rendering the content of the chatribbons block.
+ * Will render content in the chatribbons block for users that wants to receive notifications.
+ * @return Array - Will return array containing chatribbons content for signed-in users who has not opted out of
+ *                 chat notifications. Returns an empty array for all others.
+ */
+function chat_ribbons_view() {
+    $block = array();
+
+    global $user;
+
+    // Don't show chat-notifications for users that are not logged in
+    if(!$user->uid) {
+        return $block;
+    }
+
+    if(is_opeka_chat_page() || drupal_get_path_alias(current_path()) === 'chat') {
+        return $block;
+    }
+
+    // Check whether chat notifications has been disabled in the user profile
+    $user_profile = profile2_load_by_user($user, 'voksenprofil');
+    if(!$user_profile) {
+        $user_profile = profile2_load_by_user($user, 'ungeprofil');
+    }
+
+    if($user_profile) {
+        $settings = array();
+        $nrDisabled = 0;
+        foreach(array("pair", "group") as $roomType) {
+            $fieldKey = "field_no_" . $roomType . "_notifications";
+            $fieldData = field_get_items("profile2", $user_profile, $fieldKey);
+            if(is_array($fieldData) && count($fieldData) && array_key_exists('value', $fieldData[0])) {
+                if($fieldData[0]['value']) {
+                    $settings['disable_' . $roomType . "_notifications"] = "yes";
+                    $nrDisabled++;
+                }
+            }
+        }
+        // If both notifications are disabled, don't load anything
+        if($nrDisabled >= 2) {
+            return $block;
+        }
+        if($nrDisabled > 0) {
+            drupal_add_js(array('opeka' => $settings), 'setting');
+        }
+    }
+
+    $module_path = drupal_get_path('module', 'myassist_opeka');
+    $opeka_module_path = drupal_get_path('module', 'opeka');
+
+    add_chat_updates_ressources();
+    drupal_add_library('system', 'jquery.cookie');
+    drupal_add_library("system", "effects.slide");
+    drupal_add_js($module_path . '/js/chat-ribbons.js', array('weight' => 20));
+
+    $notification_sound = variable_get(
+        'opeka_client_login_sound',
+        $opeka_module_path . '/media/bell.mp3'
+    );
+
+    $build = array(
+        '#theme' => 'chatribbons',
+        '#notification_sound' => $notification_sound
+    );
+
+    $block = render($build);
+
+    return $block;
 }
