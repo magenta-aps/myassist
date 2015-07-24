@@ -54,3 +54,21 @@
   $(window).resize(updateOffset);
   
 })(jQuery, Drupal, this, this.document);
+
+
+(function ($, Drupal, window, document, undefined) {
+  Drupal.behaviors.headerResponsive = {
+    attach: function(context, settings) {
+      $("#answers-btn-lock").click(function(event){
+        if (window.confirm(Drupal.t("Du er nu ved at lukke dit spørgsmål, du vil dermed ikke modtage flere assists til spørgsmålet, men spørgsmålet og dine assists vil stadig være synlige på sitet, og du kan altid oprette et nyt spørgsmål herinde."))) {
+          return true;
+        } else {
+          event.stopPropagation();
+          event.preventDefault();
+          return false;
+        }
+      });
+    }
+  };
+
+})(jQuery, Drupal, this, this.document);
