@@ -117,3 +117,18 @@ function myassist_questions_answers_lock($nid, $unlock=false) {
   drupal_goto("/node/$nid");
   return false;
 }
+
+function myassist_questions_answers_form_alter(&$form, $form_state, $form_id) {
+  $textarea_height = 3;
+  if ($form_id == 'answers_answer_node_form' && array_key_exists('body', $form) && is_array($form['body'])) {
+    foreach ($form['body'] as $lang => $arr) {
+      if (is_array($arr)) {
+        foreach ($arr as $index => $node) {
+          if (is_array($node) && array_key_exists("#entity_type", $node) && $node["#entity_type"] === "node" && array_key_exists("#bundle", $node) && $node["#bundle"] === "answers_answer") {
+            $form['body'][$lang][$index]["#rows"] = $textarea_height;
+          }
+        }
+      }
+    }
+  }
+}
