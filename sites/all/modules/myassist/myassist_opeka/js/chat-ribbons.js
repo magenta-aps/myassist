@@ -45,15 +45,17 @@ var Opeka = Opeka || {};
                 if (status == "open") {
                     var chatwindow = window.open("");
                     chatwindow.document.body.innerHTML = Drupal.t("Forbinder til chat...");
-                    Opeka.ChatUpdates.getSignInURL(roomType, function(url) {
-                        chatwindow.location = url;
-                    });
-                    setTimeout(function() {
+                    var killTimer = setTimeout(function() {
                         chatwindow.document.body.innerHTML = Drupal.t("Kunne ikke forbinde til chat. Lukker vindue.");
                         setTimeout(function() {
                             chatwindow.close();
                         }, 1000);
                     }, 5000);
+                    Opeka.ChatUpdates.getSignInURL(roomType, function(url) {
+                        clearTimeout(killTimer);
+                        chatwindow.location = url;
+                    });
+                    
                 }
             });
             $("#chatribbons div.ribbon .disable-notifications").on("click", function() {
