@@ -1,0 +1,295 @@
+#chatribbons {
+  audio {
+    display: none;
+  }
+  .ribbon {
+    position: relative;
+    margin-bottom: $u*0.5;
+    @include clearfix;
+  }
+  .ribbon {
+      display: none;
+  }
+  .ribbon.open {
+    background-color: lighten($green, 20%);
+    color: darken($green, 40%);
+  }
+  .ribbon.busy {
+    background-color: $grey;
+  }
+  /* Hide elements so they can be controlled from javascript instead */
+  .ribbon .chat-open,
+  .ribbon .chat-busy {
+    display: none;
+  }
+  .ribbon .information {
+    text-align: center;
+  }
+  .ribbon .ribbon-header {
+    display: block;
+    text-align: left;
+    padding: $u*0.5;
+    background-color: transparentize($white, 0.75);
+  }
+  .ribbon .chatstatus-message {
+    display: inline-block;
+    font-weight: bold;
+    padding: $u;
+  }
+  .click-control,
+  .configure-notifications {
+    @extend .btn;
+    background-color: transparent;
+    color: rgba(0,0,0,0.33);
+  }
+  .configure-notifications {
+    padding: $u*0.25;
+    a {
+      font-weight: normal;
+      font-size: $u*0.8;
+    }
+    a:hover,
+    a:focus,
+    a:active {
+      color: $white;
+    }
+  }
+  .ribbon .startbutton {
+    background-color: $green;
+    color: $white;
+  }
+  .ribbon.busy .startbutton {
+    cursor: default;
+    background-color: $grey;
+    color: $smoke;
+  }
+  .ribbon .controls {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+}
+
+
+#opeka-app {
+  background-color: $grey;
+  width: 100%;
+  max-width: $u*50;
+  margin: 0 auto;
+  padding: $u;
+  .controls {
+    margin-bottom: $u;
+  }
+  .signin-form-tooltip {
+    padding: $u*0.5 0;  
+  }
+  .chat-view-window {
+    position: relative;
+    background-color: $white;
+    padding: 0 $u $u*0.5;
+    height: 50vh;
+    .chat-message-list {
+      position: absolute;
+      bottom: $u*0.5;
+      left: $u;
+      right: $u;
+      height: auto;
+      max-height: 50vh;
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+    .chat-message,
+    .whisper-message,
+    .system-message {
+      padding-top: $u*0.5;
+    }
+    .top-info,
+    .sender-name,
+    .time {
+      display: inline-block;
+    }
+    .top-info:after {
+      display: none;
+    }
+    .time {
+      color: $smoke;
+      font-size: $u*0.8;
+      text-transform: lowercase;
+    }
+    .system-message {
+      color: $smoke;
+    }
+    .bs-callout-client {
+      .sender-name {
+        color: $orange;
+      }
+    }
+    .bs-callout-counselor {
+      .sender-name {
+        color: $green;
+      } 
+    }
+    .whisper-message {
+      border: dashed 1px $grey;
+      padding: $u*0.5;
+      .sender-name {
+        color: $green;
+      }
+    }
+    .system-message span {
+      display: block; 
+    }
+  }
+  .room-list,
+  .chat-message-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .footer {
+    border-top: solid 1px lighten($grey, 10%);
+    padding: $u $u 0;
+  }
+  .btn {
+    margin-bottom: $u;
+  }
+  .room-details {
+    font-size: $u*0.8;
+    color: $smoke;
+  }
+  .content {
+    float: none;
+    width: auto;
+  }
+  .chat-view-form {
+    border-top: solid 1px $grey;
+    margin-bottom: $u;
+    .form-submit,
+    .form-text-container {
+      display: block;
+      margin: 0;
+      padding: 0;
+      float: left;
+    }
+    .form-submit {
+      width: 20%;
+      padding: $u*0.5 0;
+    }
+    .form-text-container {
+      width: 80%;
+      textarea {
+        height: $u*2.5;
+        border: none;
+        width: 100%;
+        box-sizing: border-box;
+      }
+    }
+  }
+  .leave-room-form {
+    padding: $u 0;
+    clear: both;
+    .form-submit {
+      width: auto;
+      float: none;
+      padding: $u*0.5 $u;
+    }
+  }
+}
+
+
+.myassist-message-anonymous {
+    display: none;
+}
+.chat-status-box {
+    border: 1px solid black;
+    position: relative;
+    background-color: lightgrey;
+    max-width: 45em;
+}
+
+.chat-status-box.placeholder {
+    min-height: 8em;
+}
+
+.chat-status-box.placeholder .data {
+    display: none;
+}
+
+div.chat-status-box.chat-closed {
+    background-color: lightgrey;
+}
+div.chat-status-box.chat-open {
+    background-color: lightgreen;
+}
+div.chat-status-box.chat-busy {
+    background-color: lightyellow;
+}
+
+div.chat-status-box .chat-open,
+div.chat-status-box .chat-closed,
+div.chat-status-box .chat-busy
+{
+    display: none;
+}
+
+div.chat-status-box div.iconarea {
+    position: absolute;
+    width: 7.5em;
+    float: left;
+    padding: 1em;
+}
+
+div.chat-status-box div.description {
+    margin-left: 10em;
+    border-left: 1px solid black;
+    margin-right: 12em;
+    border-right: 1px solid black;
+    min-height: 8em;
+    padding: 1em;
+}
+
+div.chat-status-box div.hours {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 9.5em;
+    padding: 1em;
+}
+
+div.chat-status-box span.startbutton {
+    border: 1px solid black;
+    padding: 0.25em 0.5em;
+    display: inline-block;
+    background-color: darkgray;
+    color: gray;
+    cursor: not-allowed;
+}
+
+div.chat-status-box.chat-open span.startbutton {
+    cursor: pointer;
+    background-color: #3b535f;
+    color: white;
+}
+
+div.chat-status-box h1 {
+    background-color: inherit;
+    color: black;
+    margin-top: 0;
+    padding-top: 0;
+}
+
+@media screen and (min-width: 960px) {
+  
+  #chatribbons {
+    .ribbon .information {
+      text-align: left;
+    }
+    .ribbon .ribbon-header {
+      display: inline-block;
+    }
+    .ribbon .chatstatus-message {
+      padding: $u*0.5;
+    }
+  }
+  
+}

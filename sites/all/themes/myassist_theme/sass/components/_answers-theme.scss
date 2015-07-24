@@ -76,7 +76,7 @@
   .rate-number-up-down-rating {
     float: left;
     display: block;
-    color: lighten($basegrey, 40%);
+    color: $grey;
     font-size: $u;
     line-height: 1.2;
     padding: $u/1.5 0;
@@ -166,7 +166,7 @@
 
 .answers-body-wrapper {
   .comment-wrapper {
-    background: lighten($basegrey, 60%);
+    background: $grey;
     margin-left: $u;
     margin-right: -($u);
     border: none;
@@ -175,7 +175,7 @@
       display: block;
       text-transform: uppercase;
       font-size: $u*0.7;
-      color: lighten($basegrey, 20%);
+      color: $grey;
       background: #fff;
       padding: 0 0 $u/2;
       font-weight: normal;
@@ -196,10 +196,10 @@
   display: none;
 }
 .author-role_debatraadgiver .answers-submitted {
-  background-color: lighten($accent, 20%);
+  background-color: lighten($orange, 20%);
 }
 .author-is-current .answers-submitted {
-  background-color: lighten($basecolor, 50%);
+  background-color: $grey;
 }
 
 /************************************************************************************************/
@@ -238,7 +238,7 @@
   width: auto;
   height: auto;
   background-size: auto $u*1.25;
-  color: $basecolor;
+  color: $grey;
 }
 .answers-answer-edit a {
   background-image: url('../images/icons/pencil.svg');
@@ -287,14 +287,14 @@
   background: transparent;
   margin: 0;
   color: #fff;
-  background: $basegrey;
+  background: $grey;
   margin-right: -($u);
   margin-left: -($u);
 }
 
 .node-answers-answer {
   border: none;
-  border-bottom: dashed 1px lighten($basegrey, 40%);
+  border-bottom: dashed 1px $grey;
   .field-name-body .field-items .field-item p {
     display: block;
   }
@@ -342,7 +342,7 @@
   margin: 0;
   height: auto;
   .links li {
-    background: lighten($basegrey, 60%);
+    background: $grey;
     padding: $u/2;
     display: block;
   }
@@ -387,7 +387,7 @@
   border-radius: 0;
 }
 .achievement-notification-dialog .achievement-notification {
-  background: $accent;
+  background: $orange;
   color: #fff;
   max-width: 100%;
   height: auto !important;
@@ -416,8 +416,8 @@
 /************************************************************************************************/
 
 .achievement-image {
-  width: $u*4 !important;
-  height: $u*4;
+  width: $u*4;
+  min-height: $u*4;
   margin: $u/2 $u;
   a,
   img {
