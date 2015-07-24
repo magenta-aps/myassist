@@ -63,10 +63,6 @@ $font-monospace:   $courier;
 // Colors, etc.
 //
 
-$basegrey: #555; // base grey
-$basecolor: #c00; // base color
-$accent: #DEB480; // accent color
-
 $blue: #3b535f;
 $darkblue: #38535e;
 $smoke: #72858c;
@@ -87,8 +83,8 @@ $indent-amount: $u;
 $nav-height: $u*3;
 
 // Tab styling.
-$tabs-container-bg: lighten($basegrey, 40%);
-$tabs-border: darken($basegrey, 40%);
+$tabs-container-bg: lighten($grey, 40%);
+$tabs-border: darken($grey, 40%);
 
 
 

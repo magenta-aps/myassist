@@ -6,11 +6,7 @@
     padding: $u/2 0;
   }
   .field-name-field-avatar {
-    float: left;
-    width: 33.33%;
-    .field-items {
-      padding: $u/2 $u/2 $u/2 0;
-    }
+    
   }
   .field-name-field-expertise {
     clear: both;
@@ -21,9 +17,13 @@
     @include clearfix;
   }
   .achievement-image {
-    width: 70px;
+    width: $u*7;
     margin: 0;
     float: left;
+    background: $grey;
+    padding: $u/2;
+    font-size: $u*0.8;
+    text-align: center;
     a {
       display: block;
       margin: 0 $u/2;

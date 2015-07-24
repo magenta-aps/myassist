@@ -20,8 +20,8 @@
                 </div>
             </div>
             <div class="controls">
-                <span class="configure-notifications"><a href="/user/edit">&#9784;</a></span>
-                <span class="disable-notifications click-control">&#9747;</span>
+                <span class="configure-notifications"><a href="/user/edit"><?php print t("Settings") ?></a></span>
+                <span class="disable-notifications click-control">&#10006;</span>
             </div>
         </div>
         <div class="ribbon group hidden">
