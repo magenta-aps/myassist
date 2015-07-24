@@ -6,7 +6,7 @@
 
 var Opeka = Opeka || {};
 
-(function(Opeka, $) {
+(function(Opeka, $, Drupal) {
     var displayRibbonMap = {
         'pair': { 'open': true, 'busy': true },
         'group': { 'open': true }
@@ -42,11 +42,18 @@ var Opeka = Opeka || {};
                 var $boxDiv = RibbonStatus.getRibbonElem(this),
                     status = RibbonStatus.getStatus($boxDiv),
                     roomType = $boxDiv.hasClass("pair") ? "pair" : "group";
-
-                if(status == "open") {
+                if (status == "open") {
+                    var chatwindow = window.open("");
+                    chatwindow.document.body.innerHTML = Drupal.t("Forbinder til chat...");
                     Opeka.ChatUpdates.getSignInURL(roomType, function(url) {
-                        window.open(url);
+                        chatwindow.location = url;
                     });
+                    setTimeout(function() {
+                        chatwindow.document.body.innerHTML = Drupal.t("Kunne ikke forbinde til chat. Lukker vindue.");
+                        setTimeout(function() {
+                            chatwindow.close();
+                        }, 1000);
+                    }, 5000);
                 }
             });
             $("#chatribbons div.ribbon .disable-notifications").on("click", function() {
@@ -112,4 +119,4 @@ var Opeka = Opeka || {};
 
     $(function() { RibbonStatus.initialize(); });
 
-})(Opeka, jQuery);
+})(Opeka, jQuery, Drupal);
