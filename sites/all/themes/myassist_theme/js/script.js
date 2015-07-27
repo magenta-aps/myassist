@@ -59,15 +59,19 @@
 (function ($, Drupal, window, document, undefined) {
   Drupal.behaviors.headerResponsive = {
     attach: function(context, settings) {
+
+      //var messageForm = $("#answers-answer-node-form");
+      //var messageField = messageForm.find("textarea[id^=edit-body]");
+
+      var messageForm = $(".node-answers-question form[id^=comment-form]");
+      var messageField = messageForm.find("textarea[id^=edit-comment-body]");
+
       var originalValues = {};
-      $("#answers-answer-node-form").find("input,select").each(function(){
+      messageForm.find("input,select").each(function(){
         if (this.name) {
           originalValues[this.name] = this.value;
         }
       });
-
-
-
 
       $("#answers-btn-lock").click(function(event){
         var msg = window.prompt(Drupal.t("Skriv en afsluttende besked, så vi ved, hvorfor du lukker spørgsmålet:\n(Let feltet være tomt for at lukke tråden uden en afsluttende besked)"));
@@ -79,15 +83,12 @@
           if (msg) { // The user actually entered some text
             event.stopPropagation();
             event.preventDefault();
-            var form = $("#answers-answer-node-form");
             var data = $.extend({}, originalValues);
-
-            var commentField = form.find("textarea[id^=edit-body]");
-            data[commentField.attr("name")] = msg;
+            data[messageField.attr("name")] = msg;
 
             $.ajax({
-              url: form.attr("action") || document.location,
-              type: form.attr("method") || "post",
+              url: messageForm.attr("action") || document.location,
+              type: messageForm.attr("method") || "post",
               data: data,
               success: function(){
                 document.location.href = this.href;
