@@ -59,13 +59,45 @@
 (function ($, Drupal, window, document, undefined) {
   Drupal.behaviors.headerResponsive = {
     attach: function(context, settings) {
+      var originalValues = {};
+      $("#answers-answer-node-form").find("input,select").each(function(){
+        if (this.name) {
+          originalValues[this.name] = this.value;
+        }
+      });
+
+
+
+
       $("#answers-btn-lock").click(function(event){
-        if (window.confirm(Drupal.t("Du er nu ved at lukke dit spørgsmål, du vil dermed ikke modtage flere assists til spørgsmålet, men spørgsmålet og dine assists vil stadig være synlige på sitet, og du kan altid oprette et nyt spørgsmål herinde."))) {
-          return true;
-        } else {
-          event.stopPropagation();
+        var msg = window.prompt(Drupal.t("Skriv en afsluttende besked, så vi ved, hvorfor du lukker spørgsmålet:\n(Let feltet være tomt for at lukke tråden uden en afsluttende besked)"));
+        if (msg === null) { // The user clicked cancel
+          event.stopPropagation(); // Abort event so nothing happens
           event.preventDefault();
           return false;
+        } else {
+          if (msg) { // The user actually entered some text
+            event.stopPropagation();
+            event.preventDefault();
+            var form = $("#answers-answer-node-form");
+            var data = $.extend({}, originalValues);
+
+            var commentField = form.find("textarea[id^=edit-body]");
+            data[commentField.attr("name")] = msg;
+
+            $.ajax({
+              url: form.attr("action") || document.location,
+              type: form.attr("method") || "post",
+              data: data,
+              success: function(){
+                document.location.href = this.href;
+              }.bind(this)
+            });
+            return false;
+
+          } else { // The user left the field empty
+            return true; // Let the lock button do its regular thing (go to /node/<nodeid>/lock)
+          }
         }
       });
     }
