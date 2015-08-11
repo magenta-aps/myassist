@@ -4,8 +4,6 @@
 
 .node-answers-wrapper {
   padding: $u*0.5 0 ;
-  border-bottom: solid 1px $grey;
-  @include clearfix;
 }
 
 .answers-body-wrapper {
@@ -147,18 +145,25 @@
 /************************************************************************************************/
 
 .answers-body-toolbar {
-  @extend .greybtn;
+  font-size: $u*0.8;
+  color: $smoke;
+  border-top: dashed 1px $grey;
+  padding-top: $u*0.5;
 }
-.answers-body-toolbar ul.links li,
-.answers-body-toolbar ul.links li:hover {
-  color: inherit;
+.answers-body-toolbar a {
+  @extend .btn;
+  margin-bottom: $u*0.5 !important;
 }
 .answers-body-toolbar ul.links li {
   cursor: auto;
-  text-align: right;
+  text-align: left;
 }
 .link-wrapper {
   @include clearfix;
+}
+#answers-btn-answer {
+  @extend .greenbtn;
+  margin-bottom: $u !important;
 }
 
 /************************************************************************************************/
@@ -273,29 +278,41 @@
   padding: $u/2;
 }
 
-/************************************************************************************************/
-/* ANSWERS HEADING                                                                              */
-/************************************************************************************************/
-
 
 /************************************************************************************************/
 /* ANSWERS                                                                                      */
 /************************************************************************************************/
 
+.answers-list {
+  background-color: $grey;
+  margin-left: -($u);
+  margin-right: -($u);
+  margin-top: $u;
+  margin-bottom: 0;
+  padding: 0 0 1px;
+  .view-filters {
+    margin: 0 $u;
+  }
+  .views-row  {
+    background-color: $white;
+    margin: $u;
+    padding: $u;
+  }
+  .submitted-time {
+    border: none;
+  }
+}
+
 .node-answers-wrapper .view-question-answers .view-header {
   font-size: $u;
-  padding: $u/2 $u;
-  background: transparent;
   margin: 0;
-  color: #fff;
-  background: $grey;
-  margin-right: -($u);
-  margin-left: -($u);
+  background-color: $orange;
+  padding: $u*0.5 $u;
+  color: $white;
 }
 
 .node-answers-answer {
   border: none;
-  border-bottom: dashed 1px $grey;
   .field-name-body .field-items .field-item p {
     display: block;
   }
@@ -329,16 +346,6 @@
   }
   .content .field {
     padding: 0;
-  }
-}
-
-.answers-body-toolbar {
-  margin: 0;
-  height: auto;
-  .links li {
-    background: $grey;
-    padding: $u/2;
-    display: block;
   }
 }
 

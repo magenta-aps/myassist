@@ -112,20 +112,18 @@
 .header,
 .region-navigation,
 .bottom__container {
-  background: $blue;
+  background-color: $blue;
   color: lighten($smoke, 20%);
-  a:link {
-    color: $white;
-  }
+  a:link,
   a:visited {
     color: $white;
   }
   a:hover,
   a:focus {
-    color: darken($white, 20%);
+    background-color: darken($blue, 10%);
   }
   a:active {
-    color: darken($white, 30%);
+    background-color: darken($blue, 20%);
   }
 }
 
@@ -481,7 +479,9 @@ span.field-label {
   }
   .menu {
     padding: $u*0.5 0;
-    margin: 0 -($u);
+    margin: 0;
+    margin-left: -($u);
+    margin-right: -($u);
   }
   .menu__link {
     @extend .navlinks;
@@ -498,8 +498,8 @@ span.field-label {
 
 /* Login/Create new user link */
 .create-new-or-log-in {
-  padding: $u;
-  font-size: $u*0.8;
+  @extend .navlinks;
+  padding: $u*1.2 $u;
 }
 
 
@@ -863,4 +863,47 @@ tr.selected td {
   .btn {
     display: block;
   }
+}
+
+
+/**
+ * Search form
+ */
+
+.search-form input {
+  margin: 0 0 $u*0.5;
+}
+
+
+/**
+ * FAQ
+ */
+
+.node-readmore a {
+  @extend .btn;
+}
+.view-faq {
+  .views-row {
+    border-top: solid 1px $grey;
+  }
+  .views-row:first-child {
+    border: none;
+  }
+}
+.field-type-taxonomy-term-reference a {
+  @extend .label;
+}
+
+
+/**
+ * Taxomony page
+ */
+
+.page-taxonomy #page-title {
+  background-color: $orange;
+  color: $white;
+  padding: $u;
+  margin-left: -($u);
+  margin-right: -($u);
+  margin-top: 0;
 }

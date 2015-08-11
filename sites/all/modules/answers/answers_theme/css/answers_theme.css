@@ -29,55 +29,6 @@
 /* TOOLBAR                                                                                     */
 /************************************************************************************************/
 
-.answers-body-toolbar {
-  margin-top: 10px;
-  margin-left: 0;
-  display: block;
-  height: 20px;
-}
-
-.answers-body-toolbar ul.links {
-  padding-left: 0;
-  list-style-type: none;
-  font-size: 1.8em;
-  text-rendering: auto;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  transform: translate(0, 0);
-}
-
-.answers-body-toolbar ul.links li {
-  display: inline-block;
-  position: absolute;
-  text-align: center;
-  cursor: pointer;
-  height: 18px;
-  font-size: 8pt;
-  color: #0071B3;
-  float: right;
-  vertical-align: middle;
-}
-
-.answers-body-toolbar ul.links > li {
-  position: relative;
-}
-
-.answers-body-toolbar ul.links li:hover,
-.answers-body-toolbar ul.links li a:hover 
-{
-  color: #FF9B20;
-}
-
-.answers-body-toolbar ul.links li:before {
-  font: normal normal normal 14px/1 AnswersFontAwesome;
-  margin: 0 0.5em;
-}
-
-.answers-body-toolbar ul.links .answers-answer-delete:before   { content: "\f014"; }
-.answers-body-toolbar ul.links .answers-comment-button:before { content: "\f075"; }
-.answers-body-toolbar ul.links .answers-answer-edit:before      { content: "\f040";}
-.answers-body-toolbar ul.links .flag-subscribe_answers_notifications:before { content: "\f024"; }
-
 /************************************************************************************************/
 /* COMMENTS                                                                                     */
 /************************************************************************************************/

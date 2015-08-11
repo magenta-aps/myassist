@@ -105,22 +105,26 @@
   border-left: solid 1px $white;
   .block-title {
     background-image: url(../images/icons/search.png);
+    cursor: pointer;
   }
-  #search-block-form {
-    display: none;
+  .block-title:hover,
+  .block-title:active,
+  .block-title:focus {
+    background-color: darken($blue, 10%);
   }
-}
-#block-search-form.open {
   #search-block-form {
     display: block;
     position: fixed;
     text-align: center;
     right: 0;
     left: 0;
-    top: $u*3;
+    top: -($u*6);
+    -webkit-transition: top 0.5s;
+    transition: top 0.5s;
     z-index: 5;
     background: $grey;
-    padding: $u/2;
+    padding: $u;
+    box-shadow: $u*0.5 0 $u $u*0.5 rgba(0,0,0,0.2);
     .form-item,
     .form-actions {
       display: inline-block;
@@ -142,6 +146,11 @@
       
     }
   }
+}
+#block-search-form.open #search-block-form {
+  -webkit-transition: top 0.5s;
+  transition: top 0.5s;
+  top: $u*3;
 }
 
 #block-myassist-user-avatar {

@@ -137,9 +137,10 @@ a:active {
   color: lighten($blue, 20%);
 }
 .btn,
-.btn:link {
-  background-color: $blue;
-  color: #fff;
+.btn:link,
+.btn:visited {
+  background-color: $grey;
+  color: $blue;
   padding: $u/2 $u;
   cursor: pointer;
   border: none;
@@ -149,67 +150,71 @@ a:active {
   border-radius: $u/4;
   margin-bottom: $u;
 }
-.btn:visited {
-  background-color: desaturate($blue, 20%);
-  color: #fff;
-}
 .btn:hover,
 .btn:focus {
-  background-color: lighten($blue, 10%);
-  color: #fff;
+  background-color: darken($grey, 10%);
 }
 .btn:active {
-  background-color: darken($blue, 20%);
-  color: #fff;
+  background-color: darken($grey, 20%);
 }
 .greenbtn {
-  .btn,
-  .btn:link,
-  .btn:visited {
+  @extend .btn;
+  &,
+  &:link,
+  &:visited {
+    color: $white;
     background-color: $green;
   }
-  .btn:hover,
-  .btn:focus {
+  &:hover,
+  &:focus {
+    color: $white;
     background-color: lighten($green, 10%);
   }
-  .btn:active {
+  &:active {
+    color: $white;
     background-color: darken($green, 20%);
   }
 }
 .orangebtn {
-  .btn,
-  .btn:link,
-  .btn:visited {
+  @extend .btn;
+  &,
+  &:link,
+  &:visited {
+    color: $white;
     background-color: $orange;
   }
-  .btn:hover,
-  .btn:focus {
+  &:hover,
+  &:focus {
+    color: $white;
     background-color: lighten($orange, 10%);
   }
-  .btn:active {
+  &:active {
+    color: $white;
     background-color: darken($orange, 20%);
   }
 }
-.greybtn {
-  .btn,
-  .btn:link,
-  .btn:visited {
-    background-color: $grey;
-    color: $darkblue;
+.bluebtn {
+  @extend .btn;
+  &,
+  &:link,
+  &:visited {
+    color: $white;
+    background-color: $blue;
   }
-  .btn:hover,
-  .btn:focus {
-    background-color: darken($grey, 10%);
+  &:hover,
+  &:focus {
+    color: $white;
+    background-color: darken($blue, 10%);
   }
-  .btn:active {
-    background-color: darken($grey, 20%);
+  &:active {
+    color: $white;
+    background-color: darken($blue, 20%);
   }
 }
 .bigass-greenbtn {
   @extend .greenbtn;
-  .btn {
-    border-bottom: solid $u*0.25 darken($green, 20%);
-  }
+  border-bottom: solid $u*0.25 darken($green, 20%);
+  display: block;
 }
 .navlinks {
   text-transform: uppercase;
@@ -223,6 +228,15 @@ a:active {
   &.active {
     background-color: darken($darkblue, 10%);  
   }
+}
+.label {
+  display: inline-block;
+  padding: $u*0.5 $u;
+  font-size: $u*0.8;
+  background-color: $orange;
+  color: $white;
+  font-weight: normal;
+  margin-bottom: $u*0.5;
 }
 
 
@@ -476,7 +490,7 @@ button,
 html input[type="button"], /* 1 */
 input[type="reset"],
 input[type="submit"] {
-  @extend .btn;
+  @extend .greenbtn;
   -webkit-appearance: button; /* 2 */
   margin: 0 $u/2 $u/2 0;
 }

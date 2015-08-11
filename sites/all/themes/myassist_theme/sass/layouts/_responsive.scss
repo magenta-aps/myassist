@@ -111,6 +111,9 @@ body {
 @media all and (min-width: 960px) {
   
   /* General layout */
+  body {
+    background-color: $white;
+  }
   #page,
   .header__container,
   .region-bottom {
