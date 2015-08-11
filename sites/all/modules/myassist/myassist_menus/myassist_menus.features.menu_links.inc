@@ -10,39 +10,66 @@
 function myassist_menus_menu_default_menu_links() {
   $menu_links = array();
 
-  // Exported menu link: main-menu_categories:categories
-  $menu_links['main-menu_categories:categories'] = array(
+  // Exported menu link: main-menu_chat:opeka
+  $menu_links['main-menu_chat:opeka'] = array(
     'menu_name' => 'main-menu',
-    'link_path' => 'categories',
-    'router_path' => 'categories',
-    'link_title' => 'Categories',
+    'link_path' => 'opeka',
+    'router_path' => 'opeka',
+    'link_title' => 'Chat',
     'options' => array(
       'attributes' => array(
-        'title' => '',
+        'title' => 'Chat med en rådgiver',
       ),
       'alter' => TRUE,
-      'identifier' => 'main-menu_categories:categories',
+      'identifier' => 'main-menu_chat:opeka',
     ),
-    'module' => 'system',
-    'hidden' => 1,
+    'module' => 'menu',
+    'hidden' => 0,
     'external' => 0,
     'has_children' => 0,
     'expanded' => 0,
-    'weight' => -47,
+    'weight' => -48,
     'customized' => 1,
-    'language' => 'en',
+    'language' => 'und',
     'menu_links_customized' => 1,
   );
-  // Exported menu link: main-menu_questions:questions
-  $menu_links['main-menu_questions:questions'] = array(
+  // Exported menu link: main-menu_dashboard:user
+  $menu_links['main-menu_dashboard:user'] = array(
     'menu_name' => 'main-menu',
-    'link_path' => 'questions',
-    'router_path' => 'questions',
-    'link_title' => 'Questions',
+    'link_path' => 'user',
+    'router_path' => 'user',
+    'link_title' => 'Dashboard',
     'options' => array(
-      'identifier' => 'main-menu_questions:questions',
+      'attributes' => array(
+        'title' => 'Se dine personlige oplysninger',
+      ),
+      'alter' => TRUE,
+      'identifier' => 'main-menu_dashboard:user',
     ),
-    'module' => 'system',
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 0,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -49,
+    'customized' => 1,
+    'language' => 'und',
+    'menu_links_customized' => 1,
+  );
+  // Exported menu link: main-menu_sprgsml:frontpage
+  $menu_links['main-menu_sprgsml:frontpage'] = array(
+    'menu_name' => 'main-menu',
+    'link_path' => 'frontpage',
+    'router_path' => 'frontpage',
+    'link_title' => 'Spørgsmål',
+    'options' => array(
+      'attributes' => array(
+        'title' => 'Liste over spørgsmål',
+      ),
+      'alter' => TRUE,
+      'identifier' => 'main-menu_sprgsml:frontpage',
+    ),
+    'module' => 'menu',
     'hidden' => 0,
     'external' => 0,
     'has_children' => 0,
@@ -277,13 +304,14 @@ function myassist_menus_menu_default_menu_links() {
   // Included for use with string extractors like potx.
   t('Achievements');
   t('Beskeder');
-  t('Categories');
+  t('Chat');
+  t('Dashboard');
   t('Edit Profile');
   t('Log out');
   t('My !points');
   t('Points');
-  t('Questions');
   t('Redigér profil');
+  t('Spørgsmål');
   t('User account');
   t('View profile');
   t('Vis profil');
