@@ -10,7 +10,7 @@
 
 /* Container */
 body {
-  background: $white;
+  background-color: $blue;
 }
 
 /* Header */
@@ -59,8 +59,9 @@ body {
 }
 
 /* Footer/bottom */
-.region-bottom {
-  margin-bottom: $u*3;
+.bottom__container {
+  margin-top: $u;
+  padding: 0 0 $u*3;
   .block {
     padding: 0 $u $u;
   }

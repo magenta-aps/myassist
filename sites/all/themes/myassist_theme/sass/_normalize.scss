@@ -143,10 +143,11 @@ a:active {
   padding: $u/2 $u;
   cursor: pointer;
   border: none;
-  font-weight: bold;
+  font-weight: normal;
   text-align: center;
   display: inline-block;
   border-radius: $u/4;
+  margin-bottom: $u;
 }
 .btn:visited {
   background-color: desaturate($blue, 20%);
@@ -210,6 +211,19 @@ a:active {
     border-bottom: solid $u*0.25 darken($green, 20%);
   }
 }
+.navlinks {
+  text-transform: uppercase;
+  font-size: $u*0.8;
+  color: $white;
+  background-color: $darkblue;
+  padding: $u*0.5 $u;
+  &:hover,
+  &:active,
+  &:focus,
+  &.active {
+    background-color: darken($darkblue, 10%);  
+  }
+}
 
 
 /* Address `outline` inconsistency between Chrome and other browsers. */
@@ -247,19 +261,17 @@ h4,
 h5,
 h6 {
   font-size: $u;
-  padding: $u*0.75 0 $u*0.25;
+  padding: $u*0.5 0;
   margin: 0;
   font-weight: bold;
 }
 h1 {
   font-size: $u*1.45;
   line-height: 1.18;
-  padding: $u 0 $u*0.5;
 }
 h2 {
   font-size: $u*1.18;
   line-height: 1.1;
-  padding: $u 0 $u*0.5;
 }
 h3 {
   font-size: $u*0.8;

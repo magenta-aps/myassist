@@ -139,19 +139,20 @@
     text-align: center;
   }
   .menu__link {
-    border: none !important;
     @extend .icons;
+    @extend .navlinks;
+    border: none !important;
     text-indent: 0;
     text-align: center;
     width: auto;
     height: auto;
     background-position: center $u/1.5;
     background-size: $u*1.25 auto;
-    padding: $u*2 $u/2 $u/2;
+    padding: $u*2.25 $u/2 $u/2;
     overflow: hidden;
     font-size: $u*0.8;
   }
-  .menu__link[href="/questions"] {
+  .menu__link[href="/frontpage"] {
     background-image: url(../images/icons/question.png);
   }
   .menu__link[href="/user"] {
@@ -161,7 +162,7 @@
     background-image: url(../images/icons/bubbles.png);
   }
   .active {
-    background-color: lighten($blue, 20%);
+    background-color: $darkblue;
     color: $white;
   }
 }
@@ -456,7 +457,10 @@ span.field-label {
 .pager-current {
   @extend %pager__item;
   font-weight: bold;
-  padding: $u/2;
+  padding: $u/2 $u;
+  background-color: $grey;
+  border-radius: $u*0.25;
+  border-bottom: solid $u*0.25 darken($grey, 20%);
 }
 
 
@@ -477,13 +481,10 @@ span.field-label {
   }
   .menu {
     padding: $u*0.5 0;
+    margin: 0 -($u);
   }
   .menu__link {
-    padding: $u*0.5 0;
-    text-transform: uppercase;
-  }
-  .active {
-    padding: $u*0.5 $u;
+    @extend .navlinks;
   }
 }
 
