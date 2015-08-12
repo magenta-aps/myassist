@@ -74,7 +74,7 @@
   .rate-number-up-down-rating {
     float: left;
     display: block;
-    color: $grey;
+    color: $smoke;
     font-size: $u;
     line-height: 1.2;
     padding: $u/1.5 0;
@@ -93,12 +93,11 @@
 /************************************************************************************************/
 
 .answers-submitted {
-  float: left;
-  width: 62%;
-  padding: $u*0.5 0;
+  padding-top: $u*0.5;
   .user-picture {
     float: left;
     width: $u*2.5;
+    margin: 0;
     a {
       display: block;
     }
@@ -147,8 +146,7 @@
 .answers-body-toolbar {
   font-size: $u*0.8;
   color: $smoke;
-  border-top: dashed 1px $grey;
-  padding-top: $u*0.5;
+  padding-top: $u;
 }
 .answers-body-toolbar a {
   @extend .btn;
@@ -173,16 +171,15 @@
 .answers-body-wrapper {
   .comment-wrapper {
     background: $grey;
-    margin-left: $u;
-    margin-right: -($u);
+    margin: $u 0 0;
     border: none;
     padding: 0;
     .answers-comments-title {
       display: block;
       text-transform: uppercase;
       font-size: $u*0.7;
-      color: $grey;
-      background: #fff;
+      color: $smoke;
+      background: $white;
       padding: 0 0 $u/2;
       font-weight: normal;
     }
@@ -438,28 +435,4 @@
   float: none;
   width: auto;
   margin-bottom: $u;
-}
-
-
-/************************************************************************************************/
-/* MEDIA QUERIES                                                                                */
-/************************************************************************************************/
-
-/* Layout for larger screens */
-@media all and (min-width: 960px) {
-
-  #content {
-    @include clearfix;
-  }
-  
-  /* Achievements */
-  .achievement-leaderboard-first,
-  .achievement-leaderboard-recent {
-    float: left;
-    width: 48%;
-  }
-  .achievement-leaderboard-recent {
-    float: right;
-  }
-  
 }

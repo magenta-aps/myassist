@@ -478,7 +478,7 @@ span.field-label {
     @include element-invisible;  
   }
   .menu {
-    padding: $u*0.5 0;
+    padding: 0 0 $u;
     margin: 0;
     margin-left: -($u);
     margin-right: -($u);
@@ -516,7 +516,6 @@ span.field-label {
 .menu__link {
   display: block;
   padding: $u/2 $u;
-  border-top: solid 1px lighten($blue, 10%);
 }
 .menu__item:first-child .menu__link {
   border-top: none;
@@ -873,6 +872,21 @@ tr.selected td {
 .search-form input {
   margin: 0 0 $u*0.5;
 }
+.search-results {
+  padding: 0;
+  .search-result {
+    border-top: dashed 1px $grey;
+    .title {
+      text-transform: none;
+    }
+    .search-snippet {
+      margin-bottom: 0;
+    }
+    .search-info {
+      color: $smoke;
+    }
+  }
+}
 
 
 /**
@@ -900,10 +914,14 @@ tr.selected td {
  */
 
 .page-taxonomy #page-title {
-  background-color: $orange;
-  color: $white;
-  padding: $u;
-  margin-left: -($u);
-  margin-right: -($u);
-  margin-top: 0;
+  @extend .orange-funky-header;
+}
+
+
+/**
+ * Hide RSS icon
+ */
+
+.feed-icon {
+  @include element-invisible;
 }

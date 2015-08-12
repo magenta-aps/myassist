@@ -121,7 +121,7 @@
     top: -($u*6);
     -webkit-transition: top 0.5s;
     transition: top 0.5s;
-    z-index: 5;
+    z-index: 100;
     background: $grey;
     padding: $u;
     box-shadow: $u*0.5 0 $u $u*0.5 rgba(0,0,0,0.2);

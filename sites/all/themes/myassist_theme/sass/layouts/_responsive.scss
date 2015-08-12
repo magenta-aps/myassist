@@ -75,7 +75,7 @@ body {
 
 
 /**
- * Layout for smaller screens.
+ * Layout for smallest screens.
  */
 
 @media all and (max-width: 480px) {
@@ -83,54 +83,19 @@ body {
 }
 
 @media all and (min-width: 480px) {
-  
-  /* Header */
-  #block-myassist-user-username {
-    @include element-invisible-off;
-    padding: $u/2 $u $u/2 0;
-  }
-  
-  /* Main */
-  #main {
-    position: relative;
-  }
-  
+   
 }
+
 
 /**
  * Layout for smaller screens.
  */
-@media all and (min-width: 480px) and (max-width: 959px) {
-  
-}
 
-
-/**
- * Layout for larger screens
- */
-@media all and (min-width: 960px) {
-  
-  /* General layout */
-  body {
-    background-color: $white;
-  }
-  #page,
-  .header__container,
-  .region-bottom {
-    width: 960px;
-    margin: 0 auto;
-  }
-  
-  /* Page */
-  #page {
-    padding: $u*3 0 0;
-  }
+@media all and (min-width: $u*35) {
   
   /* Header */
-  .header__region {
-    position: absolute;
-    right: 50%;
-    margin-right: -480px;
+  #header {
+    
   }
   
   /* Main menu */
@@ -138,141 +103,172 @@ body {
     position: fixed;
     bottom: auto;
     top: 0;
-    left: 50%;
+    left: $u*11;
     right: auto;
-    height: $u*2.5;
-    margin-left: -16.5%;
-    width: 33.33%;
+    width: auto;
     z-index: 4;
     text-align: center;
   }
   #block-system-main-menu .menu__item {
-    width: $u*5;
+    width: $u*6;
     float: none;
     display: inline-block;
   }
   
-  /* main */
-  #main {
-    padding: 0 $u $u;
-  }
-  
-  /* Footer/bottom */
-  .region-bottom {
-    padding-bottom: 0;
+  /* Footer */
+  .bottom__container {
+    padding: 0;
     .block {
-      padding-bottom: $u;
-      margin-bottom: 0;
+      float: left;
+      width: 50%;
+      @include box-sizing(border-box);
     }
   }
   
-  /* "Ask a question" button */
+  /* Profile pages */
+  .profile {
+    .profile2-ungeprofil {
+      .section {
+        float: left;
+        width: 50%;
+        @include box-sizing(border-box);
+        border-left: solid 1px $grey;
+        padding: 0 0 0 $u;
+      }
+      .section:first-child {
+        border: none;
+        padding: 0 $u 0 0;
+      }
+    }
+  }
+  
+  /* Questions and answers */
+  .answers-body {
+    .field-name-field-category {
+      display: inline-block !important;
+      margin-right: $u*0.25;
+      .field-items,
+      .field-item{
+        display: inline-block;
+      }
+    }
+  }
+  .answers-submitted {
+    float: right;
+    width: $u*15;
+    text-align: right;
+    padding-top: 0;
+    .user-picture {
+      float: right;
+    }
+    .author-name,
+    .author-details {
+      padding: 0 $u*3 0 0;
+    }
+  }
+  
+}
+
+
+/**
+ * Layout for larger screens
+ */
+@media all and (min-width: $u*55) {
+  
+  /* General layout */
+  #page {
+    background-color: $white;
+  }
+  #main,
+  .header__container,
+  .region-bottom {
+    width: $u*55;
+    margin: 0 auto;
+  }
+  #page,
+  #main {
+    padding: 0;
+  }
+  #content {
+    padding: $u*4 $u $u; 
+  }
+  
+  /* Header */
+  .header__region {
+    position: absolute;
+    right: 50%;
+    margin-right: -($u*27.5);
+  }
+  .region-navigation {
+    left: 50%;
+    width: $u*30;
+    margin-left: -($u*15);
+  }
+  
+  /* Content */
+  .hero,
+  .funky-label,
+  .orange-funky-label,
+  .white-funky-label,
+  .blue-funky-label,
+  .page-taxonomy #page-title {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  
+  /* Questions and answers */
   .btn.add-question-block {
     display: inline-block;
   }
-  
-  /* Questions and Answers */
-  .node-answers-question {    
+  .answers-body-wrapper {
     position: relative;
-    min-height: $u*10;
-    .node-title {
-      width: 50%;
-    }
-    .answers-body {
-      margin-bottom: $u*2;
-    }
-    .submitted-time,
-    .answer_count,
-    .question_locked {
-      float: left;
-      display: block;
-      margin-right: $u*0.5;
-    }
-    .submitted-time {
-      padding-right: $u*0.5;
-    }
     .field-name-body {
-      width: 50%;
+      width: 60%;
+    }
+    .field-name-field-category {
+      position: absolute;
+      top: 0;
+      left: 60%;
+      width: 20%;
+      .field-items {
+        margin: 0 $u;
+      }
     }
     .answers-submitted {
       position: absolute;
       right: 0;
-      top: -($u*2);
-      width: 25%;
-      padding: 0 0 $u;
-      .user-picture {
-        width: 33.33%;
-        height: 33.33%;        
-        float: none;
-        display: block;
-        img {
-          border-radius: 50%;        
-        }
-      }
-      .username {
-        font-weight: bold;
-      }
-    }
-    .field-name-field-category {
-      position: absolute;
-      top: -($u*2);
-      right: 25%;
-      width: 25%;
-      .field-items {
-        padding: 0 $u*2;
-      }
-    }
-    .answers-body-toolbar {
-      position: absolute;
-      bottom: 0;
-      left: 0;
+      top: 0;
+      width: 20%;
     }
   }
-  .answers-submitted .author-name, 
-  .answers-submitted .author-points {
-    padding: 0;
-  }
-  .answers-body .field-name-field-category {
-    margin: 0;
-  }
   
-  /* More columns, please! */
-  
-  .header__container,
-  .region-bottom {
-    @include clearfix;
-  }
-  
-  .region-bottom .block,
-  .answers-body .field-name-field-category,
-  .field-name-field-avatar,
-  .achievement-image {
-    width: 25%;
+  /* FAQ */
+  .view-faq {
+    .view-header {
+      float: right;
+      width: 40%;
+      background: $grey;
+      padding: $u;
+      @include box-sizing(border-box);
+    }
+    .view-content {
+      float: left;
+      width: 60%;
+    }
+    .more-link {
+      clear: both;
+    }
   }
   
-  .link-wrapper {
-    width: 75%;
-  }
-  
-  .profile2-ungeprofil .achievements,
-  .profile2-ungeprofil .field-name-field-expertise {
-    width: 50%;
-  }
-  
-  .link-wrapper,
-  .profile2-ungeprofil .achievements {
-    float: right;
-  }
-  
-  .region-bottom .block,
-  .answers-btn-primary,
-  .profile2-ungeprofil .field-name-field-expertise,
-  .profile2-ungeprofil .field-name-field-avatar {
-    float: left;
-  }
-  
-  .entity-profile2 .section {
-    clear: both;
+  /* Footer */
+  .bottom__container {
+    .block {
+      width: 20%;
+    }
+    #block-block-4 {
+      float: right;
+      width: 40%;
+    }
   }
   
 }

@@ -220,13 +220,13 @@ a:active {
   text-transform: uppercase;
   font-size: $u*0.8;
   color: $white;
-  background-color: $darkblue;
+  
   padding: $u*0.5 $u;
   &:hover,
   &:active,
   &:focus,
   &.active {
-    background-color: darken($darkblue, 10%);  
+    background-color: darken($blue, 10%);  
   }
 }
 .label {
@@ -237,6 +237,35 @@ a:active {
   color: $white;
   font-weight: normal;
   margin-bottom: $u*0.5;
+}
+.funky-header {
+  margin-left: -($u);
+  margin-right: -($u);
+  padding: $u*0.5 $u;
+  background-color: $grey;
+  color: $darkblue;
+  font-size: $u;
+}
+.orange-funky-header {
+  @extend .funky-header;
+  background-color: $orange;
+  color: $white;
+}
+.blue-funky-header {
+  @extend .funky-header;
+  background-color: $blue;
+  color: $white;
+}
+.white-funky-header {
+  border-bottom: solid 1px $grey;
+  background-color: $white;
+  font-size: $u*1.5;
+  margin-top: $u*0.5;
+  margin-bottom: $u*0.25;
+  margin-left: -($u*0.75);
+  margin-right: -($u*0.75);
+  padding: $u*0.75;
+  font-weight: normal;
 }
 
 
