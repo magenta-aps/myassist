@@ -198,11 +198,12 @@
 .answers-comment-widgets-wrapper {
   display: none;
 }
-.author-role_debatraadgiver .answers-submitted {
-  background-color: lighten($orange, 20%);
+.author-is-current .answers-submitted img {
+  border: solid 1px $blue;
 }
-.author-is-current .answers-submitted {
-  background-color: $grey;
+.author-role_debatraadgiver .answers-submitted img,
+.author-role_administrator .answers-submitted img{
+  border: solid 1px $orange;
 }
 
 /************************************************************************************************/
@@ -211,7 +212,7 @@
 
 .answers-btn-primary,
 .node-answers-wrapper input.form-submit {
-  @extend .btn;
+  @extend .greenbtn;
   float: none;
 }
 
@@ -230,31 +231,7 @@
   }
 }
 
-.answers-answer-edit a,
-.answers-answer-delete a,
-.answers-comment-button a,
-.answers-form-filter-help a {
-  @extend .icons;
-  background-position: $u center;
-  padding: $u/2 $u $u/2 $u*2.5;
-  text-indent: 0;
-  width: auto;
-  height: auto;
-  background-size: auto $u*1.25;
-  color: $grey;
-}
-.answers-answer-edit a {
-  background-image: url('../images/icons/pencil.svg');
-}
-.answers-answer-delete a {
-  background-image: url('../images/icons/bin.svg');
-}
-.answers-comment-button a {
-  background-image: url('../images/icons/bubble2.svg');
-}
-.answers-form-filter-help a {
-  background-image: url('../images/icons/question.svg');
-}
+
 .answers-answer-edit:before,
 .answers-answer-delete:before,
 .answers-comment-button:before,
@@ -273,6 +250,12 @@
 .comment-new-comments a {
   display: block;
   padding: $u/2;
+}
+#edit-preview-changes {
+  display: none;
+}
+#node-delete-confirm #edit-actions {
+  padding-top: $u;
 }
 
 
@@ -428,6 +411,33 @@
 .achievement {
   height: auto;
   @include clearfix;
+  text-align: center;
+  border: none;
+  border-bottom: solid 1px $grey;
+  .achievement-image {
+    float: none;
+    margin: 0 auto;
+    padding: 0 0 $u*0.5;
+    display: block;
+  }
+  .achievement-points-box {
+    float: none;
+    border: none;
+    display: block;
+    width: auto;
+    margin: 0;
+    padding: $u*0.5;
+    height: auto;
+  }
+  .achievement-body {
+    float: none;
+    display: block;
+    clear: both;
+  }
+  .achievement-points,
+  .achievement-unlocked-stats {
+    display: inline-block;
+  }
 }
 
 .achievement-leaderboard-first,

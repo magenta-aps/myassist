@@ -93,11 +93,6 @@ body {
 
 @media all and (min-width: $u*35) {
   
-  /* Header */
-  #header {
-    
-  }
-  
   /* Main menu */
   .region-navigation {
     position: fixed;
@@ -110,7 +105,7 @@ body {
     text-align: center;
   }
   #block-system-main-menu .menu__item {
-    width: $u*6;
+    width: $u*5.5;
     float: none;
     display: inline-block;
   }
@@ -139,6 +134,21 @@ body {
         border: none;
         padding: 0 $u 0 0;
       }
+    }
+  }
+  
+  /* Achievements pages */
+  .page-achievements {
+    #content {
+      @include clearfix;
+    }
+    .achievement {
+      width: 33.33%;
+      float: left;
+    }
+    table {
+      float: right;
+      width: 60% !important;
     }
   }
   
@@ -211,9 +221,21 @@ body {
   .orange-funky-label,
   .white-funky-label,
   .blue-funky-label,
-  .page-taxonomy #page-title {
+  .page-taxonomy #page-title,
+  .answers-list {
     margin-left: 0;
     margin-right: 0;
+  }
+  
+  /* Add a question block */
+  #block-block-1 {
+    background: $grey;
+    text-align: center;
+    padding: $u 0 0;
+    margin-top: -($u*2);
+    .bigass-greenbtn {
+      display: inline-block;
+    }
   }
   
   /* Questions and answers */

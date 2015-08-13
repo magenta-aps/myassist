@@ -158,8 +158,16 @@ a:active {
   background-color: darken($grey, 20%);
 }
 .greenbtn {
-  @extend .btn;
-  &,
+  color: $white;
+  background-color: $green;
+  padding: $u/2 $u;
+  cursor: pointer;
+  border: none;
+  font-weight: normal;
+  text-align: center;
+  display: inline-block;
+  border-radius: $u/4;
+  margin-bottom: $u;
   &:link,
   &:visited {
     color: $white;
@@ -176,8 +184,16 @@ a:active {
   }
 }
 .orangebtn {
-  @extend .btn;
-  &,
+  color: $white;
+  background-color: $orange;
+  padding: $u/2 $u;
+  cursor: pointer;
+  border: none;
+  font-weight: normal;
+  text-align: center;
+  display: inline-block;
+  border-radius: $u/4;
+  margin-bottom: $u;
   &:link,
   &:visited {
     color: $white;
@@ -194,8 +210,16 @@ a:active {
   }
 }
 .bluebtn {
-  @extend .btn;
-  &,
+  color: $white;
+  background-color: $blue;
+  padding: $u/2 $u;
+  cursor: pointer;
+  border: none;
+  font-weight: normal;
+  text-align: center;
+  display: inline-block;
+  border-radius: $u/4;
+  margin-bottom: $u;
   &:link,
   &:visited {
     color: $white;
@@ -213,14 +237,13 @@ a:active {
 }
 .bigass-greenbtn {
   @extend .greenbtn;
-  border-bottom: solid $u*0.25 darken($green, 20%);
+  border-bottom: solid $u*0.25 darken($green, 20%) !important;
   display: block;
 }
 .navlinks {
   text-transform: uppercase;
   font-size: $u*0.8;
   color: $white;
-  
   padding: $u*0.5 $u;
   &:hover,
   &:active,
@@ -609,4 +632,5 @@ table {
   /* Remove most spacing between table cells. */
   border-collapse: collapse;
   border-spacing: 0;
+  width: 100%;
 }
