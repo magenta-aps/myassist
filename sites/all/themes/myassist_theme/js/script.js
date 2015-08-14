@@ -20,8 +20,8 @@
     attach: function(context, settings) {
       
       // Toggle user action menu
-      $('#block-system-user-menu .block-title').click(function() {
-        
+      $('#block-system-user-menu .block-title, #block-myassist-user-avatar').click(function(e) {
+        e.preventDefault();
         $('#block-system-user-menu').toggleClass('open');
       });
       

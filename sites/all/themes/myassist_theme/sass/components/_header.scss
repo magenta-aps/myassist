@@ -119,8 +119,6 @@
     right: 0;
     left: 0;
     top: -($u*6);
-    -webkit-transition: top 0.5s;
-    transition: top 0.5s;
     z-index: 100;
     background: $grey;
     padding: $u;
@@ -148,8 +146,6 @@
   }
 }
 #block-search-form.open #search-block-form {
-  -webkit-transition: top 0.5s;
-  transition: top 0.5s;
   top: $u*3;
 }
 

@@ -239,135 +239,31 @@
  * Tabs.
  */
 
-/* Basic positioning styles shared by primary and secondary tabs. */
-%tabs {
-  @include clearfix;
-  @include background-image(linear-gradient(bottom, $tabs-border 1px, transparent 1px));
-  /* IE 9 and earlier don't understand gradients. */
+.tabs {
   list-style: none;
-  border-bottom: 1px solid $tabs-border \0/ie;
-  margin: $u 0;
-  padding: 0 2px;
+  border-bottom: 1px solid $grey;
   white-space: nowrap;
-}
-%tabs__tab {
-  float: left; /* LTR */
-  margin: 0 3px;
-}
-%tabs__tab-link {
-  border: 1px solid #e9e9e9;
-  border-right: 0;
-  border-bottom: 0;
-  display: block;
-  text-decoration: none;
-}
-
-/* Primary tabs. */
-.tabs-primary {
-  @extend %tabs;
-}
-.tabs-primary__tab {
-  @extend %tabs__tab;
-  @include border-top-radius(4px);
-  @include single-text-shadow(#fff, 1px, 1px, 0);
-  border: 1px solid $tabs-border;
-  border-bottom-color: transparent;
-  /* IE 9 and earlier don't understand gradients. */
-  border-bottom: 0 \0/ie;
-}
-.tabs-primary__tab.is-active {
-  @extend .tabs-primary__tab;
-  border-bottom-color: $tabs-container-bg;
-}
-
-// We use 3 placeholder styles to prevent @extend from going selector crazy.
-%tabs-primary__tab-link {
-  @extend %tabs__tab-link;
-  @include border-top-radius(4px);
-  @include transition(background-color 0.3s);
-  color: #333;
-  background-color: #dedede;
-  letter-spacing: 1px;
-  padding: 0 1em;
-  text-align: center;
-}
-%tabs-primary__tab-link-is-hover {
-  background-color: #e9e9e9;
-  border-color: #f2f2f2;
-}
-%tabs-primary__tab-link-is-active {
-  background-color: transparent;
-  @include filter-gradient(rgba(#e9e9e9, 1), rgba(#e9e9e9, 0));
-  @include background-image(linear-gradient(rgba(#e9e9e9, 1), rgba(#e9e9e9, 0)));
-  border-color: #fff;
-}
-
-a.tabs-primary__tab-link {
-  @extend %tabs-primary__tab-link;
-
-  &:hover,
-  &:focus {
-    @extend %tabs-primary__tab-link-is-hover;
+  margin-bottom: $u;
+  li {
+    width: auto;
+    display: inline-block;
+    margin: 0 $u*0.25 -1px 0;
   }
-  &:active {
-    @extend %tabs-primary__tab-link-is-active;
+  a {
+    @extend .btn;
+    display: inline-block;
+    width: auto;
+    border: solid 1px $grey !important;
+    margin: 0 !important;
+    border-radius: $u*0.25 $u*0.25 0 0 !important;
+  }
+  a.is-active {
+    background-color: $white;
+    color: $blue;
+    border-bottom-color: $white !important;
   }
 }
-a.tabs-primary__tab-link.is-active {
-  @extend %tabs-primary__tab-link;
-  @extend %tabs-primary__tab-link-is-active;
-}
 
-/* Secondary tabs. */
-.tabs-secondary {
-  @extend %tabs;
-  font-size: .9em;
-  /* Collapse bottom margin of ul.primary. */
-  margin-top: -($u);
-}
-.tabs-secondary__tab,
-.tabs-secondary__tab.is-active {
-  @extend %tabs__tab;
-  margin: $u/2 3px;
-}
-
-// We use 3 placeholder styles to prevent @extend from going selector crazy.
-%tabs-secondary__tab-link {
-  @extend %tabs__tab-link;
-  @include border-radius(.75em);
-  @include transition(background-color 0.3s);
-  @include single-text-shadow(#fff, 1px, 1px, 0);
-  background-color: #f2f2f2;
-  color: #666;
-  padding: 0 .5em;
-}
-%tabs-secondary__tab-link-is-focus {
-  background-color: #dedede;
-  border-color: #999;
-  color: #333;
-}
-%tabs-secondary__tab-link-is-active {
-  @include single-text-shadow(#333, 1px, 1px, 0);
-  background-color: #666;
-  border-color: #000;
-  color: #fff;
-}
-
-a.tabs-secondary__tab-link {
-  @extend %tabs-secondary__tab-link;
-
-  &:hover,
-  &:focus {
-    @extend %tabs-secondary__tab-link-is-focus;
-  }
-  &:active {
-    @extend %tabs-secondary__tab-link-is-active;
-  }
-}
-a.tabs-secondary__tab-link.is-active {
-  @extend %tabs-secondary__tab-link;
-  @extend %tabs-secondary__tab-link-is-active;
-}
 
 /**
  * Inline styles.
@@ -461,6 +357,34 @@ span.field-label {
   border-bottom: solid $u*0.25 darken($grey, 20%);
 }
 
+
+/**
+ * Ajax loader
+ */
+
+/* these apply to all ajax progresses */
+.ajax-progress {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.75);
+  display: block;
+  z-index: 100000;
+}
+.ajax-progress .throbber {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -16px 0 0 -16px;
+  background: url(../images/ajax-loader.gif) no-repeat center center transparent;
+  height: 32px;
+  width: 32px;
+}
 
 
 /**
@@ -849,6 +773,9 @@ tr.selected td {
   background-color: #fff;
   text-align: center;
   margin-right: $u;
+  label {
+    text-align: left;
+  }
 }
 
 
