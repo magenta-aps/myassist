@@ -113,7 +113,7 @@
 <?php drupal_add_js('http://redmine.magenta-aps.dk/feedbackr/feedbackr-embed.js', 'external'); ?>
 <script>
   var feedbconf = {
-    'apikey': '5aaaaeb2b800610f4fa2fab79b8fe8c8738161b8',
+    'apikey': '5a61543abdf2af1b8a578fa4bac837926c81d2fd',
     'projid': 299,
     'contactname': 'Frank',
     'contactphone': '50601267',
