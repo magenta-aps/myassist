@@ -308,7 +308,14 @@ function myassist_questions_answers_strongarm() {
   $strongarm->value = array(
     'view_modes' => array(),
     'extra_fields' => array(
-      'form' => array(),
+      'form' => array(
+        'flag' => array(
+          'weight' => '10',
+        ),
+        'title' => array(
+          'weight' => '-5',
+        ),
+      ),
       'display' => array(),
     ),
   );

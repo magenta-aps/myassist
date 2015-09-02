@@ -14,8 +14,15 @@ function myassist_questions_answers_default_rules_configuration() {
       "PLUGIN" : "reaction rule",
       "OWNER" : "rules",
       "TAGS" : [ "answers" ],
-      "REQUIRES" : [ "userpoints_rules", "myassist_notification", "rules" ],
+      "REQUIRES" : [ "rules", "userpoints_rules", "myassist_notification" ],
       "ON" : { "node_insert--answers_answer" : { "bundle" : "answers_answer" } },
+      "IF" : [
+        { "NOT data_is" : {
+            "data" : [ "node:author" ],
+            "value" : [ "node:answers-related-question:author" ]
+          }
+        }
+      ],
       "DO" : [
         { "userpoints_action_grant_points" : {
             "user" : [ "node:author" ],
