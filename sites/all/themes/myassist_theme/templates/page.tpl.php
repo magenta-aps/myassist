@@ -113,10 +113,10 @@
 <?php drupal_add_js('http://redmine.magenta-aps.dk/feedbackr/feedbackr-embed.js', 'external'); ?>
 <script>
   var feedbconf = {
-    'apikey': '5a61543abdf2af1b8a578fa4bac837926c81d2fd',
+    'apikey': '9a140188f51f427ab426284727cf7e1c968429a6',
     'projid': 299,
-    'contactname': 'Frank',
-    'contactphone': '50601267',
+    'contactname': 'Magenta ApS',
+    'contactphone': '3336 9696',
     'cssoffset': '7em'
   };
 </script>
