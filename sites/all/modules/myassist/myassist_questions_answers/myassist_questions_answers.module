@@ -55,11 +55,11 @@ function myassist_questions_answers_block_view($delta = '') {
 function myassist_questions_answers_flag_access($flag, $content_id, $action, $account) {
   if ($flag->name == "best_answer") {
     if ($account->uid === entity_metadata_wrapper('node', $content_id)->author->uid->value()) {
-      return false;
+      return true;
     }
     $roles = entity_metadata_wrapper('node', $content_id)->author->value()->roles;
     if (is_array($roles) && !in_array("ung bruger", $roles)) {
-      return false;
+      return true;
     }
   }
 }
