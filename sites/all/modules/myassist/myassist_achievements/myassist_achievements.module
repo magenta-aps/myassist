@@ -560,6 +560,28 @@ function myassist_achievements_page_alter(&$page) {
 }
 
 /**
+ * Implements hook_achievements_leaderboard_alter().
+ */
+function myassist_achievements_achievements_leaderboard_alter(&$leaderboard) {
+  myassist_achievements_remove_column($leaderboard['render'], t('Unlocks'));
+}
+
+
+function myassist_achievements_remove_column(&$renderArray, $findTitle) {
+  $columnIndex = 0;
+  foreach ($renderArray['#header'] as $i => &$headerCell) {
+    if ($headerCell === $findTitle) {
+        $columnIndex = $i;
+      break;
+    }
+  }
+  array_splice($renderArray['#header'], $columnIndex, 1);
+  foreach ($renderArray['#rows'] as &$row) {
+    array_splice($row['data'], $columnIndex, 1);
+  }
+}
+
+/**
  * Implements hook_user_delete().
  */
 function myassist_achievements_user_delete($account) {
