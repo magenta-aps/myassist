@@ -42,6 +42,28 @@
         }
       });
 
+      $("#answers-btn-lock, .flag-action").click(function(event){
+        var msg = window.prompt(Drupal.t("Skriv en afsluttende besked, så vi ved, hvorfor du lukker spørgsmålet:\n(Let feltet være tomt for at lukke tråden uden en afsluttende besked)"));
+        if (msg === null) { // The user clicked cancel
+          event.stopPropagation(); // Abort event so nothing happens
+          event.preventDefault();
+          return false;
+        } else {
+          if (msg) { // The user actually entered some text
+            event.stopPropagation();
+            event.preventDefault();
+            var data = $.extend({}, originalValues);
+            data[messageField.attr("name")] = msg;
+
+            $.ajax({
+              url: messageForm.attr("action") || document.location,
+              type: messageForm.attr("method") || "post",
+              data: data,
+              success: function(){
+                document.location.href = this.href;
+              }.bind(this)
+            });
+            return false;
 
       var bodyPadding = null;
       var relocateButtons = function(){
@@ -58,5 +80,13 @@
     }
   };
 
-  
+  Drupal.behaviors.toolbarOffset = {
+    attach: function(context, settings) {
+      $('#toolbar a.toggle', context).click(updateOffset);
+    }
+  };
+
+  $(updateOffset);
+  $(window).resize(updateOffset);
+
 })(jQuery, Drupal, this, this.document);
