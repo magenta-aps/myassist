@@ -270,6 +270,11 @@ function myassist_achievements_init() {
  * Implements hook_TYPE_alter().
  * Displays achievement badges on profile page
  */
+
+
+/**
+ * Implements hook_achievements_leaderboard_alter().
+ */
 function myassist_achievements_achievements_leaderboard_alter(&$data) {
   $limit = 10;
   $pos = 1;
@@ -301,6 +306,7 @@ function myassist_achievements_achievements_leaderboard_alter(&$data) {
       }
     }
   }
+  myassist_achievements_remove_column($leaderboard['render'], t('Unlocks'));
 }
 
 
@@ -558,14 +564,6 @@ function myassist_achievements_page_alter(&$page) {
     }
   }
 }
-
-/**
- * Implements hook_achievements_leaderboard_alter().
- */
-function myassist_achievements_achievements_leaderboard_alter(&$leaderboard) {
-  myassist_achievements_remove_column($leaderboard['render'], t('Unlocks'));
-}
-
 
 function myassist_achievements_remove_column(&$renderArray, $findTitle) {
   $columnIndex = 0;
