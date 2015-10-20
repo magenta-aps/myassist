@@ -1,0 +1,11 @@
+<?php
+/**
+ * @file
+ * Code for the Loop Notification feature.
+ */
+
+include_once 'myassist_notification.features.inc';
+include_once 'myassist_notification.rules.inc';
+
+
+?>

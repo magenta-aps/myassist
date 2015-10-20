@@ -10,43 +10,59 @@
 function myassist_user_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'profile2-ungeprofil-field_age'
-  $field_instances['profile2-ungeprofil-field_age'] = array(
-    'bundle' => 'ungeprofil',
-    'default_value' => NULL,
+  // Exported field_instance: 'node-page-field_image'
+  $field_instances['node-page-field_image'] = array(
+    'bundle' => 'page',
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'answers_full_node' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
-        'label' => 'hidden',
-        'module' => 'number',
+        'label' => 'above',
+        'module' => 'image',
         'settings' => array(
-          'decimal_separator' => '.',
-          'prefix_suffix' => 1,
-          'scale' => 0,
-          'thousand_separator' => ' ',
+          'image_link' => '',
+          'image_style' => '',
         ),
-        'type' => 'number_integer',
+        'type' => 'image',
         'weight' => 1,
       ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
     ),
-    'entity_type' => 'profile2',
-    'field_name' => 'field_age',
-    'label' => 'Age',
-    'required' => 1,
+    'entity_type' => 'node',
+    'field_name' => 'field_image',
+    'label' => 'Billede',
+    'required' => 0,
     'settings' => array(
-      'max' => 25,
-      'min' => 7,
-      'prefix' => '',
-      'suffix' => 'year|years',
+      'alt_field' => 0,
+      'default_image' => 0,
+      'file_directory' => '',
+      'file_extensions' => 'png gif jpg jpeg',
+      'max_filesize' => '',
+      'max_resolution' => '',
+      'min_resolution' => '',
+      'title_field' => 0,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
-      'active' => 0,
-      'module' => 'number',
-      'settings' => array(),
-      'type' => 'number',
-      'weight' => 1,
+      'active' => 1,
+      'module' => 'image',
+      'settings' => array(
+        'preview_image_style' => 'thumbnail',
+        'progress_indicator' => 'throbber',
+      ),
+      'type' => 'image_image',
+      'weight' => 0,
     ),
   );
 
@@ -73,7 +89,7 @@ function myassist_user_field_default_field_instances() {
     'required' => 0,
     'settings' => array(
       'alt_field' => 0,
-      'default_image' => 9,
+      'default_image' => 58,
       'file_directory' => '',
       'file_extensions' => 'png gif jpg jpeg',
       'max_filesize' => '',
@@ -91,6 +107,46 @@ function myassist_user_field_default_field_instances() {
       ),
       'type' => 'image_image',
       'weight' => 5,
+    ),
+  );
+
+  // Exported field_instance: 'profile2-ungeprofil-field_birthday'
+  $field_instances['profile2-ungeprofil-field_birthday'] = array(
+    'bundle' => 'ungeprofil',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 5,
+      ),
+    ),
+    'entity_type' => 'profile2',
+    'field_name' => 'field_birthday',
+    'label' => 'Birthday',
+    'required' => 1,
+    'settings' => array(
+      'default_value' => 'now',
+      'default_value2' => 'same',
+      'default_value_code' => '',
+      'default_value_code2' => '',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'date',
+      'settings' => array(
+        'increment' => 30,
+        'input_format' => 'm/d/Y - H:i:s',
+        'input_format_custom' => '',
+        'label_position' => 'above',
+        'text_parts' => array(),
+        'year_range' => '1990:+0',
+      ),
+      'type' => 'date_select',
+      'weight' => 8,
     ),
   );
 
@@ -160,6 +216,80 @@ function myassist_user_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'profile2-ungeprofil-field_no_group_notifications'
+  $field_instances['profile2-ungeprofil-field_no_group_notifications'] = array(
+    'bundle' => 'ungeprofil',
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 7,
+      ),
+    ),
+    'entity_type' => 'profile2',
+    'field_name' => 'field_no_group_notifications',
+    'label' => 'Disable group chat notifications',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 0,
+      ),
+      'type' => 'options_onoff',
+      'weight' => 10,
+    ),
+  );
+
+  // Exported field_instance: 'profile2-ungeprofil-field_no_pair_notifications'
+  $field_instances['profile2-ungeprofil-field_no_pair_notifications'] = array(
+    'bundle' => 'ungeprofil',
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 6,
+      ),
+    ),
+    'entity_type' => 'profile2',
+    'field_name' => 'field_no_pair_notifications',
+    'label' => 'Disable pair chat notifications',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 1,
+      ),
+      'type' => 'options_onoff',
+      'weight' => 9,
+    ),
+  );
+
   // Exported field_instance: 'profile2-ungeprofil-field_quote'
   $field_instances['profile2-ungeprofil-field_quote'] = array(
     'bundle' => 'ungeprofil',
@@ -191,46 +321,6 @@ function myassist_user_field_default_field_instances() {
       ),
       'type' => 'text_textarea',
       'weight' => 3,
-    ),
-  );
-
-  // Exported field_instance: 'profile2-voksenprofil-field_age'
-  $field_instances['profile2-voksenprofil-field_age'] = array(
-    'bundle' => 'voksenprofil',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'hidden',
-        'module' => 'number',
-        'settings' => array(
-          'decimal_separator' => '.',
-          'prefix_suffix' => TRUE,
-          'scale' => 0,
-          'thousand_separator' => ' ',
-        ),
-        'type' => 'number_integer',
-        'weight' => 2,
-      ),
-    ),
-    'entity_type' => 'profile2',
-    'field_name' => 'field_age',
-    'label' => 'Age',
-    'required' => 1,
-    'settings' => array(
-      'max' => 110,
-      'min' => 18,
-      'prefix' => '',
-      'suffix' => 'year|years',
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 0,
-      'module' => 'number',
-      'settings' => array(),
-      'type' => 'number',
-      'weight' => 5,
     ),
   );
 
@@ -312,6 +402,53 @@ function myassist_user_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'profile2-voksenprofil-field_birthday'
+  $field_instances['profile2-voksenprofil-field_birthday'] = array(
+    'bundle' => 'voksenprofil',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'date',
+        'settings' => array(
+          'format_type' => 'long',
+          'fromto' => 'both',
+          'multiple_from' => '',
+          'multiple_number' => '',
+          'multiple_to' => '',
+        ),
+        'type' => 'date_default',
+        'weight' => 7,
+      ),
+    ),
+    'entity_type' => 'profile2',
+    'field_name' => 'field_birthday',
+    'label' => 'Birthday',
+    'required' => 0,
+    'settings' => array(
+      'default_value' => 'now',
+      'default_value2' => 'same',
+      'default_value_code' => '',
+      'default_value_code2' => '',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'date',
+      'settings' => array(
+        'increment' => 30,
+        'input_format' => 'm/d/Y - H:i:s',
+        'input_format_custom' => '',
+        'label_position' => 'above',
+        'text_parts' => array(),
+        'year_range' => '1950:+0',
+      ),
+      'type' => 'date_select',
+      'weight' => 13,
+    ),
+  );
+
   // Exported field_instance: 'profile2-voksenprofil-field_expertise'
   $field_instances['profile2-voksenprofil-field_expertise'] = array(
     'bundle' => 'voksenprofil',
@@ -378,6 +515,80 @@ function myassist_user_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'profile2-voksenprofil-field_no_group_notifications'
+  $field_instances['profile2-voksenprofil-field_no_group_notifications'] = array(
+    'bundle' => 'voksenprofil',
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 9,
+      ),
+    ),
+    'entity_type' => 'profile2',
+    'field_name' => 'field_no_group_notifications',
+    'label' => 'Disable group chat notifications',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 1,
+      ),
+      'type' => 'options_onoff',
+      'weight' => 17,
+    ),
+  );
+
+  // Exported field_instance: 'profile2-voksenprofil-field_no_pair_notifications'
+  $field_instances['profile2-voksenprofil-field_no_pair_notifications'] = array(
+    'bundle' => 'voksenprofil',
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 8,
+      ),
+    ),
+    'entity_type' => 'profile2',
+    'field_name' => 'field_no_pair_notifications',
+    'label' => 'Disable pair chat notifications',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 1,
+      ),
+      'type' => 'options_onoff',
+      'weight' => 15,
+    ),
+  );
+
   // Exported field_instance: 'profile2-voksenprofil-field_quote'
   $field_instances['profile2-voksenprofil-field_quote'] = array(
     'bundle' => 'voksenprofil',
@@ -415,7 +626,10 @@ function myassist_user_field_default_field_instances() {
   // Translatables
   // Included for use with string extractors like potx.
   t('About me');
-  t('Age');
+  t('Billede');
+  t('Birthday');
+  t('Disable group chat notifications');
+  t('Disable pair chat notifications');
   t('Favorite quote');
   t('Gender');
   t('Image');

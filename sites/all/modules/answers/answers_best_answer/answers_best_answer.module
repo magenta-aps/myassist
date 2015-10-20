@@ -17,6 +17,8 @@
  * @author Chip Cleary
  */
 
+module_load_include('inc', 'answers', 'includes/answers.lock');
+
 /**
  * Implements hook_form_alter().
  */

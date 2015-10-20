@@ -29,12 +29,11 @@
  * @see template_preprocess_search_block_form()
  */
 ?>
-<div class="container-inline">
+<div>
   <?php if (empty($variables['form']['#block']->subject)): ?>
     <h2 class="element-invisible"><?php print t('Search form'); ?></h2>
   <?php endif; ?>
   <div class="search-full">
-  <?php print $search_form; ?>
+    <?php print $search_form; ?>
   </div>
-  <button class="myassist-button search-toggle"></button>
 </div>

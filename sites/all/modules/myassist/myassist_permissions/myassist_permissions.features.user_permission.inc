@@ -78,6 +78,15 @@ function myassist_permissions_user_default_permissions() {
     'module' => 'node',
   );
 
+  // Exported permission: 'earn points'.
+  $permissions['earn points'] = array(
+    'name' => 'earn points',
+    'roles' => array(
+      'ung bruger' => 'ung bruger',
+    ),
+    'module' => 'myassist_achievements',
+  );
+
   // Exported permission: 'edit any answers_answer content'.
   $permissions['edit any answers_answer content'] = array(
     'name' => 'edit any answers_answer content',
@@ -150,8 +159,7 @@ function myassist_permissions_user_default_permissions() {
   $permissions['view own userpoints'] = array(
     'name' => 'view own userpoints',
     'roles' => array(
-      'administrator' => 'administrator',
-      'authenticated user' => 'authenticated user',
+      'ung bruger' => 'ung bruger',
     ),
     'module' => 'userpoints',
   );

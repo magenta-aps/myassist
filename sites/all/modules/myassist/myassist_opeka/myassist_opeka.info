@@ -1,0 +1,6 @@
+name = MyAssist Opeka Chat Integration
+description = Integration of the Opeka chat system into the Myassist site
+core = 7.x
+dependencies[] = opeka
+dependencies[] = myassist_user
+dependencies[] = myassist_user_avatar

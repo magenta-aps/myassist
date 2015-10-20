@@ -1,4 +1,5 @@
 .profile {
+  margin: 0;
   .field-name-field-expertise,
   .achievements,
   .userinfo,
@@ -6,35 +7,77 @@
     padding: $u/2 0;
   }
   .field-name-field-avatar {
-    float: left;
-    width: 33.33%;
-    .field-items {
-      padding: $u/2 $u/2 $u/2 0;
+    margin: 0 auto;
+    width: $u*8;
+    img {
+      border-radius: 50%;
     }
   }
   .field-name-field-expertise {
     clear: both;
-  }
-  .achievements {
-    margin-left: -($u/2);
-    margin-right: -($u/2);
-    @include clearfix;
-  }
-  .achievement-image {
-    width: 70px;
-    margin: 0;
-    float: left;
-    a {
-      display: block;
-      margin: 0 $u/2;
-      img {
-        width: 100%;
-        height: auto;
+    padding-bottom: 0;
+    .field-label {
+      font-weight: normal;
+    }
+    .field-item {
+      display: inline-block;
+      margin-right: $u*0.5;
+      a {
+        @extend .orangebtn;
+        border-radius: none !important;
       }
     }
   }
+  .field-name-field-quote {
+    padding: $u 0;
+  }
+  .achievements {
+    @include clearfix;
+    background-color: $grey;
+    margin-left: -($u);
+    margin-right: -($u);
+    padding: $u*0.5;
+    margin-top: $u;
+  }
+  .achievement-image {
+    width: $u*8;
+    margin: 0;
+    float: left;
+    font-size: $u*0.6;
+    text-align: center;
+    a {
+      background: $white;
+      display: block;
+      margin: 0 $u 0 0;
+      padding: $u*0.5;
+      img {
+        width: 100%;
+        height: auto;
+        margin: 0 auto;
+      }
+    }
+    a:first-child {
+      padding-bottom: 0;
+    }
+  }
+  .username {
+    @extend .white-funky-header;
+  }
+  .section.nodes h3 {
+    @extend .funky-header;
+    border: none;
+    margin-top: $u;
+  }
 }
 
-#profile-ungeprofil + h3 {
+#profile-voksenprofil + h3 {
+  margin-bottom: $u;
+}
+
+.page-user #page-title,
+#profile-ungeprofil + h3,
+body.page-user-register #edit-profile-ungeprofil,
+.profile .answers-submitted,
+.profile .field-name-field-gender {
   display: none;
 }

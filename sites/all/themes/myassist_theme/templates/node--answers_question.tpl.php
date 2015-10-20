@@ -84,8 +84,10 @@
   unset($content['links']['comment']['#links']['comment-add']);
 ?>
 
-<?php 
- 
+<?php
+
+  $locked = array_key_exists('lock_message', $content) || array_key_exists('question_locks', $content);
+
   // Hide these items to render when we choose.
   hide($content['links']['statistics']);
   hide($content['comments']);
@@ -93,9 +95,15 @@
   hide($content['best_answer']);
   hide($content['answers_list']);
   hide($content['new_answer_form']);
+  hide($content['lock_message']);
+  hide($content['question_locks']);
+
 ?>
 
 
+<?php if ($page && $locked) {
+  print '<em class="question_locked">' . t("[Solved]") . '</em>';
+} ?>
 
 <div class="node-answers-wrapper">
   <div id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix" <?php print $attributes; ?>>
@@ -109,7 +117,6 @@
 	<div class="answers-widgets-wrapper">
       
       <div class="answers-widgets">
-	    <div class="mystery-hack"></div>
         <?php
           if(isset($content['best_answer'])) {
             print render($content['best_answer']);
@@ -129,6 +136,17 @@
           <span class="submitted-time">
             <?php print t('Posted @time ago.', array("@time" => format_interval(time() - $node->created, 1))); ?>
           </span>
+          <span class="answer_count">
+            <?php
+            $answers = answers_question_answers($node);
+            print format_plural(count($answers), '1 answer', '@count answers.');
+            ?>
+          </span>
+          <?php
+            if ($locked) {
+              print '<em class="question_locked" tite="' . t("[Solved]") . '">&#10004;</em>';
+            }
+          ?>
           <div class="answers-submitted">
             <?php print $user_picture; ?>
             <div class="author-name"><?php print $name; ?></div>
@@ -154,20 +172,40 @@
 			}
 		  }
           ?>
-      
+
       </div>
 
       <div class="answers-body-toolbar">
-        
-        <a id="answers-btn-answer" class="answers-btn-primary" href="<?php print $node_url; ?>#new-answer-form"><?php print t("Answer"); ?></a>
+        <?php
+          if ($view_mode !== 'full') {
+            print '<a id="answers-btn-answer" class="answers-btn-primary btn" href="' . $node_url . '">' . t("Go to question") . '</a>';
+          }
+
+          if (!$locked) {
+            print '<a id="answers-btn-answer" class="answers-btn-primary btn" href="' . $node_url . '#new-answer-form">' . t("Answer"). '</a>';
+          }
+        ?>
           <div class="link-wrapper">
           <?php
-            if (user_access('post comments') && $view_mode === 'full') {
+            if (user_access('post comments') && $view_mode === 'full' && !$locked) {
               // Add a "pseudo-link" to open the comment dialog. This is done using jquery.
               print '<ul class="links"><li class="answers-comment-button"><a>' . t("Comment") . '</a></li></ul>';
             }
           ?>
           </div>
+
+        <?php
+
+
+
+
+
+        if ($view_mode === 'full') {
+          if ($user->uid === $node->uid && !$locked) {
+            print '<a id="answers-btn-lock" class="answers-btn-primary btn" href="' . $node_url . '/lock">' . t("Lock question") . '</a>';
+          }
+        }
+        ?>
       </div>
       <?php print render($content['comments']); ?>
     </div>  

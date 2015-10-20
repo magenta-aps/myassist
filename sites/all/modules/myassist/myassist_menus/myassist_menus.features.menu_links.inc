@@ -10,129 +10,41 @@
 function myassist_menus_menu_default_menu_links() {
   $menu_links = array();
 
-  // Exported menu link: main-menu_ask-a-question:node/add/answers-question
-  $menu_links['main-menu_ask-a-question:node/add/answers-question'] = array(
+  // Exported menu link: main-menu_chat:opeka
+  $menu_links['main-menu_chat:opeka'] = array(
     'menu_name' => 'main-menu',
-    'link_path' => 'node/add/answers-question',
-    'router_path' => 'node/add/answers-question',
-    'link_title' => 'Ask a Question',
+    'link_path' => 'opeka',
+    'router_path' => 'opeka',
+    'link_title' => 'Chat',
     'options' => array(
       'attributes' => array(
-        'title' => 'Ask a question',
+        'title' => 'Chat med en rådgiver',
       ),
-      'identifier' => 'main-menu_ask-a-question:node/add/answers-question',
       'alter' => TRUE,
+      'identifier' => 'main-menu_chat:opeka',
     ),
     'module' => 'menu',
     'hidden' => 0,
     'external' => 0,
-    'has_children' => 0,
-    'expanded' => 0,
-    'weight' => -50,
-    'customized' => 1,
-    'language' => 'en',
-    'menu_links_customized' => 1,
-  );
-  // Exported menu link: main-menu_categories:categories
-  $menu_links['main-menu_categories:categories'] = array(
-    'menu_name' => 'main-menu',
-    'link_path' => 'categories',
-    'router_path' => 'categories',
-    'link_title' => 'Categories',
-    'options' => array(
-      'attributes' => array(
-        'title' => '',
-      ),
-      'alter' => TRUE,
-      'identifier' => 'main-menu_categories:categories',
-    ),
-    'module' => 'system',
-    'hidden' => 0,
-    'external' => 0,
-    'has_children' => 0,
-    'expanded' => 0,
-    'weight' => -46,
-    'customized' => 1,
-    'language' => 'en',
-    'menu_links_customized' => 1,
-  );
-  // Exported menu link: main-menu_hjem:<front>
-  $menu_links['main-menu_hjem:<front>'] = array(
-    'menu_name' => 'main-menu',
-    'link_path' => '<front>',
-    'router_path' => '',
-    'link_title' => 'Hjem',
-    'options' => array(
-      'attributes' => array(
-        'title' => '',
-      ),
-      'alter' => TRUE,
-      'identifier' => 'main-menu_hjem:<front>',
-    ),
-    'module' => 'menu',
-    'hidden' => 0,
-    'external' => 1,
-    'has_children' => 0,
-    'expanded' => 0,
-    'weight' => -47,
-    'customized' => 1,
-    'language' => 'da',
-    'menu_links_customized' => 1,
-  );
-  // Exported menu link: main-menu_home:<front>
-  $menu_links['main-menu_home:<front>'] = array(
-    'menu_name' => 'main-menu',
-    'link_path' => '<front>',
-    'router_path' => '',
-    'link_title' => 'Home',
-    'options' => array(
-      'attributes' => array(
-        'title' => '',
-      ),
-      'alter' => TRUE,
-      'identifier' => 'main-menu_home:<front>',
-    ),
-    'module' => 'menu',
-    'hidden' => 0,
-    'external' => 1,
     'has_children' => 0,
     'expanded' => 0,
     'weight' => -48,
     'customized' => 1,
-    'language' => 'en',
-    'menu_links_customized' => 1,
-  );
-  // Exported menu link: main-menu_questions:questions
-  $menu_links['main-menu_questions:questions'] = array(
-    'menu_name' => 'main-menu',
-    'link_path' => 'questions',
-    'router_path' => 'questions',
-    'link_title' => 'Questions',
-    'options' => array(
-      'identifier' => 'main-menu_questions:questions',
-    ),
-    'module' => 'system',
-    'hidden' => 0,
-    'external' => 0,
-    'has_children' => 0,
-    'expanded' => 0,
-    'weight' => -45,
-    'customized' => 1,
     'language' => 'und',
     'menu_links_customized' => 1,
   );
-  // Exported menu link: main-menu_stil-et-sprgsml:node/add/answers-question
-  $menu_links['main-menu_stil-et-sprgsml:node/add/answers-question'] = array(
+  // Exported menu link: main-menu_dashboard:user
+  $menu_links['main-menu_dashboard:user'] = array(
     'menu_name' => 'main-menu',
-    'link_path' => 'node/add/answers-question',
-    'router_path' => 'node/add/answers-question',
-    'link_title' => 'Stil et spørgsmål',
+    'link_path' => 'user',
+    'router_path' => 'user',
+    'link_title' => 'Dashboard',
     'options' => array(
       'attributes' => array(
-        'title' => '',
+        'title' => 'Se dine personlige oplysninger',
       ),
       'alter' => TRUE,
-      'identifier' => 'main-menu_stil-et-sprgsml:node/add/answers-question',
+      'identifier' => 'main-menu_dashboard:user',
     ),
     'module' => 'menu',
     'hidden' => 0,
@@ -141,7 +53,30 @@ function myassist_menus_menu_default_menu_links() {
     'expanded' => 0,
     'weight' => -49,
     'customized' => 1,
-    'language' => 'da',
+    'language' => 'und',
+    'menu_links_customized' => 1,
+  );
+  // Exported menu link: main-menu_sprgsml:frontpage
+  $menu_links['main-menu_sprgsml:frontpage'] = array(
+    'menu_name' => 'main-menu',
+    'link_path' => 'frontpage',
+    'router_path' => 'frontpage',
+    'link_title' => 'Spørgsmål',
+    'options' => array(
+      'attributes' => array(
+        'title' => 'Liste over spørgsmål',
+      ),
+      'alter' => TRUE,
+      'identifier' => 'main-menu_sprgsml:frontpage',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 0,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -50,
+    'customized' => 1,
+    'language' => 'und',
     'menu_links_customized' => 1,
   );
   // Exported menu link: user-menu_achievements:user/achievements
@@ -162,9 +97,32 @@ function myassist_menus_menu_default_menu_links() {
     'external' => 0,
     'has_children' => 0,
     'expanded' => 0,
-    'weight' => -46,
+    'weight' => -45,
     'customized' => 1,
     'language' => 'und',
+    'menu_links_customized' => 1,
+  );
+  // Exported menu link: user-menu_beskeder:user/messages
+  $menu_links['user-menu_beskeder:user/messages'] = array(
+    'menu_name' => 'user-menu',
+    'link_path' => 'user/messages',
+    'router_path' => 'user/messages',
+    'link_title' => 'Beskeder',
+    'options' => array(
+      'attributes' => array(
+        'title' => '',
+      ),
+      'alter' => TRUE,
+      'identifier' => 'user-menu_beskeder:user/messages',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 0,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -46,
+    'customized' => 1,
+    'language' => 'da',
     'menu_links_customized' => 1,
   );
   // Exported menu link: user-menu_edit-profile:user/edit
@@ -204,7 +162,7 @@ function myassist_menus_menu_default_menu_links() {
     'external' => 0,
     'has_children' => 0,
     'expanded' => 0,
-    'weight' => -44,
+    'weight' => -43,
     'customized' => 1,
     'language' => 'und',
     'menu_links_customized' => 1,
@@ -249,7 +207,7 @@ function myassist_menus_menu_default_menu_links() {
     'external' => 0,
     'has_children' => 0,
     'expanded' => 0,
-    'weight' => -45,
+    'weight' => -44,
     'customized' => 1,
     'language' => 'und',
     'menu_links_customized' => 1,
@@ -345,17 +303,15 @@ function myassist_menus_menu_default_menu_links() {
   // Translatables
   // Included for use with string extractors like potx.
   t('Achievements');
-  t('Ask a Question');
-  t('Categories');
+  t('Beskeder');
+  t('Chat');
+  t('Dashboard');
   t('Edit Profile');
-  t('Hjem');
-  t('Home');
   t('Log out');
   t('My !points');
   t('Points');
-  t('Questions');
   t('Redigér profil');
-  t('Stil et spørgsmål');
+  t('Spørgsmål');
   t('User account');
   t('View profile');
   t('Vis profil');

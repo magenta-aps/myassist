@@ -28,12 +28,6 @@ function myassist_permissions_user_default_roles() {
     'weight' => 6,
   );
 
-  // Exported role: moderator.
-  $roles['moderator'] = array(
-    'name' => 'moderator',
-    'weight' => 4,
-  );
-
   // Exported role: redaktør.
   $roles['redaktør'] = array(
     'name' => 'redaktør',

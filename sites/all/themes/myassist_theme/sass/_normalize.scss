@@ -107,12 +107,12 @@ html {
   -webkit-text-size-adjust: 100%; /* 2 */
 }
 
-/* Remove default margin. */
+
 body {
-  margin: 0;
-  padding: 0;
-  color: $basegrey;
-  background: #fff;
+  margin: 0; /* Remove default margin */
+  padding: 0; /* Remove default padding */
+  color: $white;
+  background: $blue;
 }
 
 /**
@@ -122,44 +122,175 @@ body {
  * http://meyerweb.com/eric/thoughts/2007/06/11/who-ordered-the-link-states
  */
 a:link {
-  color: $basecolor;
+  color: $blue;
   text-decoration: none;
 }
 a:visited {
-  color: desaturate($basecolor, 20%);
+  color: desaturate($blue, 20%);
   text-decoration: none;
 }
 a:hover,
 a:focus {
-  color: lighten($basecolor, 10%);
+  color: lighten($blue, 10%);
 }
 a:active {
-  color: lighten($basecolor, 20%);
+  color: lighten($blue, 20%);
 }
 .btn,
-.btn:link {
-  background-color: $basecolor;
-  color: #fff;
+.btn:link,
+.btn:visited {
+  background-color: $grey;
+  color: $blue;
   padding: $u/2 $u;
   cursor: pointer;
   border: none;
-  font-weight: bold;
+  font-weight: normal;
   text-align: center;
   display: inline-block;
-}
-.btn:visited {
-  background-color: desaturate($basecolor, 20%);
-  color: #fff;
+  border-radius: $u/4;
+  margin-bottom: $u;
 }
 .btn:hover,
 .btn:focus {
-  background-color: lighten($basecolor, 10%);
-  color: #fff;
+  background-color: darken($grey, 10%);
 }
 .btn:active {
-  background-color: lighten($basecolor, 20%);
-  color: #fff;
+  background-color: darken($grey, 20%);
 }
+.greenbtn {
+  color: $white;
+  background-color: $green;
+  padding: $u/2 $u;
+  cursor: pointer;
+  border: none;
+  font-weight: normal;
+  text-align: center;
+  display: inline-block;
+  border-radius: $u/4;
+  margin-bottom: $u;
+  &:link,
+  &:visited {
+    color: $white;
+    background-color: $green;
+  }
+  &:hover,
+  &:focus {
+    color: $white;
+    background-color: lighten($green, 10%);
+  }
+  &:active {
+    color: $white;
+    background-color: darken($green, 20%);
+  }
+}
+.orangebtn {
+  color: $white;
+  background-color: $orange;
+  padding: $u/2 $u;
+  cursor: pointer;
+  border: none;
+  font-weight: normal;
+  text-align: center;
+  display: inline-block;
+  border-radius: $u/4;
+  margin-bottom: $u;
+  &:link,
+  &:visited {
+    color: $white;
+    background-color: $orange;
+  }
+  &:hover,
+  &:focus {
+    color: $white;
+    background-color: lighten($orange, 10%);
+  }
+  &:active {
+    color: $white;
+    background-color: darken($orange, 20%);
+  }
+}
+.bluebtn {
+  color: $white;
+  background-color: $blue;
+  padding: $u/2 $u;
+  cursor: pointer;
+  border: none;
+  font-weight: normal;
+  text-align: center;
+  display: inline-block;
+  border-radius: $u/4;
+  margin-bottom: $u;
+  &:link,
+  &:visited {
+    color: $white;
+    background-color: $blue;
+  }
+  &:hover,
+  &:focus {
+    color: $white;
+    background-color: darken($blue, 10%);
+  }
+  &:active {
+    color: $white;
+    background-color: darken($blue, 20%);
+  }
+}
+.bigass-greenbtn {
+  @extend .greenbtn;
+  border-bottom: solid $u*0.25 darken($green, 20%) !important;
+  display: block;
+}
+.navlinks {
+  text-transform: uppercase;
+  font-size: $u*0.8;
+  color: $white;
+  padding: $u*0.5 $u;
+  &:hover,
+  &:active,
+  &:focus,
+  &.active {
+    background-color: darken($blue, 10%);  
+  }
+}
+.label {
+  display: inline-block;
+  padding: $u*0.5 $u;
+  font-size: $u*0.8;
+  background-color: $orange;
+  color: $white;
+  font-weight: normal;
+  margin-bottom: $u*0.5;
+}
+.funky-header {
+  margin-left: -($u);
+  margin-right: -($u);
+  padding: $u*0.5 $u;
+  background-color: $grey;
+  color: $darkblue;
+  font-size: $u;
+}
+.orange-funky-header {
+  @extend .funky-header;
+  background-color: $orange;
+  color: $white;
+}
+.blue-funky-header {
+  @extend .funky-header;
+  background-color: $blue;
+  color: $white;
+}
+.white-funky-header {
+  border-bottom: solid 1px $grey;
+  background-color: $white;
+  font-size: $u*1.5;
+  margin-top: $u*0.5;
+  margin-bottom: $u*0.25;
+  margin-left: -($u*0.75);
+  margin-right: -($u*0.75);
+  padding: $u*0.75;
+  font-weight: normal;
+}
+
 
 /* Address `outline` inconsistency between Chrome and other browsers. */
 a:focus {
@@ -196,19 +327,17 @@ h4,
 h5,
 h6 {
   font-size: $u;
-  padding: $u*0.75 0 $u*0.25;
+  padding: $u*0.5 0;
   margin: 0;
   font-weight: bold;
 }
 h1 {
   font-size: $u*1.45;
   line-height: 1.18;
-  padding: $u 0 $u*0.5;
 }
 h2 {
   font-size: $u*1.18;
   line-height: 1.1;
-  padding: $u 0 $u*0.5;
 }
 h3 {
   font-size: $u*0.8;
@@ -353,7 +482,7 @@ figure {
 fieldset {
   margin: 0 0 $u;
   padding: $u;
-  border: solid 1px lighten($basegrey, 40%);
+  border: solid 1px $grey;
 }
 
 /**
@@ -413,7 +542,7 @@ button,
 html input[type="button"], /* 1 */
 input[type="reset"],
 input[type="submit"] {
-  @extend .btn;
+  @extend .greenbtn;
   -webkit-appearance: button; /* 2 */
   margin: 0 $u/2 $u/2 0;
 }
@@ -464,6 +593,18 @@ input::-moz-focus-inner {
   padding: 0;
 }
 
+label {
+  text-transform: uppercase;
+}
+
+textarea,
+input[type="text"],
+input[type="password"] {
+  border: solid $u*0.25 $grey;
+  padding: $u*0.5;
+  background-color: $white;
+}
+
 /**
  * 1. Remove default vertical scrollbar in IE 8/9.
  * 2. Improve readability and alignment in all browsers.
@@ -471,6 +612,11 @@ input::-moz-focus-inner {
 textarea {
   overflow: auto; /* 1 */
   vertical-align: top; /* 2 */
+  height: $u*4;
+}
+
+select {
+  padding: $u*0.5;
 }
 
 /* Drupal-style form labels. */
@@ -486,4 +632,5 @@ table {
   /* Remove most spacing between table cells. */
   border-collapse: collapse;
   border-spacing: 0;
+  width: 100%;
 }

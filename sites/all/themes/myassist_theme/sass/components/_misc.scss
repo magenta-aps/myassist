@@ -8,9 +8,12 @@
  * https://drupal.org/node/1707736
  */
 
+
+
 /**
  * Wireframes.
  */
+
 .with-wireframes {
   #header,
   #main,
@@ -23,6 +26,8 @@
     outline: 1px solid #ccc;
   }
 }
+
+
 
 /**
  * Accessibility features.
@@ -49,9 +54,12 @@
   }
 }
 
+
+
 /*
  * The skip-link link will be completely hidden until a user tabs to the link.
  */
+
 #skip-link {
   margin: 0;
 
@@ -71,7 +79,7 @@
  * Icon styles
  * Use @extend .icon to use where ever
  */
-.icon {
+.icons {
   display: block;
   width: $u*2.5;
   height: $u*2.5;
@@ -80,43 +88,20 @@
   background-position: center center;
   background-size: auto 66.66%;
   text-indent: -1000em;
+  text-align: center;
+  font-size: $u;
+  line-height: 1;
 }
-
 
 /**
- * Global links
+ * Content
  */
-
-#global-links {
-  background: lighten($basegrey, 60%);
-  box-shadow: -($u/4) 0 $u $u/4 rgba(0,0,0,0.2);
-  .menu {
-    padding: 0;
-  }
-  .menu__link {
-    display: block;
-    height: $u*2.5;
-    background: url("../images/icons/question.svg") no-repeat center center transparent;
-    background-size: auto 66.66%;
-    text-indent: -1000em;
-  }
-  .menu__link:hover,
-  .menu__link:active {
-    background-color: lighten($basecolor, 20%); 
-  }
-  .menu__link.disabled {
-    filter: opacity(0.33);
-    -webkit-filter: opacity(0.33);
-  }
+#page {
+  background: $white;
+  color: $darkblue;
 }
-#global-dilemma .menu__link {
-  background-image: url("../images/icons/question.svg");
-}
-#global-leaderboards .menu__link {
-  background-image: url("../images/icons/users.svg");
-}
-#global-chat .menu__link {
-  background-image: url("../images/icons/bubbles4.svg");
+#content {
+  padding-top: $u;
 }
 
 
@@ -124,29 +109,59 @@
  * Navigation
  */
 
-#mm {
-  .region-sidebar-first {
-    overflow-x: hidden;
-    overflow-y: auto;
-    padding: $u;
-    h2 {
-      margin: $u/2;
-      font-size: $u;
-      color: lighten($basegrey, 20%);
-    }
-    .menu {
-      list-style-type: none;
-      padding: 0;
-      margin: 0;
-    }
-    .menu__item {
-      display: block;
-      border-top: dashed 1px lighten($basegrey, 20%);
-    }
-    .menu__link {
-      display: block;
-      padding: $u/2;
-    }
+.header,
+.region-navigation,
+.bottom__container {
+  background-color: $blue;
+  color: lighten($smoke, 20%);
+  a:link,
+  a:visited {
+    color: $white;
+  }
+  a:hover,
+  a:focus {
+    background-color: darken($blue, 10%);
+  }
+  a:active {
+    background-color: darken($blue, 20%);
+  }
+}
+
+#block-system-main-menu {
+  h2 {
+    @include element-invisible;
+  }
+  .menu__item {
+    display: block;
+    float: left;
+    text-align: center;
+  }
+  .menu__link {
+    @extend .icons;
+    @extend .navlinks;
+    border: none !important;
+    text-indent: 0;
+    text-align: center;
+    width: auto;
+    height: auto;
+    background-position: center $u/1.5;
+    background-size: $u*1.25 auto;
+    padding: $u*2.25 $u/2 $u/2;
+    overflow: hidden;
+    font-size: $u*0.8;
+  }
+  .menu__link[href="/frontpage"] {
+    background-image: url(../images/icons/question.png);
+  }
+  .menu__link[href="/user"] {
+    background-image: url(../images/icons/dashboard.png);
+  }
+  .menu__link[href="/opeka"] {
+    background-image: url(../images/icons/bubbles.png);
+  }
+  .active {
+    background-color: $darkblue;
+    color: $white;
   }
 }
 
@@ -205,17 +220,17 @@
 /* System status report. */
 .ok,
 %ok {
-  background-color: #f8fff0;
+  background-color: #f8fff0 !important;
   color: #234600;
 }
 .warning,
 %warning {
-  background-color: #fffce5;
+  background-color: #fffce5 !important;
   color: #840;
 }
 .error,
 %error {
-  background-color: #fef5f1;
+  background-color: #fef5f1 !important;
   color: #8c2e0b;
 }
 
@@ -224,135 +239,31 @@
  * Tabs.
  */
 
-/* Basic positioning styles shared by primary and secondary tabs. */
-%tabs {
-  @include clearfix;
-  @include background-image(linear-gradient(bottom, $tabs-border 1px, transparent 1px));
-  /* IE 9 and earlier don't understand gradients. */
+.tabs {
   list-style: none;
-  border-bottom: 1px solid $tabs-border \0/ie;
-  margin: $u 0;
-  padding: 0 2px;
+  border-bottom: 1px solid $grey;
   white-space: nowrap;
-}
-%tabs__tab {
-  float: left; /* LTR */
-  margin: 0 3px;
-}
-%tabs__tab-link {
-  border: 1px solid #e9e9e9;
-  border-right: 0;
-  border-bottom: 0;
-  display: block;
-  text-decoration: none;
-}
-
-/* Primary tabs. */
-.tabs-primary {
-  @extend %tabs;
-}
-.tabs-primary__tab {
-  @extend %tabs__tab;
-  @include border-top-radius(4px);
-  @include single-text-shadow(#fff, 1px, 1px, 0);
-  border: 1px solid $tabs-border;
-  border-bottom-color: transparent;
-  /* IE 9 and earlier don't understand gradients. */
-  border-bottom: 0 \0/ie;
-}
-.tabs-primary__tab.is-active {
-  @extend .tabs-primary__tab;
-  border-bottom-color: $tabs-container-bg;
-}
-
-// We use 3 placeholder styles to prevent @extend from going selector crazy.
-%tabs-primary__tab-link {
-  @extend %tabs__tab-link;
-  @include border-top-radius(4px);
-  @include transition(background-color 0.3s);
-  color: #333;
-  background-color: #dedede;
-  letter-spacing: 1px;
-  padding: 0 1em;
-  text-align: center;
-}
-%tabs-primary__tab-link-is-hover {
-  background-color: #e9e9e9;
-  border-color: #f2f2f2;
-}
-%tabs-primary__tab-link-is-active {
-  background-color: transparent;
-  @include filter-gradient(rgba(#e9e9e9, 1), rgba(#e9e9e9, 0));
-  @include background-image(linear-gradient(rgba(#e9e9e9, 1), rgba(#e9e9e9, 0)));
-  border-color: #fff;
-}
-
-a.tabs-primary__tab-link {
-  @extend %tabs-primary__tab-link;
-
-  &:hover,
-  &:focus {
-    @extend %tabs-primary__tab-link-is-hover;
+  margin-bottom: $u;
+  li {
+    width: auto;
+    display: inline-block;
+    margin: 0 $u*0.25 -1px 0;
   }
-  &:active {
-    @extend %tabs-primary__tab-link-is-active;
+  a {
+    @extend .btn;
+    display: inline-block;
+    width: auto;
+    border: solid 1px $grey !important;
+    margin: 0 !important;
+    border-radius: $u*0.25 $u*0.25 0 0 !important;
+  }
+  a.is-active {
+    background-color: $white;
+    color: $blue;
+    border-bottom-color: $white !important;
   }
 }
-a.tabs-primary__tab-link.is-active {
-  @extend %tabs-primary__tab-link;
-  @extend %tabs-primary__tab-link-is-active;
-}
 
-/* Secondary tabs. */
-.tabs-secondary {
-  @extend %tabs;
-  font-size: .9em;
-  /* Collapse bottom margin of ul.primary. */
-  margin-top: -($u);
-}
-.tabs-secondary__tab,
-.tabs-secondary__tab.is-active {
-  @extend %tabs__tab;
-  margin: $u/2 3px;
-}
-
-// We use 3 placeholder styles to prevent @extend from going selector crazy.
-%tabs-secondary__tab-link {
-  @extend %tabs__tab-link;
-  @include border-radius(.75em);
-  @include transition(background-color 0.3s);
-  @include single-text-shadow(#fff, 1px, 1px, 0);
-  background-color: #f2f2f2;
-  color: #666;
-  padding: 0 .5em;
-}
-%tabs-secondary__tab-link-is-focus {
-  background-color: #dedede;
-  border-color: #999;
-  color: #333;
-}
-%tabs-secondary__tab-link-is-active {
-  @include single-text-shadow(#333, 1px, 1px, 0);
-  background-color: #666;
-  border-color: #000;
-  color: #fff;
-}
-
-a.tabs-secondary__tab-link {
-  @extend %tabs-secondary__tab-link;
-
-  &:hover,
-  &:focus {
-    @extend %tabs-secondary__tab-link-is-focus;
-  }
-  &:active {
-    @extend %tabs-secondary__tab-link-is-active;
-  }
-}
-a.tabs-secondary__tab-link.is-active {
-  @extend %tabs-secondary__tab-link;
-  @extend %tabs-secondary__tab-link-is-active;
-}
 
 /**
  * Inline styles.
@@ -401,14 +312,30 @@ span.field-label {
 /* A list of page numbers when more than 1 page of content is available. */
 .pager {
   clear: both;
-  padding: 0;
+  padding: $u 0 0;
   text-align: center;
+  list-style: none;
 }
 %pager__item {
-  display: inline;
-  padding: 0 0.5em;
-  list-style-type: none;
-  background-image: none;
+  display: inline-block;
+  padding-bottom: $u*0.25;
+  a,
+  a:link,
+  a:visited {
+    display: block;
+    padding: $u*0.5 $u;
+    background-color: $green;
+    color: $white;
+    border-radius: $u*0.25;
+    border-bottom: solid $u*0.25 darken($green, 20%);
+  }
+  a:hover,
+  a:focus {
+    background-color: lighten($green, 10%);
+  }
+  a:active {
+    background-color: darken($green, 10%);
+  }
 }
 
 .pager-item,      /* A list item containing a page number in the list of pages. */
@@ -424,6 +351,39 @@ span.field-label {
 .pager-current {
   @extend %pager__item;
   font-weight: bold;
+  padding: $u/2 $u;
+  background-color: $grey;
+  border-radius: $u*0.25;
+  border-bottom: solid $u*0.25 darken($grey, 20%);
+}
+
+
+/**
+ * Ajax loader
+ */
+
+/* these apply to all ajax progresses */
+.ajax-progress {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.75);
+  display: block;
+  z-index: 100000;
+}
+.ajax-progress .throbber {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -16px 0 0 -16px;
+  background: url(../images/ajax-loader.gif) no-repeat center center transparent;
+  height: 32px;
+  width: 32px;
 }
 
 
@@ -436,12 +396,55 @@ span.field-label {
   margin-bottom: $u;
 }
 
+/* Navigation (sub) */
+#block-system-navigation {
+  .block-title {
+    @include element-invisible;  
+  }
+  .menu {
+    padding: 0 0 $u;
+    margin: 0;
+    margin-left: -($u);
+    margin-right: -($u);
+  }
+  .menu__link {
+    @extend .navlinks;
+  }
+}
+
+/* Hero block */
+.hero {
+  background-color: $blue;
+  color: $white;
+  margin: 0 -($u);
+  padding: $u;
+}
+
+/* Login/Create new user link */
+.create-new-or-log-in {
+  @extend .navlinks;
+  padding: $u*1.2 $u;
+}
+
+
 /**
  * Menus.
  */
+
+.menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.menu__link {
+  display: block;
+  padding: $u/2 $u;
+}
+.menu__item:first-child .menu__link {
+  border-top: none;
+}
 .menu__item.is-leaf {
-  list-style-image: inline-image("menu-leaf.png");
-  list-style-type: square;
+  
 }
 .menu__item.is-expanded {
   list-style-image: inline-image("menu-expanded.png");
@@ -454,8 +457,10 @@ span.field-label {
 
 /* The active item in a Drupal menu. */
 .menu a.active {
-  color: #000;
+  background-color: lighten($blue, 10%);
 }
+
+
 
 /**
  * Marker.
@@ -468,6 +473,8 @@ span.field-label {
   /* Remove background highlighting from <mark> in normalize. */
   background-color: transparent;
 }
+
+
 
 /**
  * Unpublished note.
@@ -520,6 +527,8 @@ span.field-label {
   /* Drupal core uses a 25px left margin. */
   margin-left: $indent-amount; /* LTR */
 }
+
+
 
 /**
  * Forms.
@@ -589,6 +598,17 @@ a.button {
   text-align: left; /* LTR */
 }
 
+/* Form error message */
+#edit-name-check, 
+#edit-mail-check {
+  height: auto;
+  margin-bottom: $u/2;
+  background: transparent;
+  padding: $u/2;
+}
+
+
+
 /**
  * OpenID
  *
@@ -615,6 +635,8 @@ html.js #user-login-form li.openid-link,
 #user-login ul {
   margin: $u 0;
 }
+
+
 
 /**
  * Drupal admin tables.
@@ -658,6 +680,8 @@ td.menu-disabled {
   background: #ccc;
 }
 
+
+
 /**
  * Autocomplete.
  *
@@ -669,6 +693,8 @@ td.menu-disabled {
   background: #0072b9;
   color: #fff;
 }
+
+
 
 /**
  * Collapsible fieldsets.
@@ -747,4 +773,81 @@ tr.selected td {
   background-color: #fff;
   text-align: center;
   margin-right: $u;
+  label {
+    text-align: left;
+  }
+}
+
+
+
+/**
+ * "Ask a question" button
+ */
+
+.add-question-block {
+  .btn {
+    display: block;
+  }
+}
+
+
+/**
+ * Search form
+ */
+
+.search-form input {
+  margin: 0 0 $u*0.5;
+}
+.search-results {
+  padding: 0;
+  .search-result {
+    border-top: dashed 1px $grey;
+    .title {
+      text-transform: none;
+    }
+    .search-snippet {
+      margin-bottom: 0;
+    }
+    .search-info {
+      color: $smoke;
+    }
+  }
+}
+
+
+/**
+ * FAQ
+ */
+
+.node-readmore a {
+  @extend .btn;
+}
+.view-faq {
+  .views-row {
+    border-top: solid 1px $grey;
+  }
+  .views-row:first-child {
+    border: none;
+  }
+}
+.field-type-taxonomy-term-reference a {
+  @extend .label;
+}
+
+
+/**
+ * Taxomony page
+ */
+
+.page-taxonomy #page-title {
+  @extend .orange-funky-header;
+}
+
+
+/**
+ * Hide RSS icon
+ */
+
+.feed-icon {
+  @include element-invisible;
 }

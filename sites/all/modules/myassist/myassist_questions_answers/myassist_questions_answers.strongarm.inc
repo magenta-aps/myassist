@@ -21,22 +21,43 @@ function myassist_questions_answers_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'additional_settings__active_tab_answers_question';
-  $strongarm->value = 'edit-submission';
+  $strongarm->value = 'edit-workflow';
   $export['additional_settings__active_tab_answers_question'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'answers_best_answer_lock_choice_p';
+  $strongarm->value = 1;
+  $export['answers_best_answer_lock_choice_p'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'answers_best_answer_lock_questions_p';
-  $strongarm->value = 0;
+  $strongarm->value = 1;
   $export['answers_best_answer_lock_questions_p'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'answers_best_answer_old_lock_choice_p';
+  $strongarm->value = 1;
+  $export['answers_best_answer_old_lock_choice_p'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'answers_best_answer_old_lock_questions_p';
-  $strongarm->value = 0;
+  $strongarm->value = 1;
   $export['answers_best_answer_old_lock_questions_p'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'answers_question_lock_message';
+  $strongarm->value = 'Dette spørgsmål er låst.';
+  $export['answers_question_lock_message'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -56,7 +77,7 @@ function myassist_questions_answers_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'comment_answers_answer';
-  $strongarm->value = '2';
+  $strongarm->value = 2;
   $export['comment_answers_answer'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -112,7 +133,7 @@ function myassist_questions_answers_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'comment_preview_answers_answer';
-  $strongarm->value = '0';
+  $strongarm->value = 0;
   $export['comment_preview_answers_answer'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -181,6 +202,128 @@ function myassist_questions_answers_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'field_bundle_settings_message__best_answer';
+  $strongarm->value = array(
+    'view_modes' => array(),
+    'extra_fields' => array(
+      'form' => array(),
+      'display' => array(
+        'message__message_text__0' => array(
+          'message_notify_email_subject' => array(
+            'visible' => TRUE,
+            'weight' => 0,
+          ),
+          'message_notify_email_body' => array(
+            'visible' => FALSE,
+            'weight' => 0,
+          ),
+        ),
+        'message__message_text__1' => array(
+          'message_notify_email_subject' => array(
+            'visible' => FALSE,
+            'weight' => 0,
+          ),
+          'message_notify_email_body' => array(
+            'visible' => TRUE,
+            'weight' => 0,
+          ),
+        ),
+      ),
+    ),
+  );
+  $export['field_bundle_settings_message__best_answer'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'field_bundle_settings_message__comment_added_to_post';
+  $strongarm->value = array(
+    'view_modes' => array(),
+    'extra_fields' => array(
+      'form' => array(),
+      'display' => array(
+        'message__message_text__0' => array(
+          'message_notify_email_subject' => array(
+            'visible' => TRUE,
+            'weight' => 0,
+          ),
+          'message_notify_email_body' => array(
+            'visible' => FALSE,
+            'weight' => 0,
+          ),
+        ),
+        'message__message_text__1' => array(
+          'message_notify_email_subject' => array(
+            'visible' => FALSE,
+            'weight' => 0,
+          ),
+          'message_notify_email_body' => array(
+            'visible' => TRUE,
+            'weight' => 0,
+          ),
+        ),
+      ),
+    ),
+  );
+  $export['field_bundle_settings_message__comment_added_to_post'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'field_bundle_settings_message__question_answered';
+  $strongarm->value = array(
+    'view_modes' => array(),
+    'extra_fields' => array(
+      'form' => array(),
+      'display' => array(
+        'message__message_text__0' => array(
+          'message_notify_email_subject' => array(
+            'visible' => TRUE,
+            'weight' => 0,
+          ),
+          'message_notify_email_body' => array(
+            'visible' => FALSE,
+            'weight' => 0,
+          ),
+        ),
+        'message__message_text__1' => array(
+          'message_notify_email_subject' => array(
+            'visible' => FALSE,
+            'weight' => 0,
+          ),
+          'message_notify_email_body' => array(
+            'visible' => TRUE,
+            'weight' => 0,
+          ),
+        ),
+      ),
+    ),
+  );
+  $export['field_bundle_settings_message__question_answered'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'field_bundle_settings_node__answers_question';
+  $strongarm->value = array(
+    'view_modes' => array(),
+    'extra_fields' => array(
+      'form' => array(
+        'flag' => array(
+          'weight' => '10',
+        ),
+        'title' => array(
+          'weight' => '-5',
+        ),
+      ),
+      'display' => array(),
+    ),
+  );
+  $export['field_bundle_settings_node__answers_question'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'flag_subscribe_answers_notifications_default_answers_question';
   $strongarm->value = 0;
   $export['flag_subscribe_answers_notifications_default_answers_question'] = $strongarm;
@@ -228,6 +371,7 @@ function myassist_questions_answers_strongarm() {
   $strongarm->name = 'node_options_answers_question';
   $strongarm->value = array(
     0 => 'status',
+    1 => 'promote',
   );
   $export['node_options_answers_question'] = $strongarm;
 
@@ -235,7 +379,7 @@ function myassist_questions_answers_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'node_preview_answers_answer';
-  $strongarm->value = '0';
+  $strongarm->value = 0;
   $export['node_preview_answers_answer'] = $strongarm;
 
   $strongarm = new stdClass();

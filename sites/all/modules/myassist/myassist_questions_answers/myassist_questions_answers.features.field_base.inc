@@ -80,6 +80,34 @@ function myassist_questions_answers_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
+  // Exported field_base: 'answers_related_question'
+  $field_bases['answers_related_question'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'answers_related_question',
+    'indexes' => array(
+      'target_id' => array(
+        0 => 'target_id',
+      ),
+    ),
+    'locked' => 1,
+    'module' => 'entityreference',
+    'settings' => array(
+      'handler' => 'base',
+      'handler_settings' => array(
+        'target_bundles' => array(
+          'answers_question' => 'answers_question',
+        ),
+      ),
+      'handler_submit' => 'Change handler',
+      'target_type' => 'node',
+    ),
+    'translatable' => 0,
+    'type' => 'entityreference',
+  );
+
   // Exported field_base: 'comment_body'
   $field_bases['comment_body'] = array(
     'active' => 1,
@@ -116,7 +144,8 @@ function myassist_questions_answers_field_default_field_bases() {
     'locked' => 0,
     'module' => 'image',
     'settings' => array(
-      'default_image' => FALSE,
+      'default_image' => 0,
+      'profile2_private' => FALSE,
       'uri_scheme' => 'public',
     ),
     'translatable' => 0,
@@ -148,6 +177,28 @@ function myassist_questions_answers_field_default_field_bases() {
     ),
     'translatable' => 0,
     'type' => 'taxonomy_term_reference',
+  );
+
+  // Exported field_base: 'question_locks'
+  $field_bases['question_locks'] = array(
+    'active' => 1,
+    'cardinality' => -1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'question_locks',
+    'indexes' => array(
+      'value' => array(
+        0 => 'value',
+      ),
+    ),
+    'locked' => 1,
+    'module' => 'list',
+    'settings' => array(
+      'allowed_values' => array(),
+      'allowed_values_function' => 'answers_locking_modules',
+    ),
+    'translatable' => 0,
+    'type' => 'list_text',
   );
 
   return $field_bases;

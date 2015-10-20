@@ -56,10 +56,7 @@ include_once 'myassist_achievements.features.inc';
  */
 function myassist_achievements_achievements_info() {
   $achievements = array(
-    'question-creation' => array(
-      'title' => t('Question creation'),
-      'achievements' => array(
-        'question-count-1' => array(
+       'question-count-1' => array(
           'title'       => t('Posted a question'),
           'description' => t("We no longer think you're a spam bot. Maybe."),
           'storage'     => 'question-count',
@@ -78,48 +75,18 @@ function myassist_achievements_achievements_info() {
             'unlocked'  => 'sites/all/themes/myassist_theme/images/achievements/achievement2.svg'
           )
         ),
-
-        'level-10' => array(
-          'title'       => t('Reached level 10'),
-          'description' => t("You're officially no longer a fucking n00b"),
-          'storage'     => 'level',
-          'points'      => 10,
-          'images' => array(
-            'unlocked'  => 'sites/all/themes/myassist_theme/images/achievements/achievement3.svg'
-          )
-        ),
-        'level-15' => array(
-          'title'       => t('Reached level 15'),
-          'description' => t("You're getting the hang of this"),
-          'storage'     => 'level',
-          'points'      => 20,
-          'images' => array(
-            'unlocked'  => 'sites/all/themes/myassist_theme/images/achievements/achievement4.svg'
-          )
-        ),
-        'level-20' => array(
-          'title'       => t('Reached level 20'),
-          'description' => t("We welcome you into our circle of buddies"),
-          'storage'     => 'level',
-          'points'      => 30,
-          'images' => array(
-            'unlocked'  => 'sites/all/themes/myassist_theme/images/achievements/achievement5.svg'
-          )  
-        ),
-        'level-80' => array(
-          'title'       => t('Reached level 80'),
-          'description' => t("Bow down to the almighty über-poster"),
-          'storage'     => 'level',
-          'points'      => 1000,
-          'images' => array(
-            'unlocked'  => 'sites/all/themes/myassist_theme/images/achievements/achievement6.svg'
-          )
-        ),
-      )
-    ),
   );
 
   return $achievements;
+}
+
+
+function myassist_achievements_permission() {
+  return array(
+    'earn points' => array(
+      'title' => t('Earn points'),
+    ),
+  );
 }
 
 
@@ -139,12 +106,28 @@ function myassist_achievements_node_insert($node) {
   }
 }
 
+function myassist_achievements_user_can_earn_points($uid) {
+  if ($uid == 1) {
+    return false;
+  }
+  return (user_access('earn points', user_load($uid)));
+}
+
 /*
  * Implements hook_userpoints
  * Trigger achievements for leveling up
  * Called when the user's points are altered (by userpoints_invoke_all() in userpoints.module)
  * */
 function myassist_achievements_userpoints($operation, $parameters) {
+
+
+  // Deny points to admin (see https://redmine.magenta-aps.dk/issues/13245) and users without the needed permissions
+  if ($operation === "points before") {
+    if (!myassist_achievements_user_can_earn_points($parameters['uid'])) {
+      return false;
+    }
+  }
+
   if ($operation === "points after") {
     $uid = $parameters["uid"];
     // Get the number of points before & after the change
@@ -219,6 +202,37 @@ function myassist_achievements_get_user_points_for_next_level($uid) {
  * */
 function myassist_achievements_userpoints_list_transactions_alter(&$data) {
   $uid = $data["#account"]->uid;
+
+  // Kill "status" and "actions" column
+  $list = &$data['list']['table'];
+  $colsToDelete = array();
+  foreach ($list['#header'] as $index => $field) {
+    if (($field['data'] === t('Actions') || in_array('userpoints-transactions-header-actions', $field['class'])) ||
+      ($field['data'] === t('Status') || (isset($field['field']) && $field['field'] === 'status') || in_array('userpoints-transactions-header-status', $field['class']))) {
+      $colsToDelete[] = $index;
+      unset($list['#header'][$index]);
+    }
+  }
+  $list['#header'] = array_values($list['#header']);
+  foreach ($list['#rows'] as $index => &$row) {
+    foreach ($colsToDelete as $colToDelete) {
+      unset($list['#rows'][$index]['data'][$colToDelete]);
+    }
+    $list['#rows'][$index]['data'] = array_values($list['#rows'][$index]['data']);
+  }
+  unset($row);
+
+  // Kill "pending points" row
+  $rows = &$data['list']['summary_table']['#rows'];
+  if (isset($rows)) {
+    foreach ($rows as $index => $row) {
+      if (in_array('userpoints-myuserpoints-total-pending', $row['class']) || in_array(t('Pending points'), $row['data'])) {
+        unset($rows[$index]);
+      }
+    }
+  }
+
+  // Add "Level" table
   $level = myassist_achievements_get_user_level($uid);
   $data['list']['level'] = array(
       '#theme' => 'table',
@@ -248,7 +262,54 @@ function myassist_achievements_userpoints_list_transactions_alter(&$data) {
 }
 
 
+function myassist_achievements_init() {
+  variable_set('achievements_leaderboard_count_per_page', 10000);
+}
 
+/**
+ * Implements hook_TYPE_alter().
+ * Displays achievement badges on profile page
+ */
+
+
+/**
+ * Implements hook_achievements_leaderboard_alter().
+ */
+function myassist_achievements_achievements_leaderboard_alter(&$leaderboard) {
+  $limit = 10;
+  $pos = 1;
+  $render = &$leaderboard['render'];
+  if (array_key_exists('achievers', $leaderboard)) {
+    foreach ($leaderboard['achievers'] as $list_type => &$list) {
+      foreach ($list as $uid => $account) {
+        if ($pos > $limit) {
+          unset($list[$uid]);
+        }
+        if (!myassist_achievements_user_can_earn_points($uid)) {
+          unset($list[$uid]);
+        } else {
+          $pos++;
+        }
+      }
+    }
+  }
+  if (array_key_exists('render', $leaderboard) && array_key_exists('#rows', $render)) {
+    $pos = 1;
+    foreach ($render['#rows'] as $uid => &$row) {
+      if ($pos > $limit) {
+        unset($render['#rows'][$uid]);
+      }
+      if (!myassist_achievements_user_can_earn_points($uid)) {
+        unset($render['#rows'][$uid]);
+      } else {
+        $row['data'][0]['data'] = $pos;
+        $pos++;
+      }
+    }
+  }
+  // #13647: remove unlocks column
+  myassist_achievements_remove_column($render, t('Unlocks'));
+}
 
 
 /**
@@ -256,83 +317,90 @@ function myassist_achievements_userpoints_list_transactions_alter(&$data) {
  * Displays achievement badges on profile page
  */
 function myassist_achievements_profile2_view($profile, $view_mode, $langcode) {
+
   $uid = $profile->uid;
 
-  $points = userpoints_get_current_points($uid);
-  $profile->content['points'] = array(
-    '#theme' => "myassist_data", // Point to definition in myassist_achievements_theme
-    '#weight' => 0,
-    '#title' => t('Points'),
-    '#class' => 'userpoints',
-    '#text' => t("@points points", array("@points" => $points)), // Pass data to template (name must be defined in the definition)
-    '#href' => "/user/$uid/points",
-  );
+  if (myassist_achievements_user_can_earn_points($uid)) {
+
+    $points = userpoints_get_current_points($uid);
+    $profile->content['points'] = array(
+      '#theme' => "myassist_data",
+      // Point to definition in myassist_achievements_theme
+      '#weight' => 0,
+      '#title' => t('Points'),
+      '#class' => 'userpoints',
+      '#text' => t("@points points", array("@points" => $points)),
+      // Pass data to template (name must be defined in the definition)
+      '#href' => "/user/$uid/points",
+    );
 
 
-  $level = myassist_achievements_get_user_level($uid);
-  $profile->content['level'] = array(
-    '#theme' => "myassist_data",
-    '#weight' => 0,
-    '#title' => t('Level'),
-    '#class' => 'userlevel',
-    '#text' => t("Level @level", array("@level" => $level["level"])),
-    '#href' => "/user/$uid/achievements",
-  );
+    $level = myassist_achievements_get_user_level($uid);
+    $profile->content['level'] = array(
+      '#theme' => "myassist_data",
+      '#weight' => 0,
+      '#title' => t('Level'),
+      '#class' => 'userlevel',
+      '#text' => t("Level @level", array("@level" => $level["level"])),
+      '#href' => "/user/$uid/achievements",
+    );
 
 
-  $profile->content['achievements'] = array(
-    '#type' => 'container',
-    '#attributes' => array('class'=>array('achievements'))
-  );
+    $profile->content['achievements'] = array(
+      '#type' => 'container',
+      '#attributes' => array('class' => array('achievements'))
+    );
 
-  // Get a list of all achievements
-  $achievements_grouped = achievements_load(NULL, TRUE);
-  // Get a definition of which achievements are unlocked by the user
-  $unlocks = achievements_unlocked_already(NULL, $uid);
+    // Get a list of all achievements
+    $achievements_grouped = achievements_load(NULL, TRUE);
+    // Get a definition of which achievements are unlocked by the user
+    $unlocks = achievements_unlocked_already(NULL, $uid);
 
-  // Find all achievement objects that the user has unlocked
-  $unlocked_achievements = array();
-  foreach ($achievements_grouped as $group_id => $group) {
-    foreach ($group['achievements'] as $achievement_id => $achievement) {
-      if (isset($unlocks[$achievement_id])) {
-        $unlocked_achievements[] = array(
-          'achievement' => $achievement,
-          'unlock' => $unlocks[$achievement_id]
-        );
+    // Find all achievement objects that the user has unlocked
+    $unlocked_achievements = array();
+    foreach ($achievements_grouped as $group_id => $group) {
+      foreach ($group['achievements'] as $achievement_id => $achievement) {
+        if (isset($unlocks[$achievement_id])) {
+          $unlocked_achievements[] = array(
+            'achievement' => $achievement,
+            'unlock' => $unlocks[$achievement_id]
+          );
+        }
       }
     }
-  }
 
-  // Sort the unlocked achievements by timestamp, newest first
-  function cmp_achievements($a, $b) {
-    $ta = $a['unlock']['timestamp'];
-    $tb = $b['unlock']['timestamp'];
-    return $ta === $tb ? 0 : $ta > $tb;
-  }
-  uksort($unlocked_achievements, "cmp_achievements");
+    // Sort the unlocked achievements by timestamp, newest first
+    function cmp_achievements($a, $b) {
+      $ta = $a['unlock']['timestamp'];
+      $tb = $b['unlock']['timestamp'];
+      return $ta === $tb ? 0 : $ta > $tb;
+    }
 
-  // Cut off all but the latest 10 achievements
-  array_splice($unlocked_achievements, 10);
+    uksort($unlocked_achievements, "cmp_achievements");
 
-  // Add the achievements to the rendering array
-  for ($i=0; $i<count($unlocked_achievements); $i++) {
-    $unlock = $unlocked_achievements[$i]['unlock'];
-    $achievement = $unlocked_achievements[$i]['achievement'];
-    $achievement['title'] = t($achievement['title']);
+    // Cut off all but the latest 10 achievements
+    array_splice($unlocked_achievements, 10);
 
-    // Get extra rendering info from the achievements module, such as image and title
-    $extra = array('achievement'=>$achievement, 'unlock'=>$unlock);
-    achievements_template_shared_variables($extra);
+    // Add the achievements to the rendering array
+    for ($i = 0; $i < count($unlocked_achievements); $i++) {
+      $unlock = $unlocked_achievements[$i]['unlock'];
+      $achievement = $unlocked_achievements[$i]['achievement'];
+      $achievement['title'] = t($achievement['title']);
 
-    // Stuff an object into our rendering array
-    $profile->content['achievements'][$achievement['id']] = array(
-      '#theme' => 'myassist_achievement',
-      '#weight' => $i,
-      '#title' => t('Achievement'),
-      '#achievement' => $achievement,
-      '#image' => $extra['image'],
-      '#achievement_title' => $extra['achievement_title'],
-    );
+      // Get extra rendering info from the achievements module, such as image and title
+      $extra = array('achievement' => $achievement, 'unlock' => $unlock);
+      achievements_template_shared_variables($extra);
+
+      // Stuff an object into our rendering array
+      $profile->content['achievements'][$achievement['id']] = array(
+        '#theme' => 'myassist_achievement',
+        '#weight' => $i,
+        '#title' => t('Achievement'),
+        '#achievement' => $achievement,
+        '#image' => $extra['image'],
+        '#achievement_title' => $extra['achievement_title'],
+      );
+    }
   }
 
 }
@@ -442,22 +510,25 @@ function myassist_achievements_page_alter(&$page) {
   if ($_SERVER['REQUEST_METHOD'] === "GET") {
     $notifications = db_query('SELECT n.uid, n.txid FROM {myassist_pending_point_display} n WHERE n.uid = :uid', array(':uid' => $uid));
     if ($notifications->rowCount() > 0) {
-      drupal_add_library('system', 'ui.dialog');
-      drupal_add_library('system', 'effects.fade');
-      drupal_add_js(drupal_get_path('module', 'achievements') . '/achievements.js');
-      drupal_add_css(drupal_get_path('module', 'achievements') . '/achievements.css');
-
+      $points = 0;
       foreach ($notifications as $notification) {
         $txid = $notification->txid;
         //$transaction = userpoints_transaction_load($txid);
         $transaction = db_query('SELECT * from {userpoints_txn} WHERE txn_id = :txn', array(':txn' => $txid))->fetchObject();
         if ($transaction) {
-          $page['content']['points'][$txid] = array(
-            '#theme' => 'myassist_points_notification',
-            '#points' => $transaction->points,
-          );
-          $hasNotification = true;
+          $points += $transaction->points;
         }
+      }
+      if ($points !== 0) {
+        drupal_add_library('system', 'ui.dialog');
+        drupal_add_library('system', 'effects.fade');
+        drupal_add_js(drupal_get_path('module', 'achievements') . '/achievements.js');
+        drupal_add_css(drupal_get_path('module', 'achievements') . '/achievements.css');
+        $page['content']['points'][$txid] = array(
+          '#theme' => 'myassist_points_notification',
+          '#points' => $points,
+        );
+        $hasNotification = true;
       }
       db_delete('myassist_pending_point_display')
         ->condition('uid', $uid)
@@ -493,9 +564,20 @@ function myassist_achievements_page_alter(&$page) {
         '#theme' => 'myassist_points_notification_once'
       );
     }
+  }
+}
 
-
-
+function myassist_achievements_remove_column(&$renderArray, $findTitle) {
+  $columnIndex = 0;
+  foreach ($renderArray['#header'] as $i => &$headerCell) {
+    if ($headerCell === $findTitle) {
+        $columnIndex = $i;
+      break;
+    }
+  }
+  array_splice($renderArray['#header'], $columnIndex, 1);
+  foreach ($renderArray['#rows'] as &$row) {
+    array_splice($row['data'], $columnIndex, 1);
   }
 }
 
@@ -519,10 +601,13 @@ function myassist_achievements_achievements_locked($achievement, $uid) {
 
 
 function myassist_achievements_copy_to_achievement_table($uid, $points) {
-  db_merge('achievement_totals')
-    ->key(array('uid' => $uid))
-    ->fields(array('points' => $points))
-    ->execute();
+  $count = db_select('achievement_totals')->condition('uid', $uid)->countQuery()->execute()->fetchField();
+  if ($count) {
+    db_merge('achievement_totals')
+      ->key(array('uid' => $uid))
+      ->fields(array('points' => $points))
+      ->execute();
+  }
 }
 function myassist_achievements_copy_to_userpoints_table($uid, $addpoints, $reason=null) {
   $params = array(

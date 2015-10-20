@@ -10,35 +10,41 @@
 // wrapping it with an "anonymous closure". See:
 // - https://drupal.org/node/1446420
 // - http://www.adequatelygood.com/2010/3/JavaScript-Module-Pattern-In-Depth
+
+
 (function ($, Drupal, window, document, undefined) {
-
-// To understand behaviors, see https://drupal.org/node/756722#behaviors
-
-
-  Drupal.behaviors.my_custom_behavior = {
-    attach: function(context, settings) {
   
-      // Toggle menu on small screens
-      $('.mm-toggle').click(function() {
-        $('#mm').toggleClass('open');
-      });
+  // To understand behaviors, see https://drupal.org/node/756722#behaviors
   
-    }
-  };
-
-
   Drupal.behaviors.headerResponsive = {
     attach: function(context, settings) {
-
-      $(".search-toggle").click(function(event){
-        $("#block-search-form").addClass("forceShow");
-        event.stopPropagation();
-        return false;
+      
+      // Toggle user action menu
+      $('#block-system-user-menu .block-title, #block-myassist-user-avatar').click(function(e) {
+        e.preventDefault();
+        $('#block-system-user-menu').toggleClass('open');
       });
+      
+      // Toggle search
+      $('#block-search-form .block-title').click(function() {
+        $('#block-search-form').toggleClass('open');
+      });
+      
+      
+      /*
+       * Message Form script
+       */
+      
+      //var messageForm = $("#answers-answer-node-form");
+      //var messageField = messageForm.find("textarea[id^=edit-body]");
 
-      $(document).click(function(event) {
-        if(!$(event.target).closest("#block-search-form").length) {
-          $("#block-search-form").removeClass("forceShow");
+      var messageForm = $(".node-answers-question form[id^=comment-form]");
+      var messageField = messageForm.find("textarea[id^=edit-comment-body]");
+
+      var originalValues = {};
+      messageForm.find("input,select").each(function(){
+        if (this.name) {
+          originalValues[this.name] = this.value;
         }
       });
 
@@ -65,17 +71,23 @@
             });
             return false;
 
-      var bodyPadding = null;
-      var relocateButtons = function(){
-        var newBodyPadding = $("body").css("paddingTop");
-        if (newBodyPadding !== bodyPadding) {
-          $(".mm-toggle").css({top:newBodyPadding});
-          $(".search-toggle").css({top:newBodyPadding});
-          bodyPadding = newBodyPadding;
+          } else { // The user left the field empty
+            return true; // Let the lock button do its regular thing (go to /node/<nodeid>/lock)
+          }
         }
-      };
-      $(window).resize(relocateButtons);
-      $(relocateButtons);
+      });
+    }
+  };
+  
+  var updateOffset = function() {
+    var offset = $("#toolbar").height();
+    if (offset && !isNaN(offset)) {
+      $("#page > *").each(function(){
+        var el = $(this);
+        if (el.css("position") === "fixed") {
+          el.offset({top:offset});
+        }
+      });
 
     }
   };
@@ -88,5 +100,6 @@
 
   $(updateOffset);
   $(window).resize(updateOffset);
-
+  
 })(jQuery, Drupal, this, this.document);
+

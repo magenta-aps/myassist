@@ -13,9 +13,51 @@ function myassist_user_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'comment_anonymous_page';
+  $strongarm->value = 0;
+  $export['comment_anonymous_page'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_default_mode_page';
+  $strongarm->value = 0;
+  $export['comment_default_mode_page'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_default_per_page_page';
+  $strongarm->value = '50';
+  $export['comment_default_per_page_page'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_form_location_page';
+  $strongarm->value = 0;
+  $export['comment_form_location_page'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'comment_page';
   $strongarm->value = 0;
   $export['comment_page'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_preview_page';
+  $strongarm->value = '1';
+  $export['comment_preview_page'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_subject_field_page';
+  $strongarm->value = 0;
+  $export['comment_subject_field_page'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -54,6 +96,55 @@ function myassist_user_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'field_bundle_settings_node__page';
+  $strongarm->value = array(
+    'view_modes' => array(
+      'teaser' => array(
+        'custom_settings' => TRUE,
+      ),
+      'answers_full_node' => array(
+        'custom_settings' => TRUE,
+      ),
+      'full' => array(
+        'custom_settings' => FALSE,
+      ),
+      'rss' => array(
+        'custom_settings' => FALSE,
+      ),
+      'search_index' => array(
+        'custom_settings' => FALSE,
+      ),
+      'search_result' => array(
+        'custom_settings' => FALSE,
+      ),
+      'diff_standard' => array(
+        'custom_settings' => FALSE,
+      ),
+    ),
+    'extra_fields' => array(
+      'form' => array(
+        'language' => array(
+          'weight' => '3',
+        ),
+        'title' => array(
+          'weight' => '1',
+        ),
+      ),
+      'display' => array(
+        'language' => array(
+          'default' => array(
+            'weight' => '0',
+            'visible' => FALSE,
+          ),
+        ),
+      ),
+    ),
+  );
+  $export['field_bundle_settings_node__page'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'field_bundle_settings_profile2__ungeprofil';
   $strongarm->value = array(
     'view_modes' => array(
@@ -67,6 +158,9 @@ function myassist_user_strongarm() {
         'custom_settings' => FALSE,
       ),
       'diff_standard' => array(
+        'custom_settings' => FALSE,
+      ),
+      'token' => array(
         'custom_settings' => FALSE,
       ),
     ),
@@ -204,7 +298,7 @@ function myassist_user_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'l10n_update_last_check';
-  $strongarm->value = 1431347631;
+  $strongarm->value = 1435690359;
   $export['l10n_update_last_check'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -219,6 +313,80 @@ function myassist_user_strongarm() {
   $strongarm->api_version = 1;
   $strongarm->name = 'l10n_update_translation_status';
   $strongarm->value = array(
+    'achievements' => array(
+      'da' => (object) array(
+        'name' => 'achievements',
+        'project_type' => 'module',
+        'core' => '7.x',
+        'version' => '7.x-1.5',
+        'server_pattern' => 'http://ftp.drupal.org/files/translations/%core/%project/%project-%release.%language.po',
+        'status' => '1',
+        'project' => 'achievements',
+        'langcode' => 'da',
+        'type' => 'current',
+        'timestamp' => 1428501998,
+        'last_checked' => 1435668422,
+        'files' => array(
+          'remote' => (object) array(
+            'project' => 'achievements',
+            'langcode' => 'da',
+            'version' => '7.x-1.5',
+            'type' => 'remote',
+            'filename' => 'achievements-7.x-1.5.da.po',
+            'uri' => 'http://ftp.drupal.org/files/translations/7.x/achievements/achievements-7.x-1.5.da.po',
+            'timestamp' => 1335890622,
+          ),
+          'local' => (object) array(
+            'project' => 'achievements',
+            'langcode' => 'da',
+            'version' => '7.x-1.5',
+            'type' => 'local',
+            'filename' => 'achievements-7.x-1.5.da.po',
+            'directory' => 'translations://',
+            'uri' => 'translations://achievements-7.x-1.5.da.po',
+            'timestamp' => 1428501998,
+            'last_checked' => 1435668422,
+            'language' => 'da',
+          ),
+        ),
+        'language' => 'da',
+      ),
+    ),
+    'achievements_rules' => array(
+      'da' => (object) array(
+        'name' => 'achievements_rules',
+        'project_type' => 'module',
+        'core' => '7.x',
+        'version' => '7.x-1.0-beta1',
+        'server_pattern' => 'http://ftp.drupal.org/files/translations/%core/%project/%project-%release.%language.po',
+        'status' => '1',
+        'project' => 'achievements_rules',
+        'langcode' => 'da',
+        'type' => '',
+        'timestamp' => 0,
+        'last_checked' => 0,
+        'files' => array(
+          'remote' => (object) array(
+            'project' => 'achievements_rules',
+            'langcode' => 'da',
+            'version' => '7.x-1.0-beta1',
+            'type' => 'remote',
+            'filename' => 'achievements_rules-7.x-1.0-beta1.da.po',
+            'uri' => 'http://ftp.drupal.org/files/translations/7.x/achievements_rules/achievements_rules-7.x-1.0-beta1.da.po',
+          ),
+          'local' => (object) array(
+            'project' => 'achievements_rules',
+            'langcode' => 'da',
+            'version' => '7.x-1.0-beta1',
+            'type' => 'local',
+            'filename' => 'achievements_rules-7.x-1.0-beta1.da.po',
+            'directory' => 'translations://',
+            'uri' => 'translations://achievements_rules-7.x-1.0-beta1.da.po',
+          ),
+        ),
+        'language' => 'da',
+      ),
+    ),
     'answers' => array(
       'da' => (object) array(
         'name' => 'answers',
@@ -250,7 +418,7 @@ function myassist_user_strongarm() {
             'filename' => 'answers-7.x-4.0-rc2.da.po',
             'directory' => 'translations://',
             'uri' => 'translations://answers-7.x-4.0-rc2.da.po',
-            'timestamp' => 1429087513,
+            'timestamp' => 1428501998,
             'last_checked' => 1431334634,
             'language' => 'da',
           ),
@@ -330,7 +498,7 @@ function myassist_user_strongarm() {
             'filename' => 'avatar_selection-7.x-1.1.da.po',
             'directory' => 'translations://',
             'uri' => 'translations://avatar_selection-7.x-1.1.da.po',
-            'timestamp' => 1429087513,
+            'timestamp' => 1428501998,
             'last_checked' => 1431334634,
             'language' => 'da',
           ),
@@ -339,6 +507,84 @@ function myassist_user_strongarm() {
         'filename' => '',
         'fileurl' => '',
         'uri' => '',
+      ),
+    ),
+    'captcha' => array(
+      'da' => (object) array(
+        'name' => 'captcha',
+        'project_type' => 'module',
+        'core' => '7.x',
+        'version' => '7.x-1.3',
+        'server_pattern' => 'http://ftp.drupal.org/files/translations/%core/%project/%project-%release.%language.po',
+        'status' => '1',
+        'project' => 'captcha',
+        'langcode' => 'da',
+        'type' => 'current',
+        'timestamp' => 1435690353,
+        'last_checked' => 1435690352,
+        'files' => array(
+          'remote' => (object) array(
+            'project' => 'captcha',
+            'langcode' => 'da',
+            'version' => '7.x-1.3',
+            'type' => 'remote',
+            'filename' => 'captcha-7.x-1.3.da.po',
+            'uri' => 'http://ftp.drupal.org/files/translations/7.x/captcha/captcha-7.x-1.3.da.po',
+            'timestamp' => 1427530460,
+          ),
+          'local' => (object) array(
+            'project' => 'captcha',
+            'langcode' => 'da',
+            'version' => '7.x-1.3',
+            'type' => 'local',
+            'filename' => 'captcha-7.x-1.3.da.po',
+            'uri' => 'translations://captcha-7.x-1.3.da.po',
+            'timestamp' => 1435690353,
+            'directory' => 'translations://',
+            'last_checked' => 1435690352,
+            'language' => 'da',
+          ),
+        ),
+        'language' => 'da',
+      ),
+    ),
+    'ckeditor' => array(
+      'da' => (object) array(
+        'name' => 'ckeditor',
+        'project_type' => 'module',
+        'core' => '7.x',
+        'version' => '7.x-1.16',
+        'server_pattern' => 'http://ftp.drupal.org/files/translations/%core/%project/%project-%release.%language.po',
+        'status' => '1',
+        'project' => 'ckeditor',
+        'langcode' => 'da',
+        'type' => 'current',
+        'timestamp' => 1435668423,
+        'last_checked' => 1435668422,
+        'files' => array(
+          'remote' => (object) array(
+            'project' => 'ckeditor',
+            'langcode' => 'da',
+            'version' => '7.x-1.16',
+            'type' => 'remote',
+            'filename' => 'ckeditor-7.x-1.16.da.po',
+            'uri' => 'http://ftp.drupal.org/files/translations/7.x/ckeditor/ckeditor-7.x-1.16.da.po',
+            'timestamp' => 1424510876,
+          ),
+          'local' => (object) array(
+            'project' => 'ckeditor',
+            'langcode' => 'da',
+            'version' => '7.x-1.16',
+            'type' => 'local',
+            'filename' => 'ckeditor-7.x-1.16.da.po',
+            'uri' => 'translations://ckeditor-7.x-1.16.da.po',
+            'timestamp' => 1435668423,
+            'directory' => 'translations://',
+            'last_checked' => 1435668422,
+            'language' => 'da',
+          ),
+        ),
+        'language' => 'da',
       ),
     ),
     'ctools' => array(
@@ -372,7 +618,7 @@ function myassist_user_strongarm() {
             'filename' => 'ctools-7.x-1.7.da.po',
             'directory' => 'translations://',
             'uri' => 'translations://ctools-7.x-1.7.da.po',
-            'timestamp' => 1429087513,
+            'timestamp' => 1428501998,
             'last_checked' => 1431334648,
             'language' => 'da',
           ),
@@ -381,6 +627,45 @@ function myassist_user_strongarm() {
         'filename' => '',
         'fileurl' => '',
         'uri' => '',
+      ),
+    ),
+    'date' => array(
+      'da' => (object) array(
+        'name' => 'date',
+        'project_type' => 'module',
+        'core' => '7.x',
+        'version' => '7.x-2.8',
+        'server_pattern' => 'http://ftp.drupal.org/files/translations/%core/%project/%project-%release.%language.po',
+        'status' => '1',
+        'project' => 'date',
+        'langcode' => 'da',
+        'type' => 'current',
+        'timestamp' => 1434963719,
+        'last_checked' => 1434963720,
+        'files' => array(
+          'remote' => (object) array(
+            'project' => 'date',
+            'langcode' => 'da',
+            'version' => '7.x-2.8',
+            'type' => 'remote',
+            'filename' => 'date-7.x-2.8.da.po',
+            'uri' => 'http://ftp.drupal.org/files/translations/7.x/date/date-7.x-2.8.da.po',
+            'timestamp' => 1412687466,
+          ),
+          'local' => (object) array(
+            'project' => 'date',
+            'langcode' => 'da',
+            'version' => '7.x-2.8',
+            'type' => 'local',
+            'filename' => 'date-7.x-2.8.da.po',
+            'uri' => 'translations://date-7.x-2.8.da.po',
+            'timestamp' => 1434963719,
+            'directory' => 'translations://',
+            'last_checked' => 1434963720,
+            'language' => 'da',
+          ),
+        ),
+        'language' => 'da',
       ),
     ),
     'devel' => array(
@@ -414,7 +699,7 @@ function myassist_user_strongarm() {
             'filename' => 'devel-7.x-1.5.da.po',
             'directory' => 'translations://',
             'uri' => 'translations://devel-7.x-1.5.da.po',
-            'timestamp' => 1429087513,
+            'timestamp' => 1428501998,
             'last_checked' => 1431334651,
             'language' => 'da',
           ),
@@ -433,8 +718,8 @@ function myassist_user_strongarm() {
         'project' => 'diff',
         'langcode' => 'da',
         'type' => 'current',
-        'timestamp' => 1431346512,
-        'last_checked' => 1431346512,
+        'timestamp' => 1431416163,
+        'last_checked' => 1435668422,
         'files' => array(
           'remote' => (object) array(
             'project' => 'diff',
@@ -452,9 +737,9 @@ function myassist_user_strongarm() {
             'type' => 'local',
             'filename' => 'diff-7.x-3.2.da.po',
             'uri' => 'translations://diff-7.x-3.2.da.po',
-            'timestamp' => 1431346512,
+            'timestamp' => 1431416163,
             'directory' => 'translations://',
-            'last_checked' => 1431346512,
+            'last_checked' => 1435668422,
             'language' => 'da',
           ),
         ),
@@ -492,7 +777,7 @@ function myassist_user_strongarm() {
             'filename' => 'drupal-7.35.da.po',
             'directory' => 'translations://',
             'uri' => 'translations://drupal-7.35.da.po',
-            'timestamp' => 1429087513,
+            'timestamp' => 1428501998,
             'last_checked' => 1431334695,
             'language' => 'da',
           ),
@@ -534,7 +819,7 @@ function myassist_user_strongarm() {
             'filename' => 'entity-7.x-1.6.da.po',
             'directory' => 'translations://',
             'uri' => 'translations://entity-7.x-1.6.da.po',
-            'timestamp' => 1429087513,
+            'timestamp' => 1428501998,
             'last_checked' => 1431334695,
             'language' => 'da',
           ),
@@ -576,7 +861,7 @@ function myassist_user_strongarm() {
             'filename' => 'entityreference-7.x-1.1.da.po',
             'directory' => 'translations://',
             'uri' => 'translations://entityreference-7.x-1.1.da.po',
-            'timestamp' => 1429087513,
+            'timestamp' => 1428501998,
             'last_checked' => 1431334695,
             'language' => 'da',
           ),
@@ -585,6 +870,45 @@ function myassist_user_strongarm() {
         'filename' => '',
         'fileurl' => '',
         'uri' => '',
+      ),
+    ),
+    'faq' => array(
+      'da' => (object) array(
+        'name' => 'faq',
+        'project_type' => 'module',
+        'core' => '7.x',
+        'version' => '7.x-1.0',
+        'server_pattern' => 'http://ftp.drupal.org/files/translations/%core/%project/%project-%release.%language.po',
+        'status' => '1',
+        'project' => 'faq',
+        'langcode' => 'da',
+        'type' => 'current',
+        'timestamp' => 1435668424,
+        'last_checked' => 1435668423,
+        'files' => array(
+          'remote' => (object) array(
+            'project' => 'faq',
+            'langcode' => 'da',
+            'version' => '7.x-1.0',
+            'type' => 'remote',
+            'filename' => 'faq-7.x-1.0.da.po',
+            'uri' => 'http://ftp.drupal.org/files/translations/7.x/faq/faq-7.x-1.0.da.po',
+            'timestamp' => 1427530591,
+          ),
+          'local' => (object) array(
+            'project' => 'faq',
+            'langcode' => 'da',
+            'version' => '7.x-1.0',
+            'type' => 'local',
+            'filename' => 'faq-7.x-1.0.da.po',
+            'uri' => 'translations://faq-7.x-1.0.da.po',
+            'timestamp' => 1435668424,
+            'directory' => 'translations://',
+            'last_checked' => 1435668423,
+            'language' => 'da',
+          ),
+        ),
+        'language' => 'da',
       ),
     ),
     'features' => array(
@@ -618,7 +942,7 @@ function myassist_user_strongarm() {
             'filename' => 'features-7.x-2.4.da.po',
             'directory' => 'translations://',
             'uri' => 'translations://features-7.x-2.4.da.po',
-            'timestamp' => 1429087513,
+            'timestamp' => 1428501998,
             'last_checked' => 1431334696,
             'language' => 'da',
           ),
@@ -660,7 +984,7 @@ function myassist_user_strongarm() {
             'filename' => 'flag-7.x-3.6.da.po',
             'directory' => 'translations://',
             'uri' => 'translations://flag-7.x-3.6.da.po',
-            'timestamp' => 1429087513,
+            'timestamp' => 1428501998,
             'last_checked' => 1431334698,
             'language' => 'da',
           ),
@@ -720,8 +1044,8 @@ function myassist_user_strongarm() {
         'project' => 'i18n',
         'langcode' => 'da',
         'type' => 'current',
-        'timestamp' => 1431347631,
-        'last_checked' => 1431347631,
+        'timestamp' => 1431416163,
+        'last_checked' => 1435668423,
         'files' => array(
           'remote' => (object) array(
             'project' => 'i18n',
@@ -739,9 +1063,94 @@ function myassist_user_strongarm() {
             'type' => 'local',
             'filename' => 'i18n-7.x-1.12.da.po',
             'uri' => 'translations://i18n-7.x-1.12.da.po',
-            'timestamp' => 1431347631,
+            'timestamp' => 1431416163,
             'directory' => 'translations://',
-            'last_checked' => 1431347631,
+            'last_checked' => 1435668423,
+            'language' => 'da',
+            'fileurl' => '',
+            'status' => 1,
+          ),
+        ),
+        'language' => 'da',
+      ),
+    ),
+    'imagemagick' => array(
+      'da' => (object) array(
+        'name' => 'imagemagick',
+        'project_type' => 'module',
+        'core' => '7.x',
+        'version' => '7.x-1.0',
+        'server_pattern' => 'http://ftp.drupal.org/files/translations/%core/%project/%project-%release.%language.po',
+        'status' => '1',
+        'project' => 'imagemagick',
+        'langcode' => 'da',
+        'type' => 'current',
+        'timestamp' => 1435668424,
+        'last_checked' => 1435668423,
+        'files' => array(
+          'remote' => (object) array(
+            'project' => 'imagemagick',
+            'langcode' => 'da',
+            'version' => '7.x-1.0',
+            'type' => 'remote',
+            'filename' => 'imagemagick-7.x-1.0.da.po',
+            'uri' => 'http://ftp.drupal.org/files/translations/7.x/imagemagick/imagemagick-7.x-1.0.da.po',
+            'timestamp' => 1362244889,
+          ),
+          'local' => (object) array(
+            'project' => 'imagemagick',
+            'langcode' => 'da',
+            'version' => '7.x-1.0',
+            'type' => 'local',
+            'filename' => 'imagemagick-7.x-1.0.da.po',
+            'uri' => 'translations://imagemagick-7.x-1.0.da.po',
+            'timestamp' => 1435668424,
+            'directory' => 'translations://',
+            'last_checked' => 1435668423,
+            'language' => 'da',
+            'fileurl' => '',
+            'status' => 1,
+          ),
+        ),
+        'language' => 'da',
+        'filename' => '',
+        'fileurl' => '',
+        'uri' => '',
+      ),
+    ),
+    'jquery_update' => array(
+      'da' => (object) array(
+        'name' => 'jquery_update',
+        'project_type' => 'module',
+        'core' => '7.x',
+        'version' => '7.x-3.0-alpha2',
+        'server_pattern' => 'http://ftp.drupal.org/files/translations/%core/%project/%project-%release.%language.po',
+        'status' => '1',
+        'project' => 'jquery_update',
+        'langcode' => 'da',
+        'type' => 'current',
+        'timestamp' => 1435668425,
+        'last_checked' => 1435668425,
+        'files' => array(
+          'remote' => (object) array(
+            'project' => 'jquery_update',
+            'langcode' => 'da',
+            'version' => '7.x-3.0-alpha2',
+            'type' => 'remote',
+            'filename' => 'jquery_update-7.x-3.0-alpha2.da.po',
+            'uri' => 'http://ftp.drupal.org/files/translations/7.x/jquery_update/jquery_update-7.x-3.0-alpha2.da.po',
+            'timestamp' => 1432978180,
+          ),
+          'local' => (object) array(
+            'project' => 'jquery_update',
+            'langcode' => 'da',
+            'version' => '7.x-3.0-alpha2',
+            'type' => 'local',
+            'filename' => 'jquery_update-7.x-3.0-alpha2.da.po',
+            'uri' => 'translations://jquery_update-7.x-3.0-alpha2.da.po',
+            'timestamp' => 1435668425,
+            'directory' => 'translations://',
+            'last_checked' => 1435668425,
             'language' => 'da',
           ),
         ),
@@ -779,7 +1188,7 @@ function myassist_user_strongarm() {
             'filename' => 'l10n_update-7.x-2.0.da.po',
             'directory' => 'translations://',
             'uri' => 'translations://l10n_update-7.x-2.0.da.po',
-            'timestamp' => 1429087513,
+            'timestamp' => 1428501998,
             'last_checked' => 1431334698,
             'language' => 'da',
           ),
@@ -821,7 +1230,7 @@ function myassist_user_strongarm() {
             'filename' => 'message-7.x-1.9.da.po',
             'directory' => 'translations://',
             'uri' => 'translations://message-7.x-1.9.da.po',
-            'timestamp' => 1429087513,
+            'timestamp' => 1428501998,
             'last_checked' => 1431334700,
             'language' => 'da',
           ),
@@ -863,7 +1272,7 @@ function myassist_user_strongarm() {
             'filename' => 'message_notify-7.x-2.5.da.po',
             'directory' => 'translations://',
             'uri' => 'translations://message_notify-7.x-2.5.da.po',
-            'timestamp' => 1429087513,
+            'timestamp' => 1428501998,
             'last_checked' => 1431334700,
             'language' => 'da',
           ),
@@ -905,7 +1314,7 @@ function myassist_user_strongarm() {
             'filename' => 'message_subscribe-7.x-1.0-rc2.da.po',
             'directory' => 'translations://',
             'uri' => 'translations://message_subscribe-7.x-1.0-rc2.da.po',
-            'timestamp' => 1429087513,
+            'timestamp' => 1428501998,
             'last_checked' => 1431334700,
             'language' => 'da',
           ),
@@ -927,8 +1336,8 @@ function myassist_user_strongarm() {
         'project' => 'module_filter',
         'langcode' => 'da',
         'type' => 'current',
-        'timestamp' => 1429103601,
-        'last_checked' => 1429103601,
+        'timestamp' => 1430994982,
+        'last_checked' => 1435668425,
         'files' => array(
           'remote' => (object) array(
             'project' => 'module_filter',
@@ -946,9 +1355,48 @@ function myassist_user_strongarm() {
             'type' => 'local',
             'filename' => 'module_filter-7.x-2.0.da.po',
             'uri' => 'translations://module_filter-7.x-2.0.da.po',
-            'timestamp' => 1429103601,
+            'timestamp' => 1430994982,
             'directory' => 'translations://',
-            'last_checked' => 1429103601,
+            'last_checked' => 1435668425,
+            'language' => 'da',
+          ),
+        ),
+        'language' => 'da',
+      ),
+    ),
+    'panels' => array(
+      'da' => (object) array(
+        'name' => 'panels',
+        'project_type' => 'module',
+        'core' => '7.x',
+        'version' => '7.x-3.4',
+        'server_pattern' => 'http://ftp.drupal.org/files/translations/%core/%project/%project-%release.%language.po',
+        'status' => '1',
+        'project' => 'panels',
+        'langcode' => 'da',
+        'type' => 'current',
+        'timestamp' => 1435668425,
+        'last_checked' => 1435668425,
+        'files' => array(
+          'remote' => (object) array(
+            'project' => 'panels',
+            'langcode' => 'da',
+            'version' => '7.x-3.4',
+            'type' => 'remote',
+            'filename' => 'panels-7.x-3.4.da.po',
+            'uri' => 'http://ftp.drupal.org/files/translations/7.x/panels/panels-7.x-3.4.da.po',
+            'timestamp' => 1412599529,
+          ),
+          'local' => (object) array(
+            'project' => 'panels',
+            'langcode' => 'da',
+            'version' => '7.x-3.4',
+            'type' => 'local',
+            'filename' => 'panels-7.x-3.4.da.po',
+            'uri' => 'translations://panels-7.x-3.4.da.po',
+            'timestamp' => 1435668425,
+            'directory' => 'translations://',
+            'last_checked' => 1435668425,
             'language' => 'da',
           ),
         ),
@@ -986,7 +1434,7 @@ function myassist_user_strongarm() {
             'filename' => 'profile2-7.x-1.3.da.po',
             'directory' => 'translations://',
             'uri' => 'translations://profile2-7.x-1.3.da.po',
-            'timestamp' => 1429087513,
+            'timestamp' => 1428501998,
             'last_checked' => 1431334700,
             'language' => 'da',
           ),
@@ -995,6 +1443,45 @@ function myassist_user_strongarm() {
         'filename' => '',
         'fileurl' => '',
         'uri' => '',
+      ),
+    ),
+    'profile2_regpath' => array(
+      'da' => (object) array(
+        'name' => 'profile2_regpath',
+        'project_type' => 'module',
+        'core' => '7.x',
+        'version' => '7.x-1.12',
+        'server_pattern' => 'http://ftp.drupal.org/files/translations/%core/%project/%project-%release.%language.po',
+        'status' => '1',
+        'project' => 'profile2_regpath',
+        'langcode' => 'da',
+        'type' => 'current',
+        'timestamp' => 1428501998,
+        'last_checked' => 1435668425,
+        'files' => array(
+          'remote' => (object) array(
+            'project' => 'profile2_regpath',
+            'langcode' => 'da',
+            'version' => '7.x-1.12',
+            'type' => 'remote',
+            'filename' => 'profile2_regpath-7.x-1.12.da.po',
+            'uri' => 'http://ftp.drupal.org/files/translations/7.x/profile2_regpath/profile2_regpath-7.x-1.12.da.po',
+            'timestamp' => 1351036302,
+          ),
+          'local' => (object) array(
+            'project' => 'profile2_regpath',
+            'langcode' => 'da',
+            'version' => '7.x-1.12',
+            'type' => 'local',
+            'filename' => 'profile2_regpath-7.x-1.12.da.po',
+            'directory' => 'translations://',
+            'uri' => 'translations://profile2_regpath-7.x-1.12.da.po',
+            'timestamp' => 1428501998,
+            'last_checked' => 1435668425,
+            'language' => 'da',
+          ),
+        ),
+        'language' => 'da',
       ),
     ),
     'rate' => array(
@@ -1028,7 +1515,7 @@ function myassist_user_strongarm() {
             'filename' => 'rate-7.x-1.7.da.po',
             'directory' => 'translations://',
             'uri' => 'translations://rate-7.x-1.7.da.po',
-            'timestamp' => 1429087513,
+            'timestamp' => 1428501998,
             'last_checked' => 1431334700,
             'language' => 'da',
           ),
@@ -1037,6 +1524,45 @@ function myassist_user_strongarm() {
         'filename' => '',
         'fileurl' => '',
         'uri' => '',
+      ),
+    ),
+    'registration_role' => array(
+      'da' => (object) array(
+        'name' => 'registration_role',
+        'project_type' => 'module',
+        'core' => '7.x',
+        'version' => '7.x-1.1',
+        'server_pattern' => 'http://ftp.drupal.org/files/translations/%core/%project/%project-%release.%language.po',
+        'status' => '1',
+        'project' => 'registration_role',
+        'langcode' => 'da',
+        'type' => 'current',
+        'timestamp' => 1434634743,
+        'last_checked' => 1434634742,
+        'files' => array(
+          'remote' => (object) array(
+            'project' => 'registration_role',
+            'langcode' => 'da',
+            'version' => '7.x-1.1',
+            'type' => 'remote',
+            'filename' => 'registration_role-7.x-1.1.da.po',
+            'uri' => 'http://ftp.drupal.org/files/translations/7.x/registration_role/registration_role-7.x-1.1.da.po',
+            'timestamp' => 1434185183,
+          ),
+          'local' => (object) array(
+            'project' => 'registration_role',
+            'langcode' => 'da',
+            'version' => '7.x-1.1',
+            'type' => 'local',
+            'filename' => 'registration_role-7.x-1.1.da.po',
+            'uri' => 'translations://registration_role-7.x-1.1.da.po',
+            'timestamp' => 1434634743,
+            'directory' => 'translations://',
+            'last_checked' => 1434634742,
+            'language' => 'da',
+          ),
+        ),
+        'language' => 'da',
       ),
     ),
     'rules' => array(
@@ -1070,7 +1596,7 @@ function myassist_user_strongarm() {
             'filename' => 'rules-7.x-2.9.da.po',
             'directory' => 'translations://',
             'uri' => 'translations://rules-7.x-2.9.da.po',
-            'timestamp' => 1429087513,
+            'timestamp' => 1428501998,
             'last_checked' => 1431334701,
             'language' => 'da',
           ),
@@ -1112,7 +1638,7 @@ function myassist_user_strongarm() {
             'filename' => 'strongarm-7.x-2.0.da.po',
             'directory' => 'translations://',
             'uri' => 'translations://strongarm-7.x-2.0.da.po',
-            'timestamp' => 1429087513,
+            'timestamp' => 1428501998,
             'last_checked' => 1431334701,
             'language' => 'da',
           ),
@@ -1154,7 +1680,7 @@ function myassist_user_strongarm() {
             'filename' => 'taxonomy_manager-7.x-1.0.da.po',
             'directory' => 'translations://',
             'uri' => 'translations://taxonomy_manager-7.x-1.0.da.po',
-            'timestamp' => 1429087513,
+            'timestamp' => 1428501998,
             'last_checked' => 1429103601,
             'language' => 'da',
           ),
@@ -1163,6 +1689,45 @@ function myassist_user_strongarm() {
         'filename' => '',
         'fileurl' => '',
         'uri' => '',
+      ),
+    ),
+    'user_picture_field' => array(
+      'da' => (object) array(
+        'name' => 'user_picture_field',
+        'project_type' => 'module',
+        'core' => '7.x',
+        'version' => '7.x-1.0-rc1',
+        'server_pattern' => 'http://ftp.drupal.org/files/translations/%core/%project/%project-%release.%language.po',
+        'status' => '1',
+        'project' => 'user_picture_field',
+        'langcode' => 'da',
+        'type' => 'current',
+        'timestamp' => 1430391143,
+        'last_checked' => 1435668426,
+        'files' => array(
+          'remote' => (object) array(
+            'project' => 'user_picture_field',
+            'langcode' => 'da',
+            'version' => '7.x-1.0-rc1',
+            'type' => 'remote',
+            'filename' => 'user_picture_field-7.x-1.0-rc1.da.po',
+            'uri' => 'http://ftp.drupal.org/files/translations/7.x/user_picture_field/user_picture_field-7.x-1.0-rc1.da.po',
+            'timestamp' => 1344166912,
+          ),
+          'local' => (object) array(
+            'project' => 'user_picture_field',
+            'langcode' => 'da',
+            'version' => '7.x-1.0-rc1',
+            'type' => 'local',
+            'filename' => 'user_picture_field-7.x-1.0-rc1.da.po',
+            'uri' => 'translations://user_picture_field-7.x-1.0-rc1.da.po',
+            'timestamp' => 1430391143,
+            'directory' => 'translations://',
+            'last_checked' => 1435668426,
+            'language' => 'da',
+          ),
+        ),
+        'language' => 'da',
       ),
     ),
     'userpoints' => array(
@@ -1196,7 +1761,7 @@ function myassist_user_strongarm() {
             'filename' => 'userpoints-7.x-1.0.da.po',
             'directory' => 'translations://',
             'uri' => 'translations://userpoints-7.x-1.0.da.po',
-            'timestamp' => 1429087513,
+            'timestamp' => 1428501998,
             'last_checked' => 1431334701,
             'language' => 'da',
           ),
@@ -1205,45 +1770,6 @@ function myassist_user_strongarm() {
         'filename' => '',
         'fileurl' => '',
         'uri' => '',
-      ),
-    ),
-    'user_picture_field' => array(
-      'da' => (object) array(
-        'name' => 'user_picture_field',
-        'project_type' => 'module',
-        'core' => '7.x',
-        'version' => '7.x-1.0-rc1',
-        'server_pattern' => 'http://ftp.drupal.org/files/translations/%core/%project/%project-%release.%language.po',
-        'status' => '1',
-        'project' => 'user_picture_field',
-        'langcode' => 'da',
-        'type' => 'current',
-        'timestamp' => 1430389087,
-        'last_checked' => 1430389086,
-        'files' => array(
-          'remote' => (object) array(
-            'project' => 'user_picture_field',
-            'langcode' => 'da',
-            'version' => '7.x-1.0-rc1',
-            'type' => 'remote',
-            'filename' => 'user_picture_field-7.x-1.0-rc1.da.po',
-            'uri' => 'http://ftp.drupal.org/files/translations/7.x/user_picture_field/user_picture_field-7.x-1.0-rc1.da.po',
-            'timestamp' => 1344166912,
-          ),
-          'local' => (object) array(
-            'project' => 'user_picture_field',
-            'langcode' => 'da',
-            'version' => '7.x-1.0-rc1',
-            'type' => 'local',
-            'filename' => 'user_picture_field-7.x-1.0-rc1.da.po',
-            'uri' => 'translations://user_picture_field-7.x-1.0-rc1.da.po',
-            'timestamp' => 1430389087,
-            'directory' => 'translations://',
-            'last_checked' => 1430389086,
-            'language' => 'da',
-          ),
-        ),
-        'language' => 'da',
       ),
     ),
     'variable' => array(
@@ -1257,8 +1783,8 @@ function myassist_user_strongarm() {
         'project' => 'variable',
         'langcode' => 'da',
         'type' => 'current',
-        'timestamp' => 1431347604,
-        'last_checked' => 1431347604,
+        'timestamp' => 1431416163,
+        'last_checked' => 1435668426,
         'files' => array(
           'remote' => (object) array(
             'project' => 'variable',
@@ -1276,10 +1802,12 @@ function myassist_user_strongarm() {
             'type' => 'local',
             'filename' => 'variable-7.x-2.5.da.po',
             'uri' => 'translations://variable-7.x-2.5.da.po',
-            'timestamp' => 1431347604,
+            'timestamp' => 1431416163,
             'directory' => 'translations://',
-            'last_checked' => 1431347604,
+            'last_checked' => 1435668426,
             'language' => 'da',
+            'fileurl' => '',
+            'status' => 1,
           ),
         ),
         'language' => 'da',
@@ -1316,49 +1844,7 @@ function myassist_user_strongarm() {
             'filename' => 'views-7.x-3.10.da.po',
             'directory' => 'translations://',
             'uri' => 'translations://views-7.x-3.10.da.po',
-            'timestamp' => 1429087513,
-            'last_checked' => 1431334703,
-            'language' => 'da',
-          ),
-        ),
-        'language' => 'da',
-        'filename' => '',
-        'fileurl' => '',
-        'uri' => '',
-      ),
-    ),
-    'votingapi' => array(
-      'da' => (object) array(
-        'name' => 'votingapi',
-        'project_type' => 'module',
-        'core' => '7.x',
-        'version' => '7.x-2.12',
-        'server_pattern' => 'http://ftp.drupal.org/files/translations/%core/%project/%project-%release.%language.po',
-        'status' => '1',
-        'project' => 'votingapi',
-        'langcode' => 'da',
-        'type' => 'current',
-        'timestamp' => 1429087513,
-        'last_checked' => 1431334703,
-        'files' => array(
-          'remote' => (object) array(
-            'project' => 'votingapi',
-            'langcode' => 'da',
-            'version' => '7.x-2.12',
-            'type' => 'remote',
-            'filename' => 'votingapi-7.x-2.12.da.po',
-            'uri' => 'http://ftp.drupal.org/files/translations/7.x/votingapi/votingapi-7.x-2.12.da.po',
-            'timestamp' => 1408177357,
-          ),
-          'local' => (object) array(
-            'project' => 'votingapi',
-            'langcode' => 'da',
-            'version' => '7.x-2.12',
-            'type' => 'local',
-            'filename' => 'votingapi-7.x-2.12.da.po',
-            'directory' => 'translations://',
-            'uri' => 'translations://votingapi-7.x-2.12.da.po',
-            'timestamp' => 1429087513,
+            'timestamp' => 1428501998,
             'last_checked' => 1431334703,
             'language' => 'da',
           ),
@@ -1400,7 +1886,7 @@ function myassist_user_strongarm() {
             'filename' => 'voting_rules-7.x-1.0-alpha1.da.po',
             'directory' => 'translations://',
             'uri' => 'translations://voting_rules-7.x-1.0-alpha1.da.po',
-            'timestamp' => 1429087513,
+            'timestamp' => 1428501998,
             'last_checked' => 1431334706,
             'language' => 'da',
           ),
@@ -1409,6 +1895,87 @@ function myassist_user_strongarm() {
         'filename' => '',
         'fileurl' => '',
         'uri' => '',
+      ),
+    ),
+    'votingapi' => array(
+      'da' => (object) array(
+        'name' => 'votingapi',
+        'project_type' => 'module',
+        'core' => '7.x',
+        'version' => '7.x-2.12',
+        'server_pattern' => 'http://ftp.drupal.org/files/translations/%core/%project/%project-%release.%language.po',
+        'status' => '1',
+        'project' => 'votingapi',
+        'langcode' => 'da',
+        'type' => 'current',
+        'timestamp' => 1429087513,
+        'last_checked' => 1431334703,
+        'files' => array(
+          'remote' => (object) array(
+            'project' => 'votingapi',
+            'langcode' => 'da',
+            'version' => '7.x-2.12',
+            'type' => 'remote',
+            'filename' => 'votingapi-7.x-2.12.da.po',
+            'uri' => 'http://ftp.drupal.org/files/translations/7.x/votingapi/votingapi-7.x-2.12.da.po',
+            'timestamp' => 1408177357,
+          ),
+          'local' => (object) array(
+            'project' => 'votingapi',
+            'langcode' => 'da',
+            'version' => '7.x-2.12',
+            'type' => 'local',
+            'filename' => 'votingapi-7.x-2.12.da.po',
+            'directory' => 'translations://',
+            'uri' => 'translations://votingapi-7.x-2.12.da.po',
+            'timestamp' => 1428501998,
+            'last_checked' => 1431334703,
+            'language' => 'da',
+          ),
+        ),
+        'language' => 'da',
+        'filename' => '',
+        'fileurl' => '',
+        'uri' => '',
+      ),
+    ),
+    'webform' => array(
+      'da' => (object) array(
+        'name' => 'webform',
+        'project_type' => 'module',
+        'core' => '7.x',
+        'version' => '7.x-4.9',
+        'server_pattern' => 'http://ftp.drupal.org/files/translations/%core/%project/%project-%release.%language.po',
+        'status' => '1',
+        'project' => 'webform',
+        'langcode' => 'da',
+        'type' => 'current',
+        'timestamp' => 1435690354,
+        'last_checked' => 1435690358,
+        'files' => array(
+          'remote' => (object) array(
+            'project' => 'webform',
+            'langcode' => 'da',
+            'version' => '7.x-4.9',
+            'type' => 'remote',
+            'filename' => 'webform-7.x-4.9.da.po',
+            'uri' => 'http://ftp.drupal.org/files/translations/7.x/webform/webform-7.x-4.9.da.po',
+            'timestamp' => 1432882766,
+          ),
+          'local' => (object) array(
+            'project' => 'webform',
+            'langcode' => 'da',
+            'version' => '7.x-4.9',
+            'type' => 'local',
+            'filename' => 'webform-7.x-4.9.da.po',
+            'uri' => 'translations://webform-7.x-4.9.da.po',
+            'timestamp' => 1435690354,
+            'directory' => 'translations://',
+            'last_checked' => 1435690358,
+            'language' => 'da',
+          ),
+        ),
+        'language' => 'da',
       ),
     ),
   );
@@ -1431,6 +1998,13 @@ function myassist_user_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'language_content_type_page';
+  $strongarm->value = '1';
+  $export['language_content_type_page'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'language_count';
   $strongarm->value = 2;
   $export['language_count'] = $strongarm;
@@ -1449,6 +2023,22 @@ function myassist_user_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'menu_options_page';
+  $strongarm->value = array(
+    0 => 'navigation',
+  );
+  $export['menu_options_page'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'menu_parent_page';
+  $strongarm->value = 'navigation:0';
+  $export['menu_parent_page'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'node_options_page';
   $strongarm->value = array(
     0 => 'status',
@@ -1458,9 +2048,23 @@ function myassist_user_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'node_preview_page';
+  $strongarm->value = '1';
+  $export['node_preview_page'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'node_submitted_page';
   $strongarm->value = FALSE;
   $export['node_submitted_page'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'registration_role_roles';
+  $strongarm->value = '8';
+  $export['registration_role_roles'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */

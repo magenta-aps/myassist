@@ -14,18 +14,31 @@ function myassist_questions_answers_default_rules_configuration() {
       "PLUGIN" : "reaction rule",
       "OWNER" : "rules",
       "TAGS" : [ "answers" ],
-      "REQUIRES" : [ "userpoints_rules", "rules" ],
+      "REQUIRES" : [ "rules", "userpoints_rules", "myassist_notification" ],
       "ON" : { "node_insert--answers_answer" : { "bundle" : "answers_answer" } },
+      "IF" : [
+        { "NOT data_is" : {
+            "data" : [ "node:author" ],
+            "value" : [ "node:answers-related-question:author" ]
+          }
+        }
+      ],
       "DO" : [
         { "userpoints_action_grant_points" : {
             "user" : [ "node:author" ],
-            "points" : "2",
+            "points" : "10",
             "tid" : "0",
             "entity" : [ "node" ],
             "description" : "Posted answer",
             "operation" : "Insert",
-            "display" : "1",
+            "display" : "0",
             "moderate" : "default"
+          }
+        },
+        { "myassist_notification_rules_process" : {
+            "recipient" : [ "node:answers-related-question:author" ],
+            "messageType" : "question_answered",
+            "node" : [ "node:answers-related-question" ]
           }
         }
       ]
@@ -46,7 +59,7 @@ function myassist_questions_answers_default_rules_configuration() {
             "entity" : [ "node" ],
             "description" : "Asked a question",
             "operation" : "Insert",
-            "display" : "1",
+            "display" : "0",
             "moderate" : "default"
           }
         }
@@ -68,7 +81,7 @@ function myassist_questions_answers_default_rules_configuration() {
             "entity" : [ "node" ],
             "description" : "Removed answer",
             "operation" : "Remove",
-            "display" : "1",
+            "display" : "0",
             "moderate" : "default"
           }
         }
@@ -90,7 +103,7 @@ function myassist_questions_answers_default_rules_configuration() {
             "entity" : [ "node" ],
             "operation" : "Remove",
             "reference" : "Question removed",
-            "display" : "1",
+            "display" : "0",
             "moderate" : "default"
           }
         }

@@ -3,24 +3,17 @@
  * Branding header.
  */
 
-.header {
-  background: lighten($basegrey, 60%);
-  box-shadow: ($u/4) 0 $u $u/4 rgba(0,0,0,0.2);
-}
-
 /* Wrapping link for logo. */
 .header__logo {
   float: left; /* LTR */
-  margin: 0;
   padding: 0;
 }
 
 /* Logo image. */
 .header__logo-image {
   vertical-align: bottom;
-  width: 3em;
-  height: auto;
-  padding-right: 1em;
+  height: 100%;
+  width: auto;
 }
 
 /* Wrapper for website name and slogan. */
@@ -57,95 +50,136 @@
 }
 
 /* Wrapper for any blocks placed in the header region. */
-.header__region {
-  /* Clear the logo. */
-  clear: both;
-}
-
 #header {
-
   h1.title {
     display: inline-block;
     margin: 0;
     vertical-align: top;
   }
-
-  .header__region {
-    clear: none;
-    padding-left: $u*2.5;
-    text-align: right;
-  }
-
-  #block-search-form {
-    display: inline-block;
-    .search-full {
-      display: block;
-    }
-  }
-
-  @media all and (max-width: 480px) {
-    
-    #block-search-form {
-      &:not(.forceShow) {
-        .search-full {
-          display: none;
-        }
-        .search-toggle {
-          display: block;
-        }
-      }
-    }
-    
-  }
-
   #block-myassist-questions-answers-newquestion {
     display: inline-block;
     vertical-align: top;
   }
 }
 
-.myassist-button {
-  @extend .icon;
-  margin: 0;
+/* User menu and search */
+#block-search-form,
+#block-system-user-menu {
+  margin: $u/2 0;
+  height: $u*2;
+  width: $u*2.5;
+  .block-title {
+    @extend .icons;
+    background-image: url(../images/icons/arrow-down.png);
+    padding: 0;
+    margin: 0;
+    background-size: $u auto;
+    height: $u*2;
+  }
+}
+#block-system-user-menu {
+  .block-title {
+    background-size: $u*0.75 auto;
+  }
+  .menu {
+    display: none;
+    position: absolute;
+    top: $u*2.5;
+    right: 0;
+    background: $blue;
+    width: $u*10;
+    z-index: 6;
+  }
+}
+#block-system-user-menu.open {
+  .block-title {
+    background-image: url(../images/icons/arrow-up.png);
+  }
+  .menu {
+    display: block;
+  }
+}
+#block-search-form {
+  position: relative;
+  overflow: visible;
+  border-left: solid 1px $white;
+  .block-title {
+    background-image: url(../images/icons/search.png);
+    cursor: pointer;
+  }
+  .block-title:hover,
+  .block-title:active,
+  .block-title:focus {
+    background-color: darken($blue, 10%);
+  }
+  #search-block-form {
+    display: block;
+    position: fixed;
+    text-align: center;
+    right: 0;
+    left: 0;
+    top: -($u*6);
+    z-index: 100;
+    background: $grey;
+    padding: $u;
+    box-shadow: $u*0.5 0 $u $u*0.5 rgba(0,0,0,0.2);
+    .form-item,
+    .form-actions {
+      display: inline-block;
+      text-align: left;
+    }
+    .form-item {
+      width: $u*12.5;
+      margin: $u/2 0;
+      input {
+        width: $u*12.5;
+        padding: $u/2;
+      }
+    }
+    .form-actions {
+      input {
+        height: $u*2.5;
+        margin: 0;
+      }
+      
+    }
+  }
+}
+#block-search-form.open #search-block-form {
+  top: $u*3;
 }
 
-.search-toggle {
-  background-image: url('../images/search.png');
-}
-
-.add-question {
-  background-image: url(../images/icons/plus.svg);
-}
-
-.block-myassist-user {
-  display: inline-block;
-  padding: $u/2;
-  vertical-align: top;
-}
 #block-myassist-user-avatar {
   padding: 0;
-  width: $u*2.5;
-  height: $u*2.5;
+  width: $u*2;
+  height: $u*2;
+  margin: $u/2 0;
   .user-picture,
   .user-picture a {
     display: block;
     line-height: 0;
-    height: $u*2.5;
+    height: $u*2;
     overflow: hidden;
     img {
       height: auto;
       width: 100%;
+      border-radius: $u*2;
+      background: #fff;
     }
   }
 }
 
-.block-myassist-achievements {
-  display: inline-block;
-  height: $u*2.5;
+#block-myassist-achievements-userpoints {
+  width: $u*2;
   overflow: hidden;
-  background-color: lighten($accent, 10%);
-  margin: 0;
-  .userpoints {
-    padding: $u/2;
+  background-color: darken($blue, 10%);
+  text-align: center;
+  position: absolute;
+  top: $u*2.5;
+  right: $u*5;
+  .userpoints a {
+    font-size: $u*0.6;
+    padding: $u/4;
+    display: block;
   }
 }

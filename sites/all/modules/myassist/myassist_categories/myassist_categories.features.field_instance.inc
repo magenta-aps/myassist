@@ -13,11 +13,7 @@ function myassist_categories_field_default_field_instances() {
   // Exported field_instance: 'node-answers_question-field_category'
   $field_instances['node-answers_question-field_category'] = array(
     'bundle' => 'answers_question',
-    'default_value' => array(
-      0 => array(
-        'tid' => 23,
-      ),
-    ),
+    'default_value' => NULL,
     'deleted' => 0,
     'description' => '',
     'display' => array(
@@ -35,10 +31,11 @@ function myassist_categories_field_default_field_instances() {
         'weight' => 2,
       ),
       'teaser' => array(
-        'label' => 'above',
+        'label' => 'hidden',
+        'module' => 'taxonomy',
         'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
+        'type' => 'taxonomy_term_reference_link',
+        'weight' => 1,
       ),
     ),
     'entity_type' => 'node',

@@ -57,7 +57,7 @@ function myassist_user_default_profile2_type() {
     "type" : "ungeprofil",
     "label" : "Youth profile",
     "weight" : "0",
-    "data" : { "registration" : 0, "use_page" : 0 },
+    "data" : { "registration" : 1, "use_page" : 0 },
     "rdf_mapping" : []
   }');
   $items['voksenprofil'] = entity_import('profile2_type', '{

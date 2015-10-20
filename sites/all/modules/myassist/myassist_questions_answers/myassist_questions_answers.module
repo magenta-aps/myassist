@@ -47,3 +47,88 @@ function myassist_questions_answers_block_view($delta = '') {
 }
 
 
+/**
+ * Implements hook_flag_access().
+ *
+ * Determines whether a user can flag a best answer for a question.
+ */
+function myassist_questions_answers_flag_access($flag, $content_id, $action, $account) {
+  if ($flag->name == "best_answer") {
+    if ($account->uid === entity_metadata_wrapper('node', $content_id)->author->uid->value()) {
+      return true;
+    }
+    $roles = entity_metadata_wrapper('node', $content_id)->author->value()->roles;
+    if (is_array($roles) && !in_array("ung bruger", $roles)) {
+      return true;
+    }
+  }
+}
+
+/**
+ * Implements hook_menu().
+ */
+function myassist_questions_answers_menu() {
+  $items['node/%/lock'] = array(
+    'access callback' => 'myassist_questions_answers_canlock',
+    'access arguments' => array(1),
+    'page callback' => 'myassist_questions_answers_lock',
+    'page arguments' => array(1),
+  );
+  $items['node/%/unlock'] = array(
+    'access callback' => 'myassist_questions_answers_canlock',
+    'access arguments' => array(1),
+    'page callback' => 'myassist_questions_answers_lock',
+    'page arguments' => array(1,true),
+  );
+  return $items;
+}
+
+function myassist_questions_answers_answers_lock_info() {
+  return true;
+}
+
+function myassist_questions_answers_canlock($nid) {
+  global $user;
+  if (is_array($user->roles) && (in_array('moderator', $user->roles) || in_array('administrator', $user->roles))) {
+    return true;
+  }
+  $node = entity_metadata_wrapper('node', $nid);
+  if ($node && $node->author) {
+    if ($node->author->uid->value() === $user->uid) {
+      return true;
+    }
+  }
+  return false;
+}
+
+function myassist_questions_answers_lock($nid, $unlock=false) {
+  if (myassist_questions_answers_canlock($nid)) {
+    $node = node_load($nid);
+    if ($node) {
+      if ($unlock) {
+        answers_question_lock_unset($node, "myassist_questions_answers");
+      } else {
+        answers_question_lock_set($node, "myassist_questions_answers");
+      }
+      drupal_goto("/node/$nid");
+      return true;
+    }
+  }
+  drupal_goto("/node/$nid");
+  return false;
+}
+
+function myassist_questions_answers_form_alter(&$form, $form_state, $form_id) {
+  $textarea_height = 3;
+  if ($form_id == 'answers_answer_node_form' && array_key_exists('body', $form) && is_array($form['body'])) {
+    foreach ($form['body'] as $lang => $arr) {
+      if (is_array($arr)) {
+        foreach ($arr as $index => $node) {
+          if (is_array($node) && array_key_exists("#entity_type", $node) && $node["#entity_type"] === "node" && array_key_exists("#bundle", $node) && $node["#bundle"] === "answers_answer") {
+            $form['body'][$lang][$index]["#rows"] = $textarea_height;
+          }
+        }
+      }
+    }
+  }
+}
