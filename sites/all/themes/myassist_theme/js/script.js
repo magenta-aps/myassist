@@ -34,9 +34,6 @@
       /*
        * Message Form script
        */
-      
-      //var messageForm = $("#answers-answer-node-form");
-      //var messageField = messageForm.find("textarea[id^=edit-body]");
 
       var messageForm = $(".node-answers-question form[id^=comment-form]");
       var messageField = messageForm.find("textarea[id^=edit-comment-body]");
@@ -48,33 +45,60 @@
         }
       });
 
-      $("#answers-btn-lock, .flag-action").click(function(event){
-        var msg = window.prompt(Drupal.t("Skriv en afsluttende besked, så vi ved, hvorfor du lukker spørgsmålet:\n(Let feltet være tomt for at lukke tråden uden en afsluttende besked)"));
-        if (msg === null) { // The user clicked cancel
-          event.stopPropagation(); // Abort event so nothing happens
-          event.preventDefault();
-          return false;
-        } else {
-          if (msg) { // The user actually entered some text
-            event.stopPropagation();
-            event.preventDefault();
-            var data = $.extend({}, originalValues);
-            data[messageField.attr("name")] = msg;
-
-            $.ajax({
-              url: messageForm.attr("action") || document.location,
-              type: messageForm.attr("method") || "post",
-              data: data,
-              success: function(){
-                document.location.href = this.href;
-              }.bind(this)
-            });
-            return false;
-
-          } else { // The user left the field empty
-            return true; // Let the lock button do its regular thing (go to /node/<nodeid>/lock)
+      $("#answers-btn-lock, .flag-action").each(function(){
+        var $this = $(this);
+        if (!$this.data('hasConfirmation')) {
+          $this.data('hasConfirmation', true);
+          var events = $this.data("events");
+          var otherClickHandlers = [];
+          if (events) {
+            otherClickHandlers = otherClickHandlers.concat(events.click);
+            $this.unbind("click");
           }
+
+          var stop = function (event) {
+            event.stopPropagation(); // Abort event so nothing happens
+            event.preventDefault();
+            return false;
+          };
+          var run = function (event) {
+            for (var i = 0; i < otherClickHandlers.length; i++) {
+              if (!event.isImmediatePropagationStopped()) {
+                otherClickHandlers[i].handler.call(this, event);
+              }
+            }
+          }.bind(this);
+
+          $this.click(function (event) {
+            var dialogtext = this.getAttribute('data-dialog-text');
+            if (dialogtext) {
+              var msg = window.prompt(dialogtext);
+              if (msg === null) { // The user clicked cancel
+                return stop(event);
+              } else {
+                if (msg) { // The user actually entered some text
+                  var data = $.extend({}, originalValues);
+                  data[messageField.attr("name")] = msg;
+
+                  $.ajax({
+                    url: messageForm.attr("action") || document.location,
+                    type: messageForm.attr("method") || "post",
+                    data: data,
+                    success: function () {
+                      run(event);
+                    }.bind(this)
+                  });
+                  return stop(event);
+
+                } else { // The user left the field empty
+                  // Let the lock button do its regular thing
+                  run(event);
+                }
+              }
+            }
+          });
         }
+
       });
     }
   };
@@ -100,6 +124,6 @@
 
   $(updateOffset);
   $(window).resize(updateOffset);
-  
+
 })(jQuery, Drupal, this, this.document);
 
