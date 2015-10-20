@@ -275,11 +275,12 @@ function myassist_achievements_init() {
 /**
  * Implements hook_achievements_leaderboard_alter().
  */
-function myassist_achievements_achievements_leaderboard_alter(&$data) {
+function myassist_achievements_achievements_leaderboard_alter(&$leaderboard) {
   $limit = 10;
   $pos = 1;
-  if (array_key_exists('achievers', $data)) {
-    foreach ($data['achievers'] as $list_type => &$list) {
+  $render = &$leaderboard['render'];
+  if (array_key_exists('achievers', $leaderboard)) {
+    foreach ($leaderboard['achievers'] as $list_type => &$list) {
       foreach ($list as $uid => $account) {
         if ($pos > $limit) {
           unset($list[$uid]);
@@ -292,21 +293,22 @@ function myassist_achievements_achievements_leaderboard_alter(&$data) {
       }
     }
   }
-  if (array_key_exists('render', $data) && array_key_exists('#rows', $data['render'])) {
+  if (array_key_exists('render', $leaderboard) && array_key_exists('#rows', $render)) {
     $pos = 1;
-    foreach ($data['render']['#rows'] as $uid => &$row) {
+    foreach ($render['#rows'] as $uid => &$row) {
       if ($pos > $limit) {
-        unset($data['render']['#rows'][$uid]);
+        unset($render['#rows'][$uid]);
       }
       if (!myassist_achievements_user_can_earn_points($uid)) {
-        unset($data['render']['#rows'][$uid]);
+        unset($render['#rows'][$uid]);
       } else {
         $row['data'][0]['data'] = $pos;
         $pos++;
       }
     }
   }
-  myassist_achievements_remove_column($leaderboard['render'], t('Unlocks'));
+  // #13647: remove unlocks column
+  myassist_achievements_remove_column($render, t('Unlocks'));
 }
 
 
