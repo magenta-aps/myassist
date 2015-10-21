@@ -14,7 +14,9 @@
     <div class="header__container">
       
       <?php if ($logo): ?>
-        <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home" class="header__logo" id="logo"><img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" class="header__logo-image" /></a>
+        <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home" class="header__logo" id="logo">
+          <img src="../sites/all/themes/myassist_theme/logo.svg" alt="<?php print t('Home'); ?>" class="header__logo-image" />
+        </a>
       <?php endif; ?>
       
       <?php if ($site_name || $site_slogan): ?>
@@ -83,15 +85,7 @@
       <aside class="sidebars">
         
         <?php print $sidebar_first; ?>
-        
-        <div id="mm2" class="clearfix">
-          <button class="mm-toggle">
-            <span class="mm-graphic"></span>
-            <span class="mm-graphic"></span>
-            <span class="mm-graphic"></span>
-          </button>
-          <?php print $sidebar_second; ?>
-        </div>
+        <?php print $sidebar_second; ?>
 
       </aside>
     <?php endif; ?>
@@ -107,17 +101,3 @@
 <div class="bottom__container">
   <?php print render($page['bottom']); ?>
 </div>
-
-
-<!-- Adding resources for Feedbackr.js - REMOVE FOR PRODUCTION -->
-<?php drupal_add_js('http://redmine.magenta-aps.dk/feedbackr/feedbackr-embed.js', 'external'); ?>
-<script>
-  var feedbconf = {
-    'apikey': '9a140188f51f427ab426284727cf7e1c968429a6',
-    'projid': 299,
-    'contactname': 'Magenta ApS',
-    'contactphone': '3336 9696',
-    'cssoffset': '7em'
-  };
-</script>
-<!-- End Feedbackr.js resources -->

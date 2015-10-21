@@ -145,8 +145,8 @@
     width: auto;
     height: auto;
     background-position: center $u/1.5;
-    background-size: $u*1.25 auto;
-    padding: $u*2.25 $u/2 $u/2;
+    background-size: $u*2 auto;
+    padding: $u*3 $u $u;
     overflow: hidden;
     font-size: $u*0.8;
   }
@@ -154,7 +154,7 @@
     background-image: url(../images/icons/question.png);
   }
   .menu__link[href="/user/view"] {
-    background-image: url(../images/icons/dashboard.png);
+    background-image: url(../images/icons/profil.svg);
   }
   .menu__link[href="/chat"] {
     background-image: url(../images/icons/chat.svg);

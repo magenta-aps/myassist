@@ -11,11 +11,12 @@
       display: none;
   }
   .ribbon.open {
-    background-color: lighten($green, 20%);
-    color: darken($green, 40%);
+    background-color: $orange;
+    color: $white;
   }
   .ribbon.busy {
     background-color: $grey;
+    color: $darkblue;
   }
   /* Hide elements so they can be controlled from javascript instead */
   .ribbon .chat-open,
@@ -40,7 +41,7 @@
   .configure-notifications {
     @extend .btn;
     background-color: transparent;
-    color: rgba(0,0,0,0.33);
+    color: $white;
   }
   .configure-notifications {
     padding: $u*0.25;
@@ -52,7 +53,13 @@
     a:focus,
     a:active {
       color: $white;
+      background-color: rgba(0,0,0,0.15);
     }
+  }
+  .click-control:hover,
+  .click-control:active,
+  .click-control:focus {
+    background-color: darken($orange, 10%);
   }
   .ribbon .startbutton {
     background-color: $green;
@@ -281,7 +288,7 @@ div.chat-status-box h1 {
     padding-top: 0;
 }
 
-@media screen and (min-width: 960px) {
+@media screen and (min-width: $u*55) {
   
   #chatribbons {
     .ribbon .information {
@@ -289,10 +296,15 @@ div.chat-status-box h1 {
     }
     .ribbon .ribbon-header {
       display: inline-block;
+      padding: $u*1.5 $u;
     }
     .ribbon .chatstatus-message {
       padding: $u*0.5;
     }
+    .click-control {
+      margin: $u $u*0.5;
+    }
   }
+  
   
 }

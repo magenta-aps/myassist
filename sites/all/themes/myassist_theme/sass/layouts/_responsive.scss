@@ -27,10 +27,6 @@ body {
   width: auto;
   height: $u*3;
   display: block;
-  img {
-    margin: $u*0.75 $u;
-    height: $u*1.5;
-  }
 }
 .header__region {
   .block {
@@ -43,7 +39,7 @@ body {
 
 /* Main */
 #main {
-  padding: $u*3 $u $u;
+  padding: $u*4 $u $u;
 }
 
 /* Main menu */
@@ -52,10 +48,16 @@ body {
   bottom: 0;
   left: 0;
   right: 0;
-  height: $u*3;
+  height: $u*4;
 }
 #block-system-main-menu .menu__item {
   width: 33.33%;
+}
+
+/* Sidebars */
+.sidebars {
+  padding: $u;
+  background-color: $grey;
 }
 
 /* Footer/bottom */
@@ -72,6 +74,21 @@ body {
   display: block;
 }
 
+/* FAQ */
+.view-faq {
+  .view-header {
+    background: $grey;
+    padding: $u $u 0;
+  }
+}
+
+/* Chat */
+#block-myassist-opeka-chatribbons {
+  margin-top: -($u*2);
+  margin-left: -($u);
+  margin-right: -($u);
+}
+
 
 
 /**
@@ -86,6 +103,10 @@ body {
    
 }
 
+@media all and (max-width: $u*35) {
+  
+}
+
 
 /**
  * Layout for smaller screens.
@@ -93,12 +114,22 @@ body {
 
 @media all and (min-width: $u*35) {
   
+  /* Header */
+  #header {
+    height: $u*4;
+    padding-top: $u*0.5;
+    box-sizing: border-box;
+  }
+  #block-search-form.open #search-block-form {
+    top: $u*4;
+  }
+  
   /* Main menu */
   .region-navigation {
     position: fixed;
     bottom: auto;
     top: 0;
-    left: $u*11;
+    left: $u*14;
     right: auto;
     width: auto;
     z-index: 4;
@@ -127,7 +158,6 @@ body {
         float: left;
         width: 50%;
         @include box-sizing(border-box);
-        border-left: solid 1px $grey;
         padding: 0 0 0 $u;
       }
       .section:first-child {
@@ -146,9 +176,10 @@ body {
       width: 33.33%;
       float: left;
     }
-    table {
-      float: right;
-      width: 60% !important;
+    table th,
+    table td {
+      text-align: left;
+      padding: $u*0.25 $u;
     }
   }
   
@@ -177,6 +208,11 @@ body {
     }
   }
   
+  /* Chat */
+  #block-myassist-opeka-chatribbons {
+    margin-top: -($u*1);
+  }
+  
 }
 
 
@@ -189,6 +225,9 @@ body {
   #page {
     background-color: $white;
   }
+  #main {
+    @include clearfix;
+  }
   #main,
   .header__container,
   .region-bottom {
@@ -199,20 +238,60 @@ body {
   #main {
     padding: 0;
   }
+  #main {
+    display: flex;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-flex-wrap: nowrap;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+  }
+  #content,
+  .sidebars {
+    box-sizing: border-box;
+  }
   #content {
-    padding: $u*4 $u $u; 
+    padding: $u*8 $u $u;
+    box-sizing: border-box;
+    width: 66%;
+  }
+  .no-sidebars #content {
+    width: 100%;
+  }
+  .sidebars {
+    width: 33%;
+    padding: $u*8 $u $u;
+    background-color: $grey;
   }
   
   /* Header */
+  #header {
+    height: auto;
+    padding-bottom: $u;
+  }
+  .header__container {
+    padding: $u*2 0;
+  }
   .header__region {
     position: absolute;
     right: 50%;
     margin-right: -($u*27.5);
+    top: $u*2.5;
   }
   .region-navigation {
     left: 50%;
     width: $u*30;
     margin-left: -($u*15);
+    margin-top: $u*1.5;
+    #block-system-main-menu {
+      .active.menu__link {
+        background-color: transparent;
+      }
+    }
+  }
+  #block-search-form.open #search-block-form {
+    top: $u*6;
   }
   
   /* Content */
@@ -229,13 +308,9 @@ body {
   
   /* Add a question block */
   #block-block-1 {
-    background: $grey;
     text-align: center;
-    padding: $u 0 0;
+    padding: $u*2 0 0;
     margin-top: -($u*2);
-    .bigass-greenbtn {
-      display: inline-block;
-    }
   }
   
   /* Questions and answers */
@@ -266,16 +341,22 @@ body {
   
   /* FAQ */
   .view-faq {
-    .view-header {
-      float: right;
-      width: 40%;
-      background: $grey;
+    @include clearfix;
+    article {
+      float: left;
+      width: 50%;
+      box-sizing: border-box;
       padding: $u;
-      @include box-sizing(border-box);
+      .field-name-field-beskrivelse {
+        height: $u*5;
+        overflow: hidden;
+      }
+      .node-readmore a {
+        margin-top: $u;
+      }
     }
     .view-content {
-      float: left;
-      width: 60%;
+      
     }
     .more-link {
       clear: both;
@@ -291,6 +372,11 @@ body {
       float: right;
       width: 40%;
     }
+  }
+  
+  /* Chat */
+  #block-myassist-opeka-chatribbons {
+    margin-top: -($u*1.5);
   }
   
 }
