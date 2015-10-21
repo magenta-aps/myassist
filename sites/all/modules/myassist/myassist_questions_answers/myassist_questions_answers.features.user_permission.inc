@@ -14,7 +14,7 @@ function myassist_questions_answers_user_default_permissions() {
   $permissions['access comments'] = array(
     'name' => 'access comments',
     'roles' => array(
-      'administrator' => 'administrator',
+      'Superadmin' => 'Superadmin',
       'anonymous user' => 'anonymous user',
       'authenticated user' => 'authenticated user',
     ),
@@ -25,7 +25,7 @@ function myassist_questions_answers_user_default_permissions() {
   $permissions['administer comments'] = array(
     'name' => 'administer comments',
     'roles' => array(
-      'administrator' => 'administrator',
+      'Superadmin' => 'Superadmin',
     ),
     'module' => 'comment',
   );
@@ -34,10 +34,9 @@ function myassist_questions_answers_user_default_permissions() {
   $permissions['edit own comments'] = array(
     'name' => 'edit own comments',
     'roles' => array(
-      'administrator' => 'administrator',
+      'Superadmin' => 'Superadmin',
+      'Ung bruger' => 'Ung bruger',
       'authenticated user' => 'authenticated user',
-      'redaktør' => 'redaktør',
-      'ung bruger' => 'ung bruger',
     ),
     'module' => 'comment',
   );
@@ -46,7 +45,7 @@ function myassist_questions_answers_user_default_permissions() {
   $permissions['post comments'] = array(
     'name' => 'post comments',
     'roles' => array(
-      'administrator' => 'administrator',
+      'Superadmin' => 'Superadmin',
       'authenticated user' => 'authenticated user',
     ),
     'module' => 'comment',
@@ -56,7 +55,7 @@ function myassist_questions_answers_user_default_permissions() {
   $permissions['skip comment approval'] = array(
     'name' => 'skip comment approval',
     'roles' => array(
-      'administrator' => 'administrator',
+      'Superadmin' => 'Superadmin',
       'authenticated user' => 'authenticated user',
     ),
     'module' => 'comment',

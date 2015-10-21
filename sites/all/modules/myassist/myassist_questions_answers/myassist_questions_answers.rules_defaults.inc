@@ -29,8 +29,9 @@ function myassist_questions_answers_default_rules_configuration() {
             "points" : "10",
             "tid" : "0",
             "entity" : [ "node" ],
-            "description" : "Posted answer",
+            "description" : "Du har svaret p\\u00e5 et sp\\u00f8rgsm\\u00e5l.",
             "operation" : "Insert",
+            "reference" : "Du har svaret p\\u00e5 et sp\\u00f8rgsm\\u00e5let [node:title].",
             "display" : "0",
             "moderate" : "default"
           }
@@ -57,7 +58,7 @@ function myassist_questions_answers_default_rules_configuration() {
             "points" : "10",
             "tid" : "0",
             "entity" : [ "node" ],
-            "description" : "Asked a question",
+            "description" : "Du stillede et sp\\u00f8rgsm\\u00e5l.",
             "operation" : "Insert",
             "display" : "0",
             "moderate" : "default"
