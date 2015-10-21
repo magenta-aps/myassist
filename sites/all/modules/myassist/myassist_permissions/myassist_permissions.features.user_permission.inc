@@ -14,7 +14,7 @@ function myassist_permissions_user_default_permissions() {
   $permissions['add userpoints'] = array(
     'name' => 'add userpoints',
     'roles' => array(
-      'administrator' => 'administrator',
+      'Superadmin' => 'Superadmin',
     ),
     'module' => 'userpoints',
   );
@@ -23,7 +23,7 @@ function myassist_permissions_user_default_permissions() {
   $permissions['administer filters'] = array(
     'name' => 'administer filters',
     'roles' => array(
-      'administrator' => 'administrator',
+      'Superadmin' => 'Superadmin',
     ),
     'module' => 'filter',
   );
@@ -32,7 +32,7 @@ function myassist_permissions_user_default_permissions() {
   $permissions['administer userpoints'] = array(
     'name' => 'administer userpoints',
     'roles' => array(
-      'administrator' => 'administrator',
+      'Superadmin' => 'Superadmin',
     ),
     'module' => 'userpoints',
   );
@@ -82,7 +82,7 @@ function myassist_permissions_user_default_permissions() {
   $permissions['earn points'] = array(
     'name' => 'earn points',
     'roles' => array(
-      'ung bruger' => 'ung bruger',
+      'Ung bruger' => 'Ung bruger',
     ),
     'module' => 'myassist_achievements',
   );
@@ -123,7 +123,7 @@ function myassist_permissions_user_default_permissions() {
   $permissions['edit userpoints'] = array(
     'name' => 'edit userpoints',
     'roles' => array(
-      'administrator' => 'administrator',
+      'Superadmin' => 'Superadmin',
     ),
     'module' => 'userpoints',
   );
@@ -132,7 +132,7 @@ function myassist_permissions_user_default_permissions() {
   $permissions['moderate userpoints'] = array(
     'name' => 'moderate userpoints',
     'roles' => array(
-      'administrator' => 'administrator',
+      'Superadmin' => 'Superadmin',
     ),
     'module' => 'userpoints',
   );
@@ -141,7 +141,7 @@ function myassist_permissions_user_default_permissions() {
   $permissions['use text format filtered_html'] = array(
     'name' => 'use text format filtered_html',
     'roles' => array(
-      'administrator' => 'administrator',
+      'Superadmin' => 'Superadmin',
     ),
     'module' => 'filter',
   );
@@ -150,7 +150,7 @@ function myassist_permissions_user_default_permissions() {
   $permissions['use text format full_html'] = array(
     'name' => 'use text format full_html',
     'roles' => array(
-      'administrator' => 'administrator',
+      'Superadmin' => 'Superadmin',
     ),
     'module' => 'filter',
   );
@@ -159,7 +159,7 @@ function myassist_permissions_user_default_permissions() {
   $permissions['view own userpoints'] = array(
     'name' => 'view own userpoints',
     'roles' => array(
-      'ung bruger' => 'ung bruger',
+      'Ung bruger' => 'Ung bruger',
     ),
     'module' => 'userpoints',
   );
@@ -168,7 +168,7 @@ function myassist_permissions_user_default_permissions() {
   $permissions['view userpoints'] = array(
     'name' => 'view userpoints',
     'roles' => array(
-      'administrator' => 'administrator',
+      'Superadmin' => 'Superadmin',
       'anonymous user' => 'anonymous user',
       'authenticated user' => 'authenticated user',
     ),
