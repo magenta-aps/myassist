@@ -59,9 +59,12 @@
     color: $white;
   }
   .ribbon.busy .startbutton {
+    display: none;
+    /*
     cursor: default;
     background-color: $grey;
     color: $smoke;
+    */
   }
   .ribbon .controls {
     position: absolute;
