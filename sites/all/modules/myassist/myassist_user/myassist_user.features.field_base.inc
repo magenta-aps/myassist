@@ -237,5 +237,31 @@ function myassist_user_field_default_field_bases() {
     'type' => 'text_long',
   );
 
+  // Exported field_base: 'field_show_in_forum'
+  $field_bases['field_show_in_forum'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_show_in_forum',
+    'indexes' => array(
+      'value' => array(
+        0 => 'value',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'list',
+    'settings' => array(
+      'allowed_values' => array(
+        0 => 'Nej',
+        1 => 'Ja',
+      ),
+      'allowed_values_function' => '',
+      'profile2_private' => 1,
+    ),
+    'translatable' => 0,
+    'type' => 'list_boolean',
+  );
+
   return $field_bases;
 }

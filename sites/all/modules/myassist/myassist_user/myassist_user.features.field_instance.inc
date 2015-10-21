@@ -228,7 +228,7 @@ function myassist_user_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'hidden',
         'module' => 'list',
         'settings' => array(),
         'type' => 'list_default',
@@ -237,7 +237,7 @@ function myassist_user_field_default_field_instances() {
     ),
     'entity_type' => 'profile2',
     'field_name' => 'field_no_group_notifications',
-    'label' => 'Disable group chat notifications',
+    'label' => 'Slå notifikationer for gruppechat fra.',
     'required' => 0,
     'settings' => array(
       'user_register_form' => FALSE,
@@ -265,7 +265,7 @@ function myassist_user_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'hidden',
         'module' => 'list',
         'settings' => array(),
         'type' => 'list_default',
@@ -274,7 +274,7 @@ function myassist_user_field_default_field_instances() {
     ),
     'entity_type' => 'profile2',
     'field_name' => 'field_no_pair_notifications',
-    'label' => 'Disable pair chat notifications',
+    'label' => 'Slå notifikationer for par-chat fra.',
     'required' => 0,
     'settings' => array(
       'user_register_form' => FALSE,
@@ -298,7 +298,7 @@ function myassist_user_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'hidden',
+        'label' => 'above',
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
@@ -307,7 +307,7 @@ function myassist_user_field_default_field_instances() {
     ),
     'entity_type' => 'profile2',
     'field_name' => 'field_quote',
-    'label' => 'Favorite quote',
+    'label' => 'Hvis jeg var konge af verden ville jeg',
     'required' => 0,
     'settings' => array(
       'text_processing' => 0,
@@ -330,6 +330,16 @@ function myassist_user_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'account' => array(
+        'label' => 'hidden',
+        'module' => 'image',
+        'settings' => array(
+          'image_link' => '',
+          'image_style' => '',
+        ),
+        'type' => 'image',
+        'weight' => 2,
+      ),
       'default' => array(
         'label' => 'hidden',
         'module' => 'image',
@@ -338,7 +348,17 @@ function myassist_user_field_default_field_instances() {
           'image_style' => '',
         ),
         'type' => 'image',
-        'weight' => 4,
+        'weight' => 2,
+      ),
+      'page' => array(
+        'label' => 'hidden',
+        'module' => 'image',
+        'settings' => array(
+          'image_link' => '',
+          'image_style' => '',
+        ),
+        'type' => 'image',
+        'weight' => 2,
       ),
     ),
     'entity_type' => 'profile2',
@@ -375,7 +395,21 @@ function myassist_user_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'account' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 0,
+      ),
       'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 0,
+      ),
+      'page' => array(
         'label' => 'above',
         'module' => 'text',
         'settings' => array(),
@@ -408,6 +442,19 @@ function myassist_user_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'account' => array(
+        'label' => 'above',
+        'module' => 'date',
+        'settings' => array(
+          'format_type' => 'long',
+          'fromto' => 'both',
+          'multiple_from' => '',
+          'multiple_number' => '',
+          'multiple_to' => '',
+        ),
+        'type' => 'date_default',
+        'weight' => 5,
+      ),
       'default' => array(
         'label' => 'above',
         'module' => 'date',
@@ -419,7 +466,20 @@ function myassist_user_field_default_field_instances() {
           'multiple_to' => '',
         ),
         'type' => 'date_default',
-        'weight' => 7,
+        'weight' => 5,
+      ),
+      'page' => array(
+        'label' => 'above',
+        'module' => 'date',
+        'settings' => array(
+          'format_type' => 'long',
+          'fromto' => 'both',
+          'multiple_from' => '',
+          'multiple_number' => '',
+          'multiple_to' => '',
+        ),
+        'type' => 'date_default',
+        'weight' => 5,
       ),
     ),
     'entity_type' => 'profile2',
@@ -456,12 +516,26 @@ function myassist_user_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'account' => array(
+        'label' => 'above',
+        'module' => 'taxonomy',
+        'settings' => array(),
+        'type' => 'taxonomy_term_reference_link',
+        'weight' => 4,
+      ),
       'default' => array(
         'label' => 'above',
         'module' => 'taxonomy',
         'settings' => array(),
         'type' => 'taxonomy_term_reference_link',
-        'weight' => 6,
+        'weight' => 4,
+      ),
+      'page' => array(
+        'label' => 'above',
+        'module' => 'taxonomy',
+        'settings' => array(),
+        'type' => 'taxonomy_term_reference_link',
+        'weight' => 4,
       ),
     ),
     'entity_type' => 'profile2',
@@ -491,12 +565,26 @@ function myassist_user_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'account' => array(
+        'label' => 'hidden',
+        'module' => 'i18n_field',
+        'settings' => array(),
+        'type' => 'i18n_list_default',
+        'weight' => 3,
+      ),
       'default' => array(
         'label' => 'hidden',
         'module' => 'i18n_field',
         'settings' => array(),
         'type' => 'i18n_list_default',
-        'weight' => 5,
+        'weight' => 3,
+      ),
+      'page' => array(
+        'label' => 'hidden',
+        'module' => 'i18n_field',
+        'settings' => array(),
+        'type' => 'i18n_list_default',
+        'weight' => 3,
       ),
     ),
     'entity_type' => 'profile2',
@@ -526,12 +614,23 @@ function myassist_user_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'account' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 7,
+      ),
       'default' => array(
         'label' => 'above',
-        'module' => 'list',
         'settings' => array(),
-        'type' => 'list_default',
-        'weight' => 9,
+        'type' => 'hidden',
+        'weight' => 7,
+      ),
+      'page' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 7,
       ),
     ),
     'entity_type' => 'profile2',
@@ -563,11 +662,22 @@ function myassist_user_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'account' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 8,
+      ),
       'default' => array(
         'label' => 'above',
-        'module' => 'list',
         'settings' => array(),
-        'type' => 'list_default',
+        'type' => 'hidden',
+        'weight' => 8,
+      ),
+      'page' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
         'weight' => 8,
       ),
     ),
@@ -596,12 +706,26 @@ function myassist_user_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'account' => array(
+        'label' => 'hidden',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 1,
+      ),
       'default' => array(
         'label' => 'hidden',
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 3,
+        'weight' => 1,
+      ),
+      'page' => array(
+        'label' => 'hidden',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 1,
       ),
     ),
     'entity_type' => 'profile2',
@@ -623,6 +747,51 @@ function myassist_user_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'profile2-voksenprofil-field_show_in_forum'
+  $field_instances['profile2-voksenprofil-field_show_in_forum'] = array(
+    'bundle' => 'voksenprofil',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => 'Hvis du er Debatrådgiver, skal du angive om du kan pinges af en bruger, der opretter et spørgsmål. (Valget har kun effekt for Debatrådgivere.)',
+    'display' => array(
+      'account' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 6,
+      ),
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 6,
+      ),
+      'page' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 6,
+      ),
+    ),
+    'entity_type' => 'profile2',
+    'field_name' => 'field_show_in_forum',
+    'label' => 'Kan pinges ved nyt spørgsmål i forum?',
+    'required' => 1,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_buttons',
+      'weight' => 18,
+    ),
+  );
+
   // Translatables
   // Included for use with string extractors like potx.
   t('About me');
@@ -632,7 +801,12 @@ function myassist_user_field_default_field_instances() {
   t('Disable pair chat notifications');
   t('Favorite quote');
   t('Gender');
+  t('Hvis du er Debatrådgiver, skal du angive om du kan pinges af en bruger, der opretter et spørgsmål. (Valget har kun effekt for Debatrådgivere.)');
+  t('Hvis jeg var konge af verden ville jeg');
   t('Image');
+  t('Kan pinges ved nyt spørgsmål i forum?');
+  t('Slå notifikationer for gruppechat fra.');
+  t('Slå notifikationer for par-chat fra.');
   t('Specialities');
 
   return $field_instances;

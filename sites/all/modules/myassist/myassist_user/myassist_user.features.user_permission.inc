@@ -14,13 +14,12 @@ function myassist_user_user_default_permissions() {
   $permissions['access user profiles'] = array(
     'name' => 'access user profiles',
     'roles' => array(
-      'administrator' => 'administrator',
+      'Assist-rådgiver' => 'Assist-rådgiver',
+      'Chat-rådgiver' => 'Chat-rådgiver',
+      'Superadmin' => 'Superadmin',
+      'Ung bruger' => 'Ung bruger',
       'anonymous user' => 'anonymous user',
       'authenticated user' => 'authenticated user',
-      'chatrådgiver' => 'chatrådgiver',
-      'debatrådgiver' => 'debatrådgiver',
-      'redaktør' => 'redaktør',
-      'ung bruger' => 'ung bruger',
     ),
     'module' => 'user',
   );
@@ -29,7 +28,7 @@ function myassist_user_user_default_permissions() {
   $permissions['administer permissions'] = array(
     'name' => 'administer permissions',
     'roles' => array(
-      'administrator' => 'administrator',
+      'Superadmin' => 'Superadmin',
     ),
     'module' => 'user',
   );
@@ -38,7 +37,7 @@ function myassist_user_user_default_permissions() {
   $permissions['administer profile types'] = array(
     'name' => 'administer profile types',
     'roles' => array(
-      'administrator' => 'administrator',
+      'Superadmin' => 'Superadmin',
     ),
     'module' => 'profile2',
   );
@@ -47,7 +46,7 @@ function myassist_user_user_default_permissions() {
   $permissions['administer profiles'] = array(
     'name' => 'administer profiles',
     'roles' => array(
-      'administrator' => 'administrator',
+      'Superadmin' => 'Superadmin',
     ),
     'module' => 'profile2',
   );
@@ -56,7 +55,7 @@ function myassist_user_user_default_permissions() {
   $permissions['administer users'] = array(
     'name' => 'administer users',
     'roles' => array(
-      'administrator' => 'administrator',
+      'Superadmin' => 'Superadmin',
     ),
     'module' => 'user',
   );
@@ -65,7 +64,8 @@ function myassist_user_user_default_permissions() {
   $permissions['cancel account'] = array(
     'name' => 'cancel account',
     'roles' => array(
-      'administrator' => 'administrator',
+      'Superadmin' => 'Superadmin',
+      'authenticated user' => 'authenticated user',
     ),
     'module' => 'user',
   );
@@ -74,7 +74,7 @@ function myassist_user_user_default_permissions() {
   $permissions['change own username'] = array(
     'name' => 'change own username',
     'roles' => array(
-      'administrator' => 'administrator',
+      'Superadmin' => 'Superadmin',
     ),
     'module' => 'user',
   );
@@ -82,14 +82,18 @@ function myassist_user_user_default_permissions() {
   // Exported permission: 'edit any ungeprofil profile'.
   $permissions['edit any ungeprofil profile'] = array(
     'name' => 'edit any ungeprofil profile',
-    'roles' => array(),
+    'roles' => array(
+      'Superadmin' => 'Superadmin',
+    ),
     'module' => 'profile2',
   );
 
   // Exported permission: 'edit any voksenprofil profile'.
   $permissions['edit any voksenprofil profile'] = array(
     'name' => 'edit any voksenprofil profile',
-    'roles' => array(),
+    'roles' => array(
+      'Superadmin' => 'Superadmin',
+    ),
     'module' => 'profile2',
   );
 
@@ -97,7 +101,8 @@ function myassist_user_user_default_permissions() {
   $permissions['edit own ungeprofil profile'] = array(
     'name' => 'edit own ungeprofil profile',
     'roles' => array(
-      'ung bruger' => 'ung bruger',
+      'Superadmin' => 'Superadmin',
+      'Ung bruger' => 'Ung bruger',
     ),
     'module' => 'profile2',
   );
@@ -106,10 +111,9 @@ function myassist_user_user_default_permissions() {
   $permissions['edit own voksenprofil profile'] = array(
     'name' => 'edit own voksenprofil profile',
     'roles' => array(
-      'administrator' => 'administrator',
-      'chatrådgiver' => 'chatrådgiver',
-      'debatrådgiver' => 'debatrådgiver',
-      'redaktør' => 'redaktør',
+      'Assist-rådgiver' => 'Assist-rådgiver',
+      'Chat-rådgiver' => 'Chat-rådgiver',
+      'Superadmin' => 'Superadmin',
     ),
     'module' => 'profile2',
   );
@@ -118,7 +122,7 @@ function myassist_user_user_default_permissions() {
   $permissions['select account cancellation method'] = array(
     'name' => 'select account cancellation method',
     'roles' => array(
-      'administrator' => 'administrator',
+      'Superadmin' => 'Superadmin',
     ),
     'module' => 'user',
   );
@@ -127,13 +131,12 @@ function myassist_user_user_default_permissions() {
   $permissions['view any ungeprofil profile'] = array(
     'name' => 'view any ungeprofil profile',
     'roles' => array(
-      'administrator' => 'administrator',
+      'Assist-rådgiver' => 'Assist-rådgiver',
+      'Chat-rådgiver' => 'Chat-rådgiver',
+      'Superadmin' => 'Superadmin',
+      'Ung bruger' => 'Ung bruger',
       'anonymous user' => 'anonymous user',
       'authenticated user' => 'authenticated user',
-      'chatrådgiver' => 'chatrådgiver',
-      'debatrådgiver' => 'debatrådgiver',
-      'redaktør' => 'redaktør',
-      'ung bruger' => 'ung bruger',
     ),
     'module' => 'profile2',
   );
@@ -142,13 +145,12 @@ function myassist_user_user_default_permissions() {
   $permissions['view any voksenprofil profile'] = array(
     'name' => 'view any voksenprofil profile',
     'roles' => array(
-      'administrator' => 'administrator',
+      'Assist-rådgiver' => 'Assist-rådgiver',
+      'Chat-rådgiver' => 'Chat-rådgiver',
+      'Superadmin' => 'Superadmin',
+      'Ung bruger' => 'Ung bruger',
       'anonymous user' => 'anonymous user',
       'authenticated user' => 'authenticated user',
-      'chatrådgiver' => 'chatrådgiver',
-      'debatrådgiver' => 'debatrådgiver',
-      'redaktør' => 'redaktør',
-      'ung bruger' => 'ung bruger',
     ),
     'module' => 'profile2',
   );
@@ -157,7 +159,8 @@ function myassist_user_user_default_permissions() {
   $permissions['view own ungeprofil profile'] = array(
     'name' => 'view own ungeprofil profile',
     'roles' => array(
-      'ung bruger' => 'ung bruger',
+      'Superadmin' => 'Superadmin',
+      'Ung bruger' => 'Ung bruger',
     ),
     'module' => 'profile2',
   );
@@ -166,10 +169,9 @@ function myassist_user_user_default_permissions() {
   $permissions['view own voksenprofil profile'] = array(
     'name' => 'view own voksenprofil profile',
     'roles' => array(
-      'administrator' => 'administrator',
-      'chatrådgiver' => 'chatrådgiver',
-      'debatrådgiver' => 'debatrådgiver',
-      'redaktør' => 'redaktør',
+      'Assist-rådgiver' => 'Assist-rådgiver',
+      'Chat-rådgiver' => 'Chat-rådgiver',
+      'Superadmin' => 'Superadmin',
     ),
     'module' => 'profile2',
   );
