@@ -39,7 +39,7 @@ function myassist_danish_strongarm() {
     'domain' => '',
     'prefix' => 'da',
     'weight' => '0',
-    'javascript' => 'IiuIW48sdKKQ2FXZd1tUVSHrXtcxDYFdBaLjPL_4jB8',
+    'javascript' => 'f1IPAuKEZm2a_QUjMAXnBYc97i9lBw6KsnmLmAa-g2w',
   );
   $export['language_default'] = $strongarm;
 
