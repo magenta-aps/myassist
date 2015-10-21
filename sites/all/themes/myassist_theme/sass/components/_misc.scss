@@ -153,11 +153,11 @@
   .menu__link[href="/frontpage"] {
     background-image: url(../images/icons/question.png);
   }
-  .menu__link[href="/user"] {
+  .menu__link[href="/user/view"] {
     background-image: url(../images/icons/dashboard.png);
   }
-  .menu__link[href="/opeka"] {
-    background-image: url(../images/icons/bubbles.png);
+  .menu__link[href="/chat"] {
+    background-image: url(../images/icons/chat.svg);
   }
   .active {
     background-color: $darkblue;
