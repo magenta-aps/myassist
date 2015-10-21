@@ -24,7 +24,7 @@ function myassist_achievements_user_default_permissions() {
   $permissions['administer achievements'] = array(
     'name' => 'administer achievements',
     'roles' => array(
-      'administrator' => 'administrator',
+      'Superadmin' => 'Superadmin',
     ),
     'module' => 'achievements',
   );
@@ -33,8 +33,7 @@ function myassist_achievements_user_default_permissions() {
   $permissions['earn achievements'] = array(
     'name' => 'earn achievements',
     'roles' => array(
-      'administrator' => 'administrator',
-      'ung bruger' => 'ung bruger',
+      'Ung bruger' => 'Ung bruger',
     ),
     'module' => 'achievements',
   );
