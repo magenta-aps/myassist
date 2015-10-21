@@ -20,7 +20,9 @@
                 </div>
             </div>
             <div class="controls">
+                <?php if (FALSE) { // Disabled by request in ticket #13877 ?>
                 <span class="configure-notifications"><a href="/user/edit"><?php print t("Settings") ?></a></span>
+                <?php } ?>
                 <span class="disable-notifications click-control">&#10006;</span>
             </div>
         </div>
@@ -36,7 +38,9 @@
                 </div>
             </div>
             <div class="controls">
+                <?php if (FALSE) { // Disabled by request in ticket #13877 ?>
                 <span class="configure-notifications"><a href="/user/edit">&#9784;</a></span>
+                <?php } ?>
                 <span class="disable-notifications click-control">&#9747;</span>
             </div>
         </div>
