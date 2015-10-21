@@ -43,7 +43,7 @@ function myassist_notification_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'htmlmail_theme';
-  $strongarm->value = '';
+  $strongarm->value = 'myassist_theme';
   $export['htmlmail_theme'] = $strongarm;
 
   $strongarm = new stdClass();
