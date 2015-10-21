@@ -10,52 +10,6 @@
 function myassist_menus_menu_default_menu_links() {
   $menu_links = array();
 
-  // Exported menu link: main-menu_chat:opeka
-  $menu_links['main-menu_chat:opeka'] = array(
-    'menu_name' => 'main-menu',
-    'link_path' => 'opeka',
-    'router_path' => 'opeka',
-    'link_title' => 'Chat',
-    'options' => array(
-      'attributes' => array(
-        'title' => 'Chat med en rådgiver',
-      ),
-      'alter' => TRUE,
-      'identifier' => 'main-menu_chat:opeka',
-    ),
-    'module' => 'menu',
-    'hidden' => 0,
-    'external' => 0,
-    'has_children' => 0,
-    'expanded' => 0,
-    'weight' => -48,
-    'customized' => 1,
-    'language' => 'und',
-    'menu_links_customized' => 1,
-  );
-  // Exported menu link: main-menu_dashboard:user
-  $menu_links['main-menu_dashboard:user'] = array(
-    'menu_name' => 'main-menu',
-    'link_path' => 'user',
-    'router_path' => 'user',
-    'link_title' => 'Dashboard',
-    'options' => array(
-      'attributes' => array(
-        'title' => 'Se dine personlige oplysninger',
-      ),
-      'alter' => TRUE,
-      'identifier' => 'main-menu_dashboard:user',
-    ),
-    'module' => 'menu',
-    'hidden' => 0,
-    'external' => 0,
-    'has_children' => 0,
-    'expanded' => 0,
-    'weight' => -49,
-    'customized' => 1,
-    'language' => 'und',
-    'menu_links_customized' => 1,
-  );
   // Exported menu link: main-menu_sprgsml:frontpage
   $menu_links['main-menu_sprgsml:frontpage'] = array(
     'menu_name' => 'main-menu',
@@ -116,7 +70,7 @@ function myassist_menus_menu_default_menu_links() {
       'identifier' => 'user-menu_beskeder:user/messages',
     ),
     'module' => 'menu',
-    'hidden' => 0,
+    'hidden' => 1,
     'external' => 0,
     'has_children' => 0,
     'expanded' => 0,
@@ -291,7 +245,7 @@ function myassist_menus_menu_default_menu_links() {
       'identifier' => 'user-menu_vis-profil:user/view',
     ),
     'module' => 'system',
-    'hidden' => 0,
+    'hidden' => 1,
     'external' => 0,
     'has_children' => 0,
     'expanded' => 0,
@@ -304,8 +258,6 @@ function myassist_menus_menu_default_menu_links() {
   // Included for use with string extractors like potx.
   t('Achievements');
   t('Beskeder');
-  t('Chat');
-  t('Dashboard');
   t('Edit Profile');
   t('Log out');
   t('My !points');
