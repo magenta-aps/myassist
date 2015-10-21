@@ -14,7 +14,7 @@ function myassist_user_avatar_user_default_permissions() {
   $permissions['access avatars'] = array(
     'name' => 'access avatars',
     'roles' => array(
-      'administrator' => 'administrator',
+      'Superadmin' => 'Superadmin',
       'authenticated user' => 'authenticated user',
     ),
     'module' => 'avatar_selection',
@@ -24,7 +24,7 @@ function myassist_user_avatar_user_default_permissions() {
   $permissions['administer avatar selection'] = array(
     'name' => 'administer avatar selection',
     'roles' => array(
-      'administrator' => 'administrator',
+      'Superadmin' => 'Superadmin',
     ),
     'module' => 'avatar_selection',
   );
@@ -33,7 +33,7 @@ function myassist_user_avatar_user_default_permissions() {
   $permissions['upload avatar in profile'] = array(
     'name' => 'upload avatar in profile',
     'roles' => array(
-      'administrator' => 'administrator',
+      'Superadmin' => 'Superadmin',
       'authenticated user' => 'authenticated user',
     ),
     'module' => 'avatar_selection',
