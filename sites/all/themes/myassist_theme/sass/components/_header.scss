@@ -12,8 +12,10 @@
 /* Logo image. */
 .header__logo-image {
   vertical-align: bottom;
-  height: 100%;
-  width: auto;
+  height: $u*1.75;
+  width: $u*11;
+  margin: $u*0.75 $u;
+  
 }
 
 /* Wrapper for website name and slogan. */
@@ -73,7 +75,7 @@
     background-image: url(../images/icons/arrow-down.png);
     padding: 0;
     margin: 0;
-    background-size: $u auto;
+    background-size: $u*1.5 auto;
     height: $u*2;
   }
 }
@@ -104,7 +106,7 @@
   overflow: visible;
   border-left: solid 1px $white;
   .block-title {
-    background-image: url(../images/icons/search.png);
+    background-image: url(../images/icons/soge.svg);
     cursor: pointer;
   }
   .block-title:hover,

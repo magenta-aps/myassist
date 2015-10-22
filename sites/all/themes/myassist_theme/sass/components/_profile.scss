@@ -33,10 +33,7 @@
   }
   .achievements {
     @include clearfix;
-    background-color: $grey;
-    margin-left: -($u);
-    margin-right: -($u);
-    padding: $u*0.5;
+    padding: $u*0.5 0;
     margin-top: $u;
   }
   .achievement-image {
