@@ -63,12 +63,6 @@ var JST = JST || {},
                 // Tell the chat server that we want to be anonymous
                 Drupal.settings.opeka.user.want_to_be_anonymous = true;
 
-                // Remove uid and sid from data sent to the chat server
-                $checkbox.attr("data-uid", Drupal.settings.opeka.user.uid)
-                delete Drupal.settings.opeka.user.uid;
-                $checkbox.attr("data-sid", Drupal.settings.opeka.user.sid)
-                delete Drupal.settings.opeka.user.sid;
-
                 $.each($elems, function() {
                     var $this = $(this);
                     if(!$this.attr("data-changed-value")) {
