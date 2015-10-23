@@ -185,29 +185,15 @@
             print '<a id="answers-btn-answer" class="answers-btn-primary btn" href="' . $node_url . '#new-answer-form">' . t("Answer"). '</a>';
           }
         ?>
-          <div class="link-wrapper">
-          <?php
-            if (user_access('post comments') && $view_mode === 'full' && !$locked) {
-              // Add a "pseudo-link" to open the comment dialog. This is done using jquery.
-              print '<ul class="links"><li class="answers-comment-button"><a>' . t("Comment") . '</a></li></ul>';
+
+        <?php    
+            if ($view_mode === 'full') {
+              if ($user->uid === $node->uid && !$locked) {
+                print '<a id="answers-btn-lock" class="answers-btn-primary btn" href="' . $node_url . '/lock" data-dialog-text="' . t("lock_question_confirmation") . '">' . t("Lock question") . '</a>';
+              }
             }
-          ?>
-          </div>
-
-        <?php
-
-
-
-
-
-        if ($view_mode === 'full') {
-          if ($user->uid === $node->uid && !$locked) {
-            print '<a id="answers-btn-lock" class="answers-btn-primary btn" href="' . $node_url . '/lock" data-dialog-text="' . t("lock_question_confirmation") . '">' . t("Lock question") . '</a>';
-          }
-        }
         ?>
       </div>
-      <?php print render($content['comments']); ?>
     </div>  
   </div>
 
