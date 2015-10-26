@@ -1,1 +1,117 @@
-/* Styles for this module under the Myassist_theme are located at /themes/myassist_theme/sass/components/_opeka.scss */
+/* Styles for this module that relate to the Myassist_theme are located at /themes/myassist_theme/sass/components/_opeka.scss */
+
+/*
+ * The following styles are theme independent styles for admin
+ */
+
+.page-admin-opeka #opeka-app {
+    margin: 1em 0
+}
+.page-admin-opeka .btn {
+    display: inline-block;
+    padding: 0.5em;
+    background-color: #eee;
+    border-radius: 0.5em;
+    box-shadow: 0.1em 0 0.1em 0.1em rgba(0,0,0,0.1);
+    border: none;
+    font-size: 1em;
+    color: #000;
+    text-decoration: none;
+    margin: 0 0.5em 1em 0;
+}
+.page-admin-opeka .btn:hover,
+.page-admin-opeka .btn:active {
+    background-color: #ccc;
+}
+.page-admin-opeka .btn:focus {
+    background-color: #ddd;
+}
+.page-admin-opeka .form-text {
+    margin-bottom: 1em;
+}
+.page-admin-opeka select,
+.page-admin-opeka textarea {
+    border: solid 1px #eee;
+}
+.page-admin-opeka .chat-view-form {
+    margin-top: 0.5em;
+}
+.page-admin-opeka .message-form .form-text-container {
+    float: left;
+    max-width: 80%;
+    width: 30em;
+    display: block;
+    margin-right: 0.5em;
+}
+.page-admin-opeka .message-form .message {
+    height: 2em;
+    width: 100%;
+}
+.page-admin-opeka .message-form .send {
+    float: left;
+    width: 10em;
+    display: block;
+    max-width: 15%;
+}
+.page-admin-opeka .chat-message-list-wrapper {
+    height: 30em;
+    height: 50vh;
+    width: 40em;
+    max-width: 100%;
+    position: relative;
+    border: solid 1px #eee;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+.page-admin-opeka .chat-message-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: auto;
+}
+.page-admin-opeka .chat-message-list .system-message {
+    color: #d00;
+}
+.page-admin-opeka .chat-message-list .whisper-message {
+    color: #999;
+}
+.page-admin-opeka .chat-message-list .chat-message {
+    color: #000;
+}
+
+.page-admin-opeka .chat-message-list .sender-name {
+    width: 33%;
+    float: left;
+    font-weight: bold;
+}
+.page-admin-opeka .chat-message-list .time,
+.page-admin-opeka .chat-message-list .actions {
+    width: auto;
+    float: right;
+    text-align: right;
+}
+.page-admin-opeka .chat-message-list .time {
+    color: #999;
+}
+.page-admin-opeka .delete-message {
+    background: none;
+    color: blue;
+    text-decoration: underline;
+    border: none;
+    cursor: pointer;
+}
+.page-admin-opeka .chat-message-list .message,
+.page-admin-opeka .chat-message-list .system-message{
+    clear: both;
+    width: 100%;
+    padding-bottom: 0.5em;
+}
+.page-admin-opeka .leave-room-form {
+    display: block;
+    clear: both;
+    width: 100%;
+}
