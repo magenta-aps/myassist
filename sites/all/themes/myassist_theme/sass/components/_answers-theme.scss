@@ -7,7 +7,7 @@
 }
 
 .answers-body-wrapper {
-  clear: both;  
+  clear: both;
 }
 
 
@@ -17,6 +17,55 @@
 
 .node-answers-question .content {
   min-height: $u;
+}
+
+
+/************************************************************************************************/
+/* ADD QUESTION FORM                                                                            */
+/************************************************************************************************/
+
+.form-field-name-field-advisor {
+  @include clearfix;
+  position: relative;
+  label {
+    margin-bottom: $u*2;
+  }
+  .form-item.form-type-radio {
+    float: left;
+    height: $u*8;
+    margin: 0 $u*0.5 $u $u*0.5;
+    label {
+      margin-left: $u*0.25;
+    }
+    .views-field-picture {
+      overflow: hidden;
+      display: block;
+      .field-content {
+        display: block;
+        a {
+          display: block;
+        }
+        img {
+          height: $u*6.5;
+          max-width: 100%;
+          max-height: 100%;
+          line-height: 1;
+          border-radius: 50%;
+        }
+      }
+    }
+  }
+  .form-item.form-type-radio:first-child {
+    display: none;
+  }
+  .description {
+    position: absolute;
+    top: $u*2.5;
+    left: 0;
+    right: 0;
+    height: $u*1.5;
+    overflow: hidden;
+  }
 }
 
 
