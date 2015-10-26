@@ -116,6 +116,10 @@
     color: $smoke;
     font-size: $u*0.8;
   }
+  .username {
+    overflow: hidden;
+    display: block;
+  }
 }
 
 .submitted-time,
