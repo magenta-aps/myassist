@@ -112,6 +112,7 @@ function myassist_opeka_page_build(&$page)
         drupal_add_js(array('opeka' => $settings), 'setting');
     } elseif(drupal_get_path_alias(current_path()) === 'chat') {
         add_chat_updates_ressources();
+        drupal_add_js(array('drupal_logged_in' => $user->uid), "setting");
         drupal_add_js($module_path . '/js/chat-status-page.js', array('weight' => 20));
 
         $page['content']['myassist-opeka-templates'] = array(

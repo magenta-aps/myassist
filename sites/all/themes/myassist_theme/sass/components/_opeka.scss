@@ -266,7 +266,8 @@ div.chat-status-box div.hours {
     padding: 1em;
 }
 
-div.chat-status-box span.startbutton {
+div.chat-status-box span.startbutton,
+div.chat-status-box.chat-open span.startbutton.disabled {
     border: 1px solid black;
     padding: 0.25em 0.5em;
     display: inline-block;
