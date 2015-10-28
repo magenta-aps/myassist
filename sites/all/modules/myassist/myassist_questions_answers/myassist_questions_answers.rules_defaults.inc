@@ -9,6 +9,29 @@
  */
 function myassist_questions_answers_default_rules_configuration() {
   $items = array();
+  $items['rules_comment_delete'] = entity_import('rules_config', '{ "rules_comment_delete" : {
+      "LABEL" : "comment_delete",
+      "PLUGIN" : "reaction rule",
+      "OWNER" : "rules",
+      "REQUIRES" : [ "userpoints_rules", "comment" ],
+      "ON" : {
+        "comment_delete--comment_node_answers_question" : { "bundle" : "comment_node_answers_question" },
+        "comment_delete--comment_node_answers_answer" : { "bundle" : "comment_node_answers_answer" }
+      },
+      "DO" : [
+        { "userpoints_action_grant_points" : {
+            "user" : [ "comment:author" ],
+            "points" : "-1",
+            "tid" : "0",
+            "entity" : [ "" ],
+            "operation" : "Remove comment",
+            "display" : "1",
+            "moderate" : "default"
+          }
+        }
+      ]
+    }
+  }');
   $items['rules_create_answer'] = entity_import('rules_config', '{ "rules_create_answer" : {
       "LABEL" : "create_answer",
       "PLUGIN" : "reaction rule",
@@ -40,6 +63,29 @@ function myassist_questions_answers_default_rules_configuration() {
             "recipient" : [ "node:answers-related-question:author" ],
             "messageType" : "question_answered",
             "node" : [ "node:answers-related-question" ]
+          }
+        }
+      ]
+    }
+  }');
+  $items['rules_create_comment'] = entity_import('rules_config', '{ "rules_create_comment" : {
+      "LABEL" : "create_comment",
+      "PLUGIN" : "reaction rule",
+      "OWNER" : "rules",
+      "REQUIRES" : [ "userpoints_rules", "comment" ],
+      "ON" : {
+        "comment_insert--comment_node_answers_question" : { "bundle" : "comment_node_answers_question" },
+        "comment_insert--comment_node_answers_answer" : { "bundle" : "comment_node_answers_answer" }
+      },
+      "DO" : [
+        { "userpoints_action_grant_points" : {
+            "user" : [ "comment:author" ],
+            "points" : "1",
+            "tid" : "0",
+            "entity" : [ "comment" ],
+            "operation" : "Create comment",
+            "display" : "1",
+            "moderate" : "default"
           }
         }
       ]
@@ -109,6 +155,15 @@ function myassist_questions_answers_default_rules_configuration() {
           }
         }
       ]
+    }
+  }');
+  $items['rules_lock_question'] = entity_import('rules_config', '{ "rules_lock_question" : {
+      "LABEL" : "lock_question",
+      "PLUGIN" : "reaction rule",
+      "OWNER" : "rules",
+      "REQUIRES" : [ "flag" ],
+      "ON" : { "flag_flagged_best_answer" : [] },
+      "DO" : []
     }
   }');
   return $items;
