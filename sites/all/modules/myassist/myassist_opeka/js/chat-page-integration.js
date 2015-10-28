@@ -90,6 +90,40 @@ var JST = JST || {},
         }
     });
 
+    // Replace the default FatalErrorDialogView
+    (function() {
+        var closeChatAndGoToFrontpage = function() {
+            if(window.opener) {
+                window.opener.location.href = "/";
+                window.close();
+            } else {
+                window.location.href = "/";
+            }
+        }
+        Opeka.FatalErrorDialogView = Opeka.DialogView.extend({
+            initialize: function (options) {
+                // Reload the page when the dialog is closed.
+                options.dialogOptions = {
+                    close: closeChatAndGoToFrontpage,
+                    width: 400
+                };
+
+                options.content = this.make('p', { 'class': "message" }, options.message);
+
+                // Call the parent initialize once we're done customising.
+                Opeka.DialogView.prototype.initialize.call(this, options);
+
+                // Add a reload button that does the same.
+                this.addButton(Drupal.t('Reload the page'), function () {
+                    window.location.reload();
+                });
+                this.addButton(Drupal.t('Go to the front page'), closeChatAndGoToFrontpage);
+
+                return this;
+            }
+        });// END FatalErrorDialogView
+    })();
+
 
     $(function() {
         var opeka_settings = Drupal.settings.opeka;

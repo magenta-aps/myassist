@@ -1,0 +1,97 @@
+# $Id$
+#
+# LANGUAGE translation of Drupal (general)
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+# Generated from files:
+#  myassist_opeka.module: n/a
+#  myassist_opeka.info: n/a
+#  js/chat-page-integration.js: n/a
+#  js/chat-ribbons.js: n/a
+#  templates/chatribbons.tpl.php: n/a
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2015-10-28 11:08+0100\n"
+"PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
+"Last-Translator: Jørgen Ulrik B. Krag\n"
+"Language: da\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: myassist_opeka.module:190
+msgid "Chat notification ribbons"
+msgstr "Chat-ribbons"
+
+#: templates/chatribbons.tpl.php:16
+msgid "Chatten er optaget"
+msgstr ""
+
+#: templates/chatribbons.tpl.php:15
+msgid "Chatten er åben"
+msgstr ""
+
+#: js/chat-page-integration.js:0
+msgid ""
+"Det kan være nemmere at hjælpe dig, hvis du skriver din rigtige alder og "
+"køn, men det er ikke et krav"
+msgstr ""
+
+#: js/chat-ribbons.js:0
+msgid "Forbinder til chat..."
+msgstr ""
+
+#: js/chat-page-integration.js:0
+msgid "Go to the front page"
+msgstr "Gå til MitAssist forsiden"
+
+#: templates/chatribbons.tpl.php:31
+msgid "Gruppe-chat"
+msgstr ""
+
+#: js/chat-page-integration.js:0
+msgid "Hvis du ikke angiver et brugernavn vil du blive tildelt navnet Anonym"
+msgstr ""
+
+#: myassist_opeka.info:0
+msgid "Integration of the Opeka chat system into the Myassist site"
+msgstr ""
+
+#: js/chat-ribbons.js:0
+msgid "Kunne ikke forbinde til chat. Lukker vindue."
+msgstr ""
+
+#: myassist_opeka.info:0
+msgid "MyAssist Opeka Chat Integration"
+msgstr ""
+
+#: js/chat-page-integration.js:0
+msgid "Reload the page"
+msgstr "Genindlæs siden"
+
+#: js/chat-page-integration.js:0
+msgid "Rådgiver"
+msgstr ""
+
+#: templates/chatribbons.tpl.php:13
+msgid "Rådgivnings-chat"
+msgstr ""
+
+#: templates/chatribbons.tpl.php:24
+msgid "Settings"
+msgstr "Indstillinger"
+
+#: js/chat-page-integration.js:0
+msgid "Skjul mine brugeroplysninger i chatten"
+msgstr ""
+
+#: templates/chatribbons.tpl.php:19;37
+msgid "Start chat"
+msgstr ""
+
+#: js/chat-page-integration.js:0
+msgid ""
+"Vælg et alternativt brugernavn. Hvis du ikke angiver et brugernavn vil du "
+"blive tildelt navnet Anonym"
+msgstr ""
