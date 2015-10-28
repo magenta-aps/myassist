@@ -19,17 +19,23 @@
 
             this.populateBoxes();
 
-            $("div.chat-status-box span.startbutton").on("click", function() {
-                var $boxDiv = ChatStatus.getBoxElem(this),
-                    status = ChatStatus.getStatus($boxDiv),
-                    roomType = $boxDiv.hasClass("pair") ? "pair" : "group";
+            if(Drupal.settings.drupal_logged_in) {
+                $("div.chat-status-box span.startbutton").on("click", function() {
+                    var $boxDiv = ChatStatus.getBoxElem(this),
+                        status = ChatStatus.getStatus($boxDiv),
+                        roomType = $boxDiv.hasClass("pair") ? "pair" : "group";
 
-                if(status == "chat-open") {
-                    Opeka.ChatUpdates.getSignInURL(roomType, function(url) {
-                        window.open(url);
-                    });
-                }
-            });
+                    if(status == "chat-open") {
+                        Opeka.ChatUpdates.getSignInURL(roomType, function(url) {
+                            window.open(url);
+                        });
+                    }
+                });
+            } else {
+                $("div.chat-status-box span.startbutton").addClass("disabled").html(
+                    Drupal.t("Du skal være logget ind før du kan deltage i chatten")
+                )
+            }
         },
 
         getBoxElem: function(elem) {

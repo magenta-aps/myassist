@@ -7,13 +7,14 @@
 #  myassist_opeka.info: n/a
 #  js/chat-page-integration.js: n/a
 #  js/chat-ribbons.js: n/a
+#  js/chat-status-page.js: n/a
 #  templates/chatribbons.tpl.php: n/a
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2015-10-28 11:08+0100\n"
+"POT-Creation-Date: 2015-10-28 15:25+0100\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -22,7 +23,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: myassist_opeka.module:190
+#: myassist_opeka.module:191
 msgid "Chat notification ribbons"
 msgstr ""
 
@@ -68,6 +69,10 @@ msgstr ""
 
 #: js/chat-ribbons.js:0
 msgid "Kunne ikke forbinde til chat. Lukker vindue."
+msgstr ""
+
+#: js/chat-status-page.js:0
+msgid "Du skal være logget ind før du kan deltage i chatten"
 msgstr ""
 
 #: templates/chatribbons.tpl.php:13
