@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2015-10-28 15:25+0100\n"
+"POT-Creation-Date: 2015-10-28 15:32+0100\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: Jørgen Ulrik B. Krag\n"
 "Language: da\n"
@@ -36,10 +36,6 @@ msgstr ""
 msgid ""
 "Det kan være nemmere at hjælpe dig, hvis du skriver din rigtige alder og "
 "køn, men det er ikke et krav"
-msgstr ""
-
-#: js/chat-status-page.js:0
-msgid "Du skal være logget ind før du kan deltage i chatten"
 msgstr ""
 
 #: js/chat-ribbons.js:0
@@ -99,3 +95,7 @@ msgid ""
 "Vælg et alternativt brugernavn. Hvis du ikke angiver et brugernavn vil du "
 "blive tildelt navnet Anonym"
 msgstr ""
+
+#: js/chat-status-page.js:0
+msgid "You must be logged in to access the chat"
+msgstr "Du skal være logget ind før du kan deltage i chatten"

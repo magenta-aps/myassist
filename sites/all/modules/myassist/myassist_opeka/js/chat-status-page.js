@@ -33,7 +33,7 @@
                 });
             } else {
                 $("div.chat-status-box span.startbutton").addClass("disabled").html(
-                    Drupal.t("Du skal være logget ind før du kan deltage i chatten")
+                    Drupal.t("You must be logged in to access the chat")
                 )
             }
         },

@@ -14,7 +14,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2015-10-28 15:25+0100\n"
+"POT-Creation-Date: 2015-10-28 15:32+0100\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -72,7 +72,7 @@ msgid "Kunne ikke forbinde til chat. Lukker vindue."
 msgstr ""
 
 #: js/chat-status-page.js:0
-msgid "Du skal være logget ind før du kan deltage i chatten"
+msgid "You must be logged in to access the chat"
 msgstr ""
 
 #: templates/chatribbons.tpl.php:13
