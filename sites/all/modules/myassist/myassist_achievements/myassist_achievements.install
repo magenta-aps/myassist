@@ -51,18 +51,17 @@ function myassist_achievements_schema() {
 
 
 function myassist_achievements_install() {
-    $k = 10;
-    $factor = 1.1;
-    $q = db_insert('myassist_achievements_levels')->fields(array('level','points','title'));
-    for ($level=0; $level<=100; $level++) {
-        $points = $level > 0 ? ceil( ($k / ($factor - 1)) * (pow($factor, $level) - 1) ) : 0;
-        $key = "Level " . $level;
-        $q->values(array(
-          (int) $level,
-          (int) $points,
-          $key
-        ));
-        t($key);
-    }
-    $q->execute();
+  $q = db_insert('myassist_achievements_levels')->fields(array('level','points','title'));
+  $q->values(array(0, 0, t("Level 0")));
+  $q->values(array(1, 100, t("Level 1")));
+  $q->values(array(2, 200, t("Level 2")));
+  $q->values(array(3, 400, t("Level 3")));
+  $q->values(array(4, 700, t("Level 4")));
+  $q->values(array(5, 1200, t("Level 5")));
+  $q->values(array(6, 2000, t("Level 6")));
+  $q->values(array(7, 3500, t("Level 7")));
+  $q->values(array(8, 6000, t("Level 8")));
+  $q->values(array(9, 10000, t("Level 9")));
+  $q->values(array(10, 15000, t("Level 10")));
+  $q->execute();
 }

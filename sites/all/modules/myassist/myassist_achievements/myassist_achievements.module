@@ -94,16 +94,110 @@ function myassist_achievements_permission() {
 /**
  * Implements hook_node_insert().
  * Trigger achievements for question posting
+ * Trigger achievements for question answering
  */
 function myassist_achievements_node_insert($node) {
+  $uid = $node->uid;
   if ($node->type === "answers_question") {
-    $current_count = achievements_storage_get('question-count', $node->uid) + 1;
-    achievements_storage_set('question-count', $current_count, $node->uid);
+    $current_count = achievements_storage_get('question-count', $uid) + 1;
+    achievements_storage_set('question-count', $current_count, $uid);
 
     if (in_array($current_count, array(1, 3))) {
-      achievements_unlocked('question-count-' . $current_count, $node->uid);
+      achievements_unlocked('question-count-' . $current_count, $uid);
+    }
+    // Test and trigger question achievements
+  } else if ($node->type === "answers_answer") {
+    $question = answers_answer_question($node);
+    $answers = answers_question_answers($question);
+    //if (count($answers) === 1 && array_values($answers)[0]->nid === $node->nid) {
+      // Test and trigger first-post achievements
+    //}
+    // Test and trigger any-post achievements
+  }
+}
+/**
+ * Implements hook_votingapi_insert().
+ */
+function myassist_achievements_votingapi_insert($votes) {
+  foreach ($votes as $id => $vote) {
+    $node = node_load($vote['entity_id']);
+    $uid = $node->uid;
+    // Test and trigger vote achievements
+  }
+}
+/**
+ * Implements hook_flag_flag().
+ */
+
+function myassist_achievements_flag_flag($flag, $content_id, $account, $flagging) {
+  if ($flag->name == "best_answer") {
+    $flagged_answer = node_load($content_id);
+    if ($flagged_answer) {
+      $uid = $flagged_answer->uid;
+      // Test and trigger best-answer achievements
     }
   }
+}
+
+/**
+ * Implements hook_node_view().
+ */
+function myassist_achievements_node_view($node, $view_mode, $langcode) {
+  global $user;
+  $uid = $user->uid;
+
+  $one_week = 7 * 24 * 60 * 60;
+  $one_month = 30 * 24 * 60 * 60;
+
+
+  $first_answers_this_week = count(myassist_achievements_get_user_first_answer_ids($uid, $one_week));
+  print("first_answers_this_week: $first_answers_this_week");
+
+  $first_answers_this_month = count(myassist_achievements_get_user_first_answer_ids($uid, $one_month));
+  print("first_answers_this_month: $first_answers_this_month");
+
+  $first_answers_total = count(myassist_achievements_get_user_first_answer_ids($uid));
+  print("first_answers_total: $first_answers_total");
+
+
+  $answers_this_week = count(myassist_achievements_get_user_answer_ids($uid, $one_week));
+  print("answers_this_week: $answers_this_week");
+
+  $answers_this_month = count(myassist_achievements_get_user_answer_ids($uid, $one_month));
+  print("answers_this_month: $answers_this_month");
+
+  $answers_total = count(myassist_achievements_get_user_answer_ids($uid));
+  print("answers_total: $answers_total");
+
+
+  $questions_this_week = count(myassist_achievements_get_user_question_ids($uid, $one_week));
+  print("questions_this_week: $questions_this_week");
+
+  $questions_this_month = count(myassist_achievements_get_user_question_ids($uid, $one_month));
+  print("questions_this_month: $questions_this_month");
+
+  $questions_total = count(myassist_achievements_get_user_question_ids($uid));
+  print("questions_total: $questions_total");
+
+  $votes_this_week = count(myassist_achievements_get_user_vote_ids($uid, $one_week));
+  print("votes_this_week: $votes_this_week");
+
+  $votes_this_month = count(myassist_achievements_get_user_vote_ids($uid, $one_month));
+  print("votes_this_month: $votes_this_month");
+
+  $votes_total = count(myassist_achievements_get_user_vote_ids($uid));
+  print("votes_total: $votes_total");
+
+  $best_assists_this_week = count(myassist_achievements_get_best_assist_ids($uid, $one_week));
+  print("best_assists_this_week: $best_assists_this_week");
+
+  $best_assists_this_month = count(myassist_achievements_get_best_assist_ids($uid, $one_month));
+  print("best_assists_this_month: $best_assists_this_month");
+
+  $best_assists_total = count(myassist_achievements_get_best_assist_ids($uid));
+  print("best_assists_total: $best_assists_total");
+
+
 }
 
 function myassist_achievements_user_can_earn_points($uid) {
@@ -628,4 +722,94 @@ function myassist_achievements_menu_alter(&$items) {
   // Always show leaderboard
   $items['achievements/leaderboard']['access callback'] = 1;
   $items['achievements/leaderboard/%achievements']['access callback'] = 1;
+}
+
+
+//------------------------------------------------------------------------------
+
+function myassist_achievements_get_user_answer_ids($uid, $maxAge = null) {
+  $data = array(":uid" => $uid);
+  $timeReq = "";
+
+  if ($maxAge != null) {
+    $timeReq = "AND node.created > UNIX_TIMESTAMP(NOW()) - :maxAge";
+    $data[":maxAge"] = $maxAge;
+  }
+
+  $nids = db_query("SELECT nid
+                      FROM node
+                      WHERE uid = :uid
+                      AND type = 'answers_answer'
+                      $timeReq", $data)->fetchCol();
+  return $nids;
+}
+
+function myassist_achievements_get_user_question_ids($uid, $maxAge = null) {
+  $data = array(":uid" => $uid);
+  $timeReq = "";
+
+  if ($maxAge != null) {
+    $timeReq = "AND node.created > UNIX_TIMESTAMP(NOW()) - :maxAge";
+    $data[":maxAge"] = $maxAge;
+  }
+
+  $nids = db_query("SELECT nid
+                      FROM node
+                      WHERE uid = :uid
+                      AND type = 'answers_question'
+                      $timeReq", $data)->fetchCol();
+  return $nids;
+}
+
+function myassist_achievements_get_user_first_answer_ids($uid, $maxAge = null) {
+  $data = array(":uid" => $uid);
+  $timeReq = "";
+
+  if ($maxAge != null) {
+    $timeReq = "AND node.created > UNIX_TIMESTAMP(NOW()) - :maxAge";
+    $data[":maxAge"] = $maxAge;
+  }
+
+  $nids = db_query("SELECT MIN(relation.entity_id)
+                      FROM field_data_answers_related_question AS relation
+                      JOIN node ON relation.entity_id = node.nid
+                      WHERE node.uid = :uid
+                      $timeReq
+                      GROUP BY answers_related_question_target_id", $data)->fetchCol();
+  return $nids;
+}
+
+function myassist_achievements_get_user_vote_ids($uid, $maxAge = null) {
+  $data = array(":uid" => $uid);
+  $timeReq = "";
+
+  if ($maxAge != null) {
+    $timeReq = "AND vote.timestamp > UNIX_TIMESTAMP(NOW()) - :maxAge";
+    $data[":maxAge"] = $maxAge;
+  }
+
+  $ids = db_query("SELECT vote.vote_id FROM votingapi_vote AS vote
+                      JOIN node ON vote.entity_id = node.nid
+                      WHERE node.uid = :uid
+                      $timeReq", $data)->fetchCol();
+  return $ids;
+}
+
+function myassist_achievements_get_best_assist_ids($uid, $maxAge = null) {
+  $data = array(":uid" => $uid);
+  $timeReq = "";
+
+  if ($maxAge != null) {
+    $timeReq = "AND flag.last_updated > UNIX_TIMESTAMP(NOW()) - :maxAge";
+    $data[":maxAge"] = $maxAge;
+  }
+
+  $nids = db_query("SELECT node.nid FROM flag_counts AS flag
+                      JOIN node ON flag.entity_id = node.nid
+                      JOIN flag as flag_type ON flag.fid = flag_type.fid
+                      WHERE node.uid = :uid
+                      AND flag.count = 1
+                      AND flag_type.name = 'best_answer'
+                      $timeReq", $data)->fetchCol();
+  return $nids;
 }
