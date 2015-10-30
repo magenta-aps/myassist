@@ -387,6 +387,7 @@ function myassist_achievements_achievements_leaderboard_alter(&$leaderboard) {
   $limit = 10;
   $pos = 1;
   $render = &$leaderboard['render'];
+  $no_achievements = array();
   if (array_key_exists('achievers', $leaderboard)) {
     foreach ($leaderboard['achievers'] as $list_type => &$list) {
       foreach ($list as $uid => $account) {
@@ -397,6 +398,10 @@ function myassist_achievements_achievements_leaderboard_alter(&$leaderboard) {
           unset($list[$uid]);
         } else {
           $pos++;
+        }
+        if (!$account['achievement_id']) {
+          $account['latest']["#achievement"] = array();
+          $no_achievements[] = $uid;
         }
       }
     }
@@ -413,8 +418,12 @@ function myassist_achievements_achievements_leaderboard_alter(&$leaderboard) {
         $row['data'][0]['data'] = $pos;
         $pos++;
       }
+      if (in_array($uid, $no_achievements)) {
+        $row['data'][4]['data'] = "";
+      }
     }
   }
+  
   // #13647: remove unlocks column
   myassist_achievements_remove_column($render, t('Unlocks'));
 }
@@ -542,6 +551,7 @@ function myassist_achievements_theme($existing, $type, $theme, $path){
  * Make sure to translate achievement titles and descriptions for the UI
  */
 function myassist_achievements_preprocess_achievement(&$variables) {
+  var_dump($variables);
   if (isset($variables['achievement'])) {
     if (isset($variables['achievement']['title'])) {
       $original = $variables['achievement']['title'];
@@ -561,6 +571,10 @@ function myassist_achievements_preprocess_achievement(&$variables) {
         $variables['achievement']['description'] = $translated;
       }
     }
+  } else {
+    unset($variables['image']);
+    unset($variables['achievement_title']);
+    unset($variables['achievement_points']);
   }
 }
 
