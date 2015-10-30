@@ -101,10 +101,6 @@
 ?>
 
 
-<?php if ($page && $locked) {
-  print '<em class="question_locked">' . t("[Solved]") . '</em>';
-} ?>
-
 <div class="node-answers-wrapper">
   <div id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix" <?php print $attributes; ?>>
     <?php print render($title_prefix); ?>
@@ -145,6 +141,7 @@
           <?php
             if ($locked) {
               print '<em class="question_locked" tite="' . t("[Solved]") . '">&#10004;</em>';
+              print '<em class="question_locked">' . t("[Solved]") . '</em>';
             }
           ?>
           <div class="answers-submitted">
