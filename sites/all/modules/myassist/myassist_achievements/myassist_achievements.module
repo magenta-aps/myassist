@@ -724,13 +724,13 @@ function myassist_achievements_achievements_locked($achievement, $uid) {
 
 
 function myassist_achievements_copy_to_achievement_table($uid, $points) {
-  $count = db_select('achievement_totals')->condition('uid', $uid)->countQuery()->execute()->fetchField();
-  if ($count) {
+  //$count = db_select('achievement_totals')->condition('uid', $uid)->countQuery()->execute()->fetchField();
+  //if ($count) {
     db_merge('achievement_totals')
       ->key(array('uid' => $uid))
       ->fields(array('points' => $points))
       ->execute();
-  }
+  //}
 }
 function myassist_achievements_copy_to_userpoints_table($uid, $addpoints, $reason=null) {
   $params = array(
