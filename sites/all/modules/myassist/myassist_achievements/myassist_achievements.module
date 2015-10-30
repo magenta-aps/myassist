@@ -399,8 +399,8 @@ function myassist_achievements_achievements_leaderboard_alter(&$leaderboard) {
         } else {
           $pos++;
         }
-        if (!$account['achievement_id']) {
-          $account['latest']["#achievement"] = array();
+        if (!$account->achievement_id) {
+          $account->latest["#achievement"] = array();
           $no_achievements[] = $uid;
         }
       }
