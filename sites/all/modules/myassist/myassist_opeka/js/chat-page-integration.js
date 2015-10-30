@@ -170,6 +170,22 @@ var JST = JST || {},
             return old_template(data);
         });
 
+
+        /* Overrule rendering function for sidebar to add additional javascript triggers */
+        (function($) {
+            var old_render = Opeka.ChatSidebarView.prototype.render;
+            Opeka.ChatSidebarView.prototype.render = function() {
+                console.log("Custom render called!");
+                var ret = old_render.apply(this, arguments);
+                this.$el.find('[data-toggle="dropdown"]').on("click", function(e) {
+                    $(this).parent().find(".dropdown-menu").toggle();
+                    e.preventDefault();
+                    return false;
+                });
+                return ret;
+            }
+        })($);
+
     });
 
 })(Opeka, JST, jQuery);
