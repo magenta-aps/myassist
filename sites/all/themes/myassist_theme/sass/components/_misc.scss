@@ -150,13 +150,13 @@
     overflow: hidden;
     font-size: $u*0.8;
   }
-  .menu__link[href="/frontpage"] {
+  .menu__link[href="/da/frontpage"] {
     background-image: url(../images/icons/question.png);
   }
-  .menu__link[href="/user/view"] {
+  .menu__link[href="/da/user/view"] {
     background-image: url(../images/icons/profil.svg);
   }
-  .menu__link[href="/chat"] {
+  .menu__link[href="/da/chat"] {
     background-image: url(../images/icons/chat.svg);
   }
   .active {
