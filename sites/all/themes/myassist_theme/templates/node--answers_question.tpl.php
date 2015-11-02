@@ -208,7 +208,9 @@
         ?>
 
       </div>
-      <?php print render($content['comments']); ?>
+      <?php
+        print render($content['comments']);
+      ?>
     </div>  
   </div>
 
