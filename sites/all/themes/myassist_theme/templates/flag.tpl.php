@@ -48,22 +48,24 @@
  * some advanced theming you may have to remove all the whitespace.
  */
 ?>
-
-<?php if ($needs_wrapping_element): ?>
+<?php if ($needs_wrapping_element) { ?>
   <div class="flag-outer flag-outer-<?php print $flag_name_css; ?>">
-<?php endif; ?>
+<?php } ?>
 <span class="<?php print $flag_wrapper_classes; ?>">
-  <?php if ($link_href): ?>
-    <a href="<?php print $link_href; ?>" title="<?php print $link_title; ?>" class="<?php print $flag_classes ?>" rel="nofollow" <?php print ($flag->name==='best_answer' && $action==='flag') ? 'data-dialog-text="'.t('best_answer_confirmation').'"' : '' ?>><?php print $link_text; ?></a><span class="flag-throbber">&nbsp;</span>
-  <?php else: ?>
-    <span class="<?php print $flag_classes ?>"><?php print $link_text; ?></span>
-  <?php endif; ?>
-  <?php if ($after_flagging): ?>
+  <?php if ($link_href){
+    print "<a href=\"$link_href\" title=\"$link_title\" class=\"$flag_classes\" rel=\"nofollow\" " .
+      (($flag->name==='best_answer' && $action==='flag') ? ('data-dialog-text="'.t('best_answer_confirmation').'"') : '') .
+     ">$link_text</a><span class=\"flag-throbber\">&nbsp;</span>";
+  } else {
+    print "<span class=\"$flag_classes\">$link_text</span>";
+  }
+  ?>
+  <?php if ($after_flagging) { ?>
     <span class="<?php print $message_classes; ?>">
       <?php print $message_text; ?>
     </span>
-  <?php endif; ?>
+  <?php } ?>
 </span>
-<?php if ($needs_wrapping_element): ?>
+<?php if ($needs_wrapping_element){ ?>
   </div>
-<?php endif; ?>
+<?php } ?>

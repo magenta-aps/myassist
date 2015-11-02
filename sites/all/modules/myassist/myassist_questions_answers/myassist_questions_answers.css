@@ -2,3 +2,9 @@
 .node-answers-question .rate-widget-number_up_down {
     float: left;
 }
+
+.node-answers-answer .flag-helpertext {
+    float: right;
+    clear: right;
+    font-size: 8pt;
+}
