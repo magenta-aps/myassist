@@ -45,7 +45,7 @@
         }
       });
 
-      $("#answers-btn-lock, .flag-action").each(function(){
+      $("#answers-btn-lock, a.flag-action").each(function(){
         var $this = $(this);
         if (!$this.data('hasConfirmation')) {
           $this.data('hasConfirmation', true);
@@ -62,12 +62,13 @@
             return false;
           };
           var run = function (event) {
-            for (var i = 0; i < otherClickHandlers.length; i++) {
+            /*for (var i = 0; i < otherClickHandlers.length; i++) {
               if (!event.isImmediatePropagationStopped()) {
                 otherClickHandlers[i].handler.call(this, event);
               }
             }
-            document.location.reload(true);
+            document.location.reload(true);*/
+            document.location = $this.attr("href");
           }.bind(this);
 
           $this.click(function (event) {
