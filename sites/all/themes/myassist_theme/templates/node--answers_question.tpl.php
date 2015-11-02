@@ -206,6 +206,8 @@
           }
         }
         ?>
+
+        <?php print render($content['comments']['comment_form']); ?>
       </div>
       <?php print render($content['comments']); ?>
     </div>  
