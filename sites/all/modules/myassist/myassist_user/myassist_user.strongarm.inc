@@ -13,9 +13,30 @@ function myassist_user_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'comment_anonymous_article';
+  $strongarm->value = 0;
+  $export['comment_anonymous_article'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'comment_anonymous_page';
   $strongarm->value = 0;
   $export['comment_anonymous_page'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_article';
+  $strongarm->value = '2';
+  $export['comment_article'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_default_mode_article';
+  $strongarm->value = 1;
+  $export['comment_default_mode_article'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -27,9 +48,23 @@ function myassist_user_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'comment_default_per_page_article';
+  $strongarm->value = '50';
+  $export['comment_default_per_page_article'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'comment_default_per_page_page';
   $strongarm->value = '50';
   $export['comment_default_per_page_page'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_form_location_article';
+  $strongarm->value = 1;
+  $export['comment_form_location_article'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -42,8 +77,15 @@ function myassist_user_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'comment_page';
-  $strongarm->value = 0;
+  $strongarm->value = '0';
   $export['comment_page'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_preview_article';
+  $strongarm->value = '1';
+  $export['comment_preview_article'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -51,6 +93,13 @@ function myassist_user_strongarm() {
   $strongarm->name = 'comment_preview_page';
   $strongarm->value = '1';
   $export['comment_preview_page'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_subject_field_article';
+  $strongarm->value = 1;
+  $export['comment_subject_field_article'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -96,6 +145,56 @@ function myassist_user_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'field_bundle_settings_node__article';
+  $strongarm->value = array(
+    'view_modes' => array(
+      'teaser' => array(
+        'custom_settings' => TRUE,
+      ),
+      'answers_full_node' => array(
+        'custom_settings' => TRUE,
+      ),
+      'full' => array(
+        'custom_settings' => FALSE,
+      ),
+      'rss' => array(
+        'custom_settings' => FALSE,
+      ),
+      'search_index' => array(
+        'custom_settings' => FALSE,
+      ),
+      'search_result' => array(
+        'custom_settings' => FALSE,
+      ),
+      'diff_standard' => array(
+        'custom_settings' => FALSE,
+      ),
+    ),
+    'extra_fields' => array(
+      'form' => array(),
+      'display' => array(
+        'language' => array(
+          'default' => array(
+            'weight' => '0',
+            'visible' => TRUE,
+          ),
+          'teaser' => array(
+            'weight' => '0',
+            'visible' => FALSE,
+          ),
+          'answers_full_node' => array(
+            'weight' => '0',
+            'visible' => FALSE,
+          ),
+        ),
+      ),
+    ),
+  );
+  $export['field_bundle_settings_node__article'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'field_bundle_settings_node__page';
   $strongarm->value = array(
     'view_modes' => array(
@@ -133,6 +232,14 @@ function myassist_user_strongarm() {
       'display' => array(
         'language' => array(
           'default' => array(
+            'weight' => '0',
+            'visible' => FALSE,
+          ),
+          'answers_full_node' => array(
+            'weight' => '0',
+            'visible' => FALSE,
+          ),
+          'teaser' => array(
             'weight' => '0',
             'visible' => FALSE,
           ),
@@ -238,35 +345,41 @@ function myassist_user_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'i18n_node_default_language_none';
-  $strongarm->value = '1';
+  $strongarm->value = '0';
   $export['i18n_node_default_language_none'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'i18n_node_extended_answers_answer';
-  $strongarm->value = 1;
+  $strongarm->value = '1';
   $export['i18n_node_extended_answers_answer'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'i18n_node_extended_answers_question';
-  $strongarm->value = 1;
+  $strongarm->value = '1';
   $export['i18n_node_extended_answers_question'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'i18n_node_options_answers_answer';
-  $strongarm->value = array();
+  $strongarm->value = array(
+    0 => 'current',
+    1 => 'required',
+  );
   $export['i18n_node_options_answers_answer'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'i18n_node_options_answers_question';
-  $strongarm->value = array();
+  $strongarm->value = array(
+    0 => 'current',
+    1 => 'required',
+  );
   $export['i18n_node_options_answers_question'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -298,7 +411,7 @@ function myassist_user_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'l10n_update_last_check';
-  $strongarm->value = 1443699354;
+  $strongarm->value = 1446200279;
   $export['l10n_update_last_check'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -870,6 +983,41 @@ function myassist_user_strongarm() {
         'filename' => '',
         'fileurl' => '',
         'uri' => '',
+      ),
+    ),
+    'extlink' => array(
+      'da' => (object) array(
+        'name' => 'extlink',
+        'project_type' => 'module',
+        'core' => '7.x',
+        'version' => '7.x-1.18',
+        'server_pattern' => 'http://ftp.drupal.org/files/translations/%core/%project/%project-%release.%language.po',
+        'status' => '1',
+        'project' => 'extlink',
+        'langcode' => 'da',
+        'type' => '',
+        'timestamp' => 0,
+        'last_checked' => 0,
+        'files' => array(
+          'remote' => (object) array(
+            'project' => 'extlink',
+            'langcode' => 'da',
+            'version' => '7.x-1.18',
+            'type' => 'remote',
+            'filename' => 'extlink-7.x-1.18.da.po',
+            'uri' => 'http://ftp.drupal.org/files/translations/7.x/extlink/extlink-7.x-1.18.da.po',
+          ),
+          'local' => (object) array(
+            'project' => 'extlink',
+            'langcode' => 'da',
+            'version' => '7.x-1.18',
+            'type' => 'local',
+            'filename' => 'extlink-7.x-1.18.da.po',
+            'directory' => 'translations://',
+            'uri' => 'translations://extlink-7.x-1.18.da.po',
+          ),
+        ),
+        'language' => 'da',
       ),
     ),
     'faq' => array(
@@ -1481,6 +1629,48 @@ function myassist_user_strongarm() {
         'language' => 'da',
       ),
     ),
+    'pathauto' => array(
+      'da' => (object) array(
+        'name' => 'pathauto',
+        'project_type' => 'module',
+        'core' => '7.x',
+        'version' => '7.x-1.3',
+        'server_pattern' => 'http://ftp.drupal.org/files/translations/%core/%project/%project-%release.%language.po',
+        'status' => '1',
+        'project' => 'pathauto',
+        'langcode' => 'da',
+        'type' => 'current',
+        'timestamp' => 1446200276,
+        'last_checked' => 1446200276,
+        'files' => array(
+          'remote' => (object) array(
+            'project' => 'pathauto',
+            'langcode' => 'da',
+            'version' => '7.x-1.3',
+            'type' => 'remote',
+            'filename' => 'pathauto-7.x-1.3.da.po',
+            'uri' => 'http://ftp.drupal.org/files/translations/7.x/pathauto/pathauto-7.x-1.3.da.po',
+            'timestamp' => 1444459398,
+          ),
+          'local' => (object) array(
+            'project' => 'pathauto',
+            'langcode' => 'da',
+            'version' => '7.x-1.3',
+            'type' => 'local',
+            'filename' => 'pathauto-7.x-1.3.da.po',
+            'uri' => 'translations://pathauto-7.x-1.3.da.po',
+            'timestamp' => 1446200276,
+            'directory' => 'translations://',
+            'last_checked' => 1446200276,
+            'language' => 'da',
+          ),
+        ),
+        'language' => 'da',
+        'filename' => '',
+        'fileurl' => '',
+        'uri' => '',
+      ),
+    ),
     'pathologic' => array(
       'da' => (object) array(
         'name' => 'pathologic',
@@ -1724,6 +1914,41 @@ function myassist_user_strongarm() {
         'uri' => '',
       ),
     ),
+    'smart_trim' => array(
+      'da' => (object) array(
+        'name' => 'smart_trim',
+        'project_type' => 'module',
+        'core' => '7.x',
+        'version' => '7.x-1.5',
+        'server_pattern' => 'http://ftp.drupal.org/files/translations/%core/%project/%project-%release.%language.po',
+        'status' => '1',
+        'project' => 'smart_trim',
+        'langcode' => 'da',
+        'type' => '',
+        'timestamp' => 0,
+        'last_checked' => 0,
+        'files' => array(
+          'remote' => (object) array(
+            'project' => 'smart_trim',
+            'langcode' => 'da',
+            'version' => '7.x-1.5',
+            'type' => 'remote',
+            'filename' => 'smart_trim-7.x-1.5.da.po',
+            'uri' => 'http://ftp.drupal.org/files/translations/7.x/smart_trim/smart_trim-7.x-1.5.da.po',
+          ),
+          'local' => (object) array(
+            'project' => 'smart_trim',
+            'langcode' => 'da',
+            'version' => '7.x-1.5',
+            'type' => 'local',
+            'filename' => 'smart_trim-7.x-1.5.da.po',
+            'directory' => 'translations://',
+            'uri' => 'translations://smart_trim-7.x-1.5.da.po',
+          ),
+        ),
+        'language' => 'da',
+      ),
+    ),
     'strongarm' => array(
       'da' => (object) array(
         'name' => 'strongarm',
@@ -1806,6 +2031,45 @@ function myassist_user_strongarm() {
         'filename' => '',
         'fileurl' => '',
         'uri' => '',
+      ),
+    ),
+    'token' => array(
+      'da' => (object) array(
+        'name' => 'token',
+        'project_type' => 'module',
+        'core' => '7.x',
+        'version' => '7.x-1.6',
+        'server_pattern' => 'http://ftp.drupal.org/files/translations/%core/%project/%project-%release.%language.po',
+        'status' => '1',
+        'project' => 'token',
+        'langcode' => 'da',
+        'type' => 'current',
+        'timestamp' => 1428501998,
+        'last_checked' => 1446200274,
+        'files' => array(
+          'remote' => (object) array(
+            'project' => 'token',
+            'langcode' => 'da',
+            'version' => '7.x-1.6',
+            'type' => 'remote',
+            'filename' => 'token-7.x-1.6.da.po',
+            'uri' => 'http://ftp.drupal.org/files/translations/7.x/token/token-7.x-1.6.da.po',
+            'timestamp' => 1425362384,
+          ),
+          'local' => (object) array(
+            'project' => 'token',
+            'langcode' => 'da',
+            'version' => '7.x-1.6',
+            'type' => 'local',
+            'filename' => 'token-7.x-1.6.da.po',
+            'directory' => 'translations://',
+            'uri' => 'translations://token-7.x-1.6.da.po',
+            'timestamp' => 1428501998,
+            'last_checked' => 1446200274,
+            'language' => 'da',
+          ),
+        ),
+        'language' => 'da',
       ),
     ),
     'user_picture_field' => array(
@@ -2102,15 +2366,22 @@ function myassist_user_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'language_content_type_answers_answer';
-  $strongarm->value = '0';
+  $strongarm->value = '1';
   $export['language_content_type_answers_answer'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'language_content_type_answers_question';
-  $strongarm->value = '0';
+  $strongarm->value = '1';
   $export['language_content_type_answers_question'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'language_content_type_article';
+  $strongarm->value = '1';
+  $export['language_content_type_article'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -2140,6 +2411,15 @@ function myassist_user_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'menu_options_article';
+  $strongarm->value = array(
+    0 => 'main-menu',
+  );
+  $export['menu_options_article'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'menu_options_page';
   $strongarm->value = array(
     0 => 'navigation',
@@ -2149,9 +2429,26 @@ function myassist_user_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'menu_parent_article';
+  $strongarm->value = 'main-menu:0';
+  $export['menu_parent_article'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'menu_parent_page';
   $strongarm->value = 'navigation:0';
   $export['menu_parent_page'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'node_options_article';
+  $strongarm->value = array(
+    0 => 'status',
+    1 => 'promote',
+  );
+  $export['node_options_article'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -2165,6 +2462,13 @@ function myassist_user_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'node_preview_article';
+  $strongarm->value = '1';
+  $export['node_preview_article'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'node_preview_page';
   $strongarm->value = '1';
   $export['node_preview_page'] = $strongarm;
@@ -2172,9 +2476,79 @@ function myassist_user_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'node_submitted_article';
+  $strongarm->value = 1;
+  $export['node_submitted_article'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'node_submitted_page';
-  $strongarm->value = FALSE;
+  $strongarm->value = 0;
   $export['node_submitted_page'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_article_da_pattern';
+  $strongarm->value = '';
+  $export['pathauto_node_article_da_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_article_en_pattern';
+  $strongarm->value = '';
+  $export['pathauto_node_article_en_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_article_pattern';
+  $strongarm->value = '';
+  $export['pathauto_node_article_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_article_und_pattern';
+  $strongarm->value = '';
+  $export['pathauto_node_article_und_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_page_da_pattern';
+  $strongarm->value = '';
+  $export['pathauto_node_page_da_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_page_en_pattern';
+  $strongarm->value = '';
+  $export['pathauto_node_page_en_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_page_pattern';
+  $strongarm->value = '';
+  $export['pathauto_node_page_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_page_und_pattern';
+  $strongarm->value = '';
+  $export['pathauto_node_page_und_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_taxonomy_term_categories_pattern';
+  $strongarm->value = '';
+  $export['pathauto_taxonomy_term_categories_pattern'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
