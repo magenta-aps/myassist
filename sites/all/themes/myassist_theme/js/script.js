@@ -67,6 +67,7 @@
                 otherClickHandlers[i].handler.call(this, event);
               }
             }
+            document.location.reload(true);
           }.bind(this);
 
           $this.click(function (event) {
