@@ -53,7 +53,7 @@ function myassist_questions_answers_node_view($node, $view_mode, $langcode) {
   $flag = flag_get_flag('best_answer') or die('no "best_answer" flag defined');
   if ($flag->is_flagged($node->nid)) {
     //$node->content['best_answer']['#markup'] = '<span class="flag-helpertext">'.t("Valgt som bedste assist").'</span>' . $node->content['best_answer']['#markup'];
-    if ($node->content['best_answer']) {
+    if (array_key_exists('best_answer', $node->content)) {
       $node->content['best_answer']['#markup'] = $node->content['best_answer']['#markup'] . '<span class="flag-helpertext">' . t("Valgt som bedste assist") . '</span>';
     }
   }
