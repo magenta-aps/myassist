@@ -93,6 +93,7 @@ function myassist_achievements_check_achievement($uid, $achievement_group, $coun
   foreach ($achievement_group['achievements'] as $key => $achievement) {
     if (!achievements_unlocked_already($key) && $count >= $achievement['required']) {
       achievements_unlocked($key, $uid);
+
     }
   }
 }
@@ -104,26 +105,26 @@ function myassist_achievements_achievements_info() {
 
   $achievements = array();
 
-  $achievements = array_merge($achievements, myassist_achievements_define_achievement_group('first-assists-all', t('Lucky Luke'), t('Giv %d first assists'), array(5, 20, 50), array(50,100,300)));
-  $achievements = array_merge($achievements, myassist_achievements_define_achievement_group('first-assists-month', t('Jackie Chan'), t('Giv %d first assists på en måned'), array(2, 8, 15)));
-  $achievements = array_merge($achievements, myassist_achievements_define_achievement_group('first-assists-week', t('Usain Bolt'), t('Giv %d first assists på en uge'), array(2, 8, 15)));
+  $achievements = array_merge($achievements, myassist_achievements_define_achievement_group('first-assists-all', t('Jogger'), t('Giv %d first assists'), array(5, 20, 50), array(50,100,300)));
+  $achievements = array_merge($achievements, myassist_achievements_define_achievement_group('first-assists-month', t('Sprinter'), t('Giv %d first assists på en måned'), array(2, 8, 15), array(50,100,300)));
+  $achievements = array_merge($achievements, myassist_achievements_define_achievement_group('first-assists-week', t('Lyn'), t('Giv %d first assists på en uge'), array(2, 8, 15), array(50,100,300)));
 
   $achievements = array_merge($achievements, myassist_achievements_define_achievement_group('assists-all', t('Storebror'), t('Giv %d assists'), array(5, 20, 60), array(50,100,300)));
-  $achievements = array_merge($achievements, myassist_achievements_define_achievement_group('assists-month', t('Rollemodel'), t('Giv %d assists på en måned'), array(3, 10, 25)));
-  $achievements = array_merge($achievements, myassist_achievements_define_achievement_group('assists-week', t('Guru'), t('Giv %d assists på en uge'), array(3, 8, 15)));
+  $achievements = array_merge($achievements, myassist_achievements_define_achievement_group('assists-month', t('Rollemodel'), t('Giv %d assists på en måned'), array(3, 10, 25), array(50,100,300)));
+  $achievements = array_merge($achievements, myassist_achievements_define_achievement_group('assists-week', t('Guru'), t('Giv %d assists på en uge'), array(3, 8, 15), array(50,100,300)));
 
   $achievements = array_merge($achievements, myassist_achievements_define_achievement_group('questions-all', t('Selvudvikler'), t('Opret %d spørgsmål'), array(5, 20, 50), array(50,100,300)));
 
   $achievements = array_merge($achievements, myassist_achievements_define_achievement_group('upvotes-all', t('Folkevalgt'), t('Få %d upvotes'), array(10, 100, 500), array(50,100,300)));
-  $achievements = array_merge($achievements, myassist_achievements_define_achievement_group('upvotes-month', t('Crowdpleaser'), t('Få %d upvotes på en måned'), array(10, 30, 100)));
-  $achievements = array_merge($achievements, myassist_achievements_define_achievement_group('upvotes-week', t('Nationalhelt'), t('Få %d upvotes på en uge'), array(10, 30, 100)));
-  $achievements = array_merge($achievements, myassist_achievements_define_achievement_group('upvotes-week', t('Forfører'), t('Få %d upvotes på en dag'), array(10, 20, 50)));
+  $achievements = array_merge($achievements, myassist_achievements_define_achievement_group('upvotes-month', t('Crowdpleaser'), t('Få %d upvotes på en måned'), array(10, 30, 100), array(50,100,300)));
+  $achievements = array_merge($achievements, myassist_achievements_define_achievement_group('upvotes-week', t('Nationalhelt'), t('Få %d upvotes på en uge'), array(10, 30, 100), array(50,100,300)));
+  $achievements = array_merge($achievements, myassist_achievements_define_achievement_group('upvotes-week', t('Verdensstjerne'), t('Få %d upvotes på en dag'), array(10, 20, 50), array(50,100,300)));
 
   $achievements = array_merge($achievements, myassist_achievements_define_achievement_group('best-assists-all', t('Superassister'), t('Bliv kåret som bedste svar %d gange'), array(3, 10, 25), array(50,100,300)));
-  $achievements = array_merge($achievements, myassist_achievements_define_achievement_group('best-assists-week', t('Kongeassister'), t('Bliv kåret som bedste svar %d gange på en måned'), array(2, 8, 15)));
-
+  $achievements = array_merge($achievements, myassist_achievements_define_achievement_group('best-assists-week', t('Kongeassister'), t('Bliv kåret som bedste svar %d gange på en måned'), array(2, 8, 15), array(50,100,300)));
   return $achievements;
 }
+
 
 /**
  * Implements hook_permission().
