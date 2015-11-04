@@ -54,28 +54,74 @@ include_once 'myassist_achievements.features.inc';
  *   some achievements are without a group, the groupless achievements will
  *   automatically be placed into a "Miscellany" category.
  */
-function myassist_achievements_achievements_info() {
-  $achievements = array(
-       'question-count-1' => array(
-          'title'       => t('Posted a question'),
-          'description' => t("We no longer think you're a spam bot. Maybe."),
-          'storage'     => 'question-count',
-          'points'      => 50,
-          'images' => array(
-            'unlocked'  => 'sites/all/themes/myassist_theme/images/achievements/achievement1.svg'
-        //  'secret' and 'locked' will use the defaults.
-          )
-        ),
-        'question-count-3' => array(
-          'title'       => t('Posted 3 questions'),
-          'description' => t('But what about the children?!'),
-          'storage'     => 'question-count',
-          'points'      => 100,
-          'images' => array(
-            'unlocked'  => 'sites/all/themes/myassist_theme/images/achievements/achievement2.svg'
-          )
-        ),
+
+/*
+ * Declare a single achievement
+ */
+function myassist_achievements_define_achievement($title, $description, $image, $required, $points=0) {
+  return array(
+    'title'       => $title,
+    'description' => $description,
+    'points'      => $points,
+    'required'    => $required,
+    'images' => array(
+      'unlocked'  => "sites/all/themes/myassist_theme/images/achievements/$image.svg"
+      //  'secret' and 'locked' will use the defaults.
+    )
   );
+}
+/*
+ * Declare a group of achievements
+ */
+function myassist_achievements_define_achievement_group($key, $title, $descriptionFormat, $count, $points=array(0,0,0)) {
+  return array(
+    "$key" => array(
+      'title' => $title,
+      'achievements' => array(
+        "$key-1" => myassist_achievements_define_achievement("$title (bronze)", sprintf($descriptionFormat, $count[0]), "$key-1", $count[0], $points[0]),
+        "$key-2" => myassist_achievements_define_achievement("$title (sølv)", sprintf($descriptionFormat, $count[1]), "$key-2", $count[1], $points[1]),
+        "$key-3" => myassist_achievements_define_achievement("$title (guld)", sprintf($descriptionFormat, $count[2]), "$key-3", $count[2], $points[2])
+      )
+    )
+  );
+}
+
+/*
+ * Check whether an achievement can be unlocked, and do the unlock
+ */
+function myassist_achievements_check_achievement($uid, $achievement_group, $count) {
+  foreach ($achievement_group['achievements'] as $key => $achievement) {
+    if (!achievements_unlocked_already($key) && $count >= $achievement['required']) {
+      achievements_unlocked($key, $uid);
+
+    }
+  }
+}
+
+/**
+ * Implements hook_achievements_info().
+ */
+function myassist_achievements_achievements_info() {
+
+  $achievements = array();
+
+  $achievements = array_merge($achievements, myassist_achievements_define_achievement_group('first-assists-all', t('Jogger'), t('Giv %d first assists'), array(5, 20, 50), array(50,100,300)));
+  $achievements = array_merge($achievements, myassist_achievements_define_achievement_group('first-assists-month', t('Sprinter'), t('Giv %d first assists på en måned'), array(2, 8, 15), array(50,100,300)));
+  $achievements = array_merge($achievements, myassist_achievements_define_achievement_group('first-assists-week', t('Lyn'), t('Giv %d first assists på en uge'), array(2, 8, 15), array(50,100,300)));
+
+  $achievements = array_merge($achievements, myassist_achievements_define_achievement_group('assists-all', t('Storebror'), t('Giv %d assists'), array(5, 20, 60), array(50,100,300)));
+  $achievements = array_merge($achievements, myassist_achievements_define_achievement_group('assists-month', t('Rollemodel'), t('Giv %d assists på en måned'), array(3, 10, 25), array(50,100,300)));
+  $achievements = array_merge($achievements, myassist_achievements_define_achievement_group('assists-week', t('Guru'), t('Giv %d assists på en uge'), array(3, 8, 15), array(50,100,300)));
+
+  $achievements = array_merge($achievements, myassist_achievements_define_achievement_group('questions-all', t('Selvudvikler'), t('Opret %d spørgsmål'), array(5, 20, 50), array(50,100,300)));
+
+  $achievements = array_merge($achievements, myassist_achievements_define_achievement_group('upvotes-all', t('Folkevalgt'), t('Få %d upvotes'), array(10, 100, 500), array(50,100,300)));
+  $achievements = array_merge($achievements, myassist_achievements_define_achievement_group('upvotes-month', t('Crowdpleaser'), t('Få %d upvotes på en måned'), array(10, 30, 100), array(50,100,300)));
+  $achievements = array_merge($achievements, myassist_achievements_define_achievement_group('upvotes-week', t('Nationalhelt'), t('Få %d upvotes på en uge'), array(10, 30, 100), array(50,100,300)));
+  $achievements = array_merge($achievements, myassist_achievements_define_achievement_group('upvotes-week', t('Verdensstjerne'), t('Få %d upvotes på en dag'), array(10, 20, 50), array(50,100,300)));
+
+  $achievements = array_merge($achievements, myassist_achievements_define_achievement_group('best-assists-all', t('Superassister'), t('Bliv kåret som bedste svar %d gange'), array(3, 10, 25), array(50,100,300)));
+  $achievements = array_merge($achievements, myassist_achievements_define_achievement_group('best-assists-week', t('Kongeassister'), t('Bliv kåret som bedste svar %d gange på en måned'), array(2, 8, 15), array(50,100,300)));
 
   return $achievements;
 }
