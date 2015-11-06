@@ -195,14 +195,10 @@
           </div>
 
         <?php
-
-
-
-
-
+        
         if ($view_mode === 'full') {
           if ($user->uid === $node->uid && !$locked) {
-            print '<a id="answers-btn-lock" class="answers-btn-primary btn" href="' . $node_url . '/lock" data-dialog-text="' . t("lock_question_confirmation") . '">' . t("Lock question") . '</a>';
+            print '<a id="answers-btn-lock" class="answers-btn-primary btn" href="/node/' . $node->nid . '/lock" data-dialog-text="' . t("lock_question_confirmation") . '">' . t("Lock question") . '</a>';
           }
         }
         ?>
