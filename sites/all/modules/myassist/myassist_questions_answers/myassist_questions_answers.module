@@ -66,13 +66,15 @@ function myassist_questions_answers_node_view($node, $view_mode, $langcode) {
         if ($advisor_uid != null) {
           $advisor = user_load($advisor_uid);
           if ($advisor) {
-            print "<!--";
-            var_dump($advisor);
-            print "-->";
+
+            $vars = array("account"=>$advisor);
+            template_preprocess_user_picture($vars);
+
             $node->content['advisor'] = array(
               "#theme" => "question-advisor",
               "#username" => user_load($node->uid)->name,
-              "#advisorname" => $advisor->name
+              "#advisorname" => $advisor->name,
+              "#advisorpicture" => $vars['user_picture']
             );
           }
         }

@@ -1,1 +1,1 @@
-<span class="hephey"><?php print $username ?> har bedt om et assist fra <?php print $advisorname ?></span>
+<span class="question-advisor"><?php print $advisorpicture ?><?php print $username ?> har bedt om et assist fra <?php print $advisorname ?></span>
