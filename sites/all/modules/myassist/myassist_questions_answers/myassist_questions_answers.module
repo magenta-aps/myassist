@@ -63,13 +63,19 @@ function myassist_questions_answers_node_view($node, $view_mode, $langcode) {
             }
           }
         }
-        print $advisor_uid;
-
-        $node->content['advisor'] = array(
-          "#theme" => "question-advisor",
-          "#username" => user_load($node->uid)->name,
-          "#advisorname" => user_load($advisor_uid)->name
-        );
+        if ($advisor_uid != null) {
+          $advisor = user_load($advisor_uid);
+          if ($advisor) {
+            print "<!--";
+            var_dump($advisor);
+            print "-->";
+            $node->content['advisor'] = array(
+              "#theme" => "question-advisor",
+              "#username" => user_load($node->uid)->name,
+              "#advisorname" => $advisor->name
+            );
+          }
+        }
       }
       break;
 
