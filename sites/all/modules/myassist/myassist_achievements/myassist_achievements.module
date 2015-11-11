@@ -461,7 +461,7 @@ function myassist_achievements_profile2_view($profile, $view_mode, $langcode) {
       '#class' => 'userlevel',
       '#text' => t("Level ". $level["level"]),
       //t("Level @level", array("@level" => $level["level"])),
-      '#href' => "/user/$uid/achievements",
+      '#href' => "/content/levels",
     );
 
 
