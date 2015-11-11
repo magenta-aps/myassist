@@ -1,0 +1,1 @@
+<span class="hephey"><?php print $username ?> har bedt om et assist fra <?php print $advisorname ?></span>

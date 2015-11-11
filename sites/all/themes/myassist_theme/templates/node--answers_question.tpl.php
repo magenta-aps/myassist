@@ -97,6 +97,7 @@
   hide($content['new_answer_form']);
   hide($content['lock_message']);
   hide($content['question_locks']);
+  hide($content['advisor']);
 
 ?>
 
@@ -193,6 +194,7 @@
 
       </div>
       <?php
+      print render($content['advisor']);
         print render($content['comments']);
       ?>
     </div>
