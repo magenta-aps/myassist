@@ -93,7 +93,6 @@ function myassist_achievements_check_achievement($uid, $achievement_group, $coun
   foreach ($achievement_group['achievements'] as $key => $achievement) {
     if (!achievements_unlocked_already($key) && $count >= $achievement['required']) {
       achievements_unlocked($key, $uid);
-
     }
   }
 }
@@ -262,6 +261,29 @@ function myassist_achievements_userpoints($operation, $parameters) {
     myassist_achievements_register_points($uid, $parameters['txn_id']);
   }
 }
+
+/**
+ * Implements hook_userpoints_info().
+ */
+function myassist_achievements_userpoints_info() {
+  $info['addPoints'] = array(
+    'description' => t('Admin has added points')
+  );
+  $info['removePoints'] = array(
+    'description' => t('Admin has removed points')
+  );
+
+  $achievements = achievements_load();
+  foreach ($achievements as $achievementId => $achievementData) {
+    $info["achievement $achievementId"] = array(
+      'description' => sprintf(t("Du er blevet %s"), $achievementData['title'])
+    );
+  }
+
+  return $info;
+}
+
+
 
 
 /*
