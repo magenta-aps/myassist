@@ -179,6 +179,11 @@
 
       <div class="answers-body-toolbar">
         <?php
+          if ($view_mode !== 'full') {
+            print '<a id="answers-btn-answer" class="answers-btn-primary btn" href="' . $node_url . '">' . t("Go to answer") . '</a>';
+          }
+        ?>
+        <?php
           $links = render($content['links']);
           if ($links || user_access('post comments')):
         ?>
