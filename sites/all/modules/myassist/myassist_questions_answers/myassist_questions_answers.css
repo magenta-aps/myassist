@@ -8,3 +8,8 @@
     clear: right;
     font-size: 8pt;
 }
+
+.question-advisor img {
+    width: 2.5em;
+    border-radius: 2.5em;
+}

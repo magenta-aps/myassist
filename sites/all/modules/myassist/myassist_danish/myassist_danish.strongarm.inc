@@ -39,7 +39,7 @@ function myassist_danish_strongarm() {
     'domain' => '',
     'prefix' => 'da',
     'weight' => '0',
-    'javascript' => 'f1IPAuKEZm2a_QUjMAXnBYc97i9lBw6KsnmLmAa-g2w',
+    'javascript' => 'OQ3ZQu5IEr7nS9nnF98yVeExGawcXAp-VUOxudjx3kM',
   );
   $export['language_default'] = $strongarm;
 
@@ -47,7 +47,35 @@ function myassist_danish_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'language_negotiation_language';
-  $strongarm->value = array();
+  $strongarm->value = array(
+    'locale-url' => array(
+      'callbacks' => array(
+        'language' => 'locale_language_from_url',
+        'switcher' => 'locale_language_switcher_url',
+        'url_rewrite' => 'locale_language_url_rewrite_url',
+      ),
+      'file' => 'includes/locale.inc',
+    ),
+    'locale-session' => array(
+      'callbacks' => array(
+        'language' => 'locale_language_from_session',
+        'switcher' => 'locale_language_switcher_session',
+        'url_rewrite' => 'locale_language_url_rewrite_session',
+      ),
+      'file' => 'includes/locale.inc',
+    ),
+    'locale-user' => array(
+      'callbacks' => array(
+        'language' => 'locale_language_from_user',
+      ),
+      'file' => 'includes/locale.inc',
+    ),
+    'language-default' => array(
+      'callbacks' => array(
+        'language' => 'language_from_default',
+      ),
+    ),
+  );
   $export['language_negotiation_language'] = $strongarm;
 
   $strongarm = new stdClass();

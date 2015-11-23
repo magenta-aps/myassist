@@ -181,3 +181,13 @@ function myassist_questions_answers_form_alter(&$form, $form_state, $form_id) {
     }
   }
 }
+
+
+function myassist_questions_answers_theme($existing, $type, $theme, $path){
+  return array(
+    'question-advisor' => array(
+      'template' => 'templates/myassist_question_advisor', // define myassist_points.tpl.php inside module - point to myassist_achievements/templates/myassist_points.tpl.php
+      'variables' => array('username' => NULL, 'advisorname' => NULL, 'advisorpicture' => NULL), //define all variables used in the template file
+    )
+  );
+}
