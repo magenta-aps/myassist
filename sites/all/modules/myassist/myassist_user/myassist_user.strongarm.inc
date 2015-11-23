@@ -172,6 +172,9 @@ function myassist_user_strongarm() {
       'token' => array(
         'custom_settings' => FALSE,
       ),
+      'user_activity_list_entry' => array(
+        'custom_settings' => TRUE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(),
@@ -187,6 +190,10 @@ function myassist_user_strongarm() {
           ),
           'answers_full_node' => array(
             'weight' => '0',
+            'visible' => FALSE,
+          ),
+          'user_activity_list_entry' => array(
+            'weight' => '3',
             'visible' => FALSE,
           ),
         ),
@@ -220,6 +227,9 @@ function myassist_user_strongarm() {
         'custom_settings' => FALSE,
       ),
       'diff_standard' => array(
+        'custom_settings' => FALSE,
+      ),
+      'user_activity_list_entry' => array(
         'custom_settings' => FALSE,
       ),
     ),
