@@ -97,6 +97,7 @@
   hide($content['new_answer_form']);
   hide($content['lock_message']);
   hide($content['question_locks']);
+  hide($content['advisor']);
 
 ?>
 
@@ -183,16 +184,25 @@
           }
         ?>
 
-        <?php    
-            if ($view_mode === 'full') {
-              if ($user->uid === $node->uid && !$locked) {
-                print '<a id="answers-btn-lock" class="answers-btn-primary btn" href="' . $node_url . '/lock" data-dialog-text="' . t("lock_question_confirmation") . '">' . t("Lock question") . '</a>';
-              }
-            }
+        <?php
+        if ($view_mode === 'full') {
+          if ($user->uid === $node->uid && !$locked) {
+            print '<a id="answers-btn-lock" class="answers-btn-primary btn" href="/node/' . $node->nid . '/lock" data-dialog-text="' . t("lock_question_confirmation") . '">' . t("Lock question") . '</a>';
+          }
+        }
         ?>
+          <div class="link-wrapper">
+          <?php
+            if (user_access('post comments') && $view_mode === 'full' && !$locked) {
+              // Add a "pseudo-link" to open the comment dialog. This is done using jquery.
+              print '<ul class="links"><li class="answers-comment-button"><a>' . t("Comment") . '</a></li></ul>';
+            }
+          ?>
+          </div>
 
       </div>
       <?php
+      print render($content['advisor']);
         print render($content['comments']);
       ?>
     </div>

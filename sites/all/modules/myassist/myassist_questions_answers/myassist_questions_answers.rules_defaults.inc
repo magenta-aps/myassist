@@ -83,6 +83,7 @@ function myassist_questions_answers_default_rules_configuration() {
             "points" : "1",
             "tid" : "0",
             "entity" : [ "comment" ],
+            "description" : "Du postede en kommentar.",
             "operation" : "Create comment",
             "display" : "1",
             "moderate" : "default"

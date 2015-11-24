@@ -1,0 +1,13 @@
+<?php
+
+/**
+ * @file
+ * Installation file.
+ */
+
+/**
+ * Uninstall hook for Visual Form Alter module.
+ */
+function heatmap_uninstall() {
+  variable_del('vfa_changes');
+}
