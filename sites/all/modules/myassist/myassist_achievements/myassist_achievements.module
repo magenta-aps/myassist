@@ -371,9 +371,9 @@ function myassist_achievements_userpoints_list_transactions_alter(&$data) {
 }
 
 
-function myassist_achievements_init() {
+/*function myassist_achievements_init() {
   variable_set('achievements_leaderboard_count_per_page', 10000);
-}
+}*/
 
 /**
  * Implements hook_TYPE_alter().
@@ -392,14 +392,14 @@ function myassist_achievements_achievements_leaderboard_alter(&$leaderboard) {
   if (array_key_exists('achievers', $leaderboard)) {
     foreach ($leaderboard['achievers'] as $list_type => &$list) {
       foreach ($list as $uid => $account) {
-        if ($pos > $limit) {
+        /*if ($pos > $limit) {
           unset($list[$uid]);
         }
         if (!myassist_achievements_user_can_earn_points($uid)) {
           unset($list[$uid]);
         } else {
           $pos++;
-        }
+        }*/
         if (!$account->achievement_id) {
           $account->latest["#achievement"] = array();
           $no_achievements[] = $uid;
@@ -409,8 +409,9 @@ function myassist_achievements_achievements_leaderboard_alter(&$leaderboard) {
   }
   if (array_key_exists('render', $leaderboard) && array_key_exists('#rows', $render)) {
     $pos = 1;
+
     foreach ($render['#rows'] as $uid => &$row) {
-      if ($pos > $limit) {
+      /*if ($pos > $limit) {
         unset($render['#rows'][$uid]);
       }
       if (!myassist_achievements_user_can_earn_points($uid)) {
@@ -418,7 +419,7 @@ function myassist_achievements_achievements_leaderboard_alter(&$leaderboard) {
       } else {
         $row['data'][0]['data'] = $pos;
         $pos++;
-      }
+      }*/
       if (in_array($uid, $no_achievements)) {
         $row['data'][4]['data'] = "";
       }
