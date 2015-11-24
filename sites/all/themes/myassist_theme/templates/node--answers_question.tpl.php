@@ -86,15 +86,10 @@
 
 <?php
 
-  function graceful_hide(&$item) {
-    if (isset($item)) {
-      hide($item);
-    }
-  }
-
   $locked = array_key_exists('lock_message', $content) || array_key_exists('question_locks', $content);
 
   // Hide these items to render when we choose.
+  // See template.php for the graceful function
   graceful_hide($content['links']['statistics']);
   graceful_hide($content['comments']);
   graceful_hide($content['links']);
