@@ -208,13 +208,13 @@
     </div>
   </div>
 
-  <?php if(isset($content['answers_list']) && $content['answers_list']['#rendered'] !== true){ ?>
+  <?php if(isset($content['answers_list']) && $content['answers_list']['#printed'] !== true){ ?>
     <div class="answers-list">
       <?php print render($content['answers_list']); ?>
     </div>
   <?php } ?>
   
-  <?php if(isset($content['new_answer_form']) && $content['new_answer_form']['#rendered'] !== true) { ?>
+  <?php if(isset($content['new_answer_form']) && $content['new_answer_form']['#printed'] !== true) { ?>
     <div id="new-answer-form"><a name="new-answer-form"></a>
       <?php print render($content['new_answer_form']); ?>
       <script>
