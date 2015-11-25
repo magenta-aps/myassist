@@ -89,15 +89,16 @@
   $locked = array_key_exists('lock_message', $content) || array_key_exists('question_locks', $content);
 
   // Hide these items to render when we choose.
-  hide($content['links']['statistics']);
-  hide($content['comments']);
-  hide($content['links']);
-  hide($content['best_answer']);
-  hide($content['answers_list']);
-  hide($content['new_answer_form']);
-  hide($content['lock_message']);
-  hide($content['question_locks']);
-  hide($content['advisor']);
+  // See template.php for the graceful function
+  graceful_hide($content['links']['statistics']);
+  graceful_hide($content['comments']);
+  graceful_hide($content['links']);
+  graceful_hide($content['best_answer']);
+  graceful_hide($content['answers_list']);
+  graceful_hide($content['new_answer_form']);
+  graceful_hide($content['lock_message']);
+  graceful_hide($content['question_locks']);
+  graceful_hide($content['advisor']);
 
 ?>
 

@@ -331,6 +331,9 @@ function myassist_questions_answers_strongarm() {
       'token' => array(
         'custom_settings' => FALSE,
       ),
+      'user_activity_list_entry' => array(
+        'custom_settings' => TRUE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(
@@ -359,6 +362,10 @@ function myassist_questions_answers_strongarm() {
           ),
           'teaser' => array(
             'weight' => '0',
+            'visible' => FALSE,
+          ),
+          'user_activity_list_entry' => array(
+            'weight' => '2',
             'visible' => FALSE,
           ),
         ),

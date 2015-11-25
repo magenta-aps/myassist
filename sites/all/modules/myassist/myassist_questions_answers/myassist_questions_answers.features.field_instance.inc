@@ -445,10 +445,22 @@ function myassist_questions_answers_field_default_field_instances() {
         'weight' => 1,
       ),
       'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
+        'label' => 'inline',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => 1,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 1,
+      ),
+      'user_activity_list_entry' => array(
+        'label' => 'inline',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => 1,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 1,
       ),
     ),
     'entity_type' => 'node',
@@ -492,6 +504,15 @@ function myassist_questions_answers_field_default_field_instances() {
         'weight' => 0,
       ),
       'teaser' => array(
+        'label' => 'hidden',
+        'module' => 'text',
+        'settings' => array(
+          'trim_length' => 600,
+        ),
+        'type' => 'text_summary_or_trimmed',
+        'weight' => 0,
+      ),
+      'user_activity_list_entry' => array(
         'label' => 'hidden',
         'module' => 'text',
         'settings' => array(
@@ -561,6 +582,12 @@ function myassist_questions_answers_field_default_field_instances() {
         'type' => 'smart_trim_format',
         'weight' => 0,
       ),
+      'user_activity_list_entry' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
     ),
     'entity_type' => 'node',
     'field_name' => 'body',
@@ -608,6 +635,13 @@ function myassist_questions_answers_field_default_field_instances() {
         'settings' => array(),
         'type' => 'list_key',
         'weight' => 2,
+      ),
+      'user_activity_list_entry' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_key',
+        'weight' => 1,
       ),
     ),
     'entity_type' => 'node',
