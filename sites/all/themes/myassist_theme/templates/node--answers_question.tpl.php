@@ -142,7 +142,7 @@
           </span>
           <?php
             if ($locked) {
-              print '<em class="question_locked" tite="' . t("[Solved]") . '">&#10004;</em>';
+              print '<em class="question_locked" title="' . t("[Solved]") . '">&#10004;</em>';
               print '<em class="question_locked">' . t("[Solved]") . '</em>';
             }
           ?>
@@ -180,7 +180,7 @@
             print '<a id="answers-btn-answer" class="answers-btn-primary btn" href="' . $node_url . '">' . t("Go to question") . '</a>';
           }
 
-          if (!$locked) {
+          if (!$locked && $view_mode !== 'user_activity_list_entry') {
             print '<a id="answers-btn-answer" class="answers-btn-primary btn" href="' . $node_url . '#new-answer-form">' . t("Answer"). '</a>';
           }
         ?>
