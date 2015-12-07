@@ -1,1 +1,1 @@
-<span class="question-advisor"><?php print sprintf(_("%s har bedt om et assist fra %s"), $username, $advisorname) ?><?php print $advisorpicture ?></span>
+<span class="question-advisor"><?php print sprintf(t("%s har bedt om et assist fra %s"), $username, $advisorname) ?><?php print $advisorpicture ?></span>
