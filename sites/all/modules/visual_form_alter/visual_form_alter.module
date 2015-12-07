@@ -1,0 +1,343 @@
+<?php
+
+/*
+ * Implements form_alter
+ */
+function visual_form_alter_form_alter(&$form, &$form_state, $form_id) {
+  // Change each form if the user has the right to edit forms
+  if (user_access('alter forms') &! (arg(0) == 'admin' && arg(1) == 'vfa')) {
+    drupal_add_js(drupal_get_path('module', 'visual_form_alter') . '/vfa.js');
+    drupal_add_css(drupal_get_path('module', 'visual_form_alter') . '/vfa.css');
+    $form = visual_form_alter_recurseform($form, $form_id);
+  }
+
+  // Change according to what is set
+  $vfa = variable_get('vfa_changes', array());
+
+  if (isset($vfa[$form_id])) {
+    foreach ($vfa[$form_id] as $form_part => $part) {
+      foreach ($part as $key => $value) {
+        if ($key != 'vfa_nest') {
+          if ($part['vfa_nest']) {
+            $nesting = $part['vfa_nest'] . '.' . $form_part . '.#' . $key;
+          } else {
+            $nesting = $form_part . '.#' . $key;
+          }      
+          visual_form_alter_tmpform(
+            $form,
+            $nesting,
+            $value
+          );
+        }
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_permission
+ */
+function visual_form_alter_permission() {
+  $perm['alter forms'] = array('title' => t('Alter Forms'));
+  return $perm;
+}
+
+/**
+ * Implements hook_menu().
+ */
+function visual_form_alter_menu() {
+   $items['admin/config/system/vfa_export'] = array(
+    'page arguments' => array('visual_form_alter_export'),
+    'page callback' => 'drupal_get_form',
+    'access arguments' => array('alter forms'),
+    'title' => t('Export Visual Form Alter')
+  );
+   
+  $items['admin/vfa'] = array(
+    'page arguments' => array('visual_form_alter_admin'),
+    'page callback' => 'drupal_get_form',
+    'access arguments' => array('alter forms'),
+    'type' => MENU_DEFAULT_LOCAL_TASK,
+  );
+
+  return $items;
+}
+
+/**
+ * The form for exporting form alters
+ */
+function visual_form_alter_export() {
+  $form['info'] = array(
+    '#type' => 'fieldset',
+    '#description' => t('This will export your form alters to a module instead of having them in the database which '
+            . 'can be performant heavy. <strong>Please note that this removes every form alter from the database!</strong>'),
+    '#title' => t('Export to a module')
+  );
+
+  $vfa = variable_get('vfa_changes', array());
+
+  if (!count($vfa)) {
+    $form['info']['description'] = array(
+      '#markup' => '<strong>' . t('You have not saved any form alters yet. So there is nothing to export.') . '</strong>'
+    );
+  } else {
+    $form['info']['includefile'] = array(
+      '#type' => 'checkbox',
+      '#title' => t('Include the current exported module'),
+      '#description' => t('If you already have an module that is enabled, the new module will also include the data from that module'),
+      '#disabled' => module_exists('vfa_export') ? FALSE : TRUE
+    );
+    
+    $form['info']['vfa_export'] = array(
+      '#type' => 'submit',
+      '#value' => t('Export to module')
+    );
+  }
+  
+  return $form;
+}
+
+/**
+ * Save the exported module
+ */
+function visual_form_alter_export_submit($form, &$form_state) {
+  $values = $form_state['values'];
+  
+  if ($wrapper = file_stream_wrapper_get_instance_by_uri('public://')) {
+    $realpath = $wrapper->realpath();
+  }
+  
+  if (!$realpath) {
+    drupal_set_message(t('Could not find a path to write to.'), 'error');
+    return;
+  }
+  
+  // First create the directory and the info file
+  $dir = $realpath . '/vfa_export';
+  if (file_exists($dir)) {
+    drupal_set_message(t('You already have a module created in !path. Please remove it first.', array('!path' => $realpath)), 'error');
+    return;       
+  }
+  
+  if (!drupal_mkdir($dir)) {
+    drupal_set_message(t('Could not create a directory.'), 'error');
+    return;   
+  }
+  
+  $infodata = "name = Visual Form Alter Export\ndescription = Form alters created by Visual Form Alter.\ncore = 7.x\n";
+  
+  file_put_contents($dir . '/vfa_export.info', $infodata);
+  
+  $vfa = variable_get('vfa_changes', array());
+  if ($values['includefile'] && module_exists('vfa_export')) {
+    $vfa_temp = unserialize(vfa_export_datastructure());
+    $vfa = array_replace_recursive($vfa_temp, $vfa);
+  }
+
+  $content = '<?php' . "\n\n";
+  $content .= "/**\n* Implements form_alter()\n*/\n\n";
+  $content .= 'function vfa_export_form_alter(&$form, &$form_state, $form_id) {' . "\n";
+  $content .= "  switch(\$form_id) {\n";
+  foreach($vfa as $form_id => $parts) {
+    $content .= "    case '$form_id':\n";
+    foreach($parts as $key => $part) {
+      foreach($part as $type => $value) {
+        if ($type != 'vfa_nest') {
+          $keys = explode('.', $part['vfa_nest']);
+          $content .= '      $form';
+          foreach ($keys as $arraypart) {
+            $content .= '[\'' . $arraypart . '\']';
+          }
+          switch($type) {
+            case 'collapsed':
+            case 'collapsible':
+            case 'collapsible':
+            case 'disabled':
+            case 'multiple':
+            case 'required':
+            case 'resizable':
+            case 'title_display':
+            case 'cols':
+            case 'rows':
+            case 'size':
+            case 'weight':
+            case 'maxlength':
+              $content .= '[\'' . $key . '\'][\'#' . $type . '\'] = \'' . str_replace("'", "\'", $value) . "';\n";
+              break;
+            default:
+             $content .= '[\'' . $key . '\'][\'#' . $type . '\'] = t(\'' . str_replace("'", "\'", $value) . "');\n";
+              break;
+          }
+        }
+      }
+    }
+    $content .= "      break;\n";
+  }
+  $content .= "  }\n";
+  $content .= "}\n\n/**\n* Function for importing values\n*/\n\n";
+  $content .= 'function vfa_export_datastructure() {' . "\n";
+  $content .= '  return \'' . serialize($vfa) . '\';' . "\n";
+  $content .= '}';
+  file_put_contents($dir. '/vfa_export.module', $content);
+  variable_del('vfa_changes');
+  
+  drupal_set_message(t('A module was created in !filepath. Please move it to your module directory and install it.', array('!filepath' => $dir)));
+}
+/**
+ * The form for altering a form
+ */
+function visual_form_alter_admin() {
+  if (!arg(2) && !arg(3) && !arg(4) && !arg(5)) drupal_goto('');
+  $type = arg(4);
+  
+  drupal_set_title(t('Change field !field in form !form', array(
+     '!field' => arg(3), '!form' => arg(2) 
+  )));
+  
+  module_load_include('inc', 'visual_form_alter', 'visual_form_alter.formapi');
+  $vfa = variable_get('vfa_changes', array());
+  $formdata = visual_form_alter_getforms($type);
+
+  foreach($formdata as $name => $type) {
+    $key = str_replace('#', '', $name);
+    $form[$key] = array(
+      '#type' => $type['type'],
+      '#title' => $name
+    );
+    
+    if (isset($type['options'])) {
+      $form[$key]['#options'] = $type['options'];
+    }
+    
+    if (isset($vfa[arg(2)][arg(3)][$key])) {
+      $form[$key]['#default_value'] = $vfa[arg(2)][arg(3)][$key];
+    }
+  }
+  
+  $form['vfa_submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Change form')
+  );
+
+  return $form;
+}
+
+/**
+ * Save the form data
+ */
+function visual_form_alter_admin_submit($form, &$form_state) {
+  if (!arg(2) && !arg(3) && !arg(4) && !arg(5)) drupal_goto('');
+  $values = $form_state['values'];
+  $vfa = variable_get('vfa_changes', array());
+
+  foreach ($values as $key => $value) {
+    if (!in_array($key, array('form_build_id', 'form_token', 'form_id', 'op', 'vfa_submit'))) {
+      if ($value == '<none>') {
+        $vfa[arg(2)][arg(3)][$key] = '';
+      } elseif (trim($value) != '') {
+        $vfa[arg(2)][arg(3)][$key] = $value;
+      } else {
+        if (isset($vfa[arg(2)][arg(3)][$key])) {
+          unset($vfa[arg(2)][arg(3)][$key]);
+        }
+      }   
+    }
+  }
+  
+  if (isset($vfa[arg(2)][arg(3)]) && !count($vfa[arg(2)][arg(3)])) {
+    unset($vfa[arg(2)][arg(3)]);
+  }
+  
+  $vfa[arg(2)][arg(3)]['vfa_nest'] = arg(5);
+  
+  variable_set('vfa_changes', $vfa);
+  
+  if (isset($_GET['destination'])) {
+    $form['redirect'] = $_GET['destination'];
+  }
+}
+
+/**
+ * Array walker function
+ */
+function visual_form_alter_tmpform(&$tmpform, $key, $value) {
+  $keys = explode('.', $key);
+
+  $last_key = array_pop($keys);
+
+  while ($arr_key = array_shift($keys)) {
+    if (!array_key_exists($arr_key, $tmpform)) {
+      $tmpform[$arr_key] = array();
+    }
+    $tmpform = &$tmpform[$arr_key];
+  }
+  
+  // What should be translatable and not
+  switch($last_key) {
+    case '#collapsed':
+    case '#collapsible':
+    case '#collapsible':
+    case '#disabled':
+    case '#multiple':
+    case '#required':
+    case '#resizable':
+    case '#title_display':
+    case '#cols':
+    case '#rows':
+    case '#size':
+    case '#weight':
+    case '#maxlength':
+      $tmpform[$last_key] = $value;
+      break;
+    default:
+      $tmpform[$last_key] = t($value);
+      break;
+  }
+  
+}
+/**
+ * Recursive function to find all form objects
+ */
+function visual_form_alter_recurseform($form, $form_id, $parent = '') {
+  if (is_array($form)) {
+    foreach($form as $key => $form_piece) {
+      if (is_array($form_piece) && isset($form_piece['#type'])) {
+        switch($form_piece['#type']) {
+          case 'hidden':
+          case 'value':
+          case 'form':
+          case 'token':
+            break;
+          case 'actions':
+            $form[$key] = visual_form_alter_recurseform($form_piece, $form_id, $parent . '.' . $key);
+            break;
+          case 'fieldset':
+          case 'container':
+            $form[$key] = visual_form_alter_recurseform($form_piece, $form_id, $parent . '.' . $key);
+          default:
+            $prediv = '<div class="vfa-pre">';
+            $sufdiv = '</div>';
+            $url = 'admin/vfa/' . $form_id .'/' . $key . '/' . $form_piece['#type'] . '/' . trim($parent, '.');
+            $link = l(t('(*)'), $url, array(
+              'attributes' => array('class' => 'vfa-link', 'id ' => 'vfa-' . $key),
+              'query' => array('destination' => current_path()),
+            ));
+            if (isset($form[$key]['#prefix'])) {
+              $form[$key]['#prefix'] = $prediv . $link . $form[$key]['#prefix'];
+            } else {
+              $form[$key]['#prefix'] = $prediv . $link;
+            }
+            
+            if (isset($form[$key]['#suffix'])) {
+              $form[$key]['#suffix'] = $sufdiv . $form[$key]['#suffix'];
+            } else {
+              $form[$key]['#suffix'] = $sufdiv;
+            }
+
+            break;
+        }
+      }
+    }
+  }
+  return $form;
+}
