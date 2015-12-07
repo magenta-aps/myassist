@@ -397,6 +397,11 @@
   }
 }
 
+// This is a hack! Hiding language picker form element becuase we seemingly can't undisplay it from view admin
+.form-item-language {
+  display: none;
+}
+
 
 /************************************************************************************************/
 /* NEW ANSWERS FORM                                                                             */
