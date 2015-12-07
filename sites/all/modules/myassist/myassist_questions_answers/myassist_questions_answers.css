@@ -9,7 +9,17 @@
     font-size: 8pt;
 }
 
+.question-advisor {
+    background: #e5e5e5 none repeat scroll 0 0;
+    display: block;
+    padding: 0.5em;
+    text-align: right;
+}
+
 .question-advisor img {
     width: 2.5em;
     border-radius: 2.5em;
+    margin-left: 1em;
+    vertical-align: middle;
 }
+
