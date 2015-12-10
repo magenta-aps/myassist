@@ -204,3 +204,25 @@ function myassist_questions_answers_theme($existing, $type, $theme, $path){
     )
   );
 }
+
+function myassist_questions_answers_views_data() {
+  // achievement title
+
+  $data['answers']['has_answers'] = array(
+    'title' => t('Has Answers'),
+    'help' => t('Shows whether the question has answers.'),
+    'field' => array(
+      'handler' => 'myassist_questions_answers_views_handler_has_answers',
+    ),
+    'filter' => array(
+      'handler' => 'views_handler_filter_string',
+      'allow empty' => TRUE,
+    ),
+    'sort' => array(
+      'handler' => 'views_handler_sort',
+    ),
+  );
+
+  return $data;
+
+}
