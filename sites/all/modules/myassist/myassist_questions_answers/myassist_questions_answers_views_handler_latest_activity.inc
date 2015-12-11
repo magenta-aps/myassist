@@ -18,13 +18,19 @@ class myassist_questions_answers_views_handler_latest_activity extends views_han
         $join->left_field = 'nid';
         $join->type = 'left';
         $this->query->add_relationship('related_answers', $join, 'node');
+
+	$join = new views_join();
+	$join->table = 'node';
+	$join->field = 'nid';
+	$join->left_table = 'related_answers';
+	$join->left_field = 'entity_id';
+	$join->type = 'left';
+	$this->query->add_relationship('answer', $join, 'field_revision_answers_related_question');
       }
 
-      $this->query->add_groupby('related_answers.answers_related_question_target_id');
-//    $this->query->add_field(null, 'related_answers.answers_related_question_target_id', 'answer_count', array('count'=>true));
+      $this->query->add_groupby('nid');
       $this->query->set_distinct(true);
-      $this->query->add_orderby('related_answers', 'answers_related_question_target_id', $this->options['order'], 'answer_count');
-
+      $this->query->add_orderby(null, 'GREATEST(node.changed,max(answer.changed))', $this->options['order'], 'created');
     }
   }
 

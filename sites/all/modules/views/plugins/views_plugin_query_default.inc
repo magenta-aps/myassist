@@ -1322,8 +1322,11 @@ class views_plugin_query_default extends views_plugin_query {
     if (count($this->having)) {
       $this->has_aggregate = TRUE;
     }
-    if ($this->has_aggregate && (!empty($this->groupby) || !empty($non_aggregates))) {
-      $groupby = array_unique(array_merge($this->groupby, $non_aggregates));
+
+//    if ($this->has_aggregate && (!empty($this->groupby) || !empty($non_aggregates))) {
+    if (/*$this->has_aggregate &&*/ (!empty($this->groupby) || !empty($non_aggregates))) { // If we ask for grouping, just fucking do it instead of asking for aggregation. Stupid Drupal
+//      $groupby = array_unique(array_merge($this->groupby, $non_aggregates));
+      $groupby = array_unique($this->groupby); // There's no reason to group on all nonaggregate fields that we didn't explicitly ask for. Stupid Drupal
       foreach ($groupby as $field) {
         $query->groupBy($field);
       }
