@@ -21,13 +21,13 @@ class myassist_questions_answers_views_handler_latest_activity extends views_han
         $join->type = 'left';
         $this->query->add_relationship('related_answers', $join, 'node');
 
-	$join = new views_join();
-	$join->table = 'node';
-	$join->field = 'nid';
-	$join->left_table = 'related_answers';
-	$join->left_field = 'entity_id';
-	$join->type = 'left';
-	$this->query->add_relationship('answer', $join, 'field_revision_answers_related_question');
+        $join = new views_join();
+        $join->table = 'node';
+        $join->field = 'nid';
+        $join->left_table = 'related_answers';
+        $join->left_field = 'entity_id';
+        $join->type = 'left';
+        $this->query->add_relationship('answer', $join, 'field_revision_answers_related_question');
       }
 
       $this->query->add_groupby('nid');
