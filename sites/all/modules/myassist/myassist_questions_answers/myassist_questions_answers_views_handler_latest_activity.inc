@@ -32,7 +32,7 @@ class myassist_questions_answers_views_handler_latest_activity extends views_han
 
       $this->query->add_groupby('nid');
       $this->query->set_distinct(true);
-      $this->query->add_orderby(null, 'GREATEST(node.changed,max(answer.changed))', $this->options['order'], 'created');
+      $this->query->add_orderby(null, 'IF (answer.changed is NULL, node.created, GREATEST(node.changed,max(answer.changed)))', $this->options['order'], 'created');
     }
   }
 
