@@ -4,7 +4,7 @@
  * A handler for question answer count
  *
  */
-class myassist_questions_answers_views_handler_has_answers extends views_handler_sort {
+class myassist_questions_answers_views_handler_answers_count extends views_handler_sort {
 
   function query() {
     if ($this->view->exposed_raw_input['sort_by'] == $this->field) {
