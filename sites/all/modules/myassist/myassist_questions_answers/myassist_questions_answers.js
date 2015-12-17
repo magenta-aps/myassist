@@ -33,27 +33,47 @@
             form = $("#views-exposed-form-frontpage-page");
             if (form && form.length) {
 
+                var container = form.find(".views-exposed-widgets");
+
+                // Our options and what they control
                 var desiredSorts = [
-                    {name: "Nyeste spørgsmål", sortBy: "created", ascending: false},
-                    {name: "Seneste aktivitet", sortBy: "latest_activity", ascending: false},
-                    {name: "Mangler assist", sortBy: "answers_count", ascending: true}
+                    {name: "Nyeste spørgsmål", sortBy: "created", ascending: false, lockOp: "or", lockName: "All"},
+                    {name: "Seneste aktivitet", sortBy: "latest_activity", ascending: false, lockOp: "or", lockName: "All"},
+                    {name: "Mangler assist", sortBy: "answers_count", ascending: true, lockOp: "empty", lockName: "All"}
                 ];
 
+
+                // Create a map for the sorting, so we can be lenient in the sort field value
                 var sortByMap = {};
-
-                var sortBy = form.find("select[name='sort_by']");
-                var sortOrder = form.find("select[name='sort_order']");
-
+                var sortSelect = form.find("select[name='sort_by']");
                 for (var i=0; i<desiredSorts.length; i++) {
                     var sort = desiredSorts[i].sortBy;
-                    var option = sortBy.find("option[value='"+sort+"'], option[value^='"+sort+"_']").first();
+                    var option = sortSelect.find("option[value='"+sort+"'], option[value^='"+sort+"_']").first();
                     if (option && option.length) {
                         sortByMap[sort] = option.val();
                     }
                 }
 
-                form.find(".views-exposed-widgets").children().hide();
 
+                // Replace all inputs and selects with hidden inputs. We tried just hiding them, but Drupal re-displays the lock seletors. So just nuke 'em
+                var replacements = [];
+                form.find("select,input[type!='submit']").each(function(){
+                    var item = $(this);
+                    var replacement = $("<input>");
+                    replacement.attr({type: "hidden", name:item.attr("name"), value:item.val()});
+                    replacements.push(replacement);
+                });
+                container.children().remove();
+                for (var i=0; i<replacements.length; i++) {
+                    container.append(replacements[i]);
+                }
+                var sortBy = form.find("input[name='sort_by']");
+                var sortOrder = form.find("input[name='sort_order']");
+                var lockOp = form.find("input[name='question_locks_value_op']");
+                var lockName = form.find("input[name='question_locks_value']");
+
+
+                // Create a new dropdown with our options.
                 var select = $("<select/>");
                 select.addClass("form-select");
                 select.attr("id", "sorting");
@@ -67,18 +87,24 @@
                     }
                     select.append(option);
                 }
+
+
+                // When an option is selected, set the other fields accordingly and submit the form
                 select.change(function(){
                     var sort = desiredSorts[$(this).val()];
                     sortBy.val(sortByMap[sort.sortBy]);
                     sortOrder.val(sort.ascending ? "ASC":"DESC");
+                    lockOp.val(sort.lockOp);
+                    lockName.val(sort.lockName);
                     form.submit();
                 });
 
+                // Create a label and append our elements to the container
                 var label = $("<label/>");
                 label.attr("for", select.attr("id"));
                 label.text("Sortering: ");
 
-                form.find(".views-exposed-widgets").append(label, select);
+                container.append(label, select);
             }
         }
     };
