@@ -97,11 +97,13 @@
   .marked-best-answer {
     display: block;
     float: right;
-    width: $u*2.5;
+    /*width: $u*2.5;*/
   }
   .marked-best-answer,
   .flag {
     @extend .icons;
+    display: inline-block;
+    vertical-align: middle;
     background-image: url('../images/icons/checkmark2.svg');
   }
   .flag:hover,
@@ -113,6 +115,9 @@
   .unflag-action:hover,
   .unflag-action:active {
     background-image: url('../images/icons/checkmark2.svg');
+  }
+  .flag_helper {
+    color: #d33407;
   }
 }
 
