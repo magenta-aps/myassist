@@ -78,3 +78,38 @@ body.page-user-register #edit-profile-ungeprofil,
 .profile .field-name-field-gender {
   display: none;
 }
+
+#user-profile-form {
+    .field-name-field-mail-on-receive-assist,
+    .field-name-field-mail-on-receive-comment,
+    .field-name-field-mail-on-best-assist,
+    .field-name-field-mail-on-voteup {
+        padding: $u*0.5 $u;
+        border: solid 1px $grey;
+        border-width: 0 1px;
+        display: block;
+        .form-item {
+            margin: 0;
+        }
+        label {
+            text-transform: none;
+        }
+    }
+    .field-name-field-mail-on-receive-assist {
+        border-top: solid 1px $grey;
+        margin-top: $u;
+    }
+    .field-name-field-mail-on-receive-assist::before {
+        content: 'Send en notifikation n\00E5r';
+        display: block;
+        padding: $u*0.5 0 $u;
+        text-transform: uppercase;
+        font-weight: bold;
+        color: $darkblue;
+    }
+    .field-name-field-mail-on-voteup {
+        border-bottom-width: 1px;
+        padding-bottom: $u;
+        margin-bottom: $u;
+    }
+}
