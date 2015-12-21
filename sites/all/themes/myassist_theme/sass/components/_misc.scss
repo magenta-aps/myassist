@@ -851,3 +851,11 @@ tr.selected td {
 .feed-icon {
   @include element-invisible;
 }
+
+
+/**
+ * Get rid of obsolete fieldset in user account editor
+ */
+#edit-notifications {
+  display: none;
+}
