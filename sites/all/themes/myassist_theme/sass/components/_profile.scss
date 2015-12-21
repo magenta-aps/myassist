@@ -112,4 +112,7 @@ body.page-user-register #edit-profile-ungeprofil,
         padding-bottom: $u;
         margin-bottom: $u;
     }
+    #edit-notifications {
+      display: none;
+    }
 }
