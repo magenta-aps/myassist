@@ -265,39 +265,6 @@ function myassist_user_form_user_profile_form_alter(&$form, &$form_state, $form_
   if (!user_access('administer users')) {
     unset($form['locale']);
   }
-
-  $form['notifications'] = array(
-    '#type' => 'fieldset',
-    '#title' => t('Send me a mail when:'),
-    '#collapsible' => FALSE,
-    '#collapsed' => FALSE,
-  );
-
-  $form['notifications']['field_mail_on_receive_assist'] = array(
-    '#type' => 'boolean',
-    '#title' => t('Mail on receive assist'),
-  );
-
-
-  $form['notifications']['field_mail_on_receive_comment'] = array(
-    '#type' => 'boolean',
-    '#title' => t('Mail on receive comment'),
-  );
-
-
-  $form['notifications']['field_mail_on_best_assist'] = array(
-    '#type' => 'boolean',
-    '#title' => t('Mail on best assist'),
-  );
-
-
-  $form['notifications']['field_mail_on_voteup'] = array(
-    '#type' => 'boolean',
-    '#title' => t('Mail on voteup'),
-  );
-
-
-
 }
 
 /**
