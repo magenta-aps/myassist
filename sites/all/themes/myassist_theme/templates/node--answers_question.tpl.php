@@ -109,7 +109,7 @@
     <?php if (!$page){ ?>
       <?php
       if ($view_mode == 'user_activity_list_entry') {
-        print "<h2>" . t("Question") . "</h2>";
+        print "<h4>" . t("Question") . "</h4>";
       }
       ?>
       <h2<?php print $title_attributes; ?>>
