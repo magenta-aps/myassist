@@ -311,9 +311,11 @@ function myassist_user_block_info() {
   $blocks = array();
   $blocks['username'] = array(
     'info' => t('Username'),
+    'cache' => DRUPAL_NO_CACHE
   );
   $blocks['avatar'] = array(
     'info' => t('Avatar'),
+    'cache' => DRUPAL_NO_CACHE
   );
   return $blocks;
 }
