@@ -170,11 +170,14 @@
                   <?php print format_plural(myassist_user_get_age($node->uid), '1 year', '@count years'); ?>
                 </p>
 
+                <!--
                 <?php if (module_exists('answers_userpoints')){ ?>
                   <p class="author-points">
                     <?php print userpoints_get_current_points($node->uid); print ' ' . t('points'); ?>
                   </p>
                 <?php } ?>
+                -->
+
               </div>
             </div>
           </div>
