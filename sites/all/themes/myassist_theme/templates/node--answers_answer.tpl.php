@@ -168,7 +168,7 @@
               <p class="author-gender-age">
                 <?php
                 $gender = myassist_user_get_gender($node->uid);
-                $gender_icon = "sites/all/themes/myassist_theme/images/icons/gender_$gender.svg";
+                $gender_icon = "/sites/all/themes/myassist_theme/images/icons/gender_$gender.svg";
                 ?>
                 <img src="<?php print $gender_icon ?>" class="gendericon"/>
                 <?php print format_plural(myassist_user_get_age($node->uid), '1 year', '@count years'); ?>
