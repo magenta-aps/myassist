@@ -6,6 +6,50 @@
 
 include_once 'myassist_user.features.inc';
 
+
+function myassist_user_get_profile_value($profile, $fieldNames) {
+  if (!($profile instanceof Profile)) {
+    $profile = profile2_load_by_user($profile);
+  }
+  if (is_array($profile) && count($profile) > 0) {
+    foreach ($profile as $key => $value) {
+      $profile = $value;
+      break;
+    }
+  }
+  if (!is_array($fieldNames)) {
+    $fieldNames = array($fieldNames);
+  }
+  foreach ($fieldNames as $fieldName) {
+    $value = field_get_items("profile2", $profile, $fieldName);
+    if ($value !== FALSE) {
+      if (is_array($value)) {
+        $value = count($value) ? $value[0] : NULL;
+      }
+      if (is_array($value) && array_key_exists("value", $value)) {
+        return $value['value'];
+      }
+    }
+  }
+  return null;
+}
+
+
+function myassist_user_get_age($profile) {
+  $birthdate = myassist_user_get_profile_value($profile, "field_birthday");
+  if ($birthdate) {
+    $diff = date_diff(DateTime::createFromFormat('U', $birthdate['value']), new DateTime());
+    $age = $diff->y;
+    return $age;
+  }
+  return null;
+}
+
+
+function myassist_user_get_gender($profile) {
+  return myassist_user_get_profile_value($profile, array("field_gender","field_gender_adult"));
+}
+
 /**
  * Implements hook_profile2_view().
  */
@@ -16,38 +60,31 @@ function myassist_user_profile2_view($profile, $view_mode, $langcode) {
     '#theme' => "myassist_userinfo"
   );
 
-  $birthdate = field_get_items("profile2", $profile, "field_birthday");
-  if ($birthdate) {
-    if (is_array($birthdate)) {
-      $birthdate = count($birthdate) ? $birthdate[0] : NULL;
-    }
-    if (is_array($birthdate) && array_key_exists("value", $birthdate)) {
-      $diff = date_diff(DateTime::createFromFormat('U', $birthdate['value']), new DateTime());
-      $age = $diff->y;
+  $age = myassist_user_get_age($profile);
 
-      $profile->content['userinfo']['#age'] = array(
-        '#theme' => 'field',
-        '#weight' => '1',
-        '#title' => 'Age',
-        '#access' => TRUE,
-        '#label_display' => 'hidden',
-        '#view_mode' => 'account',
-        '#language' => $langcode,
-        '#field_name' => 'field_age',
-        '#field_type' => 'number_integer',
-        '#field_translatable' => '0',
-        '#entity_type' => 'profile2',
-        '#bundle' => 'ungeprofil',
-        '#items' => array(
-          array(
-            'value' => t('%age years', array("%age" => $age))
-          )
-        ),
-        0 => array(
-          '#markup' => t('%age years', array("%age" => $age))
+  if ($age) {
+    $profile->content['userinfo']['#age'] = array(
+      '#theme' => 'field',
+      '#weight' => '1',
+      '#title' => 'Age',
+      '#access' => TRUE,
+      '#label_display' => 'hidden',
+      '#view_mode' => 'account',
+      '#language' => $langcode,
+      '#field_name' => 'field_age',
+      '#field_type' => 'number_integer',
+      '#field_translatable' => '0',
+      '#entity_type' => 'profile2',
+      '#bundle' => 'ungeprofil',
+      '#items' => array(
+        array(
+          'value' => t('%age years', array("%age" => $age))
         )
-      );
-    }
+      ),
+      0 => array(
+        '#markup' => t('%age years', array("%age" => $age))
+      )
+    );
   }
 
 

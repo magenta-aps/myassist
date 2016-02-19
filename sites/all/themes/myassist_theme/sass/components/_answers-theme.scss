@@ -521,3 +521,17 @@
   width: auto;
   margin-bottom: $u;
 }
+
+.author-details {
+
+  p {
+    margin: 0;
+    font-size: 0.8em;
+  }
+
+  img.gendericon {
+    width: 10px;
+    height: 10px;
+    border: 0 none;
+  }
+}
