@@ -159,7 +159,7 @@
             <?php print $user_picture; ?>
             <div class="author-name"><?php print $name; ?></div>
             <div class="author-details">
-              <?php if (module_exists('myassist_achievements')){ ?>
+              <?php if (module_exists('myassist_achievements') && myassist_user_has_youth_profile($node->uid)){ ?>
                 <p class="author-level">
                   <?php print myassist_achievements_get_user_level_name($node->uid); ?>
                 </p>
