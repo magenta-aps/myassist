@@ -271,5 +271,49 @@ function myassist_questions_answers_default_rules_configuration() {
       "DO" : []
     }
   }');
+  $items['rules_notify_advisor'] = entity_import('rules_config', '{ "rules_notify_advisor" : {
+      "LABEL" : "Notify advisor on new question",
+      "PLUGIN" : "reaction rule",
+      "OWNER" : "rules",
+      "REQUIRES" : [ "rules" ],
+      "ON" : { "node_insert--answers_question" : { "bundle" : "answers_question" } },
+      "IF" : [ { "NOT data_is_empty" : { "data" : [ "node:field-advisor:mail" ] } } ],
+      "DO" : [
+        { "mail" : {
+            "to" : [ "node:field-advisor:mail" ],
+            "subject" : "[site:name] - En ung bruger beder om din assistance.",
+            "message" : "[node:title]\\r\\n\\r\\n[node:url]\\r\\n",
+            "language" : [ "" ]
+          }
+        },
+        { "drupal_message" : { "message" : "Tak fordi du oprettede et sp\\u00f8rgsm\\u00e5l. Vi har sendt en besked til [node:field-advisor:name]." } }
+      ]
+    }
+  }');
+  $items['rules_notify_on_question_from_parents'] = entity_import('rules_config', '{ "rules_notify_on_question_from_parents" : {
+      "LABEL" : "Notify on question from parents",
+      "PLUGIN" : "reaction rule",
+      "OWNER" : "rules",
+      "TAGS" : [ "webform" ],
+      "REQUIRES" : [ "rules" ],
+      "ON" : { "node_insert--webform" : { "bundle" : "webform" } },
+      "IF" : [
+        { "text_matches" : {
+            "text" : [ "node:title" ],
+            "match" : "Sp\\u00f8rgsm\\u00e5l fra for\\u00e6ldre"
+          }
+        }
+      ],
+      "DO" : [
+        { "mail" : {
+            "to" : "info@mitassist.dk",
+            "subject" : "Sp\\u00f8rgsm\\u00e5l fra for\\u00e6ldre",
+            "message" : "Nyt sp\\u00f8rgsm\\u00e5l fra for\\u00e6ldre\\r\\n[node:url]",
+            "language" : [ "" ]
+          }
+        }
+      ]
+    }
+  }');
   return $items;
 }
