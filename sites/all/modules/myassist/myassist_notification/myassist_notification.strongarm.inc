@@ -51,7 +51,7 @@ function myassist_notification_strongarm() {
   $strongarm->api_version = 1;
   $strongarm->name = 'mail_system';
   $strongarm->value = array(
-    'default-system' => 'MimeMailSystem',
+    'default-system' => 'HTMLMailSystem',
     'htmlmail' => 'HTMLMailSystem',
     'mimemail' => 'MimeMailSystem',
   );
