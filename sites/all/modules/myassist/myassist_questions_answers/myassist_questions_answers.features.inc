@@ -159,9 +159,9 @@ function myassist_questions_answers_default_message_type() {
           "safe_value" : "\\u003Cp\\u003EDer er folk der s\\u00e6tter pris p\\u00e5 din hj\\u00e6lp - MitAssist.dk\\u003C\\/p\\u003E\\n"
         },
         {
-          "value" : "\\u003Cp\\u003EGodt g\\u00e5et! \\u003Ca href=\\u0022[message:field-node:url]\\u0022\\u003EDit assist\\u003C\\/a\\u003E har f\\u00e5et en stemme af en anden bruger p\\u00e5 MitAssist.dk.\\u003C\\/p\\u003E\\r\\n",
+          "value" : "\\u003Cp\\u003EGodt g\\u00e5et! \\u003Ca href=\\u0022[message:field-node:url]\\u0022\\u003EDit assist\\u003C\\/a\\u003E er blevet upvoted af en anden bruger p\\u00e5 MitAssist.dk.\\u003C\\/p\\u003E\\r\\n",
           "format" : "full_html",
-          "safe_value" : "\\u003Cp\\u003EGodt g\\u00e5et! \\u003Ca href=\\u0022[message:field-node:url]\\u0022\\u003EDit assist\\u003C\\/a\\u003E har f\\u00e5et en stemme af en anden bruger p\\u00e5 MitAssist.dk.\\u003C\\/p\\u003E\\n"
+          "safe_value" : "\\u003Cp\\u003EGodt g\\u00e5et! \\u003Ca href=\\u0022[message:field-node:url]\\u0022\\u003EDit assist\\u003C\\/a\\u003E er blevet upvoted af en anden bruger p\\u00e5 MitAssist.dk.\\u003C\\/p\\u003E\\n"
         }
       ]
     },
