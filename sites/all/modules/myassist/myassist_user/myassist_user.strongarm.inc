@@ -229,6 +229,9 @@ function myassist_user_strongarm() {
       'diff_standard' => array(
         'custom_settings' => FALSE,
       ),
+      'token' => array(
+        'custom_settings' => FALSE,
+      ),
       'user_activity_list_entry' => array(
         'custom_settings' => FALSE,
       ),
@@ -339,43 +342,46 @@ function myassist_user_strongarm() {
           'weight' => '0',
         ),
         'account' => array(
-          'weight' => '0',
+          'weight' => '-10',
         ),
         'timezone' => array(
-          'weight' => '2',
+          'weight' => '6',
         ),
         'masquerade' => array(
-          'weight' => '4',
+          'weight' => '50',
         ),
         'ckeditor' => array(
+          'weight' => '10',
+        ),
+        'googleanalytics' => array(
           'weight' => '3',
         ),
         'profile_ungeprofil' => array(
-          'weight' => '1',
+          'weight' => '0',
         ),
       ),
       'display' => array(
         'masquerade' => array(
           'default' => array(
-            'weight' => '8',
+            'weight' => '50',
             'visible' => TRUE,
           ),
         ),
         'profile_ungeprofil' => array(
           'default' => array(
-            'weight' => '2',
+            'weight' => '0',
             'visible' => TRUE,
           ),
         ),
         'profile_voksenprofil' => array(
           'default' => array(
-            'weight' => '1',
+            'weight' => '0',
             'visible' => TRUE,
           ),
         ),
         'summary' => array(
           'default' => array(
-            'weight' => '7',
+            'weight' => '5',
             'visible' => TRUE,
           ),
         ),
