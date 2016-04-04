@@ -13,7 +13,7 @@ function myassist_categories_taxonomy_default_vocabularies() {
       'name' => 'Categories',
       'machine_name' => 'categories',
       'description' => 'Question categories',
-      'hierarchy' => 0,
+      'hierarchy' => 1,
       'module' => 'taxonomy',
       'weight' => -10,
       'language' => 'und',
