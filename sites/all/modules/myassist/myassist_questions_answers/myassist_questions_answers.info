@@ -87,6 +87,7 @@ features[rules_config][] = rules_flag_answers_best_answer_email
 features[rules_config][] = rules_lock_question
 features[rules_config][] = rules_notify_advisor
 features[rules_config][] = rules_notify_on_question_from_parents
+features[rules_config][] = rules_notify_user_on_new_question_cloned_
 features[taxonomy][] = tags
 features[user_permission][] = access comments
 features[user_permission][] = administer comments
