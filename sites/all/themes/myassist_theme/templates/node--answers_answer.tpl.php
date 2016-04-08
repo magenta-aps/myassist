@@ -158,17 +158,31 @@
           <div class="answers-submitted">
             <?php print $user_picture; ?>
             <div class="author-name"><?php print $name; ?></div>
-            <?php if (module_exists('answers_userpoints')): ?>
-              <div class="author-details">
-              <p class="author-points"> <?php print userpoints_get_current_points($node->uid); print ' ' . t('points'); ?> </p>
-              <?php
-              /*
-                       <p class="author-questions"> <?php print t('See') . ' ' .  l(t('my questions'), 'xxx') . ' ' . t('or') . ' ' . l(t('my answers'), 'yyy') ?> </p> 
-              
-              */
-              ?> 
-              </div>
-            <?php endif; ?>
+            <div class="author-details">
+              <?php if (module_exists('myassist_achievements') && myassist_user_has_youth_profile($node->uid)){ ?>
+                <p class="author-level">
+                  <?php print myassist_achievements_get_user_level_name($node->uid); ?>
+                </p>
+              <?php } ?>
+
+              <p class="author-gender-age">
+                <?php
+                $gender = myassist_user_get_gender($node->uid);
+                $gender_icon = "/sites/all/themes/myassist_theme/images/icons/gender_$gender.svg";
+                ?>
+                <img src="<?php print $gender_icon ?>" class="gendericon"/>
+                <?php print format_plural(myassist_user_get_age($node->uid), '1 year', '@count years'); ?>
+              </p>
+
+              <!--
+                <?php if (module_exists('answers_userpoints')){ ?>
+                  <p class="author-points">
+                    <?php print userpoints_get_current_points($node->uid); print ' ' . t('points'); ?>
+                  </p>
+                <?php } ?>
+                -->
+
+            </div>
           </div>
           
           <span class="submitted-time">
@@ -178,6 +192,11 @@
       </div>
 
       <div class="answers-body-toolbar">
+        <?php
+          if ($view_mode !== 'full') {
+            print '<a id="answers-btn-answer" class="answers-btn-primary btn" href="' . $node_url . '">' . t("Go to answer") . '</a>';
+          }
+        ?>
         <?php
           $links = render($content['links']);
           if ($links || user_access('post comments')):

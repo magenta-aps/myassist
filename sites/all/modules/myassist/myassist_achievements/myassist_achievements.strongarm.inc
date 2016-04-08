@@ -14,7 +14,7 @@ function myassist_achievements_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'achievements_leaderboard_count_per_page';
-  $strongarm->value = 10000;
+  $strongarm->value = '20';
   $export['achievements_leaderboard_count_per_page'] = $strongarm;
 
   $strongarm = new stdClass();

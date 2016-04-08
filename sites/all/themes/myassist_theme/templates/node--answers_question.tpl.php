@@ -89,14 +89,16 @@
   $locked = array_key_exists('lock_message', $content) || array_key_exists('question_locks', $content);
 
   // Hide these items to render when we choose.
-  hide($content['links']['statistics']);
-  hide($content['comments']);
-  hide($content['links']);
-  hide($content['best_answer']);
-  hide($content['answers_list']);
-  hide($content['new_answer_form']);
-  hide($content['lock_message']);
-  hide($content['question_locks']);
+  // See template.php for the graceful function
+  graceful_hide($content['links']['statistics']);
+  graceful_hide($content['comments']);
+  graceful_hide($content['links']);
+  graceful_hide($content['best_answer']);
+  graceful_hide($content['answers_list']);
+  graceful_hide($content['new_answer_form']);
+  graceful_hide($content['lock_message']);
+  graceful_hide($content['question_locks']);
+  graceful_hide($content['advisor']);
 
 ?>
 
@@ -105,6 +107,11 @@
   <div id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix" <?php print $attributes; ?>>
     <?php print render($title_prefix); ?>
     <?php if (!$page){ ?>
+      <?php
+      if ($view_mode == 'user_activity_list_entry') {
+        print "<h4>" . t("Question") . "</h4>";
+      }
+      ?>
       <h2<?php print $title_attributes; ?>>
         <a href="<?php print $node_url; ?>"><?php print $title; ?></a>
       </h2>
@@ -140,23 +147,38 @@
           </span>
           <?php
             if ($locked) {
-              print '<em class="question_locked" tite="' . t("[Solved]") . '">&#10004;</em>';
+              print '<em class="question_locked" title="' . t("[Solved]") . '">&#10004;</em>';
               print '<em class="question_locked">' . t("[Solved]") . '</em>';
             }
           ?>
           <div class="answers-submitted">
             <?php print $user_picture; ?>
             <div class="author-name"><?php print $name; ?></div>
-            <?php if (module_exists('answers_userpoints')){ ?>
               <div class="author-details">
-                <p class="author-points"> <?php print userpoints_get_current_points($node->uid); print ' ' . t('points'); ?> </p>
-                <?php
-                /*
-                     <p class="author-questions"> <?php print t('See') . ' ' .  l(t('my questions'), 'xxx') . ' ' . t('or') . ' ' . l(t('my answers'), 'yyy') ?> </p> 
-                */
-                ?> 
+                <?php if (module_exists('myassist_achievements') && myassist_user_has_youth_profile($node->uid)){ ?>
+                  <p class="author-level">
+                    <?php print myassist_achievements_get_user_level_name($node->uid); ?>
+                  </p>
+                <?php } ?>
+
+                <p class="author-gender-age">
+                  <?php
+                    $gender = myassist_user_get_gender($node->uid);
+                    $gender_icon = "/sites/all/themes/myassist_theme/images/icons/gender_$gender.svg";
+                  ?>
+                  <img src="<?php print $gender_icon ?>" class="gendericon"/>
+                  <?php print format_plural(myassist_user_get_age($node->uid), '1 year', '@count years'); ?>
+                </p>
+
+                <!--
+                <?php if (module_exists('answers_userpoints')){ ?>
+                  <p class="author-points">
+                    <?php print userpoints_get_current_points($node->uid); print ' ' . t('points'); ?>
+                  </p>
+                <?php } ?>
+                -->
+
               </div>
-            <?php } ?>
             </div>
           </div>
           
@@ -178,21 +200,30 @@
             print '<a id="answers-btn-answer" class="answers-btn-primary btn" href="' . $node_url . '">' . t("Go to question") . '</a>';
           }
 
-          if (!$locked) {
+          if (!$locked && $view_mode !== 'user_activity_list_entry') {
             print '<a id="answers-btn-answer" class="answers-btn-primary btn" href="' . $node_url . '#new-answer-form">' . t("Answer"). '</a>';
           }
         ?>
 
-        <?php    
-            if ($view_mode === 'full') {
-              if ($user->uid === $node->uid && !$locked) {
-                print '<a id="answers-btn-lock" class="answers-btn-primary btn" href="' . $node_url . '/lock" data-dialog-text="' . t("lock_question_confirmation") . '">' . t("Lock question") . '</a>';
-              }
-            }
+        <?php
+        if ($view_mode === 'full') {
+          if ($user->uid === $node->uid && !$locked) {
+            print '<a id="answers-btn-lock" class="answers-btn-primary btn" href="/node/' . $node->nid . '/lock" data-dialog-text="' . t("lock_question_confirmation") . '">' . t("Lock question") . '</a>';
+          }
+        }
         ?>
+          <div class="link-wrapper">
+          <?php
+            if (user_access('post comments') && $view_mode === 'full' && !$locked) {
+              // Add a "pseudo-link" to open the comment dialog. This is done using jquery.
+              print '<ul class="links"><li class="answers-comment-button"><a>' . t("Comment") . '</a></li></ul>';
+            }
+          ?>
+          </div>
 
       </div>
       <?php
+      print render($content['advisor']);
         print render($content['comments']);
       ?>
     </div>

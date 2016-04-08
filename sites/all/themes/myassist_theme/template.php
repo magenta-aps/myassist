@@ -34,16 +34,19 @@ function myassist_theme_preprocess_maintenance_page(&$variables, $hook) {
  * @param $hook
  *   The name of the template being rendered ("html" in this case.)
  */
-/* -- Delete this line if you want to use this function
 function myassist_theme_preprocess_html(&$variables, $hook) {
-  $variables['sample_variable'] = t('Lorem ipsum.');
+  // Add Facebook Pixel tracking code on selected pages (chat page, user reg. page and complete reg. page)
+  if (current_path() == 'node/21' || current_path() == 'user/register' || current_path() == 'node/561'){
 
-  // The body tag's classes are controlled by the $classes_array variable. To
-  // remove a class from $classes_array, use array_diff().
-  //$variables['classes_array'] = array_diff($variables['classes_array'], array('class-to-remove'));
-
+    $fb_markup = '<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=686677638133594&ev=PageView&noscript=1"/></noscript>';
+    $fb_pixel = array(
+      '#type' => 'markup',
+      '#markup' => $fb_markup,
+    );
+    drupal_add_html_head($fb_pixel, 'fb_pixel');
+    drupal_add_js(drupal_get_path('theme', 'myassist_theme') . '/js/facebook_pixel_code.js');
+  }
 }
-// */
 
 /**
  * Override or insert variables into the page templates.
@@ -53,11 +56,13 @@ function myassist_theme_preprocess_html(&$variables, $hook) {
  * @param $hook
  *   The name of the template being rendered ("page" in this case.)
  */
-/* -- Delete this line if you want to use this function
+/*
 function myassist_theme_preprocess_page(&$variables, $hook) {
   $variables['sample_variable'] = t('Lorem ipsum.');
+  dpm($variables, $hook);
+  //drupal_add_js(  );
 }
-// */
+*/
 
 /**
  * Override or insert variables into the node templates.
@@ -67,18 +72,13 @@ function myassist_theme_preprocess_page(&$variables, $hook) {
  * @param $hook
  *   The name of the template being rendered ("node" in this case.)
  */
-/* -- Delete this line if you want to use this function
 function myassist_theme_preprocess_node(&$variables, $hook) {
-  $variables['sample_variable'] = t('Lorem ipsum.');
-
-  // Optionally, run node-type-specific preprocess functions, like
-  // myassist_theme_preprocess_node_page() or myassist_theme_preprocess_node_story().
-  $function = __FUNCTION__ . '_' . $variables['node']->type;
-  if (function_exists($function)) {
-    $function($variables, $hook);
+  // Add GA conversion JS by node ID of the welcome page after user registration
+  if (current_path() == 'node/561') {
+    drupal_add_js(drupal_get_path('theme', 'myassist_theme') . '/js/GA_user_registration_conversion.js');
+    drupal_add_js('http://www.googleadservices.com/pagead/conversion.js', 'external');
   }
 }
-// */
 
 /**
  * Override or insert variables into the comment templates.
@@ -131,3 +131,20 @@ function myassist_theme_preprocess_block(&$variables, $hook) {
   //}
 }
 // */
+
+/**
+ * Fix broken Drupal function that sets the item if it doesn't exist
+ * hide($array['nonexisting']) will create the 'nonexisting' entry in the $array object, making checks for its existence unexpectedly pass
+ * graceful_hide($array['nonexisting']) does not create a new entry in the $array object
+ *
+ * Me: Whyyyyy?
+ * Drupal: Because Fuck You, that's why
+ *
+ * @param $item
+ *   A renderable object that may or may not exist
+ */
+function graceful_hide(&$item) {
+  if (isset($item)) {
+    hide($item);
+  }
+}

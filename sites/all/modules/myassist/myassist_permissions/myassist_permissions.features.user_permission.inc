@@ -97,7 +97,9 @@ function myassist_permissions_user_default_permissions() {
   // Exported permission: 'edit any answers_question content'.
   $permissions['edit any answers_question content'] = array(
     'name' => 'edit any answers_question content',
-    'roles' => array(),
+    'roles' => array(
+      'Superadmin' => 'Superadmin',
+    ),
     'module' => 'node',
   );
 
@@ -141,6 +143,11 @@ function myassist_permissions_user_default_permissions() {
   $permissions['use text format filtered_html'] = array(
     'name' => 'use text format filtered_html',
     'roles' => array(
+      'Assist-rådgiver' => 'Assist-rådgiver',
+      'Chat-koordinator' => 'Chat-koordinator',
+      'Chat-rådgiver' => 'Chat-rådgiver',
+      'Forælder-rådgiver' => 'Forælder-rådgiver',
+      'Moderator' => 'Moderator',
       'Superadmin' => 'Superadmin',
     ),
     'module' => 'filter',
@@ -150,6 +157,11 @@ function myassist_permissions_user_default_permissions() {
   $permissions['use text format full_html'] = array(
     'name' => 'use text format full_html',
     'roles' => array(
+      'Assist-rådgiver' => 'Assist-rådgiver',
+      'Chat-koordinator' => 'Chat-koordinator',
+      'Chat-rådgiver' => 'Chat-rådgiver',
+      'Forælder-rådgiver' => 'Forælder-rådgiver',
+      'Moderator' => 'Moderator',
       'Superadmin' => 'Superadmin',
     ),
     'module' => 'filter',
@@ -160,6 +172,7 @@ function myassist_permissions_user_default_permissions() {
     'name' => 'view own userpoints',
     'roles' => array(
       'Ung bruger' => 'Ung bruger',
+      'authenticated user' => 'authenticated user',
     ),
     'module' => 'userpoints',
   );

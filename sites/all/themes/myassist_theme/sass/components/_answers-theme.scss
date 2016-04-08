@@ -11,7 +11,12 @@
 }
 
 
-/************************************************************************************************/
+.view-user-nodes .views-row {
+  border-bottom: 1px solid #ccc;
+}
+
+
+  /************************************************************************************************/
 /* THE QUESTION                                                                                 */
 /************************************************************************************************/
 
@@ -26,10 +31,6 @@
 
 .form-field-name-field-advisor {
   @include clearfix;
-  position: relative;
-  label {
-    margin-bottom: $u*2;
-  }
   .form-item.form-type-radio {
     float: left;
     height: $u*8;
@@ -58,14 +59,24 @@
   .form-item.form-type-radio:first-child {
     display: none;
   }
-  .description {
-    position: absolute;
-    top: $u*2.5;
-    left: 0;
-    right: 0;
-    height: $u*1.5;
-    overflow: hidden;
+  .form-type-radios {
+    display: flex;
+    flex-direction: column;
+    label {
+      -webkit-order: 1;
+      order: 1;
+    }
+    .form-radios {
+      -webkit-order: 3;
+      order: 3;
+    }
+    .description {
+      -webkit-order: 2;
+      order: 2;
+      padding-bottom: $u;
+    }
   }
+  
 }
 
 
@@ -86,11 +97,13 @@
   .marked-best-answer {
     display: block;
     float: right;
-    width: $u*2.5;
+    /*width: $u*2.5;*/
   }
   .marked-best-answer,
   .flag {
     @extend .icons;
+    display: inline-block;
+    vertical-align: middle;
     background-image: url('../images/icons/checkmark2.svg');
   }
   .flag:hover,
@@ -182,6 +195,10 @@
 
 .submitted-time {
   border-right: solid 1px $smoke;
+}
+
+.view-user-nodes .node-answers-answer .submitted-time {
+  border-right: 0 none;
 }
 
 .question_locked {
@@ -382,6 +399,11 @@
   }
 }
 
+// This is a hack! Hiding language picker form element becuase we seemingly can't undisplay it from view admin
+.form-item-language {
+  display: none;
+}
+
 
 /************************************************************************************************/
 /* NEW ANSWERS FORM                                                                             */
@@ -498,4 +520,18 @@
   float: none;
   width: auto;
   margin-bottom: $u;
+}
+
+.author-details {
+
+  p {
+    margin: 0;
+    font-size: 0.8em;
+  }
+
+  img.gendericon {
+    width: 10px;
+    height: 10px;
+    border: 0 none;
+  }
 }
