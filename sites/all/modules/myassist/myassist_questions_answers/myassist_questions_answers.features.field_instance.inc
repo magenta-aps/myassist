@@ -455,15 +455,6 @@ function myassist_questions_answers_field_default_field_instances() {
         'type' => 'entityreference_label',
         'weight' => 1,
       ),
-      'full' => array(
-        'label' => 'above',
-        'module' => 'entityreference',
-        'settings' => array(
-          'link' => FALSE,
-        ),
-        'type' => 'entityreference_label',
-        'weight' => 1,
-      ),
       'message_notify_email_body' => array(
         'label' => 'above',
         'settings' => array(),
@@ -505,15 +496,6 @@ function myassist_questions_answers_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
-        'module' => 'entityreference',
-        'settings' => array(
-          'link' => FALSE,
-        ),
-        'type' => 'entityreference_label',
-        'weight' => 0,
-      ),
-      'full' => array(
         'label' => 'above',
         'module' => 'entityreference',
         'settings' => array(
