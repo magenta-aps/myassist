@@ -238,34 +238,6 @@ function chat_ribbons_view() {
         return $block;
     }
 
-    // Check whether chat notifications has been disabled in the user profile
-    $user_profile = profile2_load_by_user($user, 'voksenprofil');
-    if(!$user_profile) {
-        $user_profile = profile2_load_by_user($user, 'ungeprofil');
-    }
-
-    if($user_profile) {
-        $settings = array();
-        $nrDisabled = 0;
-        foreach(array("pair", "group") as $roomType) {
-            $fieldKey = "field_no_" . $roomType . "_notifications";
-            $fieldData = field_get_items("profile2", $user_profile, $fieldKey);
-            if(is_array($fieldData) && count($fieldData) && array_key_exists('value', $fieldData[0])) {
-                if($fieldData[0]['value']) {
-                    $settings['disable_' . $roomType . "_notifications"] = "yes";
-                    $nrDisabled++;
-                }
-            }
-        }
-        // If both notifications are disabled, don't load anything
-        if($nrDisabled >= 2) {
-            return $block;
-        }
-        if($nrDisabled > 0) {
-            drupal_add_js(array('opeka' => $settings), 'setting');
-        }
-    }
-
     $module_path = drupal_get_path('module', 'myassist_opeka');
     $opeka_module_path = drupal_get_path('module', 'opeka');
 
