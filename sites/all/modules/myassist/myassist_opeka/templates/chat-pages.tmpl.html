@@ -171,3 +171,104 @@
 
 <script id="opeka_custom_tmpl" type="application/template" class="new-template">
 </script>
+
+
+<script id="replace_opeka_chat_footer_tmpl" type="application/template" class="replace-template">
+    <% if (banCodeGenerator) { %>
+    <% if (!chatOpen) { %>
+    <button class="chat-toggle btn-success btn"><%- labels.chatOpen %></button>
+    <%}else{ %>
+    <button class="chat-toggle btn-danger btn"><%- labels.chatClose %></button>
+    <% } %>
+    <% /* Ban code button removed */ %>
+    <% } %>
+</script>
+
+
+<script id="replace_opeka_room_list_tmpl" type="application/template" class="replace-template">
+    <% if (admin) { %>
+    <div class="queue-utils">
+        <% if (queueSystem) { %>
+        <!--<a href="#queues" class="go-to-queues btn-util btn btn-small"><%= labels.queueLink %></a>-->
+        <% } %>
+        <button class="create-room btn btn-small btn-success"><%= labels.createRoom %></button>
+        <% if (!chatOpen) { %>
+        <div class="chat-state alert"><%= labels.chatClosed %></div>
+        <% } %>
+    </div>
+
+    <% } %>
+    <ul class="room-list">
+        <% rooms.each(function (room) { %>
+        <% /* Show the room list - show all rooms for counselors */ %>
+        <% if (admin || (!room.attributes.private && (room.attributes.maxSize !== 2 || (room.attributes.maxSize === 2 &&  hidePairRooms === false)))) { %>
+        <% labels.placeholder = ''; %>
+        <li class="room well">
+            <div class="room-details badge badge-info <% if (room.get('memberCount') === room.get('maxSize')){%>full<%} %><% if (room.attributes.paused){%> paused<%} %>">
+                <span class="room-size"><%- room.get('memberCount') %>/<%- room.get('maxSize') %></span>
+                <% if (room.get('memberCount') === room.get('maxSize')){%>
+                <span class="room-status full"><%= labels.fullRoomText %></span>
+                <%} %>
+                <% if (room.attributes.paused){%>
+                <span class="room-status paused"><%= labels.pausedRoomText %></span>
+                <%} %>
+            </div>
+            <p class="room-description"><%- room.get('name') %></p>
+            <% if (room.attributes.private){%>
+            <div class="badge badge-important private-room">Training room</div>
+            <%} %>
+            <% /* Only admins should be able to enter a full or paused room */ %>
+            <% if (admin || ((room.get('memberCount') != room.get('maxSize')) && (!room.attributes.paused))) {%>
+            <a href="#rooms/<%= room.id %>" class="room-enter btn btn-success"><%= labels.enterRoom %></a>
+            <%}else{ %>
+            <a href="<%= labels.fullRoomLink %>" target="_blank" class="meantime btn btn-warning"><%= labels.fullRoomLinkText %></a>
+            <%}%>
+        </li>
+        <% } %>
+        <% }); %>
+        <% if (labels.placeholder && !admin) { %>
+        <li class="placeholder norooms"><%= labels.placeholder %></li>
+        <li><a class="btn btn-success" href="#" onclick="javascript: window.close();"><%= labels.closeWindowText %></a></li>
+        <% } %>
+    </ul>
+
+</script>
+
+
+<script id="replace_opeka_room_edit_tmpl" type="application/template" class="replace-template">
+    <form action="#" class="room-edit-form">
+        <!--<p>To create a simple 1 to 1 chat, please click the green button below.</p>
+          <button class="ui-button ui-button-text-only"><span class="ui-button-text">Create a 1 to 1 chat room</span></button>-->
+        <div class="create-groupchat-room">
+            <div class="groupchat-room-settings">
+                <div class="form-item">
+                    <label for="name"><%- labels.name %></label>
+                    <input class="form-text name required" name="name" id="name" type="textfield" placeholder="Chatrum" />
+                    <span class="help-text"><%- labels.chatroomhelp %></span>
+                </div>
+
+                <div class="form-item">
+                    <label for="max-size"><%- labels.size %></label>
+                    <select class="max-size" name="max-size" id="max-size">
+                        <option value="2" selected="selected">2 <%- labels.users %></option>
+                        <option value="5">5 <%- labels.users %></option>
+                        <option value="6">6 <%- labels.users %></option>
+                        <option value="7">7 <%- labels.users %></option>
+                        <option value="8">8 <%- labels.users %></option>
+                        <option value="9">9 <%- labels.users %></option>
+                        <option value="10">10 <%- labels.users %></option>
+                        <option value="15">15 <%- labels.users %></option>
+                    </select>
+
+                    <% /* Removed IP location */ %>
+                    <input type="hidden" name="ip-location" value="Any"/>
+
+                    <% /* Removed Queue System */ %>
+                    <input type="hidden" name="queue-system" value="private"/>
+
+                    <% /* Removed Training */ %>
+                </div>
+            </div>
+        </div>
+    </form>
+</script>

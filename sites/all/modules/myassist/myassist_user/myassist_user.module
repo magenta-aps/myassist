@@ -38,7 +38,10 @@ function myassist_user_get_profile_value($profile, $fieldNames) {
 function myassist_user_get_age($profile) {
   $birthdate = myassist_user_get_profile_value($profile, "field_birthday");
   if ($birthdate) {
-    $diff = date_diff(DateTime::createFromFormat('U', $birthdate['value']), new DateTime());
+    if (is_array($birthdate) && array_key_exists('value', $birthdate)) {
+      $birthdate = $birthdate['value'];
+    }
+    $diff = date_diff(DateTime::createFromFormat('U', $birthdate), new DateTime());
     $age = $diff->y;
     return $age;
   }
