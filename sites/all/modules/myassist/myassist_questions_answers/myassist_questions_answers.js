@@ -37,9 +37,9 @@
 
                 // Our options and what they control
                 var desiredSorts = [
-                    {name: "Nyeste spørgsmål", sortBy: "created", ascending: false, lockOp: "or", lockName: "All"},
-                    {name: "Seneste aktivitet", sortBy: "latest_activity", ascending: false, lockOp: "or", lockName: "All"},
-                    {name: "Mangler assist", sortBy: "answers_count", ascending: true, lockOp: "empty", lockName: "All"}
+                    {name: "Nyeste spørgsmål", sortBy: "created", ascending: false, lockName: "All"},
+                    {name: "Seneste aktivitet", sortBy: "latest_activity", ascending: false, lockName: "All"},
+                    {name: "Mangler assist", sortBy: "answers_count", ascending: true, lockName: "2"}
                 ];
 
 
@@ -69,7 +69,7 @@
                 }
                 var sortBy = form.find("input[name='sort_by']");
                 var sortOrder = form.find("input[name='sort_order']");
-                var lockOp = form.find("input[name='question_locks_value_op']");
+                //var lockOp = form.find("input[name='question_locks_value_op']");
                 var lockName = form.find("input[name='question_locks_value']");
 
 
@@ -94,7 +94,7 @@
                     var sort = desiredSorts[$(this).val()];
                     sortBy.val(sortByMap[sort.sortBy]);
                     sortOrder.val(sort.ascending ? "ASC":"DESC");
-                    lockOp.val(sort.lockOp);
+                    //lockOp.val(sort.lockOp);
                     lockName.val(sort.lockName);
                     form.submit();
                 });
