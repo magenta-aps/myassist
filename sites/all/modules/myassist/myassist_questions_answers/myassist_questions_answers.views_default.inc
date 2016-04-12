@@ -7,7 +7,7 @@
 /**
  * Implements hook_views_default_views().
  */
-function myassist_categories_views_default_views() {
+function myassist_questions_answers_views_default_views() {
   $export = array();
 
   $view = new view();
