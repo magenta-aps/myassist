@@ -102,13 +102,9 @@
         }
 
       });
-
-
-      console.log($(".password-strength"));
-
+      
       $(".password-strength").each(function(){
         var $this = $(this);
-        console.log($this.parent());
         $this.parent().append($this);
       });
     }
