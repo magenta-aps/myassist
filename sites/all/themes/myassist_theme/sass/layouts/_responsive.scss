@@ -116,6 +116,15 @@ body {
   .password-parent {
     width: 100%;
   }
+  .image-widget {
+    .file {
+      a {
+        width: $u*20;
+        display: inline-block;
+        word-wrap: break-word;
+      }
+    }
+  }
 }
 
 
