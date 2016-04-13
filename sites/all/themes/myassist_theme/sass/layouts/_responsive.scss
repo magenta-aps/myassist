@@ -104,7 +104,14 @@ body {
 }
 
 @media all and (max-width: $u*35) {
-  
+  .header__logo-image {
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+  }
+  .create-new-or-log-in {
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
 }
 
 
@@ -119,6 +126,11 @@ body {
     height: $u*4;
     padding-top: $u*0.5;
     box-sizing: border-box;
+
+    .create-new-or-log-in {
+      padding-left: 0.5em;
+      padding-right: 0.5em;
+    }
   }
   #block-search-form.open #search-block-form {
     top: $u*4;
