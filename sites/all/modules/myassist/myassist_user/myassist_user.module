@@ -131,8 +131,6 @@ function myassist_user_user_view($account, $view_mode, $langcode) {
   unset($account->content['mimemail']); // Sabotage mimemail display, it is only in the way
 }
 
-
-
 /**
  * Implements hook_theme().
  */
@@ -313,6 +311,12 @@ function myassist_user_form_user_profile_form_alter(&$form, &$form_state, $form_
   $form['#title'] = t('Editing "@username"', array('@username' => $form["#user"]->name));
   if (!user_access('administer users')) {
     unset($form['locale']);
+  }
+
+  global $user;
+  $account = $form['#user'];
+  if ($user->uid != $account->uid && myassist_user_has_youth_profile($account->uid)) {
+    unset($form['account']['mail']);
   }
 }
 
