@@ -26,8 +26,17 @@
                         roomType = $boxDiv.hasClass("pair") ? "pair" : "group";
 
                     if(status == "chat-open") {
+                        var chatwindow = window.open("");
+                        chatwindow.document.body.innerHTML = Drupal.t("Forbinder til chat...");
+                        var killTimer = setTimeout(function() {
+                            chatwindow.document.body.innerHTML = Drupal.t("Kunne ikke forbinde til chat. Lukker vindue.");
+                            setTimeout(function() {
+                                chatwindow.close();
+                            }, 1000);
+                        }, 5000);
                         Opeka.ChatUpdates.getSignInURL(roomType, function(url) {
-                            window.open(url);
+                            clearTimeout(killTimer);
+                            chatwindow.location = url;
                         });
                     }
                 });

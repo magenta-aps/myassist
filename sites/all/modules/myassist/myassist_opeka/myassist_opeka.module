@@ -8,16 +8,9 @@
  * Checkes whether the current page is rendered using the Opeka chat system.
  * @return boolean - TRUE if current page is an Opeka page and FALSE otherwise.
  */
-function is_opeka_chat_page() {
-    $path = current_path();
-    $prefixes = array(
-        "opeka",
-        "admin/opeka"
-    );
-    foreach($prefixes as $prefix) {
-        if(substr($path, 0, strlen($prefix)) === $prefix) {
-            return TRUE;
-        }
+function myassist_opeka_is_opeka_chat_page() {
+    if (function_exists("is_opeka_chat_page")) {
+        return is_opeka_chat_page();
     }
     return FALSE;
 }
@@ -49,15 +42,14 @@ function add_chat_updates_ressources() {
 /**
  * Implements hook_page_build().
  */
-function myassist_opeka_page_build(&$page)
-{
+function myassist_opeka_page_build(&$page) {
     global $user;
     $module_path = drupal_get_path('module', 'myassist_opeka');
 
     $template_path = dirname(__FILE__) . '/templates/';
 
 
-    if(is_opeka_chat_page()) {
+    if (myassist_opeka_is_opeka_chat_page()) {
         drupal_add_js($module_path . '/js/chat-page-integration.js', array('weight' => 10));
         drupal_add_css($module_path . '/css/myassist_opeka.css');
         # Add page content
@@ -110,7 +102,8 @@ function myassist_opeka_page_build(&$page)
         }
 
         drupal_add_js(array('opeka' => $settings), 'setting');
-    } elseif(drupal_get_path_alias(current_path()) === 'chat') {
+        
+    } else if (drupal_get_path_alias(current_path()) === 'chat') {
         add_chat_updates_ressources();
         drupal_add_js(array('drupal_logged_in' => $user->uid), "setting");
         drupal_add_js($module_path . '/js/chat-status-page.js', array('weight' => 20));
@@ -126,8 +119,7 @@ function myassist_opeka_page_build(&$page)
 /**
  * Implements hook_theme_registry_alter().
  */
-function myassist_opeka_theme_registry_alter(&$theme_registry)
-{
+function myassist_opeka_theme_registry_alter(&$theme_registry) {
     // Defined path to the current module.
     $module_path = drupal_get_path('module', 'myassist_opeka');
 
@@ -153,7 +145,7 @@ function myassist_opeka_theme_registry_alter(&$theme_registry)
  */
 function myassist_opeka_page_alter(&$page)
 {
-    if(is_opeka_chat_page()) {
+    if(myassist_opeka_is_opeka_chat_page()) {
         // Override the page template
         $page['#theme'] = 'page__myassist_opeka';
 
@@ -242,7 +234,7 @@ function chat_ribbons_view() {
         return $block;
     }
 
-    if(is_opeka_chat_page() || drupal_get_path_alias(current_path()) === 'chat') {
+    if(myassist_opeka_is_opeka_chat_page() || drupal_get_path_alias(current_path()) === 'chat') {
         return $block;
     }
 

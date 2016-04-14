@@ -152,6 +152,41 @@ function myassist_questions_answers_field_default_field_bases() {
     'type' => 'text_long',
   );
 
+  // Exported field_base: 'field_advisor'
+  $field_bases['field_advisor'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_advisor',
+    'indexes' => array(
+      'target_id' => array(
+        0 => 'target_id',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'entityreference',
+    'settings' => array(
+      'handler' => 'views',
+      'handler_settings' => array(
+        'behaviors' => array(
+          'views-select-list' => array(
+            'status' => 1,
+          ),
+        ),
+        'view' => array(
+          'args' => array(),
+          'display_name' => 'entityreference_1',
+          'view_name' => 'debatr_dgivere',
+        ),
+      ),
+      'profile2_private' => FALSE,
+      'target_type' => 'user',
+    ),
+    'translatable' => 0,
+    'type' => 'entityreference',
+  );
+
   // Exported field_base: 'field_image'
   $field_bases['field_image'] = array(
     'active' => 1,
@@ -173,6 +208,110 @@ function myassist_questions_answers_field_default_field_bases() {
     ),
     'translatable' => 0,
     'type' => 'image',
+  );
+
+  // Exported field_base: 'field_mail_on_best_assist'
+  $field_bases['field_mail_on_best_assist'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_mail_on_best_assist',
+    'indexes' => array(
+      'value' => array(
+        0 => 'value',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'list',
+    'settings' => array(
+      'allowed_values' => array(
+        0 => '',
+        1 => '',
+      ),
+      'allowed_values_function' => '',
+      'profile2_private' => FALSE,
+    ),
+    'translatable' => 0,
+    'type' => 'list_boolean',
+  );
+
+  // Exported field_base: 'field_mail_on_receive_assist'
+  $field_bases['field_mail_on_receive_assist'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_mail_on_receive_assist',
+    'indexes' => array(
+      'value' => array(
+        0 => 'value',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'list',
+    'settings' => array(
+      'allowed_values' => array(
+        0 => '',
+        1 => '',
+      ),
+      'allowed_values_function' => '',
+      'profile2_private' => FALSE,
+    ),
+    'translatable' => 0,
+    'type' => 'list_boolean',
+  );
+
+  // Exported field_base: 'field_mail_on_receive_comment'
+  $field_bases['field_mail_on_receive_comment'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_mail_on_receive_comment',
+    'indexes' => array(
+      'value' => array(
+        0 => 'value',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'list',
+    'settings' => array(
+      'allowed_values' => array(
+        0 => '',
+        1 => '',
+      ),
+      'allowed_values_function' => '',
+      'profile2_private' => FALSE,
+    ),
+    'translatable' => 0,
+    'type' => 'list_boolean',
+  );
+
+  // Exported field_base: 'field_mail_on_voteup'
+  $field_bases['field_mail_on_voteup'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_mail_on_voteup',
+    'indexes' => array(
+      'value' => array(
+        0 => 'value',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'list',
+    'settings' => array(
+      'allowed_values' => array(
+        0 => '',
+        1 => '',
+      ),
+      'allowed_values_function' => '',
+      'profile2_private' => FALSE,
+    ),
+    'translatable' => 0,
+    'type' => 'list_boolean',
   );
 
   // Exported field_base: 'field_tags'

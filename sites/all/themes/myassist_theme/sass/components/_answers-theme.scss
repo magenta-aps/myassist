@@ -97,11 +97,13 @@
   .marked-best-answer {
     display: block;
     float: right;
-    width: $u*2.5;
+    /*width: $u*2.5;*/
   }
   .marked-best-answer,
   .flag {
     @extend .icons;
+    display: inline-block;
+    vertical-align: middle;
     background-image: url('../images/icons/checkmark2.svg');
   }
   .flag:hover,
@@ -518,4 +520,18 @@
   float: none;
   width: auto;
   margin-bottom: $u;
+}
+
+.author-details {
+
+  p {
+    margin: 0;
+    font-size: 0.8em;
+  }
+
+  img.gendericon {
+    width: 10px;
+    height: 10px;
+    border: 0 none;
+  }
 }

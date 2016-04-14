@@ -97,7 +97,9 @@ function myassist_permissions_user_default_permissions() {
   // Exported permission: 'edit any answers_question content'.
   $permissions['edit any answers_question content'] = array(
     'name' => 'edit any answers_question content',
-    'roles' => array(),
+    'roles' => array(
+      'Superadmin' => 'Superadmin',
+    ),
     'module' => 'node',
   );
 

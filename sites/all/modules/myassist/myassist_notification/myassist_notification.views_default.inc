@@ -60,20 +60,20 @@ function myassist_notification_views_default_views() {
     'message_render' => 'message_render',
   );
   $handler->display->display_options['row_options']['default_field_elements'] = FALSE;
-  /* No results behavior: Global: Text area */
+  /* Opførsel ved ingen resultater: Global: Tekstområde */
   $handler->display->display_options['empty']['area']['id'] = 'area';
   $handler->display->display_options['empty']['area']['table'] = 'views';
   $handler->display->display_options['empty']['area']['field'] = 'area';
   $handler->display->display_options['empty']['area']['empty'] = TRUE;
   $handler->display->display_options['empty']['area']['content'] = 'No messages';
   $handler->display->display_options['empty']['area']['format'] = 'filtered_html';
-  /* Relationship: Flag: message_read */
+  /* Forbindelse: Flag: message_read */
   $handler->display->display_options['relationships']['flag_content_rel']['id'] = 'flag_content_rel';
   $handler->display->display_options['relationships']['flag_content_rel']['table'] = 'message';
   $handler->display->display_options['relationships']['flag_content_rel']['field'] = 'flag_content_rel';
   $handler->display->display_options['relationships']['flag_content_rel']['label'] = 'read';
   $handler->display->display_options['relationships']['flag_content_rel']['flag'] = 'message_read';
-  /* Relationship: Meddelelse: Bruger uid */
+  /* Forbindelse: Meddelelse: Bruger uid */
   $handler->display->display_options['relationships']['user']['id'] = 'user';
   $handler->display->display_options['relationships']['user']['table'] = 'message';
   $handler->display->display_options['relationships']['user']['field'] = 'user';
@@ -97,7 +97,7 @@ function myassist_notification_views_default_views() {
   $handler->display->display_options['fields']['message_render']['hide_alter_empty'] = FALSE;
   $handler->display->display_options['fields']['message_render']['partials'] = 1;
   $handler->display->display_options['fields']['message_render']['partials_delta'] = '1';
-  /* Sort criterion: Meddelelse: Timestamp */
+  /* Sorteringskriterie: Meddelelse: Timestamp */
   $handler->display->display_options['sorts']['timestamp']['id'] = 'timestamp';
   $handler->display->display_options['sorts']['timestamp']['table'] = 'message';
   $handler->display->display_options['sorts']['timestamp']['field'] = 'timestamp';
@@ -110,7 +110,7 @@ function myassist_notification_views_default_views() {
   $handler->display->display_options['link_display'] = 'custom_url';
   $handler->display->display_options['link_url'] = 'user/!1/messages/unread';
   $handler->display->display_options['defaults']['empty'] = FALSE;
-  /* No results behavior: Global: Text area */
+  /* Opførsel ved ingen resultater: Global: Tekstområde */
   $handler->display->display_options['empty']['area']['id'] = 'area';
   $handler->display->display_options['empty']['area']['table'] = 'views';
   $handler->display->display_options['empty']['area']['field'] = 'area';
@@ -152,7 +152,7 @@ function myassist_notification_views_default_views() {
   $handler->display->display_options['link_url'] = 'user/!1/messages/read';
   $handler->display->display_options['defaults']['footer'] = FALSE;
   $handler->display->display_options['defaults']['empty'] = FALSE;
-  /* No results behavior: Global: Text area */
+  /* Opførsel ved ingen resultater: Global: Tekstområde */
   $handler->display->display_options['empty']['area']['id'] = 'area';
   $handler->display->display_options['empty']['area']['table'] = 'views';
   $handler->display->display_options['empty']['area']['field'] = 'area';
@@ -160,7 +160,7 @@ function myassist_notification_views_default_views() {
   $handler->display->display_options['empty']['area']['content'] = 'Du har ingen læste beskeder.';
   $handler->display->display_options['empty']['area']['format'] = 'filtered_html';
   $handler->display->display_options['defaults']['relationships'] = FALSE;
-  /* Relationship: Flag: message_read */
+  /* Forbindelse: Flag: message_read */
   $handler->display->display_options['relationships']['flag_content_rel']['id'] = 'flag_content_rel';
   $handler->display->display_options['relationships']['flag_content_rel']['table'] = 'message';
   $handler->display->display_options['relationships']['flag_content_rel']['field'] = 'flag_content_rel';
@@ -169,7 +169,7 @@ function myassist_notification_views_default_views() {
   $handler->display->display_options['relationships']['flag_content_rel']['flag'] = 'message_read';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
-  /* Filter criterion: Flag: Flaget */
+  /* Filterkriterie: Flag: Flaget */
   $handler->display->display_options['filters']['flagged']['id'] = 'flagged';
   $handler->display->display_options['filters']['flagged']['table'] = 'flagging';
   $handler->display->display_options['filters']['flagged']['field'] = 'flagged';
@@ -221,7 +221,7 @@ function myassist_notification_views_default_views() {
   $handler->display->display_options['pager']['options']['tags']['last'] = 'sidste »';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
-  /* Filter criterion: Flag: Flaget */
+  /* Filterkriterie: Flag: Flaget */
   $handler->display->display_options['filters']['flagged']['id'] = 'flagged';
   $handler->display->display_options['filters']['flagged']['table'] = 'flagging';
   $handler->display->display_options['filters']['flagged']['field'] = 'flagged';
@@ -274,7 +274,7 @@ function myassist_notification_views_default_views() {
   $handler->display->display_options['fields']['message_render']['partials_delta'] = '0';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
-  /* Filter criterion: Flag: Flaget */
+  /* Filterkriterie: Flag: Flaget */
   $handler->display->display_options['filters']['flagged']['id'] = 'flagged';
   $handler->display->display_options['filters']['flagged']['table'] = 'flagging';
   $handler->display->display_options['filters']['flagged']['field'] = 'flagged';
@@ -325,7 +325,7 @@ function myassist_notification_views_default_views() {
   $handler->display->display_options['link_display'] = 'custom_url';
   $handler->display->display_options['link_url'] = 'user/!1/messages/unread';
   $handler->display->display_options['defaults']['empty'] = FALSE;
-  /* No results behavior: Global: Text area */
+  /* Opførsel ved ingen resultater: Global: Tekstområde */
   $handler->display->display_options['empty']['area']['id'] = 'area';
   $handler->display->display_options['empty']['area']['table'] = 'views';
   $handler->display->display_options['empty']['area']['field'] = 'area';

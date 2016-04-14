@@ -53,6 +53,9 @@
 <?php } ?>
 <span class="<?php print $flag_wrapper_classes; ?>">
   <?php if ($link_href){
+    if ($action==='flag') {
+      print "<span class=\"flag_helper\">$link_title</span>";
+    }
     print "<a href=\"$link_href\" title=\"$link_title\" class=\"$flag_classes\" rel=\"nofollow\" " .
       (($flag->name==='best_answer' && $action==='flag') ? ('data-dialog-text="'.t('best_answer_confirmation').'"') : '') .
      ">$link_text</a><span class=\"flag-throbber\">&nbsp;</span>";

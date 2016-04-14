@@ -270,6 +270,74 @@ function myassist_questions_answers_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'field_bundle_settings_message__comment_created';
+  $strongarm->value = array(
+    'view_modes' => array(),
+    'extra_fields' => array(
+      'form' => array(),
+      'display' => array(
+        'message__message_text__0' => array(
+          'message_notify_email_subject' => array(
+            'visible' => TRUE,
+            'weight' => 0,
+          ),
+          'message_notify_email_body' => array(
+            'visible' => FALSE,
+            'weight' => 0,
+          ),
+        ),
+        'message__message_text__1' => array(
+          'message_notify_email_subject' => array(
+            'visible' => FALSE,
+            'weight' => 0,
+          ),
+          'message_notify_email_body' => array(
+            'visible' => TRUE,
+            'weight' => 0,
+          ),
+        ),
+      ),
+    ),
+  );
+  $export['field_bundle_settings_message__comment_created'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'field_bundle_settings_message__notify_advisor';
+  $strongarm->value = array(
+    'view_modes' => array(),
+    'extra_fields' => array(
+      'form' => array(),
+      'display' => array(
+        'message__message_text__0' => array(
+          'message_notify_email_subject' => array(
+            'weight' => '0',
+            'visible' => FALSE,
+          ),
+          'message_notify_email_body' => array(
+            'visible' => FALSE,
+            'weight' => 0,
+          ),
+        ),
+        'message__message_text__1' => array(
+          'message_notify_email_subject' => array(
+            'weight' => '0',
+            'visible' => TRUE,
+          ),
+          'message_notify_email_body' => array(
+            'visible' => TRUE,
+            'weight' => 0,
+          ),
+        ),
+      ),
+    ),
+  );
+  $export['field_bundle_settings_message__notify_advisor'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'field_bundle_settings_message__question_answered';
   $strongarm->value = array(
     'view_modes' => array(),
@@ -304,6 +372,40 @@ function myassist_questions_answers_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'field_bundle_settings_message__upvoted_answer';
+  $strongarm->value = array(
+    'view_modes' => array(),
+    'extra_fields' => array(
+      'form' => array(),
+      'display' => array(
+        'message__message_text__0' => array(
+          'message_notify_email_subject' => array(
+            'visible' => TRUE,
+            'weight' => 0,
+          ),
+          'message_notify_email_body' => array(
+            'visible' => FALSE,
+            'weight' => 0,
+          ),
+        ),
+        'message__message_text__1' => array(
+          'message_notify_email_subject' => array(
+            'visible' => FALSE,
+            'weight' => 0,
+          ),
+          'message_notify_email_body' => array(
+            'visible' => TRUE,
+            'weight' => 0,
+          ),
+        ),
+      ),
+    ),
+  );
+  $export['field_bundle_settings_message__upvoted_answer'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'field_bundle_settings_node__answers_question';
   $strongarm->value = array(
     'view_modes' => array(
@@ -320,7 +422,7 @@ function myassist_questions_answers_strongarm() {
         'custom_settings' => FALSE,
       ),
       'search_index' => array(
-        'custom_settings' => FALSE,
+        'custom_settings' => TRUE,
       ),
       'search_result' => array(
         'custom_settings' => FALSE,
@@ -361,6 +463,10 @@ function myassist_questions_answers_strongarm() {
             'visible' => FALSE,
           ),
           'teaser' => array(
+            'weight' => '0',
+            'visible' => FALSE,
+          ),
+          'search_index' => array(
             'weight' => '0',
             'visible' => FALSE,
           ),
