@@ -102,6 +102,11 @@
         }
 
       });
+      
+      $(".password-strength").each(function(){
+        var $this = $(this);
+        $this.parent().append($this);
+      });
     }
   };
   

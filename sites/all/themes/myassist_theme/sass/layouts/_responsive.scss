@@ -104,7 +104,27 @@ body {
 }
 
 @media all and (max-width: $u*35) {
-  
+  .header__logo-image {
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+  }
+  .create-new-or-log-in {
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+  .confirm-parent,
+  .password-parent {
+    width: 100%;
+  }
+  .image-widget {
+    .file {
+      a {
+        width: $u*20;
+        display: inline-block;
+        word-wrap: break-word;
+      }
+    }
+  }
 }
 
 
@@ -119,6 +139,11 @@ body {
     height: $u*4;
     padding-top: $u*0.5;
     box-sizing: border-box;
+
+    .create-new-or-log-in {
+      padding-left: 0.5em;
+      padding-right: 0.5em;
+    }
   }
   #block-search-form.open #search-block-form {
     top: $u*4;
@@ -325,7 +350,7 @@ body {
     .field-name-field-category {
       position: absolute;
       top: 0;
-      left: 55%;
+      left: 58%;
       width: 20%;
       .field-items {
         margin: 0 $u;

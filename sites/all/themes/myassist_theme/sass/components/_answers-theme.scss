@@ -8,6 +8,14 @@
 
 .answers-body-wrapper {
   clear: both;
+
+  .answers-body {
+    .content {
+      .field-item {
+        word-wrap: break-word;
+      }
+    }
+  }
 }
 
 
