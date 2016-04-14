@@ -93,7 +93,6 @@ function myassist_achievements_check_achievement($uid, $achievement_group, $coun
   foreach ($achievement_group['achievements'] as $key => $achievement) {
     if (!achievements_unlocked_already($key) && $count >= $achievement['required']) {
       achievements_unlocked($key, $uid);
-
     }
   }
 }
@@ -186,10 +185,10 @@ function myassist_achievements_votingapi_insert($votes) {
     // Test and trigger vote achievements
 
     if (!$seen_uids[$uid]) {
-      myassist_achievements_check_achievement($uid, $achievements['votes-all'], count(myassist_achievements_get_user_vote_ids($uid)));
-      myassist_achievements_check_achievement($uid, $achievements['votes-month'], count(myassist_achievements_get_user_vote_ids($uid, $one_month)));
-      myassist_achievements_check_achievement($uid, $achievements['votes-week'], count(myassist_achievements_get_user_vote_ids($uid, $one_week)));
-      myassist_achievements_check_achievement($uid, $achievements['votes-day'], count(myassist_achievements_get_user_vote_ids($uid, $one_day)));
+      myassist_achievements_check_achievement($uid, $achievements['upvotes-all'], count(myassist_achievements_get_user_vote_ids($uid)));
+      myassist_achievements_check_achievement($uid, $achievements['upvotes-month'], count(myassist_achievements_get_user_vote_ids($uid, $one_month)));
+      myassist_achievements_check_achievement($uid, $achievements['upvotes-week'], count(myassist_achievements_get_user_vote_ids($uid, $one_week)));
+      myassist_achievements_check_achievement($uid, $achievements['upvotes-day'], count(myassist_achievements_get_user_vote_ids($uid, $one_day)));
     }
 
     $seen_uids[$uid] = true;
@@ -262,6 +261,29 @@ function myassist_achievements_userpoints($operation, $parameters) {
     myassist_achievements_register_points($uid, $parameters['txn_id']);
   }
 }
+
+/**
+ * Implements hook_userpoints_info().
+ */
+function myassist_achievements_userpoints_info() {
+  $info['addPoints'] = array(
+    'description' => t('Admin has added points')
+  );
+  $info['removePoints'] = array(
+    'description' => t('Admin has removed points')
+  );
+
+  $achievements = achievements_load();
+  foreach ($achievements as $achievementId => $achievementData) {
+    $info["achievement $achievementId"] = array(
+      'description' => sprintf(t("Du er blevet %s"), $achievementData['title'])
+    );
+  }
+
+  return $info;
+}
+
+
 
 
 /*
@@ -371,9 +393,9 @@ function myassist_achievements_userpoints_list_transactions_alter(&$data) {
 }
 
 
-function myassist_achievements_init() {
+/*function myassist_achievements_init() {
   variable_set('achievements_leaderboard_count_per_page', 10000);
-}
+}*/
 
 /**
  * Implements hook_TYPE_alter().
@@ -392,14 +414,14 @@ function myassist_achievements_achievements_leaderboard_alter(&$leaderboard) {
   if (array_key_exists('achievers', $leaderboard)) {
     foreach ($leaderboard['achievers'] as $list_type => &$list) {
       foreach ($list as $uid => $account) {
-        if ($pos > $limit) {
+        /*if ($pos > $limit) {
           unset($list[$uid]);
         }
         if (!myassist_achievements_user_can_earn_points($uid)) {
           unset($list[$uid]);
         } else {
           $pos++;
-        }
+        }*/
         if (!$account->achievement_id) {
           $account->latest["#achievement"] = array();
           $no_achievements[] = $uid;
@@ -409,8 +431,9 @@ function myassist_achievements_achievements_leaderboard_alter(&$leaderboard) {
   }
   if (array_key_exists('render', $leaderboard) && array_key_exists('#rows', $render)) {
     $pos = 1;
+
     foreach ($render['#rows'] as $uid => &$row) {
-      if ($pos > $limit) {
+      /*if ($pos > $limit) {
         unset($render['#rows'][$uid]);
       }
       if (!myassist_achievements_user_can_earn_points($uid)) {
@@ -418,7 +441,7 @@ function myassist_achievements_achievements_leaderboard_alter(&$leaderboard) {
       } else {
         $row['data'][0]['data'] = $pos;
         $pos++;
-      }
+      }*/
       if (in_array($uid, $no_achievements)) {
         $row['data'][4]['data'] = "";
       }
@@ -461,7 +484,7 @@ function myassist_achievements_profile2_view($profile, $view_mode, $langcode) {
       '#class' => 'userlevel',
       '#text' => t("Level ". $level["level"]),
       //t("Level @level", array("@level" => $level["level"])),
-      '#href' => "/user/$uid/achievements",
+      '#href' => "/content/levels",
     );
 
 

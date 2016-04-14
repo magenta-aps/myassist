@@ -89,14 +89,16 @@
   $locked = array_key_exists('lock_message', $content) || array_key_exists('question_locks', $content);
 
   // Hide these items to render when we choose.
-  hide($content['links']['statistics']);
-  hide($content['comments']);
-  hide($content['links']);
-  hide($content['best_answer']);
-  hide($content['answers_list']);
-  hide($content['new_answer_form']);
-  hide($content['lock_message']);
-  hide($content['question_locks']);
+  // See template.php for the graceful function
+  graceful_hide($content['links']['statistics']);
+  graceful_hide($content['comments']);
+  graceful_hide($content['links']);
+  graceful_hide($content['best_answer']);
+  graceful_hide($content['answers_list']);
+  graceful_hide($content['new_answer_form']);
+  graceful_hide($content['lock_message']);
+  graceful_hide($content['question_locks']);
+  graceful_hide($content['advisor']);
 
 ?>
 
@@ -140,7 +142,7 @@
           </span>
           <?php
             if ($locked) {
-              print '<em class="question_locked" tite="' . t("[Solved]") . '">&#10004;</em>';
+              print '<em class="question_locked" title="' . t("[Solved]") . '">&#10004;</em>';
               print '<em class="question_locked">' . t("[Solved]") . '</em>';
             }
           ?>
@@ -178,21 +180,30 @@
             print '<a id="answers-btn-answer" class="answers-btn-primary btn" href="' . $node_url . '">' . t("Go to question") . '</a>';
           }
 
-          if (!$locked) {
+          if (!$locked && $view_mode !== 'user_activity_list_entry') {
             print '<a id="answers-btn-answer" class="answers-btn-primary btn" href="' . $node_url . '#new-answer-form">' . t("Answer"). '</a>';
           }
         ?>
 
-        <?php    
-            if ($view_mode === 'full') {
-              if ($user->uid === $node->uid && !$locked) {
-                print '<a id="answers-btn-lock" class="answers-btn-primary btn" href="' . $node_url . '/lock" data-dialog-text="' . t("lock_question_confirmation") . '">' . t("Lock question") . '</a>';
-              }
-            }
+        <?php
+        if ($view_mode === 'full') {
+          if ($user->uid === $node->uid && !$locked) {
+            print '<a id="answers-btn-lock" class="answers-btn-primary btn" href="/node/' . $node->nid . '/lock" data-dialog-text="' . t("lock_question_confirmation") . '">' . t("Lock question") . '</a>';
+          }
+        }
         ?>
+          <div class="link-wrapper">
+          <?php
+            if (user_access('post comments') && $view_mode === 'full' && !$locked) {
+              // Add a "pseudo-link" to open the comment dialog. This is done using jquery.
+              print '<ul class="links"><li class="answers-comment-button"><a>' . t("Comment") . '</a></li></ul>';
+            }
+          ?>
+          </div>
 
       </div>
       <?php
+      print render($content['advisor']);
         print render($content['comments']);
       ?>
     </div>

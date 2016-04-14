@@ -131,3 +131,20 @@ function myassist_theme_preprocess_block(&$variables, $hook) {
   //}
 }
 // */
+
+/**
+ * Fix broken Drupal function that sets the item if it doesn't exist
+ * hide($array['nonexisting']) will create the 'nonexisting' entry in the $array object, making checks for its existence unexpectedly pass
+ * graceful_hide($array['nonexisting']) does not create a new entry in the $array object
+ *
+ * Me: Whyyyyy?
+ * Drupal: Because Fuck You, that's why
+ *
+ * @param $item
+ *   A renderable object that may or may not exist
+ */
+function graceful_hide(&$item) {
+  if (isset($item)) {
+    hide($item);
+  }
+}
