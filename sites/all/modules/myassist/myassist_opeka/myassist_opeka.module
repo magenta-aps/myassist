@@ -10,7 +10,20 @@
  */
 function myassist_opeka_is_opeka_chat_page() {
     if (function_exists("is_opeka_chat_page")) {
-        return is_opeka_chat_page();
+        if (is_opeka_chat_page()) {
+            return TRUE;
+        }
+    }
+    $path = current_path();
+    $prefixes = array(
+      "opeka",
+      "opeka-widgets",
+      "admin/opeka"
+    );
+    foreach($prefixes as $prefix) {
+        if(substr($path, 0, strlen($prefix)) === $prefix) {
+            return TRUE;
+        }
     }
     return FALSE;
 }
@@ -30,7 +43,7 @@ function add_chat_updates_ressources() {
 
 
     // general libraries
-    drupal_add_js($opeka_module_path . '/js/underscore.js');
+    drupal_add_js($opeka_module_path . '/js/underscore.js', array('weight' => -1));
     drupal_add_js('https://cdn.socket.io/socket.io-1.3.5.js');
 
     // Listen for updates to chat status using socket.io
