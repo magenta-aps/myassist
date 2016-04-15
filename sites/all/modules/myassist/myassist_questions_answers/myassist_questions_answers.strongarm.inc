@@ -471,7 +471,7 @@ function myassist_questions_answers_strongarm() {
             'visible' => FALSE,
           ),
           'user_activity_list_entry' => array(
-            'weight' => '2',
+            'weight' => '3',
             'visible' => FALSE,
           ),
         ),
