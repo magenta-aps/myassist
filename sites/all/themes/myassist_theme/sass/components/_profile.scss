@@ -60,7 +60,7 @@
   .username {
     @extend .white-funky-header;
   }
-  .section.nodes h3 {
+  .section.nodes > h3 {
     @extend .funky-header;
     border: none;
     margin-top: $u;
