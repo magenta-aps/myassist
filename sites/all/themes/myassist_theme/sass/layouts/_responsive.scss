@@ -342,26 +342,32 @@ body {
   .btn.add-question-block {
     display: inline-block;
   }
-  .view-question-answers {
+  .answers-body-wrapper {
+    position: relative;
+    .field-name-body {
+      width: 60%;
+    }
+    .field-name-field-category {
+      position: absolute;
+      top: 0;
+      left: 58%;
+      width: 20%;
+      .field-items {
+        margin: 0 $u;
+      }
+    }
+    .answers-submitted {
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 25%;
+    }
+  }
+
+  .view-user-nodes {
     .answers-body-wrapper {
-      position: relative;
       .field-name-body {
-        width: 60%;
-      }
-      .field-name-field-category {
-        position: absolute;
-        top: 0;
-        left: 58%;
-        width: 20%;
-        .field-items {
-          margin: 0 $u;
-        }
-      }
-      .answers-submitted {
-        position: absolute;
-        right: 0;
-        top: 0;
-        width: 25%;
+        width: 100%;
       }
     }
   }
