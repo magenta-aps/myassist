@@ -145,3 +145,4 @@ features[variable][] = node_preview_answers_question
 features[variable][] = node_submitted_answers_answer
 features[variable][] = node_submitted_answers_question
 features[variable][] = pathauto_taxonomy_term_tags_pattern
+features[views_view][] = debatr_dgivere
