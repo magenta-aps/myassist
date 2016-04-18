@@ -4,6 +4,7 @@ dependencies[] = answers
 package = Answers
 core = 7.x
 stylesheets[all][] = css/answers_theme.css
+scripts[] = js/answers_theme.js
 
 ; Information added by Drupal.org packaging script on 2015-03-20
 version = "7.x-4.0-rc2"
