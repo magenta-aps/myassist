@@ -193,7 +193,8 @@ function myassist_opeka_block_info()
 {
     $blocks = array();
     $blocks['chatribbons'] = array(
-        'info' => t("Chat notification ribbons")
+        'info' => t("Chat notification ribbons"),
+        'cache' => DRUPAL_NO_CACHE
     );
     return $blocks;
 }
