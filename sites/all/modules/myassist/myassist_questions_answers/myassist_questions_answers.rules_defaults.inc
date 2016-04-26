@@ -318,6 +318,7 @@ function myassist_questions_answers_default_rules_configuration() {
   $items['rules_notify_user_on_new_question_cloned_'] = entity_import('rules_config', '{ "rules_notify_user_on_new_question_cloned_" : {
       "LABEL" : "Notify users with unge profil on new question",
       "PLUGIN" : "reaction rule",
+      "ACTIVE" : false,
       "OWNER" : "rules",
       "TAGS" : [ "notify" ],
       "REQUIRES" : [ "rules" ],
@@ -334,10 +335,44 @@ function myassist_questions_answers_default_rules_configuration() {
         { "mail_to_users_of_role" : {
             "roles" : { "value" : { "8" : "8" } },
             "subject" : "[site:name] - En anden bruger har brug for et assist.",
-            "message" : "Hey der\\r\\nEn anden bruger har oprettet et sp\\u00f8rgsm\\u00e5l...m\\u00e5ske er det dig der kender svaret?. \\r\\nKlik ind forbi og tjek sp\\u00f8rgsm\\u00e5let ud...og giv et assist.  \\r\\n\\r\\nMvh. Moderator-Teamet\\r\\n\\r\\nTitel p\\u00e5 sp\\u00f8rgsm\\u00e5l: [node:title]\\r\\n\\r\\nG\\u00e5 til sp\\u00f8rgsm\\u00e5l: [node:url]\\r\\n"
+            "message" : "Hey der\\r\\nEn anden bruger har oprettet et sp\\u00f8rgsm\\u00e5l...m\\u00e5ske er det dig der kender svaret?. \\r\\nKlik ind forbi og tjek sp\\u00f8rgsm\\u00e5let ud...og giv et assist.\\r\\nMvh. Moderator-Teamet\\r\\n\\r\\nTitel p\\u00e5 sp\\u00f8rgsm\\u00e5l: [node:title]\\r\\n\\r\\nG\\u00e5 til sp\\u00f8rgsm\\u00e5l: [node:url]"
           }
         },
         { "drupal_message" : { "message" : "Tak fordi du oprettede et sp\\u00f8rgsm\\u00e5l. Vi har sendt en besked til [node:field-advisor:name]." } }
+      ]
+    }
+  }');
+  $items['rules_notify_users_with_unge_profil_on_new_question_individual_'] = entity_import('rules_config', '{ "rules_notify_users_with_unge_profil_on_new_question_individual_" : {
+      "LABEL" : "Notify users with unge profil on new question (individual)",
+      "PLUGIN" : "reaction rule",
+      "OWNER" : "rules",
+      "TAGS" : [ "notify" ],
+      "REQUIRES" : [ "rules", "myassist_user" ],
+      "ON" : { "node_insert--answers_question" : { "bundle" : "answers_question" } },
+      "IF" : [ { "NOT data_is_empty" : { "data" : [ "node:body" ] } } ],
+      "DO" : [
+        { "mail" : {
+            "to" : "nc@cyberhus.dk",
+            "subject" : "[site:name] - En anden bruger har brug for et assist.",
+            "message" : "Hey der\\r\\nEn anden bruger har oprettet et sp\\u00f8rgsm\\u00e5l...m\\u00e5ske er det dig der kender svaret?. \\r\\nKlik ind forbi og tjek sp\\u00f8rgsm\\u00e5let ud...og giv et assist.  \\r\\n\\r\\nMvh. Moderator-Teamet\\r\\n\\r\\nTitel p\\u00e5 sp\\u00f8rgsm\\u00e5l: [node:title]\\r\\n\\r\\nG\\u00e5 til sp\\u00f8rgsm\\u00e5l: [node:url]\\r\\n",
+            "language" : [ "" ]
+          }
+        },
+        { "mail_to_users_of_role" : {
+            "roles" : { "value" : { "8" : "8" } },
+            "subject" : "[site:name] - En anden bruger har brug for et assist.",
+            "message" : "Hey der\\r\\nEn anden bruger har oprettet et sp\\u00f8rgsm\\u00e5l...m\\u00e5ske er det dig der kender svaret?. \\r\\nKlik ind forbi og tjek sp\\u00f8rgsm\\u00e5let ud...og giv et assist.\\r\\nMvh. Moderator-Teamet\\r\\n\\r\\nTitel p\\u00e5 sp\\u00f8rgsm\\u00e5l: [node:title]\\r\\n\\r\\nG\\u00e5 til sp\\u00f8rgsm\\u00e5l: [node:url]"
+          }
+        },
+        { "drupal_message" : { "message" : "Tak fordi du oprettede et sp\\u00f8rgsm\\u00e5l. Vi har sendt en besked til [node:field-advisor:name]." } },
+        { "mail_to_users_of_role_with_field" : {
+            "roles" : { "value" : { "3" : "3" } },
+            "subject" : "[site:name] - En anden bruger har brug for et assist.",
+            "message" : "Hey der\\r\\nEn anden bruger har oprettet et sp\\u00f8rgsm\\u00e5l...m\\u00e5ske er det dig der kender svaret?. \\r\\nKlik ind forbi og tjek sp\\u00f8rgsm\\u00e5let ud...og giv et assist.\\r\\nMvh. Moderator-Teamet\\r\\n\\r\\nTitel p\\u00e5 sp\\u00f8rgsm\\u00e5l: [node:title]\\r\\n\\r\\nG\\u00e5 til sp\\u00f8rgsm\\u00e5l: [node:url]",
+            "field" : "field_mail_on_new_question",
+            "value" : "1"
+          }
+        }
       ]
     }
   }');
