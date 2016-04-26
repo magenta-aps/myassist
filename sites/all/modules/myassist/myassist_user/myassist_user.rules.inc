@@ -4,51 +4,51 @@
 */
 function myassist_user_rules_action_info() {
 return array(
-'mail_to_users_of_role' => array(
-'label' => t('Send mail to all users of a role if field is set'),
-'group' => t('System'),
-'parameter' => array(
-'roles' => array(
-'type' => 'list<integer>',
-  'label' => t('Roles'),
-  'options list' => 'entity_metadata_user_roles',
-  'description' => t('Select the roles whose users should receive the mail.'),
-  ),
-  'subject' => array(
-  'type' => 'text',
-  'label' => t('Subject'),
-  'description' => t("The mail's subject."),
-  ),
-  'message' => array(
-  'type' => 'text',
-  'label' => t('Message'),
-  'description' => t("The mail's message body."),
-  ),
-  'field' => array(
-  'type' => 'text',
-  'label' => t('Field'),
-  'description' => t("The user account field to check"),
-  ),
-  'value' => array(
-  'type' => 'text',
-  'label' => t('Value'),
-  'description' => t("The value needed in the field"),
-  'optional' => TRUE,
-  ),
-  'from' => array(
-  'type' => 'text',
-  'label' => t('From'),
-  'description' => t("The mail's from address. Leave it empty to use the site-wide configured address."),
-  'optional' => TRUE,
-  )
-  ),
-  'base' => 'myassist_user_rules_action_mail_to_users_of_role_and_field',
-  'access callback' => 'rules_system_integration_access',
-  )
+'mail_to_users_of_role_with_field' => array(
+  'label' => t('Send mail to all users of a role if field is set'),
+  'group' => t('System'),
+  'parameter' => array(
+  'roles' => array(
+  'type' => 'list<integer>',
+    'label' => t('Roles'),
+    'options list' => 'entity_metadata_user_roles',
+    'description' => t('Select the roles whose users should receive the mail.'),
+    ),
+    'subject' => array(
+    'type' => 'text',
+    'label' => t('Subject'),
+    'description' => t("The mail's subject."),
+    ),
+    'message' => array(
+    'type' => 'text',
+    'label' => t('Message'),
+    'description' => t("The mail's message body."),
+    ),
+    'field' => array(
+    'type' => 'text',
+    'label' => t('Field'),
+    'description' => t("The user account field to check"),
+    ),
+    'value' => array(
+    'type' => 'text',
+    'label' => t('Value'),
+    'description' => t("The value needed in the field"),
+    'optional' => TRUE,
+    ),
+    'from' => array(
+    'type' => 'text',
+    'label' => t('From'),
+    'description' => t("The mail's from address. Leave it empty to use the site-wide configured address."),
+    'optional' => TRUE,
+    )
+    ),
+    'base' => 'myassist_user_rules_action_mail_to_users_of_role_and_field',
+    'access callback' => 'rules_system_integration_access',
+    )
   );
-  }
+}
 
-  function myassist_user_rules_action_mail_to_users_of_role_and_field($roles, $subject, $message, $field, $value = 1, $from = NULL, $settings, RulesState $state, RulesPlugin $element) {
+function myassist_user_rules_action_mail_to_users_of_role_and_field($roles, $subject, $message, $field, $value = 1, $from = NULL, $settings, RulesState $state, RulesPlugin $element) {
   $from = !empty($from) ? str_replace(array("\r", "\n"), '', $from) : NULL;
 
   $fieldJoin = "INNER JOIN {field_data_$field} f ON u.uid = f.uid";
