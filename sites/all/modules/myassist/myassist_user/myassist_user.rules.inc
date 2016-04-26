@@ -51,29 +51,37 @@ return array(
 function myassist_user_rules_action_mail_to_users_of_role_and_field($roles, $subject, $message, $field, $value = 1, $from = NULL, $settings, RulesState $state, RulesPlugin $element) {
   $from = !empty($from) ? str_replace(array("\r", "\n"), '', $from) : NULL;
 
-  $fieldJoin = "INNER JOIN {field_data_$field} f ON u.uid = f.uid";
-  $fieldWhere = "f.${field}_value == $value";
+  $field = preg_replace('[^a-zA-Z0-9_\-]', '', $field);
+  $fieldJoin = "INNER JOIN {field_data_$field} f ON u.uid = f.entity_id";
+
+  try {
+    $value = (int) $value;
+  } catch (Exception $e) {}
+  if (is_string($value)) {
+    $value = "'" . preg_replace('[^a-zA-Z0-9_\-]', '', $value) . "'";
+  }
+  $fieldWhere = "f.${field}_value = $value";
 
   // All authenticated users, which is everybody.
   if (in_array(DRUPAL_AUTHENTICATED_RID, $roles)) {
-  $query = 'SELECT mail FROM {users} ' . $fieldJoin . ' WHERE uid > 0 AND ' . $fieldWhere;
+    $query = 'SELECT mail FROM {users} ' . $fieldJoin . ' WHERE uid > 0 AND ' . $fieldWhere;
   }
   else {
-  // Avoid sending emails to members of two or more target role groups.
-  $query = 'SELECT DISTINCT u.mail FROM {users} u INNER JOIN {users_roles} r ON u.uid = r.uid ' . $fieldJoin . ' WHERE r.rid IN (' . implode(',', $roles) . ') AND ' . $fieldWhere;
+    // Avoid sending emails to members of two or more target role groups.
+    $query = 'SELECT DISTINCT u.mail FROM {users} u INNER JOIN {users_roles} r ON u.uid = r.uid ' . $fieldJoin . ' WHERE r.rid IN (' . implode(',', $roles) . ') AND ' . $fieldWhere;
   }
 
   try {
-  $result = db_query($query);
+    $result = db_query($query);
   } catch (Exception $e) {
-    print $e;
+    print $query;
     return;
   }
 
   // Now, actually send the mails.
   $params = array(
-  'subject' => $subject,
-  'message' => $message,
+    'subject' => $subject,
+    'message' => $message,
   );
   // Set a unique key for this mail.
   $name = isset($element->root()->name) ? $element->root()->name : 'unnamed';
@@ -81,19 +89,19 @@ function myassist_user_rules_action_mail_to_users_of_role_and_field($roles, $sub
 
   $message = array('result' => TRUE);
   foreach ($result as $row) {
-  $message = drupal_mail('rules', $key, $row->mail, language_default(), $params, $from);
-  // If $message['result'] is FALSE, then it's likely that email sending is
-  // failing at the moment, and we should just abort sending any more. If
-  // however, $mesage['result'] is NULL, then it's likely that a module has
-  // aborted sending this particular email to this particular user, and we
-  // should just keep on sending emails to the other users.
-  // For more information on the result value, see drupal_mail().
-  if ($message['result'] === FALSE) {
-  break;
-  }
+    $message = drupal_mail('rules', $key, $row->mail, language_default(), $params, $from);
+    // If $message['result'] is FALSE, then it's likely that email sending is
+    // failing at the moment, and we should just abort sending any more. If
+    // however, $mesage['result'] is NULL, then it's likely that a module has
+    // aborted sending this particular email to this particular user, and we
+    // should just keep on sending emails to the other users.
+    // For more information on the result value, see drupal_mail().
+    if ($message['result'] === FALSE) {
+      break;
+    }
   }
   if ($message['result'] !== FALSE) {
-  $role_names = array_intersect_key(user_roles(TRUE), array_flip($roles));
-  watchdog('rules', 'Successfully sent email to the role(s) %roles.', array('%roles' => implode(', ', $role_names)));
+    $role_names = array_intersect_key(user_roles(TRUE), array_flip($roles));
+    watchdog('rules', 'Successfully sent email to the role(s) %roles.', array('%roles' => implode(', ', $role_names)));
   }
-  }
+}
