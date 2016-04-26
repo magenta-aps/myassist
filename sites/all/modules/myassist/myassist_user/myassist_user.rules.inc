@@ -51,12 +51,12 @@ return array(
 function myassist_user_rules_action_mail_to_users_of_role_and_field($roles, $subject, $message, $field, $value = 1, $from = NULL, $settings, RulesState $state, RulesPlugin $element) {
   $from = !empty($from) ? str_replace(array("\r", "\n"), '', $from) : NULL;
 
-  $field = preg_replace('[^a-zA-Z0-9_\-]', '', $field);
+  $field = preg_replace('/[^a-zA-Z0-9_\-]/', '', $field);
   $fieldJoin = "INNER JOIN {field_data_$field} f ON u.uid = f.entity_id";
 
-  try {
+  if (is_string($value) && preg_match('/^\d+$/', $value)) {
     $value = (int) $value;
-  } catch (Exception $e) {}
+  }
   if (is_string($value)) {
     $value = "'" . preg_replace('[^a-zA-Z0-9_\-]', '', $value) . "'";
   }
@@ -74,7 +74,6 @@ function myassist_user_rules_action_mail_to_users_of_role_and_field($roles, $sub
   try {
     $result = db_query($query);
   } catch (Exception $e) {
-    print $query;
     return;
   }
 
