@@ -54,7 +54,6 @@ function myassist_user_rules_action_mail_to_users_of_role_and_field($roles, $sub
   $fieldJoin = "INNER JOIN {field_data_$field} f ON u.uid = f.uid";
   $fieldWhere = "f.${field}_value == $value";
 
-  //try {
   // All authenticated users, which is everybody.
   if (in_array(DRUPAL_AUTHENTICATED_RID, $roles)) {
   $query = 'SELECT mail FROM {users} ' . $fieldJoin . ' WHERE uid > 0 AND ' . $fieldWhere;
@@ -63,11 +62,13 @@ function myassist_user_rules_action_mail_to_users_of_role_and_field($roles, $sub
   // Avoid sending emails to members of two or more target role groups.
   $query = 'SELECT DISTINCT u.mail FROM {users} u INNER JOIN {users_roles} r ON u.uid = r.uid ' . $fieldJoin . ' WHERE r.rid IN (' . implode(',', $roles) . ') AND ' . $fieldWhere;
   }
-  print $query;
+
+  try {
   $result = db_query($query);
-  //} catch ($e) {
-  //  return;
-  //}
+  } catch (Exception $e) {
+    print $e;
+    return;
+  }
 
   // Now, actually send the mails.
   $params = array(
