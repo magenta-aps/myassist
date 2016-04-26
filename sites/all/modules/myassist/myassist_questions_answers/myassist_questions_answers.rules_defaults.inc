@@ -271,6 +271,54 @@ function myassist_questions_answers_default_rules_configuration() {
       "DO" : []
     }
   }');
+  $items['rules_nattemoderation'] = entity_import('rules_config', '{ "rules_nattemoderation" : {
+      "LABEL" : "Nattemoderation, kommentarer",
+      "PLUGIN" : "reaction rule",
+      "OWNER" : "rules",
+      "TAGS" : [ "moderation" ],
+      "REQUIRES" : [ "rules", "php", "comment" ],
+      "ON" : { "comment_insert" : [] },
+      "IF" : [
+        { "user_has_role" : {
+            "account" : [ "site:current-user" ],
+            "roles" : { "value" : { "1" : "1" } }
+          }
+        },
+        { "NOT php_eval" : { "code" : "\\/*we check if the content is posted inside opening hours*\\/\\r\\nreturn cfdp_uf_open_to_posts();" } }
+      ],
+      "DO" : [
+        { "data_set" : { "data" : [ "comment:status" ], "value" : "0" } },
+        { "drupal_message" : { "message" : "Mellem kl. 22 og 9 bliver nyt indhold ikke automatisk offentliggjort p\\u00e5 cyberhus.dk." } }
+      ]
+    }
+  }');
+  $items['rules_nattemoderation_nodes'] = entity_import('rules_config', '{ "rules_nattemoderation_nodes" : {
+      "LABEL" : "Nattemoderation, nodes",
+      "PLUGIN" : "reaction rule",
+      "OWNER" : "rules",
+      "TAGS" : [ "moderation" ],
+      "REQUIRES" : [ "rules", "php" ],
+      "ON" : { "node_insert" : [] },
+      "IF" : [
+        { "user_has_role" : {
+            "account" : [ "site:current-user" ],
+            "roles" : { "value" : { "1" : "1" } }
+          }
+        },
+        { "NOT php_eval" : { "code" : "\\/*we check if the content is posted inside opening hours*\\/\\r\\nreturn cfdp_uf_open_to_posts();" } },
+        { "NOT node_is_of_type" : {
+            "node" : [ "node" ],
+            "type" : { "value" : { "brevkasse" : "brevkasse" } }
+          }
+        }
+      ],
+      "DO" : [
+        { "node_unpublish" : { "node" : [ "node" ] } },
+        { "redirect" : { "url" : "tak" } },
+        { "drupal_message" : { "message" : "Mellem kl. 22 og 9 bliver nyt indhold ikke automatisk offentliggjort p\\u00e5 cyberhus.dk.\\r\\nDit indl\\u00e6g er sat i k\\u00f8 og vil blive offentliggjort s\\u00e5 snart det er godkendt af moderatorerne.\\r\\nVenlig hilsen cyberhus.dk-teamet" } }
+      ]
+    }
+  }');
   $items['rules_notify_advisor'] = entity_import('rules_config', '{ "rules_notify_advisor" : {
       "LABEL" : "Notify advisor on new question",
       "PLUGIN" : "reaction rule",
@@ -312,32 +360,6 @@ function myassist_questions_answers_default_rules_configuration() {
             "language" : [ "" ]
           }
         }
-      ]
-    }
-  }');
-  $items['rules_notify_user_on_new_question_cloned_'] = entity_import('rules_config', '{ "rules_notify_user_on_new_question_cloned_" : {
-      "LABEL" : "Notify users with unge profil on new question",
-      "PLUGIN" : "reaction rule",
-      "OWNER" : "rules",
-      "TAGS" : [ "notify" ],
-      "REQUIRES" : [ "rules" ],
-      "ON" : { "node_insert--answers_question" : { "bundle" : "answers_question" } },
-      "IF" : [ { "NOT data_is_empty" : { "data" : [ "node:body" ] } } ],
-      "DO" : [
-        { "mail" : {
-            "to" : "nc@cyberhus.dk",
-            "subject" : "[site:name] - En anden bruger har brug for et assist.",
-            "message" : "Hey der\\r\\nEn anden bruger har oprettet et sp\\u00f8rgsm\\u00e5l...m\\u00e5ske er det dig der kender svaret?. \\r\\nKlik ind forbi og tjek sp\\u00f8rgsm\\u00e5let ud...og giv et assist.  \\r\\n\\r\\nMvh. Moderator-Teamet\\r\\n\\r\\nTitel p\\u00e5 sp\\u00f8rgsm\\u00e5l: [node:title]\\r\\n\\r\\nG\\u00e5 til sp\\u00f8rgsm\\u00e5l: [node:url]\\r\\n",
-            "language" : [ "" ]
-          }
-        },
-        { "mail_to_users_of_role" : {
-            "roles" : { "value" : { "8" : "8" } },
-            "subject" : "[site:name] - En anden bruger har brug for et assist.",
-            "message" : "Hey der\\r\\nEn anden bruger har oprettet et sp\\u00f8rgsm\\u00e5l...m\\u00e5ske er det dig der kender svaret?. \\r\\nKlik ind forbi og tjek sp\\u00f8rgsm\\u00e5let ud...og giv et assist.  \\r\\n\\r\\nMvh. Moderator-Teamet\\r\\n\\r\\nTitel p\\u00e5 sp\\u00f8rgsm\\u00e5l: [node:title]\\r\\n\\r\\nG\\u00e5 til sp\\u00f8rgsm\\u00e5l: [node:url]\\r\\n"
-          }
-        },
-        { "drupal_message" : { "message" : "Tak fordi du oprettede et sp\\u00f8rgsm\\u00e5l. Vi har sendt en besked til [node:field-advisor:name]." } }
       ]
     }
   }');
