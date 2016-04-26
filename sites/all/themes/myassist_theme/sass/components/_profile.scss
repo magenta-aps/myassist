@@ -83,7 +83,8 @@ body.page-user-register #edit-profile-ungeprofil,
     .field-name-field-mail-on-receive-assist,
     .field-name-field-mail-on-receive-comment,
     .field-name-field-mail-on-best-assist,
-    .field-name-field-mail-on-voteup {
+    .field-name-field-mail-on-voteup,
+    .field-name-field-mail-on-new-question {
         padding: $u*0.5 $u;
         border: solid 1px $grey;
         border-width: 0 1px;
@@ -107,7 +108,7 @@ body.page-user-register #edit-profile-ungeprofil,
         font-weight: bold;
         color: $darkblue;
     }
-    .field-name-field-mail-on-voteup {
+    .field-name-field-mail-on-new-question {
         border-bottom-width: 1px;
         padding-bottom: $u;
         margin-bottom: $u;
