@@ -431,7 +431,11 @@ function myassist_achievements_achievements_leaderboard_alter(&$leaderboard) {
         } else {
           $pos++;
         }*/
-        if (!$account->achievement_id) {
+        $ach = 0;
+        try {
+          $ach = $account->achievement_id;
+        } catch (Exception $e) {}
+        if (!$ach) {
           $account->latest["#achievement"] = array();
           $no_achievements[] = $uid;
         }
