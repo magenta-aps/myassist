@@ -234,12 +234,12 @@ function myassist_questions_answers_views_data() {
 function myassist_questions_answers_uf_open_to_posts() {
   $open = true;
   $closingtime = 22;
-  $openingtime = 12;
+  $openingtime = 9;
   $timezone = new DateTimeZone( "Europe/Copenhagen" );
   $date = new DateTime();
   $date->setTimezone($timezone);
   $present_hour = $date->format('H');
-  if($present_hour > ($closingtime -1) || $present_hour < $openingtime ){
+  if ($present_hour > ($closingtime -1) || $present_hour < $openingtime) {
     $open = false;
   }
   return $open;
