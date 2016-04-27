@@ -284,7 +284,7 @@ function myassist_questions_answers_default_rules_configuration() {
             "roles" : { "value" : { "1" : "1" } }
           }
         },
-        { "NOT php_eval" : { "code" : "\\/*we check if the content is posted inside opening hours*\\/\\r\\nreturn cfdp_uf_open_to_posts();" } }
+        { "NOT php_eval" : { "code" : "\\/*we check if the content is posted inside opening hours*\\/\\r\\nreturn myassist_questions_answers_uf_open_to_posts();" } }
       ],
       "DO" : [
         { "data_set" : { "data" : [ "comment:status" ], "value" : "0" } },
@@ -305,7 +305,7 @@ function myassist_questions_answers_default_rules_configuration() {
             "roles" : { "value" : { "1" : "1" } }
           }
         },
-        { "NOT php_eval" : { "code" : "\\/*we check if the content is posted inside opening hours*\\/\\r\\nreturn cfdp_uf_open_to_posts();" } },
+        { "NOT php_eval" : { "code" : "\\/*we check if the content is posted inside opening hours*\\/\\r\\nreturn myassist_questions_answers_uf_open_to_posts();" } },
         { "NOT node_is_of_type" : {
             "node" : [ "node" ],
             "type" : { "value" : { "brevkasse" : "brevkasse" } }

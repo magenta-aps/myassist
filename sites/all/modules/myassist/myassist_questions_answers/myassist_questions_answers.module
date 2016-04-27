@@ -227,3 +227,20 @@ function myassist_questions_answers_views_data() {
   );
   return $data;
 }
+
+/*
+ * Check if the current time is within opening hours * @return * TRUE if the current time is within opening hours * @todo opening hours should be configurable fields in the administration
+ */
+function myassist_questions_answers_uf_open_to_posts() {
+  $open = true;
+  $closingtime = 22;
+  $openingtime = 11;
+  $timezone = new DateTimeZone( "Europe/Copenhagen" );
+  $date = new DateTime();
+  $date->setTimezone($timezone);
+  $present_hour = $date->format('H');
+  if($present_hour > ($closingtime -1) || $present_hour < $openingtime ){
+    $open = false;
+  }
+  return $open;
+}
