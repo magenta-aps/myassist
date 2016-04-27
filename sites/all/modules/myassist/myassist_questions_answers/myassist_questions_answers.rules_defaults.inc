@@ -302,19 +302,14 @@ function myassist_questions_answers_default_rules_configuration() {
       "IF" : [
         { "user_has_role" : {
             "account" : [ "site:current-user" ],
-            "roles" : { "value" : { "1" : "1" } }
+            "roles" : { "value" : { "8" : "8" } }
           }
         },
-        { "NOT php_eval" : { "code" : "\\/*we check if the content is posted inside opening hours*\\/\\r\\nreturn myassist_questions_answers_uf_open_to_posts();" } },
-        { "NOT node_is_of_type" : {
-            "node" : [ "node" ],
-            "type" : { "value" : { "brevkasse" : "brevkasse" } }
-          }
-        }
+        { "NOT php_eval" : { "code" : "\\/*we check if the content is posted inside opening hours*\\/\\r\\nreturn myassist_questions_answers_uf_open_to_posts();" } }
       ],
       "DO" : [
         { "node_unpublish" : { "node" : [ "node" ] } },
-        { "redirect" : { "url" : "tak" } },
+        { "redirect" : { "url" : "node_created" } },
         { "drupal_message" : { "message" : "Mellem kl. 22 og 9 bliver nyt indhold ikke automatisk offentliggjort p\\u00e5 cyberhus.dk.\\r\\nDit indl\\u00e6g er sat i k\\u00f8 og vil blive offentliggjort s\\u00e5 snart det er godkendt af moderatorerne.\\r\\nVenlig hilsen cyberhus.dk-teamet" } }
       ]
     }
@@ -406,15 +401,9 @@ function myassist_questions_answers_default_rules_configuration() {
             "language" : [ "" ]
           }
         },
-        { "mail_to_users_of_role" : {
-            "roles" : { "value" : { "8" : "8" } },
-            "subject" : "[site:name] - En anden bruger har brug for et assist.",
-            "message" : "Hey der\\r\\nEn anden bruger har oprettet et sp\\u00f8rgsm\\u00e5l...m\\u00e5ske er det dig der kender svaret?. \\r\\nKlik ind forbi og tjek sp\\u00f8rgsm\\u00e5let ud...og giv et assist.\\r\\nMvh. Moderator-Teamet\\r\\n\\r\\nTitel p\\u00e5 sp\\u00f8rgsm\\u00e5l: [node:title]\\r\\n\\r\\nG\\u00e5 til sp\\u00f8rgsm\\u00e5l: [node:url]"
-          }
-        },
         { "drupal_message" : { "message" : "Tak fordi du oprettede et sp\\u00f8rgsm\\u00e5l. Vi har sendt en besked til [node:field-advisor:name]." } },
         { "mail_to_users_of_role_with_field" : {
-            "roles" : { "value" : { "3" : "3" } },
+            "roles" : { "value" : { "8" : "8" } },
             "subject" : "[site:name] - En anden bruger har brug for et assist.",
             "message" : "Hey der\\r\\nEn anden bruger har oprettet et sp\\u00f8rgsm\\u00e5l...m\\u00e5ske er det dig der kender svaret?. \\r\\nKlik ind forbi og tjek sp\\u00f8rgsm\\u00e5let ud...og giv et assist.\\r\\nMvh. Moderator-Teamet\\r\\n\\r\\nTitel p\\u00e5 sp\\u00f8rgsm\\u00e5l: [node:title]\\r\\n\\r\\nG\\u00e5 til sp\\u00f8rgsm\\u00e5l: [node:url]",
             "field" : "field_mail_on_new_question",
