@@ -10,7 +10,7 @@
 function myassist_questions_answers_default_rules_configuration() {
   $items = array();
   $items['answers_userpoints_voteup_answer_email'] = entity_import('rules_config', '{ "answers_userpoints_voteup_answer_email" : {
-      "LABEL" : "voteup_answer_email",
+      "LABEL" : "Email bruger om voteup",
       "PLUGIN" : "reaction rule",
       "OWNER" : "rules",
       "REQUIRES" : [ "rules", "myassist_notification", "voting_rules" ],
@@ -34,10 +34,10 @@ function myassist_questions_answers_default_rules_configuration() {
     }
   }');
   $items['myassist_questions_answers_create_answer_email'] = entity_import('rules_config', '{ "myassist_questions_answers_create_answer_email" : {
-      "LABEL" : "create_answer_email",
+      "LABEL" : "Email bruger om assist",
       "PLUGIN" : "reaction rule",
       "OWNER" : "rules",
-      "TAGS" : [ "answers" ],
+      "TAGS" : [ "answers", "notify" ],
       "REQUIRES" : [ "rules", "myassist_notification" ],
       "ON" : { "node_insert--answers_answer" : { "bundle" : "answers_answer" } },
       "IF" : [
@@ -63,9 +63,10 @@ function myassist_questions_answers_default_rules_configuration() {
     }
   }');
   $items['myassist_questions_answers_create_comment_email'] = entity_import('rules_config', '{ "myassist_questions_answers_create_comment_email" : {
-      "LABEL" : "create_comment_email",
+      "LABEL" : "Email bruger om kommentar",
       "PLUGIN" : "reaction rule",
       "OWNER" : "rules",
+      "TAGS" : [ "notify" ],
       "REQUIRES" : [ "rules", "myassist_notification", "comment" ],
       "ON" : {
         "comment_insert--comment_node_answers_question" : { "bundle" : "comment_node_answers_question" },
@@ -89,7 +90,7 @@ function myassist_questions_answers_default_rules_configuration() {
     }
   }');
   $items['myassist_questions_answers_notify_unge_profil_on_publish'] = entity_import('rules_config', '{ "myassist_questions_answers_notify_unge_profil_on_publish" : {
-      "LABEL" : "Notify unge profil on publish",
+      "LABEL" : "Email ungeprofiler om publicering",
       "PLUGIN" : "reaction rule",
       "OWNER" : "rules",
       "TAGS" : [ "notify" ],
@@ -268,7 +269,7 @@ function myassist_questions_answers_default_rules_configuration() {
     }
   }');
   $items['rules_flag_answers_best_answer_email'] = entity_import('rules_config', '{ "rules_flag_answers_best_answer_email" : {
-      "LABEL" : "flag_answers_best_answer_email",
+      "LABEL" : "Email bruger om \\u0022best assist\\u0022",
       "PLUGIN" : "reaction rule",
       "OWNER" : "rules",
       "TAGS" : [ "answers" ],
@@ -348,7 +349,7 @@ function myassist_questions_answers_default_rules_configuration() {
     }
   }');
   $items['rules_notify_advisor'] = entity_import('rules_config', '{ "rules_notify_advisor" : {
-      "LABEL" : "Notify advisor on new question",
+      "LABEL" : "Email coach om nyt sp\\u00f8rgsm\\u00e5l",
       "PLUGIN" : "reaction rule",
       "OWNER" : "rules",
       "REQUIRES" : [ "rules" ],
@@ -367,7 +368,7 @@ function myassist_questions_answers_default_rules_configuration() {
     }
   }');
   $items['rules_notify_on_all_new_content'] = entity_import('rules_config', '{ "rules_notify_on_all_new_content" : {
-      "LABEL" : "Notify on all new content",
+      "LABEL" : "Email moderator om nyt indhold",
       "PLUGIN" : "reaction rule",
       "OWNER" : "rules",
       "TAGS" : [ "notify" ],
@@ -390,10 +391,10 @@ function myassist_questions_answers_default_rules_configuration() {
     }
   }');
   $items['rules_notify_on_question_from_parents'] = entity_import('rules_config', '{ "rules_notify_on_question_from_parents" : {
-      "LABEL" : "Notify on question from parents",
+      "LABEL" : "Email om sp\\u00f8rgsm\\u00e5l fra for\\u00e6ldre",
       "PLUGIN" : "reaction rule",
       "OWNER" : "rules",
-      "TAGS" : [ "webform" ],
+      "TAGS" : [ "notify", "webform" ],
       "REQUIRES" : [ "rules" ],
       "ON" : { "node_insert--webform" : { "bundle" : "webform" } },
       "IF" : [
@@ -446,7 +447,7 @@ function myassist_questions_answers_default_rules_configuration() {
     }
   }');
   $items['rules_notify_users_with_unge_profil_on_new_question_individual_'] = entity_import('rules_config', '{ "rules_notify_users_with_unge_profil_on_new_question_individual_" : {
-      "LABEL" : "Notify users with unge profil on new question (individual)",
+      "LABEL" : "Email ungeprofiler om nyt sp\\u00f8rgsm\\u00e5l",
       "PLUGIN" : "reaction rule",
       "WEIGHT" : "1",
       "OWNER" : "rules",
