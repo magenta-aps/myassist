@@ -120,9 +120,10 @@ function myassist_questions_answers_default_rules_configuration() {
     }
   }');
   $items['rules_comment_delete'] = entity_import('rules_config', '{ "rules_comment_delete" : {
-      "LABEL" : "comment_delete",
+      "LABEL" : "Point ved sletning af kommentar",
       "PLUGIN" : "reaction rule",
       "OWNER" : "rules",
+      "TAGS" : [ "answers", "points" ],
       "REQUIRES" : [ "userpoints_rules", "comment" ],
       "ON" : {
         "comment_delete--comment_node_answers_question" : { "bundle" : "comment_node_answers_question" },
@@ -143,11 +144,11 @@ function myassist_questions_answers_default_rules_configuration() {
     }
   }');
   $items['rules_create_answer'] = entity_import('rules_config', '{ "rules_create_answer" : {
-      "LABEL" : "create_answer_points",
+      "LABEL" : "Point ved nyt assist",
       "PLUGIN" : "reaction rule",
       "OWNER" : "rules",
-      "TAGS" : [ "answers" ],
-      "REQUIRES" : [ "rules", "userpoints_rules", "myassist_notification" ],
+      "TAGS" : [ "answers", "points" ],
+      "REQUIRES" : [ "rules", "userpoints_rules" ],
       "ON" : { "node_insert--answers_answer" : { "bundle" : "answers_answer" } },
       "IF" : [
         { "NOT data_is" : {
@@ -168,20 +169,15 @@ function myassist_questions_answers_default_rules_configuration() {
             "display" : "0",
             "moderate" : "default"
           }
-        },
-        { "myassist_notification_rules_process" : {
-            "recipient" : [ "node:answers-related-question:author" ],
-            "messageType" : "question_answered",
-            "node" : [ "node:answers-related-question" ]
-          }
         }
       ]
     }
   }');
   $items['rules_create_comment'] = entity_import('rules_config', '{ "rules_create_comment" : {
-      "LABEL" : "create_comment_points",
+      "LABEL" : "Point ved kommentar",
       "PLUGIN" : "reaction rule",
       "OWNER" : "rules",
+      "TAGS" : [ "answers", "points" ],
       "REQUIRES" : [ "userpoints_rules", "comment" ],
       "ON" : {
         "comment_insert--comment_node_answers_question" : { "bundle" : "comment_node_answers_question" },
@@ -203,10 +199,10 @@ function myassist_questions_answers_default_rules_configuration() {
     }
   }');
   $items['rules_create_question'] = entity_import('rules_config', '{ "rules_create_question" : {
-      "LABEL" : "create_question",
+      "LABEL" : "Point ved nyt sp\\u00f8rgsm\\u00e5l",
       "PLUGIN" : "reaction rule",
       "OWNER" : "rules",
-      "TAGS" : [ "answers" ],
+      "TAGS" : [ "answers", "points" ],
       "REQUIRES" : [ "userpoints_rules", "rules" ],
       "ON" : { "node_insert--answers_question" : { "bundle" : "answers_question" } },
       "DO" : [
@@ -225,10 +221,10 @@ function myassist_questions_answers_default_rules_configuration() {
     }
   }');
   $items['rules_delete_answer'] = entity_import('rules_config', '{ "rules_delete_answer" : {
-      "LABEL" : "delete_answer",
+      "LABEL" : "Point ved sletning af assist",
       "PLUGIN" : "reaction rule",
       "OWNER" : "rules",
-      "TAGS" : [ "answers" ],
+      "TAGS" : [ "answers", "points" ],
       "REQUIRES" : [ "userpoints_rules", "rules" ],
       "ON" : { "node_delete--answers_answer" : { "bundle" : "answers_answer" } },
       "DO" : [
@@ -247,10 +243,10 @@ function myassist_questions_answers_default_rules_configuration() {
     }
   }');
   $items['rules_delete_question'] = entity_import('rules_config', '{ "rules_delete_question" : {
-      "LABEL" : "delete_question",
+      "LABEL" : "Point ved sletning af sp\\u00f8rgsm\\u00e5l",
       "PLUGIN" : "reaction rule",
       "OWNER" : "rules",
-      "TAGS" : [ "answers" ],
+      "TAGS" : [ "answers", "points" ],
       "REQUIRES" : [ "userpoints_rules", "rules" ],
       "ON" : { "node_delete--answers_question" : { "bundle" : "answers_question" } },
       "DO" : [
@@ -296,6 +292,7 @@ function myassist_questions_answers_default_rules_configuration() {
   $items['rules_lock_question'] = entity_import('rules_config', '{ "rules_lock_question" : {
       "LABEL" : "lock_question",
       "PLUGIN" : "reaction rule",
+      "ACTIVE" : false,
       "OWNER" : "rules",
       "REQUIRES" : [ "flag" ],
       "ON" : { "flag_flagged_best_answer" : [] },
