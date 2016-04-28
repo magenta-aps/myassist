@@ -88,6 +88,36 @@ function myassist_questions_answers_default_rules_configuration() {
       ]
     }
   }');
+  $items['myassist_questions_answers_notify_unge_profil_on_publish'] = entity_import('rules_config', '{ "myassist_questions_answers_notify_unge_profil_on_publish" : {
+      "LABEL" : "Notify unge profil on publish",
+      "PLUGIN" : "reaction rule",
+      "OWNER" : "rules",
+      "TAGS" : [ "notify" ],
+      "REQUIRES" : [ "rules", "myassist_user" ],
+      "ON" : { "node_update--answers_question" : { "bundle" : "answers_question" } },
+      "IF" : [
+        { "node_is_published" : { "node" : [ "node" ] } },
+        { "NOT node_is_published" : { "node" : [ "node-unchanged" ] } }
+      ],
+      "DO" : [
+        { "mail" : {
+            "to" : "nc@cyberhus.dk",
+            "subject" : "[site:name] - En anden bruger har brug for et assist.",
+            "message" : "Hey der\\r\\nEn anden bruger har oprettet et sp\\u00f8rgsm\\u00e5l...m\\u00e5ske er det dig der kender svaret?. \\r\\nKlik ind forbi og tjek sp\\u00f8rgsm\\u00e5let ud...og giv et assist.  \\r\\n\\r\\nMvh. Moderator-Teamet\\r\\n\\r\\nTitel p\\u00e5 sp\\u00f8rgsm\\u00e5l: [node:title]\\r\\n\\r\\nG\\u00e5 til sp\\u00f8rgsm\\u00e5l: [node:url]\\r\\n",
+            "language" : [ "" ]
+          }
+        },
+        { "mail_to_users_of_role_with_field" : {
+            "roles" : { "value" : { "8" : "8" } },
+            "subject" : "[site:name] - En anden bruger har brug for et assist.",
+            "message" : "Hey der\\r\\nEn anden bruger har oprettet et sp\\u00f8rgsm\\u00e5l...m\\u00e5ske er det dig der kender svaret?. \\r\\nKlik ind forbi og tjek sp\\u00f8rgsm\\u00e5let ud...og giv et assist.\\r\\nMvh. Moderator-Teamet\\r\\n\\r\\nTitel p\\u00e5 sp\\u00f8rgsm\\u00e5l: [node:title]\\r\\n\\r\\nG\\u00e5 til sp\\u00f8rgsm\\u00e5l: [node:url]",
+            "field" : "field_mail_on_new_question",
+            "value" : "1"
+          }
+        }
+      ]
+    }
+  }');
   $items['rules_comment_delete'] = entity_import('rules_config', '{ "rules_comment_delete" : {
       "LABEL" : "comment_delete",
       "PLUGIN" : "reaction rule",
@@ -298,7 +328,10 @@ function myassist_questions_answers_default_rules_configuration() {
       "OWNER" : "rules",
       "TAGS" : [ "moderation" ],
       "REQUIRES" : [ "rules", "php" ],
-      "ON" : { "node_insert" : [] },
+      "ON" : {
+        "node_insert--answers_question" : { "bundle" : "answers_question" },
+        "node_insert--answers_answer" : { "bundle" : "answers_answer" }
+      },
       "IF" : [
         { "user_has_role" : {
             "account" : [ "site:current-user" ],
@@ -310,7 +343,7 @@ function myassist_questions_answers_default_rules_configuration() {
       "DO" : [
         { "node_unpublish" : { "node" : [ "node" ] } },
         { "redirect" : { "url" : "node_created" } },
-        { "drupal_message" : { "message" : "Mellem kl. 22 og 9 bliver nyt indhold ikke automatisk offentliggjort p\\u00e5 cyberhus.dk.\\r\\nDit indl\\u00e6g er sat i k\\u00f8 og vil blive offentliggjort s\\u00e5 snart det er godkendt af moderatorerne.\\r\\nVenlig hilsen cyberhus.dk-teamet" } }
+        { "drupal_message" : { "message" : "Mellem kl. 22 og 9 bliver nyt indhold ikke automatisk offentliggjort p\\u00e5 mitassist.dk.\\r\\nDit indl\\u00e6g er sat i k\\u00f8 og vil blive offentliggjort s\\u00e5 snart det er godkendt af moderatorerne.\\r\\nVenlig hilsen mitassist.dk-teamet" } }
       ]
     }
   }');
@@ -330,6 +363,29 @@ function myassist_questions_answers_default_rules_configuration() {
           }
         },
         { "drupal_message" : { "message" : "Tak fordi du oprettede et sp\\u00f8rgsm\\u00e5l. Vi har sendt en besked til [node:field-advisor:name]." } }
+      ]
+    }
+  }');
+  $items['rules_notify_on_all_new_content'] = entity_import('rules_config', '{ "rules_notify_on_all_new_content" : {
+      "LABEL" : "Notify on all new content",
+      "PLUGIN" : "reaction rule",
+      "OWNER" : "rules",
+      "TAGS" : [ "notify" ],
+      "REQUIRES" : [ "rules", "flag", "comment", "voting_rules" ],
+      "ON" : {
+        "node_insert" : [],
+        "flag_flagged_best_answer" : [],
+        "comment_insert" : [],
+        "voting_rules_insert_node" : [],
+        "voting_rules_insert_comment" : []
+      },
+      "DO" : [
+        { "mail_to_users_of_role" : {
+            "roles" : { "value" : { "10" : "10" } },
+            "subject" : "Nyt indhold p\\u00e5 MitAssist",
+            "message" : "Hej\\r\\n\\r\\nNyt indhold med titlen [node:title] er oprettet af [node:author] d. [node:created].\\r\\n[node:url]\\r\\n"
+          }
+        }
       ]
     }
   }');
@@ -361,12 +417,16 @@ function myassist_questions_answers_default_rules_configuration() {
   $items['rules_notify_user_on_new_question_cloned_'] = entity_import('rules_config', '{ "rules_notify_user_on_new_question_cloned_" : {
       "LABEL" : "Notify users with unge profil on new question",
       "PLUGIN" : "reaction rule",
+      "WEIGHT" : "1",
       "ACTIVE" : false,
       "OWNER" : "rules",
       "TAGS" : [ "notify" ],
       "REQUIRES" : [ "rules" ],
       "ON" : { "node_insert--answers_question" : { "bundle" : "answers_question" } },
-      "IF" : [ { "NOT data_is_empty" : { "data" : [ "node:body" ] } } ],
+      "IF" : [
+        { "NOT data_is_empty" : { "data" : [ "node:body" ] } },
+        { "node_is_published" : { "node" : [ "node" ] } }
+      ],
       "DO" : [
         { "mail" : {
             "to" : "nc@cyberhus.dk",
@@ -388,11 +448,18 @@ function myassist_questions_answers_default_rules_configuration() {
   $items['rules_notify_users_with_unge_profil_on_new_question_individual_'] = entity_import('rules_config', '{ "rules_notify_users_with_unge_profil_on_new_question_individual_" : {
       "LABEL" : "Notify users with unge profil on new question (individual)",
       "PLUGIN" : "reaction rule",
+      "WEIGHT" : "1",
       "OWNER" : "rules",
       "TAGS" : [ "notify" ],
       "REQUIRES" : [ "rules", "myassist_user" ],
       "ON" : { "node_insert--answers_question" : { "bundle" : "answers_question" } },
-      "IF" : [ { "NOT data_is_empty" : { "data" : [ "node:body" ] } } ],
+      "IF" : [
+        { "AND" : [
+            { "NOT data_is_empty" : { "data" : [ "node:body" ] } },
+            { "node_is_published" : { "node" : [ "node" ] } }
+          ]
+        }
+      ],
       "DO" : [
         { "mail" : {
             "to" : "nc@cyberhus.dk",
