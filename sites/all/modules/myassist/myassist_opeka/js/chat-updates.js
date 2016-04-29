@@ -1,7 +1,6 @@
 /**
  * Created by jubk on 7/2/15.
  */
-
 var Opeka = Opeka || {};
 
 (function(Opeka, $) {
@@ -58,16 +57,18 @@ var Opeka = Opeka || {};
             status.group_room_status = self.calculateRoomTypeStatus(status, "group");
         },
 
-        update: function(newStatus) {
+        'update': function(newStatus) {
             var self = this,
                 oldStatus = currentStatus;
             currentStatus = newStatus;
+
+            var groupRoomName = (newStatus.roomsList.length > 0) && newStatus.roomsList[0].name;
 
             // If this is our first update, just set the data and notify the subsystem
             if(!oldStatus) {
                 self.trigger("initial_status", newStatus);
                 self.trigger("pair_status_changed", newStatus.pair_room_status);
-                self.trigger("group_status_changed", newStatus.group_room_status);
+                self.trigger("group_status_changed", [newStatus.group_room_status, groupRoomName]);
                 return;
             }
 
@@ -75,8 +76,9 @@ var Opeka = Opeka || {};
                 self.trigger("pair_status_changed", newStatus.pair_room_status);
             }
             if(oldStatus.group_room_status != newStatus.group_room_status) {
-                self.trigger("group_status_changed", newStatus.group_room_status);
+                self.trigger("group_status_changed", newStatus.group_room_status, groupRoomName);
             }
+
         },
 
         'getStatus': function() { return currentStatus; },
