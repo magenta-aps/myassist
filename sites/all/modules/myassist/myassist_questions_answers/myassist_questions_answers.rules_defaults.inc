@@ -50,7 +50,8 @@ function myassist_questions_answers_default_rules_configuration() {
             "data" : [ "node:answers-related-question:author:field-mail-on-receive-assist" ],
             "value" : "1"
           }
-        }
+        },
+        { "node_is_published" : { "node" : [ "node" ] } }
       ],
       "DO" : [
         { "myassist_notification_rules_process" : {
@@ -84,6 +85,37 @@ function myassist_questions_answers_default_rules_configuration() {
             "recipient" : [ "comment:node:author" ],
             "messageType" : "comment_created",
             "node" : [ "comment:node" ]
+          }
+        }
+      ]
+    }
+  }');
+  $items['myassist_questions_answers_email_bruger_om_publiceret_assist'] = entity_import('rules_config', '{ "myassist_questions_answers_email_bruger_om_publiceret_assist" : {
+      "LABEL" : "Email bruger om publiceret assist",
+      "PLUGIN" : "reaction rule",
+      "OWNER" : "rules",
+      "TAGS" : [ "answers", "notify" ],
+      "REQUIRES" : [ "rules", "myassist_notification" ],
+      "ON" : { "node_update--answers_answer" : { "bundle" : "answers_answer" } },
+      "IF" : [
+        { "NOT data_is" : {
+            "data" : [ "node:author" ],
+            "value" : [ "node:answers-related-question:author" ]
+          }
+        },
+        { "data_is" : {
+            "data" : [ "node:answers-related-question:author:field-mail-on-receive-assist" ],
+            "value" : "1"
+          }
+        },
+        { "node_is_published" : { "node" : [ "node" ] } },
+        { "NOT node_is_published" : { "node" : [ "node-unchanged" ] } }
+      ],
+      "DO" : [
+        { "myassist_notification_rules_process" : {
+            "recipient" : [ "node:answers-related-question:author" ],
+            "messageType" : "question_answered",
+            "node" : [ "node:answers-related-question" ]
           }
         }
       ]
