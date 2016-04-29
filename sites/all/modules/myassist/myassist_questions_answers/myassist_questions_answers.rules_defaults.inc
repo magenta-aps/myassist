@@ -381,7 +381,7 @@ function myassist_questions_answers_default_rules_configuration() {
         { "mail_to_users_of_role" : {
             "roles" : { "value" : { "10" : "10" } },
             "subject" : "Nyt indhold p\\u00e5 MitAssist",
-            "message" : "Hej\\r\\n\\r\\nNyt indhold med titlen [node:title] er oprettet af [node:author] d. [node:created].\\r\\n[node:url]\\r\\n"
+            "message" : "Hey\\r\\n\\r\\n[node:author] har postet sp\\u00f8rgsm\\u00e5let \\u0022[node:title]\\u0022\\r\\n\\r\\nSe sp\\u00f8rgsm\\u00e5let her:\\r\\n\\r\\n[node:body]\\r\\n\\r\\nKan du give et assist, s\\u00e5 g\\u00e5 til [node:url]"
           }
         }
       ]
@@ -470,7 +470,7 @@ function myassist_questions_answers_default_rules_configuration() {
         { "mail_to_users_of_role_with_field" : {
             "roles" : { "value" : { "8" : "8" } },
             "subject" : "[site:name] - En anden bruger har brug for et assist.",
-            "message" : "Hey der\\r\\nEn anden bruger har oprettet et sp\\u00f8rgsm\\u00e5l...m\\u00e5ske er det dig der kender svaret?. \\r\\nKlik ind forbi og tjek sp\\u00f8rgsm\\u00e5let ud...og giv et assist.\\r\\nMvh. Moderator-Teamet\\r\\n\\r\\nTitel p\\u00e5 sp\\u00f8rgsm\\u00e5l: [node:title]\\r\\n\\r\\nG\\u00e5 til sp\\u00f8rgsm\\u00e5l: [node:url]",
+            "message" : "Hey\\r\\n\\r\\n[node:author] har postet sp\\u00f8rgsm\\u00e5let \\u0022[node:title]\\u0022\\r\\n\\r\\nSe sp\\u00f8rgsm\\u00e5let her:\\r\\n\\r\\n[node:body]\\r\\n\\r\\nKan du give et assist, s\\u00e5 g\\u00e5 til [node:url]",
             "field" : "field_mail_on_new_question",
             "value" : "1"
           }
