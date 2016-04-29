@@ -233,7 +233,8 @@ function myassist_questions_answers_views_data() {
  */
 function myassist_questions_answers_uf_open_to_posts() {
   $open = true;
-  $closingtime = 22;
+  //$closingtime = 22;
+  $closingtime = 11;
   $openingtime = 9;
   $timezone = new DateTimeZone( "Europe/Copenhagen" );
   $date = new DateTime();
