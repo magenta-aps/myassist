@@ -893,7 +893,7 @@ tr.selected td {
       }
       td.achievement-leaderboard-points {
         color: #72858c;
-        width: 5em;
+        width: 5em !important;
         &:before {
           content: "| ";
         }
