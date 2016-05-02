@@ -255,7 +255,8 @@ body {
   }
   #main,
   .header__container,
-  .region-bottom {
+  .region-bottom,
+  .region-heighlighted {
     width: $u*55;
     margin: 0 auto;
   }
@@ -277,7 +278,7 @@ body {
     box-sizing: border-box;
   }
   #content {
-    padding: $u*8 $u $u;
+    padding: 0 $u $u;
     box-sizing: border-box;
     width: 66%;
   }
@@ -414,6 +415,9 @@ body {
 
   /* Top block */
   .region-highlighted {
+    padding: $u*7.5 $u $u;
+    box-sizing: border-box;
+
     .hero {
       .icon {
         width: 158px;

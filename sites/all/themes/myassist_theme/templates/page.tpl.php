@@ -54,8 +54,9 @@
     </div>
   </header>
 
-  <div id="main">
+  <?php print render($page['highlighted']); ?>
 
+  <div id="main">
     <div id="content" class="column" role="main">
       <?php print render($page['highlighted']); ?>
       <?php print $breadcrumb; ?>
