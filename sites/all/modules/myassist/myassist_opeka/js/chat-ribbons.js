@@ -31,9 +31,9 @@ var Opeka = Opeka || {};
                         }
                     });
                 } else {
-                    Opeka.ChatUpdates.on("group_status_changed", function(ev, newStatus) {
+                    Opeka.ChatUpdates.on("group_status_changed", function(ev, newStatus, newName) {
                         if(self.updatesEnabled("group")) {
-                            RibbonStatus.changeStatus(ribbon, newStatus);
+                            RibbonStatus.changeStatus(ribbon, newStatus, newName);
                         }
                     });
                 }
@@ -86,7 +86,7 @@ var Opeka = Opeka || {};
             return $(boxElem).attr("data-chat-status") || "hidden";
         },
 
-        'changeStatus': function(boxElem, newStatus) {
+        'changeStatus': function(boxElem, newStatus, newName) {
             var $boxElem = $(boxElem),
                 status = RibbonStatus.getStatus($boxElem),
                 chatType = $boxElem.hasClass("pair") ? "pair" : "group",
@@ -96,6 +96,9 @@ var Opeka = Opeka || {};
             $boxElem.attr("data-chat-status", newStatus);
             $boxElem.removeClass(status);
             $boxElem.addClass(newStatus);
+            if (newName) {
+                $boxElem.find(".subject").text(newName);
+            }
 
             if(showMap && showMap[status] !== showMap[newStatus]) {
                 if(showMap[newStatus]) {
