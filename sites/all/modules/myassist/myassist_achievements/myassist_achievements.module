@@ -409,7 +409,7 @@ function myassist_achievements_userpoints_list_transactions_alter(&$data) {
 function myassist_achievements_achievements_leaderboard_alter(&$leaderboard) {
   $limit = 10;
   $pos = 1;
-  $render = &$leaderboard['render'];
+
   $no_achievements = array();
   if (array_key_exists('achievers', $leaderboard)) {
     foreach ($leaderboard['achievers'] as $list_type => &$list) {
@@ -433,36 +433,39 @@ function myassist_achievements_achievements_leaderboard_alter(&$leaderboard) {
       }
     }
   }
-  if (array_key_exists('render', $leaderboard) && array_key_exists('#rows', $render)) {
-    $pos = 1;
+  if (array_key_exists('render', $leaderboard)) {
+    $render = &$leaderboard['render'];
+    if (array_key_exists('#rows', $render)) {
+      // $pos = 1;
 
-    foreach ($render['#rows'] as $uid => &$row) {
-      /*if ($pos > $limit) {
-        unset($render['#rows'][$uid]);
-      }
-      if (!myassist_achievements_user_can_earn_points($uid)) {
-        unset($render['#rows'][$uid]);
-      } else {
-        $row['data'][0]['data'] = $pos;
-        $pos++;
-      }*/
-      if (in_array($uid, $no_achievements)) {
-        $row['data'][4]['data'] = "";
+      foreach ($render['#rows'] as $uid => &$row) {
+        /*if ($pos > $limit) {
+          unset($render['#rows'][$uid]);
+        }
+        if (!myassist_achievements_user_can_earn_points($uid)) {
+          unset($render['#rows'][$uid]);
+        } else {
+          $row['data'][0]['data'] = $pos;
+          $pos++;
+        }*/
+        if (in_array($uid, $no_achievements)) {
+          $row['data'][4]['data'] = "";
+        }
       }
     }
-  }
-  
-  // #13647: remove unlocks column
-  myassist_achievements_remove_column($render, myassist_achievements_title_index($render, t('Unlocks')));
 
-  if (array_key_exists('render', $leaderboard) && array_key_exists('block', $leaderboard) && $leaderboard['block']) {
-    // Add rank column
-    myassist_achievements_add_column(
-      $leaderboard['render'],
-      0,
-      t("Rank"),
-      range(1, count($leaderboard['render']['#rows']))
-    );
+    // #13647: Remove unlocks column
+    myassist_achievements_remove_column($render, myassist_achievements_title_index($render, t('Unlocks')));
+
+    if (array_key_exists('block', $leaderboard) && $leaderboard['block']) {
+      // #14070: Add rank column
+      myassist_achievements_add_column(
+        $render,
+        0,
+        t("Rank"),
+        range(1, count($render['#rows']))
+      );
+    }
   }
 }
 
@@ -754,7 +757,7 @@ function myassist_achievements_add_column(&$renderArray, $columnIndex, $title, $
     $i = 0;
     foreach ($renderArray['#rows'] as &$row) {
       $value = "";
-      if ($i < len($dataArray)) {
+      if ($i < count($dataArray)) {
         $value = $dataArray[$i];
       }
       array_splice($row['data'], $columnIndex, 0, $value);
