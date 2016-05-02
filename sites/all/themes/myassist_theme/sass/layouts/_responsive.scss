@@ -411,5 +411,14 @@ body {
   #block-myassist-opeka-chatribbons {
     margin-top: -($u*1.5);
   }
-  
+
+  /* Top block */
+  .region-highlighted {
+    .hero {
+      .icon {
+        width: 158px;
+        display: inline-block;
+      }
+    }
+  }
 }
