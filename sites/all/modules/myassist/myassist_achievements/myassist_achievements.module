@@ -452,20 +452,23 @@ function myassist_achievements_achievements_leaderboard_alter(&$leaderboard) {
           $row['data'][4]['data'] = "";
         }
       }
+      
+      if (array_key_exists('block', $leaderboard) && $leaderboard['block']) {
+        // #14070: Add rank column
+        myassist_achievements_add_column(
+          $render,
+          0,
+          t("Rank"),
+          range(1, count($render['#rows']))
+        );
+      }
+
     }
 
     // #13647: Remove unlocks column
     myassist_achievements_remove_column($render, myassist_achievements_title_index($render, t('Unlocks')));
 
-    if (array_key_exists('block', $leaderboard) && $leaderboard['block']) {
-      // #14070: Add rank column
-      myassist_achievements_add_column(
-        $render,
-        0,
-        t("Rank"),
-        range(1, count($render['#rows']))
-      );
-    }
+
   }
 }
 
