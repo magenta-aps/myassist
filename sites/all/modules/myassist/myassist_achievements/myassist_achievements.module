@@ -756,13 +756,20 @@ function myassist_achievements_remove_column(&$renderArray, $columnIndex) {
 function myassist_achievements_add_column(&$renderArray, $columnIndex, $title, $dataArray) {
   if ($columnIndex >= 0) {
     array_splice($renderArray['#header'], $columnIndex, 0, $title);
+    myassist_achievements_alter_column($renderArray, $columnIndex, $dataArray, 0);
+  }
+}
+
+
+function myassist_achievements_alter_column(&$renderArray, $columnIndex, $dataArray, $replaceLength=1) {
+  if ($columnIndex >= 0) {
     $i = 0;
     foreach ($renderArray['#rows'] as &$row) {
       $value = "";
       if ($i < count($dataArray)) {
         $value = $dataArray[$i];
       }
-      array_splice($row['data'], $columnIndex, 0, $value);
+      array_splice($row['data'], $columnIndex, $replaceLength, $value);
       $i++;
     }
   }

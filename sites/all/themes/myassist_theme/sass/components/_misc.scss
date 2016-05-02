@@ -857,28 +857,45 @@ tr.selected td {
  * Leaderboard block
  */
 
-.block {
-  .block-achievements-achievements-leaderboard {
-    .block-title {
-      display: none;
-    }
+.block-achievements {
+  .block-title {
+    text-transform: uppercase;
   }
   .achievement-leaderboard {
     thead {
       display: none;
     }
     tbody {
-      tr.even {
-        background-color: #eee;
+      tr.even,
+      tr.odd {
+        background-color: transparent;
+        border-bottom-color: #fff;
+      }
+      tr.even:last-child,
+      tr.odd:last-child {
+        border-bottom-color: transparent;
       }
       td.achievement-leaderboard-rank {
-        font-size: 3em;
+        font-size: 2em;
       }
-      td .user-picture {
-        border-radius: 2.5em;
-        height: auto;
-        width: 100%
+      td .user-picture img {
+        border-radius: 1.5em;
+        height: 3em;
+        width: 3em;
       }
+      td.achievement-leaderboard-username {
+        font-weight: bold;
+      }
+      td.achievement-leaderboard-points {
+        color: #72858c;
+        &:before {
+          content: "| ";
+        }
+        a:after {
+          content: " point";
+        }
+      }
+
     }
   }
 }
