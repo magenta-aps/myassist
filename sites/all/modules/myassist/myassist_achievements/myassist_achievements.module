@@ -455,7 +455,10 @@ function myassist_achievements_achievements_leaderboard_alter(&$leaderboard) {
         // #14070: Add image column
         $images = array();
         foreach ($render['#rows'] as $uid => $row) {
-          $images[] = theme('user_picture', array('account' => user_load($uid)));
+          $images[] = array(
+            'data' => theme('user_picture', array('account' => user_load($uid))),
+            'class' => array('achievement-leaderboard-userpicture')
+          );
         }
         myassist_achievements_add_column($render, 1, t("Image"), $images);
       }
@@ -777,7 +780,7 @@ function myassist_achievements_alter_column(&$renderArray, $columnIndex, $dataAr
     foreach ($renderArray['#rows'] as &$row) {
       $value = "";
       if ($i < count($dataArray)) {
-        $value = $dataArray[$i];
+        $value = array($dataArray[$i]);
       }
       array_splice($row['data'], $columnIndex, $replaceLength, $value);
       $i++;
