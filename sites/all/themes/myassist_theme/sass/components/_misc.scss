@@ -852,3 +852,33 @@ tr.selected td {
   @include element-invisible;
 }
 
+
+/**
+ * Leaderboard block
+ */
+
+.block {
+  .block-achievements-achievements-leaderboard {
+    .block-title {
+      display: none;
+    }
+  }
+  .achievement-leaderboard {
+    thead {
+      display: none;
+    }
+    tbody {
+      tr.even {
+        background-color: #eee;
+      }
+      td.achievement-leaderboard-rank {
+        font-size: 3em;
+      }
+      td .user-picture {
+        border-radius: 2.5em;
+        height: auto;
+        width: 100%
+      }
+    }
+  }
+}
