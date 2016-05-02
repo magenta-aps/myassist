@@ -438,18 +438,13 @@ function myassist_achievements_achievements_leaderboard_alter(&$leaderboard) {
     if (array_key_exists('#rows', $render)) {
       // $pos = 1;
 
-      foreach ($render['#rows'] as $uid => &$row) {
-        /*if ($pos > $limit) {
-          unset($render['#rows'][$uid]);
-        }
-        if (!myassist_achievements_user_can_earn_points($uid)) {
-          unset($render['#rows'][$uid]);
-        } else {
-          $row['data'][0]['data'] = $pos;
-          $pos++;
-        }*/
-        if (in_array($uid, $no_achievements)) {
-          $row['data'][4]['data'] = "";
+      // Remove empty "latest achievement" cell
+      foreach ($render['#rows'] as $u => &$r) {
+        if (in_array($u, $no_achievements)) {
+          $achievements_class_index = myassist_achievements_class_index($r, 'achievement-leaderboard-latest');
+          if ($achievements_class_index != -1) {
+            $r['data'][$achievements_class_index]['data'] = "";
+          }
         }
       }
 
@@ -742,6 +737,21 @@ function myassist_achievements_title_index(&$renderArray, $findTitle) {
   }
   return -1;
 }
+
+
+function myassist_achievements_class_index($row, $findClass) {
+  foreach ($row['data'] as $index => $cell) {
+    if (array_key_exists('class', $cell)) {
+      foreach ($cell['class'] as $clas) {
+        if ($clas === $findClass) {
+          return $index;
+        }
+      }
+    }
+  }
+  return -1;
+}
+
 
 function myassist_achievements_remove_column(&$renderArray, $columnIndex) {
   if ($columnIndex >= 0) {
