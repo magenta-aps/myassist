@@ -453,7 +453,17 @@ function myassist_achievements_achievements_leaderboard_alter(&$leaderboard) {
   }
   
   // #13647: remove unlocks column
-  myassist_achievements_remove_column($render, t('Unlocks'));
+  myassist_achievements_remove_column($render, myassist_achievements_title_index($render, t('Unlocks')));
+
+  if (array_key_exists('render', $leaderboard) && array_key_exists('block', $leaderboard) && $leaderboard['block']) {
+    // Add rank column
+    myassist_achievements_add_column(
+      $leaderboard['render'],
+      0,
+      t("Rank"),
+      range(1, count($leaderboard['render']['#rows']))
+    );
+  }
 }
 
 
@@ -719,17 +729,37 @@ function myassist_achievements_page_alter(&$page) {
   }
 }
 
-function myassist_achievements_remove_column(&$renderArray, $findTitle) {
-  $columnIndex = 0;
+function myassist_achievements_title_index(&$renderArray, $findTitle) {
   foreach ($renderArray['#header'] as $i => &$headerCell) {
     if ($headerCell === $findTitle) {
-        $columnIndex = $i;
-      break;
+      return $i;
     }
   }
-  array_splice($renderArray['#header'], $columnIndex, 1);
-  foreach ($renderArray['#rows'] as &$row) {
-    array_splice($row['data'], $columnIndex, 1);
+  return -1;
+}
+
+function myassist_achievements_remove_column(&$renderArray, $columnIndex) {
+  if ($columnIndex >= 0) {
+    array_splice($renderArray['#header'], $columnIndex, 1);
+    foreach ($renderArray['#rows'] as &$row) {
+      array_splice($row['data'], $columnIndex, 1);
+    }
+  }
+}
+
+
+function myassist_achievements_add_column(&$renderArray, $columnIndex, $title, $dataArray) {
+  if ($columnIndex >= 0) {
+    array_splice($renderArray['#header'], $columnIndex, 0, $title);
+    $i = 0;
+    foreach ($renderArray['#rows'] as &$row) {
+      $value = "";
+      if ($i < len($dataArray)) {
+        $value = $dataArray[$i];
+      }
+      array_splice($row['data'], $columnIndex, 0, $value);
+      $i++;
+    }
   }
 }
 
