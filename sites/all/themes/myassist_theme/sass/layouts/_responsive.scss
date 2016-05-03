@@ -237,6 +237,20 @@ body {
   #block-myassist-opeka-chatribbons {
     margin-top: -($u*1);
   }
+
+  /* Top block */
+  .region-highlighted {
+    box-sizing: border-box;
+
+    .hero {
+      .icon {
+        width: 130px;
+        display: inline-block;
+        padding: 20px;
+        vertical-align: top;
+      }
+    }
+  }
   
 }
 
