@@ -141,6 +141,24 @@ body {
     }
   }
 
+  /* Top block */
+  .region-highlighted {
+    padding: $u*4 $u $u;
+    .hero {
+      .icon {
+        display: block;
+        padding: 0;
+        vertical-align: top;
+        margin: 0 auto;
+      }
+    }
+  }
+
+  /* Main */
+  #main {
+    padding: 0 $u;
+  }
+
 }
 
 
@@ -252,6 +270,16 @@ body {
   /* Chat */
   #block-myassist-opeka-chatribbons {
     margin-top: -($u*1);
+  }
+
+  /* Top block */
+  .region-highlighted {
+    padding: $u*5 $u $u;
+  }
+
+  /* Main */
+  #main {
+    padding: 0 $u;
   }
   
 }
