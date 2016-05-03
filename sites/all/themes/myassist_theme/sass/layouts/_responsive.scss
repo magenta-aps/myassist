@@ -287,7 +287,7 @@ body {
   }
   .sidebars {
     width: 33%;
-    padding: $u*8 $u $u;
+    padding: $u;
     background-color: $grey;
   }
   
@@ -420,8 +420,10 @@ body {
 
     .hero {
       .icon {
-        width: 158px;
+        width: 130px;
         display: inline-block;
+        padding: 20px;
+        vertical-align: top;
       }
     }
   }
