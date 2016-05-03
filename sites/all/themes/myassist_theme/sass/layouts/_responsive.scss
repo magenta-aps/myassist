@@ -457,4 +457,9 @@ body {
     margin-top: -($u*1.5);
   }
 
+  /* Top block */
+  .region-highlighted {
+    padding: $u*8 $u;
+  }
+
 }
