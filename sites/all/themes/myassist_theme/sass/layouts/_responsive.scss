@@ -89,6 +89,21 @@ body {
   margin-right: -($u);
 }
 
+/* Top block */
+.region-highlighted {
+  padding: $u*7.5 $u $u;
+  box-sizing: border-box;
+
+  .hero {
+    .icon {
+      width: 130px;
+      display: inline-block;
+      padding: 20px;
+      vertical-align: top;
+    }
+  }
+}
+
 
 
 /**
@@ -126,18 +141,6 @@ body {
     }
   }
 
-  /* Top block */
-  .region-highlighted {
-    box-sizing: border-box;
-    .hero {
-      .icon {
-        width: 130px;
-        display: inline-block;
-        padding: 20px;
-        vertical-align: top;
-      }
-    }
-  }
 }
 
 
@@ -249,20 +252,6 @@ body {
   /* Chat */
   #block-myassist-opeka-chatribbons {
     margin-top: -($u*1);
-  }
-
-  /* Top block */
-  .region-highlighted {
-    box-sizing: border-box;
-
-    .hero {
-      .icon {
-        width: 130px;
-        display: inline-block;
-        padding: 20px;
-        vertical-align: top;
-      }
-    }
   }
   
 }
@@ -440,18 +429,4 @@ body {
     margin-top: -($u*1.5);
   }
 
-  /* Top block */
-  .region-highlighted {
-    padding: $u*7.5 $u $u;
-    box-sizing: border-box;
-
-    .hero {
-      .icon {
-        width: 130px;
-        display: inline-block;
-        padding: 20px;
-        vertical-align: top;
-      }
-    }
-  }
 }
