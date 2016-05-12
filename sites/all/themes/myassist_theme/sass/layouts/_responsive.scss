@@ -169,6 +169,18 @@ body {
           padding: 0;
           vertical-align: top;
           margin: 0 auto;
+          width: 260px;
+
+          img {
+            width: 130px;
+            display: inline-block;
+          }
+          .icontext {
+            width: 130px;
+            display: inline-block;
+            vertical-align: top;
+            padding-top: $u;
+          }
         }
       }
     }
