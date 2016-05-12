@@ -63,7 +63,9 @@ body {
 
   /* Main */
   #main {
-    padding: $u*4 $u $u;
+
+    padding-left: $u;
+    padding-right: $u;
 
     /* Sidebars */
     .sidebars {
@@ -174,8 +176,7 @@ body {
 
     /* Main */
     #main {
-      padding-left: $u;
-      padding-right: $u;
+
     }
 
   }
@@ -213,8 +214,7 @@ body {
 
     /* Main */
     #main {
-      padding-left: $u;
-      padding-right: $u;
+
     }
 
     /* Main menu */
