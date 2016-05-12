@@ -174,7 +174,8 @@ body {
 
     /* Main */
     #main {
-      padding: 0 $u;
+      padding-left: $u;
+      padding-right: $u;
     }
 
   }
@@ -212,7 +213,8 @@ body {
 
     /* Main */
     #main {
-      padding: 0 $u;
+      padding-left: $u;
+      padding-right: $u;
     }
 
     /* Main menu */
@@ -341,6 +343,9 @@ body {
 
     #main {
       @include clearfix;
+
+      padding-left: 0;
+      padding-right: 0;
 
       display: flex;
       -webkit-flex-direction: row;
