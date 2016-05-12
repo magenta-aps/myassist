@@ -33,7 +33,6 @@ body {
 
     /* Chat */
     #block-myassist-opeka-chatribbons {
-      margin-top: -($u*2);
       margin-left: -($u);
       margin-right: -($u);
     }
@@ -196,6 +195,13 @@ body {
       padding-top: $u*5;
     }
 
+    .region-highlighted {
+      /* Chat */
+      #block-myassist-opeka-chatribbons {
+        /*margin-top: -($u*1);*/
+      }
+    }
+
     /* Header */
     #header {
       height: $u*4;
@@ -303,11 +309,6 @@ body {
       padding: 0 $u*3 0 0;
     }
   }
-  
-  /* Chat */
-  #block-myassist-opeka-chatribbons {
-    margin-top: -($u*1);
-  }
 
 }
 
@@ -338,6 +339,13 @@ body {
         right: 50%;
         margin-right: -($u*27.5);
         top: $u*2.5;
+      }
+    }
+
+    .region-highlighted {
+      /* Chat */
+      #block-myassist-opeka-chatribbons {
+        margin-top: -($u*1.5);
       }
     }
 
@@ -395,11 +403,6 @@ body {
     width: $u*55;
     margin: 0 auto;
   }
-
-
-
-  
-
 
 
   #block-search-form.open #search-block-form {
@@ -492,11 +495,6 @@ body {
       float: right;
       width: 40%;
     }
-  }
-  
-  /* Chat */
-  #block-myassist-opeka-chatribbons {
-    margin-top: -($u*1.5);
   }
 
 }
