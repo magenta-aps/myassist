@@ -391,8 +391,7 @@ function myassist_questions_answers_default_rules_configuration() {
             "message" : "[node:title]\\r\\n\\r\\n[node:url]\\r\\n",
             "language" : [ "" ]
           }
-        },
-        { "drupal_message" : { "message" : "Tak fordi du oprettede et sp\\u00f8rgsm\\u00e5l. Vi har sendt en besked til [node:field-advisor:name]." } }
+        }
       ]
     }
   }');
