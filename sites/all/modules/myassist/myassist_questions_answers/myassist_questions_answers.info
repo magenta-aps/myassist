@@ -106,6 +106,7 @@ features[rules_config][] = rules_notify_on_all_new_content
 features[rules_config][] = rules_notify_on_question_from_parents
 features[rules_config][] = rules_notify_user_on_new_question_cloned_
 features[rules_config][] = rules_notify_users_with_unge_profil_on_new_question_individual_
+features[rules_config][] = rules_ved_sletning_deaktivering_af_bruger
 features[taxonomy][] = tags
 features[user_permission][] = access comments
 features[user_permission][] = administer comments

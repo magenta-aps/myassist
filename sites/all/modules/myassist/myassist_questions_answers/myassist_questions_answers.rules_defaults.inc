@@ -509,5 +509,21 @@ function myassist_questions_answers_default_rules_configuration() {
       ]
     }
   }');
+  $items['rules_ved_sletning_deaktivering_af_bruger'] = entity_import('rules_config', '{ "rules_ved_sletning_deaktivering_af_bruger" : {
+      "LABEL" : "Ved sletning\\/deaktivering af bruger",
+      "PLUGIN" : "reaction rule",
+      "OWNER" : "rules",
+      "REQUIRES" : [ "rules" ],
+      "ON" : { "user_update" : [], "user_delete" : [] },
+      "IF" : [ { "user_is_blocked" : { "account" : [ "account" ] } } ],
+      "DO" : [
+        { "data_set" : { "data" : [ "account:field-mail-on-receive-assist" ], "value" : "0" } },
+        { "data_set" : { "data" : [ "account:field-mail-on-receive-comment" ], "value" : "0" } },
+        { "data_set" : { "data" : [ "account:field-mail-on-best-assist" ], "value" : "0" } },
+        { "data_set" : { "data" : [ "account:field-mail-on-voteup" ], "value" : "0" } },
+        { "data_set" : { "data" : [ "account:field-mail-on-new-question" ], "value" : "0" } }
+      ]
+    }
+  }');
   return $items;
 }
