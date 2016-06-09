@@ -78,6 +78,12 @@ function myassist_theme_preprocess_node(&$variables, $hook) {
     drupal_add_js(drupal_get_path('theme', 'myassist_theme') . '/js/GA_user_registration_conversion.js');
     drupal_add_js('http://www.googleadservices.com/pagead/conversion.js', 'external');
   }
+
+  $node = $variables['node'];
+  $variables['date'] = format_date($node->created, 'short');
+  if (variable_get('node_submitted_' . $node->type, TRUE)) {
+    $variables['submitted'] = t('Submitted by !username !datetime', array('!username' => $variables['name'], '!datetime' => $variables['date']));
+  }
 }
 
 /**
