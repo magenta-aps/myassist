@@ -76,7 +76,7 @@ var Opeka = Opeka || {};
                 self.trigger("pair_status_changed", newStatus.pair_room_status);
             }
             if(oldStatus.group_room_status != newStatus.group_room_status) {
-                self.trigger("group_status_changed", newStatus.group_room_status, groupRoomName);
+                self.trigger("group_status_changed", [newStatus.group_room_status, groupRoomName]);
             }
 
         },
