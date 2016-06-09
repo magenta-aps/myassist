@@ -1,0 +1,24 @@
+.node-blog {
+
+
+  .submitted {
+
+    .user-picture {
+      float:left;
+      width: $u*2.5;
+    }
+  }
+
+  &:not(:last-child) {
+    border-bottom: 1px solid #b5b5b5;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+  }
+}
+
+.region.sidebar {
+
+  .more-link {
+    font-weight: bold;
+  }
+}
