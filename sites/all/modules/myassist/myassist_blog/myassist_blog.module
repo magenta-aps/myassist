@@ -1,5 +1,34 @@
 <?php
+
 /**
- * @file
- * Drupal needs this blank file.
+ * Implements hook_block_view_alter().
  */
+function myassist_blog_block_view_blog_alter(&$data, $block) {
+
+  global $user;
+
+  if (user_access('access content')) {
+    $result = db_select('node', 'n')
+      ->fields('n', array('nid', 'title', 'created'))
+      ->condition('type', 'blog')
+      ->condition('status', 1)
+      ->orderBy('created', 'DESC')
+      ->range(0, variable_get('blog_block_count', 10))
+      ->addTag('node_access')
+      ->execute();
+
+    $node_title_list = node_title_list($result);
+
+    if ($node_title_list) {
+      $data['subject'] = t('Recent blog posts Test');
+      $data['content']['blog_list'] = $node_title_list;
+      $data['content']['blog_more'] = array(
+        '#theme' => 'more_link',
+        '#url' => 'blog',
+        '#title' => t('Read the latest blog entries.'),
+      );
+
+      return $data;
+    }
+  }
+}
