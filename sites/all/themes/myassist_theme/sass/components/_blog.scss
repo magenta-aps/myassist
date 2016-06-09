@@ -35,9 +35,15 @@
 
 .block-blog {
   .item-list {
-    .user-picture {
-      float:left;
-      width: $u*2.5;
+    ul {
+      list-style-position: inside;
+      li {
+        list-style-type: none;
+        .user-picture {
+          float: left;
+          width: $u*2.5;
+        }
+      }
     }
   }
 }
