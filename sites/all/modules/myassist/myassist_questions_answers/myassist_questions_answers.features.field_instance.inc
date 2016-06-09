@@ -835,9 +835,20 @@ function myassist_questions_answers_field_default_field_instances() {
       ),
       'user_activity_list_entry' => array(
         'label' => 'hidden',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
+        'module' => 'smart_trim',
+        'settings' => array(
+          'more_link' => FALSE,
+          'more_text' => 'Read more',
+          'summary_handler' => 'full',
+          'trim_length' => 300,
+          'trim_link' => FALSE,
+          'trim_options' => array(),
+          'trim_preserve_tags' => '',
+          'trim_suffix' => '...',
+          'trim_type' => 'chars',
+        ),
+        'type' => 'smart_trim_format',
+        'weight' => 1,
       ),
     ),
     'entity_type' => 'node',
@@ -896,7 +907,7 @@ function myassist_questions_answers_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 3,
+        'weight' => 4,
       ),
     ),
     'entity_type' => 'node',
@@ -952,7 +963,7 @@ function myassist_questions_answers_field_default_field_instances() {
         'module' => 'list',
         'settings' => array(),
         'type' => 'list_key',
-        'weight' => 1,
+        'weight' => 0,
       ),
     ),
     'entity_type' => 'node',
@@ -1002,7 +1013,43 @@ function myassist_questions_answers_field_default_field_instances() {
         'display_label' => 1,
       ),
       'type' => 'options_onoff',
-      'weight' => 7,
+      'weight' => 6,
+    ),
+  );
+
+  // Exported field_instance: 'user-user-field_mail_on_new_question'
+  $field_instances['user-user-field_mail_on_new_question'] = array(
+    'bundle' => 'user',
+    'default_value' => array(
+      0 => array(
+        'value' => 1,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 4,
+      ),
+    ),
+    'entity_type' => 'user',
+    'field_name' => 'field_mail_on_new_question',
+    'label' => 'Mail on new question',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => 0,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 1,
+      ),
+      'type' => 'options_onoff',
+      'weight' => 8,
     ),
   );
 
@@ -1038,7 +1085,7 @@ function myassist_questions_answers_field_default_field_instances() {
         'display_label' => 1,
       ),
       'type' => 'options_onoff',
-      'weight' => 5,
+      'weight' => 3,
     ),
   );
 
@@ -1074,7 +1121,7 @@ function myassist_questions_answers_field_default_field_instances() {
         'display_label' => 1,
       ),
       'type' => 'options_onoff',
-      'weight' => 6,
+      'weight' => 5,
     ),
   );
 
@@ -1110,7 +1157,7 @@ function myassist_questions_answers_field_default_field_instances() {
         'display_label' => 1,
       ),
       'type' => 'options_onoff',
-      'weight' => 8,
+      'weight' => 7,
     ),
   );
 
@@ -1122,6 +1169,7 @@ function myassist_questions_answers_field_default_field_instances() {
   t('Kommentar');
   t('Locked');
   t('Mail on best assist');
+  t('Mail on new question');
   t('Mail on receive assist');
   t('Mail on receive comment');
   t('Mail on voteup');

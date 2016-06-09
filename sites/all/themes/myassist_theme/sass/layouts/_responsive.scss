@@ -13,51 +13,83 @@ body {
   background-color: $blue;
 }
 
-/* Header */
-#header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: $u*3;
-  z-index: 4;
-  padding: 0;
-}
-.header__logo {
-  width: auto;
-  height: $u*3;
-  display: block;
-}
-.header__region {
-  .block {
-    float: right;
+#page {
+  background-color: $white;
+
+  /* Top block */
+  .region-highlighted {
+    padding-left: $u;
+    padding-right: $u;
+    box-sizing: border-box;
+
+    .hero {
+      .icon {
+        width: 130px;
+        display: inline-block;
+        padding: 20px;
+        vertical-align: top;
+      }
+    }
+
+    /* Chat */
+    #block-myassist-opeka-chatribbons {
+      margin-left: -($u);
+      margin-right: -($u);
+    }
+  }
+
+  /* Header */
+  #header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: $u*3;
+    z-index: 4;
+    padding: 0;
+
+    .header__logo {
+      width: auto;
+      height: $u*3;
+      display: block;
+    }
+    .header__region {
+      .block {
+        float: right;
+      }
+    }
+  }
+
+  /* Main */
+  #main {
+
+    padding-left: $u;
+    padding-right: $u;
+
+    /* Sidebars */
+    .sidebars {
+      padding: $u;
+      background-color: $grey;
+    }
+  }
+
+  /* Main menu */
+  .region-navigation {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: $u*4;
   }
 }
+
 #block-myassist-user-username {
   @include element-invisible;
 }
 
-/* Main */
-#main {
-  padding: $u*4 $u $u;
-}
 
-/* Main menu */
-.region-navigation {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: $u*4;
-}
 #block-system-main-menu .menu__item {
   width: 33.33%;
-}
-
-/* Sidebars */
-.sidebars {
-  padding: $u;
-  background-color: $grey;
 }
 
 /* Footer/bottom */
@@ -82,12 +114,9 @@ body {
   }
 }
 
-/* Chat */
-#block-myassist-opeka-chatribbons {
-  margin-top: -($u*2);
-  margin-left: -($u);
-  margin-right: -($u);
-}
+
+
+
 
 
 
@@ -125,6 +154,44 @@ body {
       }
     }
   }
+
+  #page {
+
+    > div:first-of-type {
+      padding-top: $u*3;
+    }
+
+    /* Top block */
+    .region-highlighted {
+      .hero {
+        .icon {
+          display: block;
+          padding: 0;
+          vertical-align: top;
+          margin: 0 auto;
+          width: 260px;
+
+          img {
+            width: 130px;
+            display: inline-block;
+          }
+          .icontext {
+            width: 130px;
+            display: inline-block;
+            vertical-align: top;
+            padding-top: $u;
+          }
+        }
+      }
+    }
+
+    /* Main */
+    #main {
+
+    }
+
+  }
+
 }
 
 
@@ -133,33 +200,55 @@ body {
  */
 
 @media all and (min-width: $u*35) {
-  
-  /* Header */
-  #header {
-    height: $u*4;
-    padding-top: $u*0.5;
-    box-sizing: border-box;
 
-    .create-new-or-log-in {
-      padding-left: 0.5em;
-      padding-right: 0.5em;
+  #page {
+
+    > div:first-of-type {
+      padding-top: $u*5;
+    }
+
+    .region-highlighted {
+      /* Chat */
+      #block-myassist-opeka-chatribbons {
+        /*margin-top: -($u*1);*/
+      }
+    }
+
+    /* Header */
+    #header {
+      height: $u*4;
+      padding-top: $u*0.5;
+      box-sizing: border-box;
+
+      .create-new-or-log-in {
+        padding-left: 0.5em;
+        padding-right: 0.5em;
+      }
+
+      #block-search-form.open #search-block-form {
+        top: $u*4;
+      }
+    }
+
+    /* Main */
+    #main {
+
+    }
+
+    /* Main menu */
+    .region-navigation {
+      position: fixed;
+      bottom: auto;
+      top: 0;
+      left: $u*14;
+      right: auto;
+      width: auto;
+      z-index: 4;
+      text-align: center;
     }
   }
-  #block-search-form.open #search-block-form {
-    top: $u*4;
-  }
   
-  /* Main menu */
-  .region-navigation {
-    position: fixed;
-    bottom: auto;
-    top: 0;
-    left: $u*14;
-    right: auto;
-    width: auto;
-    z-index: 4;
-    text-align: center;
-  }
+
   #block-system-main-menu .menu__item {
     width: $u*5.5;
     float: none;
@@ -232,12 +321,7 @@ body {
       padding: 0 $u*3 0 0;
     }
   }
-  
-  /* Chat */
-  #block-myassist-opeka-chatribbons {
-    margin-top: -($u*1);
-  }
-  
+
 }
 
 
@@ -247,74 +331,92 @@ body {
 @media all and (min-width: $u*55) {
   
   /* General layout */
+
   #page {
-    background-color: $white;
-  }
-  #main {
-    @include clearfix;
-  }
-  #main,
-  .header__container,
-  .region-bottom {
-    width: $u*55;
-    margin: 0 auto;
-  }
-  #page,
-  #main {
     padding: 0;
-  }
-  #main {
-    display: flex;
-    -webkit-flex-direction: row;
-    -ms-flex-direction: row;
-    flex-direction: row;
-    -webkit-flex-wrap: nowrap;
-    -ms-flex-wrap: nowrap;
-    flex-wrap: nowrap;
-  }
-  #content,
-  .sidebars {
-    box-sizing: border-box;
-  }
-  #content {
-    padding: $u*8 $u $u;
-    box-sizing: border-box;
-    width: 66%;
-  }
-  .no-sidebars #content {
-    width: 100%;
-  }
-  .sidebars {
-    width: 33%;
-    padding: $u*8 $u $u;
-    background-color: $grey;
-  }
-  
-  /* Header */
-  #header {
-    height: auto;
-    padding-bottom: $u;
-  }
-  .header__container {
-    padding: $u*2 0;
-  }
-  .header__region {
-    position: absolute;
-    right: 50%;
-    margin-right: -($u*27.5);
-    top: $u*2.5;
-  }
-  .region-navigation {
-    left: 50%;
-    width: $u*25;
-    margin-left: -($u*15);
-    margin-top: $u*1.5;
-    #block-system-main-menu {
-      .active.menu__link {
-        background-color: transparent;
+    > div:first-of-type {
+      padding-top: $u*7.5;
+    }
+
+    /* Header */
+    #header {
+      height: auto;
+      padding-bottom: $u;
+
+      .header__container {
+        padding: $u*2 0;
+      }
+      .header__region {
+        position: absolute;
+        right: 50%;
+        margin-right: -($u*27.5);
+        top: $u*2.5;
+      }
+    }
+
+    .region-highlighted {
+      /* Chat */
+      #block-myassist-opeka-chatribbons {
+        margin-top: -($u*1.5);
+      }
+    }
+
+    #main {
+      @include clearfix;
+
+      padding-left: 0;
+      padding-right: 0;
+
+      display: flex;
+      -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+      flex-direction: row;
+      -webkit-flex-wrap: nowrap;
+      -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+
+      .sidebars {
+        width: 33%;
+        padding: $u;
+        background-color: $grey;
+        box-sizing: border-box;
+      }
+
+      #content {
+        padding: 0 $u $u;
+        box-sizing: border-box;
+        width: 66%;
+      }
+      .no-sidebars #content {
+        width: 100%;
+      }
+    }
+
+    .region-navigation {
+      left: 50%;
+      width: $u*25;
+      margin-left: -($u*15);
+      margin-top: $u*1.5;
+      #block-system-main-menu {
+        .active.menu__link {
+          background-color: transparent;
+        }
       }
     }
   }
+
+
+
+
+  #main,
+  .header__container,
+  .region-bottom,
+  .region-highlighted {
+    width: $u*55;
+    margin: 0 auto;
+  }
+
+
   #block-search-form.open #search-block-form {
     top: $u*6;
   }
@@ -363,6 +465,14 @@ body {
       width: 25%;
     }
   }
+
+  .view-user-nodes {
+    .answers-body-wrapper {
+      .field-name-body {
+        width: 100%;
+      }
+    }
+  }
   
   /* FAQ */
   .view-faq {
@@ -398,10 +508,5 @@ body {
       width: 40%;
     }
   }
-  
-  /* Chat */
-  #block-myassist-opeka-chatribbons {
-    margin-top: -($u*1.5);
-  }
-  
+
 }

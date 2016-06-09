@@ -852,3 +852,63 @@ tr.selected td {
   @include element-invisible;
 }
 
+
+/**
+ * Leaderboard block
+ */
+
+.block-achievements {
+  .block-title {
+    text-transform: uppercase;
+  }
+  .achievement-leaderboard {
+    thead {
+      display: none;
+    }
+    tbody {
+      tr.even,
+      tr.odd {
+        background-color: transparent;
+        border-bottom-color: #fff;
+      }
+      tr.even:last-child,
+      tr.odd:last-child {
+        border-bottom-color: transparent;
+      }
+      td.achievement-leaderboard-rank {
+        color: #38535e;
+        font-size: 2em;
+      }
+      td.achievement-leaderboard-userpicture {
+        padding: 0.25em;
+        img {
+          border-radius: 1.5em;
+          height: 3em;
+          width: 3em;
+        }
+      }
+      td.achievement-leaderboard-username {
+        font-weight: bold;
+        width: 6em;
+      }
+      td.achievement-leaderboard-points {
+        color: #72858c;
+        width: 5em !important;
+        &:before {
+          content: "| ";
+        }
+        a:after {
+          content: " point";
+        }
+      }
+
+    }
+  }
+}
+
+/**
+ * Highlight region
+ */
+.region-highlighted {
+  padding-bottom: 20px;
+}

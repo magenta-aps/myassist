@@ -45,7 +45,7 @@ function myassist_categories_views_default_views() {
   $handler->display->display_options['pager']['options']['tags']['next'] = 'næste ›';
   $handler->display->display_options['pager']['options']['tags']['last'] = 'sidste »';
   $handler->display->display_options['style_plugin'] = 'table';
-  /* Forbindelse: Ord i ordforråd: Indhold som bruger Category */
+  /* Relationship: Ord i ordforråd: Indhold som bruger Category */
   $handler->display->display_options['relationships']['reverse_field_category_node']['id'] = 'reverse_field_category_node';
   $handler->display->display_options['relationships']['reverse_field_category_node']['table'] = 'taxonomy_term_data';
   $handler->display->display_options['relationships']['reverse_field_category_node']['field'] = 'reverse_field_category_node';
@@ -68,14 +68,14 @@ function myassist_categories_views_default_views() {
   $handler->display->display_options['fields']['type']['relationship'] = 'reverse_field_category_node';
   $handler->display->display_options['fields']['type']['group_type'] = 'count';
   $handler->display->display_options['fields']['type']['label'] = 'Spørgsmål';
-  /* Filterkriterie: Ordforråd: Internt navn */
+  /* Filter criterion: Ordforråd: Internt navn */
   $handler->display->display_options['filters']['machine_name']['id'] = 'machine_name';
   $handler->display->display_options['filters']['machine_name']['table'] = 'taxonomy_vocabulary';
   $handler->display->display_options['filters']['machine_name']['field'] = 'machine_name';
   $handler->display->display_options['filters']['machine_name']['value'] = array(
     'categories' => 'categories',
   );
-  /* Filterkriterie: Indhold: Type */
+  /* Filter criterion: Indhold: Type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'node';
   $handler->display->display_options['filters']['type']['field'] = 'type';
