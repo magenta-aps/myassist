@@ -5,9 +5,7 @@
  */
 function myassist_blog_block_view_alter(&$data, $block) {
 
-
-  print "<!-- " . $block['delta'] . " -->";
-  if ($block['delta'] == "blog") {
+  if ($block->module == "blog" && $block->delta == "recent") {
     global $user;
     print "<!-- ALTER -->";
 
@@ -22,6 +20,10 @@ function myassist_blog_block_view_alter(&$data, $block) {
         ->execute();
 
       $node_title_list = node_title_list($result);
+
+      print "<!--";
+      var_dump($node_title_list);
+      print "-->";
 
       if ($node_title_list) {
         $data['subject'] = t('Recent blog posts Test');
