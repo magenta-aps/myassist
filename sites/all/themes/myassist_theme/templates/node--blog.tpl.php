@@ -19,8 +19,8 @@
 
       <?php if ($display_submitted): ?>
         <p class="submitted">
-          <?php print $user_picture; ?>
           <?php print $submitted; ?>
+          <?php print $user_picture; ?>
         </p>
       <?php endif; ?>
 
@@ -39,6 +39,7 @@
 
   <?php print render($content['links']); ?>
 
-  <?php print render($content['comments']); ?>
+  <!-- Comments hidden -->
+  <?php /*print render($content['comments']);*/ ?>
 
 </article>
