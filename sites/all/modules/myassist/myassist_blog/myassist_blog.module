@@ -6,6 +6,7 @@
 function myassist_blog_block_view_blog_alter(&$data, $block) {
 
   global $user;
+  print "<!-- ALTER -->";
 
   if (user_access('access content')) {
     $result = db_select('node', 'n')
