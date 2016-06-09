@@ -153,8 +153,8 @@ function graceful_hide(&$item) {
  * Implements hook_more_link().
  */
 function myassist_theme_more_link($variables) {
-  print "<!--";
-  var_dump($variables);
-  print "-->";
+  if ($variables['url'] == 'blog') { // Not pretty, but gets the job done
+    return '<div class="more-link">' . l(t('Alle blogindlæg'), $variables['url'], array('attributes' => array('title' => $variables['title']))) . '</div>';
+  }
   return theme_more_link($variables);
 }
