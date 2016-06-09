@@ -16,6 +16,14 @@
     margin-bottom: 0;
     padding-bottom: 0;
   }
+
+  .links {
+    .comment-comments,
+    .comment-new-comments,
+    .comment-add {
+      display: none;
+    }
+  }
 }
 
 .region.sidebar {
