@@ -2,8 +2,9 @@
 
   .submitted {
     .user-picture {
-      float:left;
+      display: inline-block;
       width: $u*2.5;
+      vertical-align: middle;
     }
   }
 
