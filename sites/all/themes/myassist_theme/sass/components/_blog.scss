@@ -32,3 +32,12 @@
     font-weight: bold;
   }
 }
+
+.block-blog-recent {
+  .item-list {
+    .user-picture {
+      float:left;
+      width: $u*2.5;
+    }
+  }
+}
