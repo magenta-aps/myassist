@@ -1,0 +1,4 @@
+name = Myassist Blog
+core = 7.x
+package = MyAssist
+features[features_api][] = api:2
