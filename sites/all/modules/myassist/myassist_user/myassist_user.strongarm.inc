@@ -394,6 +394,12 @@ function myassist_user_strongarm() {
             'visible' => TRUE,
           ),
         ),
+        'mimemail' => array(
+          'default' => array(
+            'weight' => '0',
+            'visible' => TRUE,
+          ),
+        ),
       ),
     ),
   );
