@@ -36,12 +36,16 @@
 .block-blog {
   .item-list {
     ul {
-      list-style-position: inside;
+      padding: 0;
       li {
         list-style-type: none;
         .user-picture {
-          float: left;
-          width: $u*2.5;
+          display: inline-block;
+          width: 20%;
+        }
+        a {
+          display: inline-block;
+          width: 79%;
         }
       }
     }
