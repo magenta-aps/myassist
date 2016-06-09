@@ -40,6 +40,7 @@ function myassist_blog_node_title_list($result, $title = NULL) {
   $num_rows = FALSE;
   foreach ($result as $node) {
     $items[] = array(
+      theme_get_setting('toggle_node_user_picture') ? theme('user_picture', array('account' => $node)) : '',
       l($node->title, 'node/' . $node->nid, !empty($node->comment_count) ? array('attributes' => array('title' => format_plural($node->comment_count, '1 comment', '@count comments'))) : array());
     );
     $num_rows = TRUE;
