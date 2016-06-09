@@ -148,3 +148,13 @@ function graceful_hide(&$item) {
     hide($item);
   }
 }
+
+/*
+ * Implements hook_more_link().
+ */
+function myassist_theme_more_link($variables) {
+  print "<!--";
+  var_dump($variables);
+  print "-->";
+  return theme_more_link($variables);
+}
