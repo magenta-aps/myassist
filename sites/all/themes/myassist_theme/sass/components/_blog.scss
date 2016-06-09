@@ -42,6 +42,9 @@
         .user-picture {
           display: inline-block;
           width: 18%;
+          img {
+            border-radius: 50%;
+          }
         }
         > a {
           display: inline-block;
