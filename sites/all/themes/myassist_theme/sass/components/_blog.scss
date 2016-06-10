@@ -8,8 +8,12 @@
     }
   }
 
+  h2 {
+    padding-top: 0;
+  }
+
   border-bottom: 1px solid #b5b5b5;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   padding-bottom: 10px;
 
   &:last-child {
@@ -24,6 +28,10 @@
     .comment-add {
       display: none;
     }
+  }
+
+  #comments {
+    margin-top: 20px;
   }
 }
 
