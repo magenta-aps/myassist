@@ -13,8 +13,8 @@
   }
 
   border-bottom: 1px solid #b5b5b5;
-  margin-bottom: 20px;
-  padding-bottom: 10px;
+  margin-bottom: $u*1.5;
+  padding-bottom: $u*0.75;
 
   &:last-child {
     border-bottom: 0 none;
@@ -31,11 +31,11 @@
   }
 
   #comments {
-    margin-top: 25px;
+    margin-top: $u*2;
   }
 
   h2.comment-form {
-    margin-top: 25px;
+    margin-top: $u*2;
   }
 }
 
