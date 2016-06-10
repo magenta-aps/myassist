@@ -1,0 +1,49 @@
+<?php
+
+/**
+ * Implements hook_block_view_alter().
+ */
+function myassist_blog_block_view_alter(&$data, $block) {
+
+  if ($block->module == "blog" && $block->delta == "recent") {
+    global $user;
+
+    if (user_access('access content')) {
+      $result = db_select('node', 'n')
+        ->fields('n', array('uid', 'nid', 'title', 'created'))
+        ->condition('type', 'blog')
+        ->condition('status', 1)
+        ->orderBy('created', 'DESC')
+        ->range(0, variable_get('blog_block_count', 10))
+        ->addTag('node_access')
+        ->execute();
+
+      $node_title_list = myassist_blog_node_title_list($result);
+
+      if ($node_title_list) {
+        $data['subject'] = t('Recent blog posts Test');
+        $data['content']['blog_list'] = $node_title_list;
+        $data['content']['blog_more'] = array(
+          '#theme' => 'more_link',
+          '#url' => 'blog',
+          '#title' => t('Read the latest blog entries.'),
+        );
+
+        return $data;
+      }
+    }
+  }
+}
+
+function myassist_blog_node_title_list($result, $title = NULL) {
+  $items = array();
+  $num_rows = FALSE;
+  foreach ($result as $node) {
+    $items[] =
+      theme('user_picture', array('account' => user_load($node->uid, TRUE))) .
+      l($node->title, 'node/' . $node->nid, !empty($node->comment_count) ? array('attributes' => array('title' => format_plural($node->comment_count, '1 comment', '@count comments'))) : array());
+    $num_rows = TRUE;
+  }
+
+  return $num_rows ? array('#theme' => 'item_list__node', '#items' => $items, '#title' => $title) : FALSE;
+}

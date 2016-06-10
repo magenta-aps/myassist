@@ -78,6 +78,12 @@ function myassist_theme_preprocess_node(&$variables, $hook) {
     drupal_add_js(drupal_get_path('theme', 'myassist_theme') . '/js/GA_user_registration_conversion.js');
     drupal_add_js('http://www.googleadservices.com/pagead/conversion.js', 'external');
   }
+
+  $node = $variables['node'];
+  $variables['date'] = format_date($node->created, 'short');
+  if (variable_get('node_submitted_' . $node->type, TRUE)) {
+    $variables['submitted'] = t('Submitted by !username !datetime', array('!username' => $variables['name'], '!datetime' => $variables['date']));
+  }
 }
 
 /**
@@ -147,4 +153,14 @@ function graceful_hide(&$item) {
   if (isset($item)) {
     hide($item);
   }
+}
+
+/*
+ * Implements hook_more_link().
+ */
+function myassist_theme_more_link($variables) {
+  if ($variables['url'] == 'blog') { // Not pretty, but gets the job done
+    return '<div class="more-link">' . l(t('Alle blogindlæg'), $variables['url'], array('attributes' => array('title' => $variables['title']))) . '</div>';
+  }
+  return theme_more_link($variables);
 }
