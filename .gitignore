@@ -1,5 +1,7 @@
 .idea
 *.DS_Store
+.htaccess
+
 # Ignore configuration files that may contain sensitive information.
 sites/*/*settings*.php
 
