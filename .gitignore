@@ -37,10 +37,8 @@ xmlrpc.php
 /scripts
 /themes
 
-
-# Ignore paths that contain user-generated content.
-sites/*/files
-sites/*/private
+# Cache files
+.sass-cache
 
 # Symlink to opeka source code should be configured locally
 /sites/all/modules/opeka

@@ -1663,7 +1663,7 @@ tr.selected td {
 /* line 761, ../sass/components/_misc.scss */
 .progress .filled {
   background-color: #0072b9;
-  background-image: url('../images/progress.gif?1463136946');
+  background-image: url('../images/progress.gif?1466284234');
 }
 
 /**
@@ -2899,6 +2899,71 @@ body.page-user-register #edit-profile-ungeprofil,
     margin: 1em 0.5em;
   }
 }
+/* line 1, ../sass/components/_blog.scss */
+.node-blog {
+  border-bottom: 1px solid #b5b5b5;
+  margin-bottom: 1.5em;
+  padding-bottom: 0.75em;
+}
+/* line 4, ../sass/components/_blog.scss */
+.node-blog .submitted .user-picture {
+  display: inline-block;
+  width: 2.5em;
+  vertical-align: middle;
+}
+/* line 11, ../sass/components/_blog.scss */
+.node-blog h2 {
+  padding-top: 0;
+}
+/* line 19, ../sass/components/_blog.scss */
+.node-blog:last-child {
+  border-bottom: 0 none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+/* line 26, ../sass/components/_blog.scss */
+.node-blog .links .comment-comments,
+.node-blog .links .comment-new-comments,
+.node-blog .links .comment-add {
+  display: none;
+}
+/* line 33, ../sass/components/_blog.scss */
+.node-blog #comments {
+  margin-top: 2em;
+}
+/* line 37, ../sass/components/_blog.scss */
+.node-blog h2.comment-form {
+  margin-top: 2em;
+}
+
+/* line 44, ../sass/components/_blog.scss */
+.region.sidebar .more-link {
+  font-weight: bold;
+}
+
+/* line 51, ../sass/components/_blog.scss */
+.block-blog .item-list ul {
+  padding: 0;
+}
+/* line 53, ../sass/components/_blog.scss */
+.block-blog .item-list ul li {
+  list-style-type: none;
+}
+/* line 55, ../sass/components/_blog.scss */
+.block-blog .item-list ul li .user-picture {
+  display: inline-block;
+  width: 18%;
+}
+/* line 58, ../sass/components/_blog.scss */
+.block-blog .item-list ul li .user-picture img {
+  border-radius: 50%;
+}
+/* line 62, ../sass/components/_blog.scss */
+.block-blog .item-list ul li > a {
+  display: inline-block;
+  width: 80%;
+}
+
 /* Responsive layout rules */
 /**
  * @file
