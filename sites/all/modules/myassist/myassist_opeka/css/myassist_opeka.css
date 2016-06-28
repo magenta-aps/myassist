@@ -1,5 +1,21 @@
 /* Styles for this module that relate to the Myassist_theme are located at /themes/myassist_theme/sass/components/_opeka.scss */
 
+
+/*
+* The following styles are theme independent styles for
+*/
+
+/* We want the chat window in all room-sizes to expand to a bigger width */
+body[class^="room-size-"] #main,
+body[class*=" room-size-"] #main {
+  width: 100%;
+}
+
+body[class^="room-size-"] #page #main #content,
+body[class^=" room-size-"] #page #main #content {
+    width: 100%;
+}
+
 /*
 * The following styles are theme independent styles for admin
 */
@@ -224,7 +240,7 @@
   margin-right: 0.5em;
 }
 #opeka-app .chat-view-form .form-text-container textarea {
-  height: 2.5em;
+  height: 5.5em;
   border: none;
   width: 100%;
   box-sizing: border-box;

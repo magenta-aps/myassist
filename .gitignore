@@ -1,6 +1,7 @@
 .idea
 *.DS_Store
 .htaccess
+.ruby-version
 
 # Ignore configuration files that may contain sensitive information.
 sites/*/*settings*.php
@@ -39,8 +40,10 @@ xmlrpc.php
 /scripts
 /themes
 
-# Cache files
+# Cache and dev files
 .sass-cache
+sites/all/modules/reroute_email
+sites/all/modules/stage_file_proxy
 
 # Symlink to opeka source code should be configured locally
 /sites/all/modules/opeka
