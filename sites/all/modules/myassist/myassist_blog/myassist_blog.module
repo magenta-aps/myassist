@@ -21,7 +21,7 @@ function myassist_blog_block_view_alter(&$data, $block) {
       $node_title_list = myassist_blog_node_title_list($result);
 
       if ($node_title_list) {
-        $data['subject'] = t('Recent blog posts Test');
+        $data['subject'] = t('Recent blog posts');
         $data['content']['blog_list'] = $node_title_list;
         $data['content']['blog_more'] = array(
           '#theme' => 'more_link',
