@@ -108,4 +108,21 @@
             }
         }
     };
+    Drupal.behaviors.answersComments = {
+        attach : function(context, settings) {
+            // Attach the function to a button attached to a question or an answer
+            // Attach to a button attached to a comment
+            jQuery('.answers-comment-button, .answersComments .comment-reply', context).click(function(){
+                var form = $(this).parents(".answers-body-wrapper").find('form.comment-form');
+                form.show('fast');
+                return false;
+            });
+            // Show the filter help when help button clicked
+            jQuery('.answers-form-filter-help', context).click(function(){
+                var form =  $(this).parents(".form-wrapper").find('.filter-wrapper');
+                form.show('fast');
+                return false;
+            });
+        }
+    };
 }(jQuery));

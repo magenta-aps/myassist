@@ -342,22 +342,25 @@ function myassist_user_strongarm() {
           'weight' => '0',
         ),
         'account' => array(
-          'weight' => '-10',
+          'weight' => '0',
         ),
         'timezone' => array(
-          'weight' => '6',
+          'weight' => '4',
         ),
         'masquerade' => array(
-          'weight' => '50',
+          'weight' => '10',
         ),
         'ckeditor' => array(
-          'weight' => '10',
+          'weight' => '9',
         ),
         'googleanalytics' => array(
           'weight' => '3',
         ),
         'profile_ungeprofil' => array(
-          'weight' => '0',
+          'weight' => '2',
+        ),
+        'mimemail' => array(
+          'weight' => '1',
         ),
       ),
       'display' => array(
@@ -386,6 +389,12 @@ function myassist_user_strongarm() {
           ),
         ),
         'userpoints' => array(
+          'default' => array(
+            'weight' => '0',
+            'visible' => TRUE,
+          ),
+        ),
+        'mimemail' => array(
           'default' => array(
             'weight' => '0',
             'visible' => TRUE,

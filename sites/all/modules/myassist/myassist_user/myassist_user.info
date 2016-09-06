@@ -3,6 +3,7 @@ description = User setup
 core = 7.x
 package = MyAssist
 dependencies[] = achievements
+dependencies[] = admin_views
 dependencies[] = answers
 dependencies[] = autocomplete_deluxe
 dependencies[] = ctools

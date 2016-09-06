@@ -80,6 +80,10 @@ DirectoryIndex index.php index.html index.htm
   # If you do not have mod_rewrite installed, you should remove these
   # directories from your webroot or otherwise protect them from being
   # downloaded.
+
+  # Make sure Letsencrypt can do its thing
+  RewriteRule "^.well-known/acme-challenge/" - [L]
+
   RewriteRule "(^|/)\." - [F]
 
   # If your site can be accessed both with and without the 'www.' prefix, you

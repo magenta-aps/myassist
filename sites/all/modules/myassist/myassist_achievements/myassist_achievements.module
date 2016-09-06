@@ -70,6 +70,8 @@ function myassist_achievements_define_achievement($title, $description, $image, 
     )
   );
 }
+
+
 /*
  * Declare a group of achievements
  */
@@ -86,6 +88,7 @@ function myassist_achievements_define_achievement_group($key, $title, $descripti
   );
 }
 
+
 /*
  * Check whether an achievement can be unlocked, and do the unlock
  */
@@ -97,11 +100,11 @@ function myassist_achievements_check_achievement($uid, $achievement_group, $coun
   }
 }
 
+
 /**
  * Implements hook_achievements_info().
  */
 function myassist_achievements_achievements_info() {
-
   $achievements = array();
 
   $achievements = array_merge($achievements, myassist_achievements_define_achievement_group('first-assists-all', t('Jogger'), t('Giv %d first assists'), array(5, 20, 50), array(50,100,300)));
@@ -137,8 +140,6 @@ function myassist_achievements_permission() {
 }
 
 
-
-
 /**
  * Implements hook_node_insert().
  * Trigger achievements for question posting
@@ -170,6 +171,8 @@ function myassist_achievements_node_insert($node) {
     myassist_achievements_check_achievement($uid, $achievements['assists-week'], count(myassist_achievements_get_user_answer_ids($uid, $one_week)));
   }
 }
+
+
 /**
  * Implements hook_votingapi_insert().
  */
@@ -221,14 +224,13 @@ function myassist_achievements_user_can_earn_points($uid) {
   return (user_access('earn points', user_load($uid)));
 }
 
+
 /*
  * Implements hook_userpoints
  * Trigger achievements for leveling up
  * Called when the user's points are altered (by userpoints_invoke_all() in userpoints.module)
  * */
 function myassist_achievements_userpoints($operation, $parameters) {
-
-
   // Deny points to admin (see https://redmine.magenta-aps.dk/issues/13245) and users without the needed permissions
   if ($operation === "points before") {
     if (!myassist_achievements_user_can_earn_points($parameters['uid'])) {
@@ -262,6 +264,7 @@ function myassist_achievements_userpoints($operation, $parameters) {
   }
 }
 
+
 /**
  * Implements hook_userpoints_info().
  */
@@ -282,8 +285,6 @@ function myassist_achievements_userpoints_info() {
 
   return $info;
 }
-
-
 
 
 /*
@@ -402,23 +403,13 @@ function myassist_achievements_userpoints_list_transactions_alter(&$data) {
 }
 
 
-/*function myassist_achievements_init() {
-  variable_set('achievements_leaderboard_count_per_page', 10000);
-}*/
-
-/**
- * Implements hook_TYPE_alter().
- * Displays achievement badges on profile page
- */
-
-
 /**
  * Implements hook_achievements_leaderboard_alter().
  */
 function myassist_achievements_achievements_leaderboard_alter(&$leaderboard) {
   $limit = 10;
   $pos = 1;
-  $render = &$leaderboard['render'];
+
   $no_achievements = array();
   if (array_key_exists('achievers', $leaderboard)) {
     foreach ($leaderboard['achievers'] as $list_type => &$list) {
@@ -431,34 +422,51 @@ function myassist_achievements_achievements_leaderboard_alter(&$leaderboard) {
         } else {
           $pos++;
         }*/
-        if (!$account->achievement_id) {
+        $ach = 0;
+        try {
+          $ach = $account->achievement_id;
+        } catch (Exception $e) {}
+        if (!$ach) {
           $account->latest["#achievement"] = array();
           $no_achievements[] = $uid;
         }
       }
     }
   }
-  if (array_key_exists('render', $leaderboard) && array_key_exists('#rows', $render)) {
-    $pos = 1;
+  if (array_key_exists('render', $leaderboard)) {
+    $render = &$leaderboard['render'];
+    if (array_key_exists('#rows', $render)) {
+      // $pos = 1;
 
-    foreach ($render['#rows'] as $uid => &$row) {
-      /*if ($pos > $limit) {
-        unset($render['#rows'][$uid]);
+      // Remove empty "latest achievement" cell
+      foreach ($render['#rows'] as $u => &$r) {
+        if (in_array($u, $no_achievements)) {
+          $achievements_class_index = myassist_achievements_class_index($r, 'achievement-leaderboard-latest');
+          if ($achievements_class_index != -1) {
+            $r['data'][$achievements_class_index]['data'] = "";
+          }
+        }
       }
-      if (!myassist_achievements_user_can_earn_points($uid)) {
-        unset($render['#rows'][$uid]);
-      } else {
-        $row['data'][0]['data'] = $pos;
-        $pos++;
-      }*/
-      if (in_array($uid, $no_achievements)) {
-        $row['data'][4]['data'] = "";
+
+      if (array_key_exists('block', $leaderboard) && $leaderboard['block']) {
+        // #14070: Add rank column
+        // myassist_achievements_add_column($render,0,t("Rank"),range(1, count($render['#rows'])));
+
+        // #14070: Add image column
+        $images = array();
+        foreach ($render['#rows'] as $uid => $row) {
+          $images[] = array(
+            'data' => theme('user_picture', array('account' => user_load($uid))),
+            'class' => array('achievement-leaderboard-userpicture')
+          );
+        }
+        myassist_achievements_add_column($render, 1, t("Image"), $images);
       }
     }
+
+    // #13647: Remove unlocks column
+    myassist_achievements_remove_column($render, myassist_achievements_title_index($render, t('Unlocks')));
   }
-  
-  // #13647: remove unlocks column
-  myassist_achievements_remove_column($render, t('Unlocks'));
 }
 
 
@@ -553,8 +561,8 @@ function myassist_achievements_profile2_view($profile, $view_mode, $langcode) {
       );
     }
   }
-
 }
+
 
 /**
  * Implements hook_theme().
@@ -610,6 +618,7 @@ function myassist_achievements_preprocess_achievement(&$variables) {
   }
 }
 
+
 /**
  * Implements hook_block_info().
  */
@@ -620,6 +629,7 @@ function myassist_achievements_block_info() {
   );
   return $blocks;
 }
+
 
 /**
  * Implements hook_block_view().
@@ -645,9 +655,9 @@ function myassist_achievements_block_view($delta = '') {
         );
       }
   }
-
   return $block;
 }
+
 
 //------------------------------------------------------------------------------
 // Show a notification each time we gain points
@@ -722,19 +732,62 @@ function myassist_achievements_page_alter(&$page) {
   }
 }
 
-function myassist_achievements_remove_column(&$renderArray, $findTitle) {
-  $columnIndex = 0;
+function myassist_achievements_title_index(&$renderArray, $findTitle) {
   foreach ($renderArray['#header'] as $i => &$headerCell) {
     if ($headerCell === $findTitle) {
-        $columnIndex = $i;
-      break;
+      return $i;
     }
   }
-  array_splice($renderArray['#header'], $columnIndex, 1);
-  foreach ($renderArray['#rows'] as &$row) {
-    array_splice($row['data'], $columnIndex, 1);
+  return -1;
+}
+
+
+function myassist_achievements_class_index($row, $findClass) {
+  foreach ($row['data'] as $index => $cell) {
+    if (array_key_exists('class', $cell)) {
+      foreach ($cell['class'] as $clas) {
+        if ($clas === $findClass) {
+          return $index;
+        }
+      }
+    }
+  }
+  return -1;
+}
+
+
+function myassist_achievements_remove_column(&$renderArray, $columnIndex) {
+  if ($columnIndex >= 0) {
+    array_splice($renderArray['#header'], $columnIndex, 1);
+    foreach ($renderArray['#rows'] as &$row) {
+      array_splice($row['data'], $columnIndex, 1);
+    }
   }
 }
+
+
+function myassist_achievements_add_column(&$renderArray, $columnIndex, $title, $dataArray) {
+  if ($columnIndex >= 0) {
+    array_splice($renderArray['#header'], $columnIndex, 0, $title);
+    myassist_achievements_alter_column($renderArray, $columnIndex, $dataArray, 0);
+  }
+}
+
+
+function myassist_achievements_alter_column(&$renderArray, $columnIndex, $dataArray, $replaceLength=1) {
+  if ($columnIndex >= 0) {
+    $i = 0;
+    foreach ($renderArray['#rows'] as &$row) {
+      $value = "";
+      if ($i < count($dataArray)) {
+        $value = array($dataArray[$i]);
+      }
+      array_splice($row['data'], $columnIndex, $replaceLength, $value);
+      $i++;
+    }
+  }
+}
+
 
 /**
  * Implements hook_user_delete().
