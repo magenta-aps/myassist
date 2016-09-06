@@ -1,10 +1,5 @@
 /* Styles for this module that relate to the Myassist_theme are located at /themes/myassist_theme/sass/components/_opeka.scss */
 
-
-/*
-* The following styles are theme independent styles for
-*/
-
 /* We want the chat window in all room-sizes to expand to a bigger width */
 body[class^="room-size-"] #main,
 body[class*=" room-size-"] #main {

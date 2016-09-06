@@ -35,17 +35,14 @@ function myassist_theme_preprocess_maintenance_page(&$variables, $hook) {
  *   The name of the template being rendered ("html" in this case.)
  */
 function myassist_theme_preprocess_html(&$variables, $hook) {
-  // Add Facebook Pixel tracking code on selected pages (chat page, user reg. page and complete reg. page)
-  if (current_path() == 'node/21' || current_path() == 'user/register' || current_path() == 'node/561'){
-
-    $fb_markup = '<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=686677638133594&ev=PageView&noscript=1"/></noscript>';
-    $fb_pixel = array(
-      '#type' => 'markup',
-      '#markup' => $fb_markup,
-    );
-    drupal_add_html_head($fb_pixel, 'fb_pixel');
-    drupal_add_js(drupal_get_path('theme', 'myassist_theme') . '/js/facebook_pixel_code.js');
-  }
+  // Add Facebook Pixel tracking code on all pages
+  $fb_markup = '<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=686677638133594&ev=PageView&noscript=1"/></noscript>';
+  $fb_pixel = array(
+    '#type' => 'markup',
+    '#markup' => $fb_markup,
+  );
+  drupal_add_html_head($fb_pixel, 'fb_pixel');
+  drupal_add_js(drupal_get_path('theme', 'myassist_theme') . '/js/facebook_pixel_code.js');
 }
 
 /**
